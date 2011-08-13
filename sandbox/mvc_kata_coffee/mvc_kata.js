@@ -91,10 +91,11 @@
     }
     Player.prototype.defaults = {
       name: 'PLAYER',
-      max_hp: 10,
+      maxHp: 10,
       hp: 10,
       mp: 20,
-      attackPower: 3
+      attackPower: 3,
+      turnCount: 0
     };
     Player.prototype.attack = function(enemey) {
       return MvcKata.Living.prototype.attack.call(this, enemey);
@@ -112,7 +113,7 @@
         });
       }
       this.set({
-        hp: _.min([cure_point + this.get('hp'), this.get('max_hp')])
+        hp: _.min([cure_point + this.get('hp'), this.get('maxHp')])
       });
       if (window.locale === 'ja') {
         return this.set({
@@ -121,6 +122,18 @@
       } else {
         return this.set({
           message: this.get('name') + " cured " + cure_point + " point(s)"
+        });
+      }
+    };
+    Player.prototype.encount = function(target) {
+      alert('hoge');
+      if (window.locale === 'ja') {
+        return this.set({
+          message: target.get('name') + "があらわれた"
+        });
+      } else {
+        return this.set({
+          message: this.get('name') + " encounted a " + target.get('name')
         });
       }
     };
@@ -144,10 +157,11 @@
         model: this.model,
         enemey: this.options.enemey
       }).render().el);
-      return $(this.el).append(new MvcKata.EventHistoryView({
+      $(this.el).append(new MvcKata.EventHistoryView({
         model: this.model,
         enemey: this.options.enemey
       }).render().el);
+      return this.model.encount(this.options.enemey);
     };
     BattleView.prototype.setJa = function() {
       window.locale = 'ja';
@@ -171,19 +185,25 @@
       this.model.bind('change', this.renderPlayerMessage);
       return this.options.enemey.bind('change', this.renderEnemeyMessage);
     };
-    EventHistoryView.prototype.template = _.template('<div class="message"></pre>');
+    EventHistoryView.prototype.template = _.template('<div class="message"></div>');
     EventHistoryView.prototype.messageTemplate = _.template('<p><%= message %></p>');
     EventHistoryView.prototype.render = function() {
       $(this.el).html(this.template());
       return this;
     };
     EventHistoryView.prototype.renderPlayerMessage = function() {
+      if (!this.model.get('message')) {
+        return;
+      }
       this.$('.message').append(this.messageTemplate(this.model.toJSON()));
       return this.model.set({
         message: ''
       });
     };
     EventHistoryView.prototype.renderEnemeyMessage = function() {
+      if (!this.options.enemey.get('message')) {
+        return;
+      }
       this.$('.message').append(this.messageTemplate(this.options.enemey.toJSON()));
       return this.options.enemey.set({
         message: ''
@@ -205,8 +225,8 @@
       'click .hoimi': 'hoimi'
     };
     EventMenuView.prototype.template = _.template('<div class="action"></div>');
-    EventMenuView.prototype.templateJa = _.template('<div><%= name %>のHP: <%= hp %></div>\n<ol>\n  <li><a href="#" class="attack">アタック</a></li>\n  <li><a href="#" class="hoimi">ホイミ</a></li>\n</ol>');
-    EventMenuView.prototype.templateEn = _.template(' <div><%= name %> HP: <%= hp %></div>\n<ol>\n  <li><a href="#" class="attack">Attack</a></li>\n  <li><a href="#" class="hoimi">Hoimi</a></li>\n</ol>');
+    EventMenuView.prototype.templateJa = _.template('<div><%= name %>のHP: <%= hp %>/<%= maxHp %> ターン数: <%= turnCount %></div>\n<ol>\n  <li><a href="#" class="attack">アタック</a></li>\n  <li><a href="#" class="hoimi">ホイミ</a></li>\n</ol>');
+    EventMenuView.prototype.templateEn = _.template(' <div><%= name %> HP: <%= hp %>/<%= maxHp %> Turn: <%= turnCount %></div>\n<ol>\n  <li><a href="#" class="attack">Attack</a></li>\n  <li><a href="#" class="hoimi">Hoimi</a></li>\n</ol>');
     EventMenuView.prototype.render = function() {
       $(this.el).html(this.template());
       if (window.locale === 'ja') {
@@ -218,11 +238,17 @@
     };
     EventMenuView.prototype.attack = function() {
       this.model.attack(this.options.enemey);
-      return this.options.enemey.attack(this.model);
+      this.options.enemey.attack(this.model);
+      return this.model.set({
+        turnCount: this.model.get('turnCount') + 1
+      });
     };
     EventMenuView.prototype.hoimi = function() {
       this.model.hoimi();
-      return this.options.enemey.attack(this.model);
+      this.options.enemey.attack(this.model);
+      return this.model.set({
+        turnCount: this.model.get('turnCount') + 1
+      });
     };
     return EventMenuView;
   })();

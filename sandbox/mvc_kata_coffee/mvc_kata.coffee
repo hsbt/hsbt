@@ -7,7 +7,7 @@ $ ->
     new MvcKata.Dragon()
 
   player = new MvcKata.Player()
-  
+
   new MvcKata.BattleView(model: player, enemey: enemey).render()
 
 class MvcKata.Living extends Backbone.Model
@@ -52,10 +52,11 @@ class MvcKata.Dragon extends MvcKata.Living
 class MvcKata.Player extends MvcKata.Living
   defaults:
     name: 'PLAYER'
-    max_hp: 10
+    maxHp: 10
     hp: 10
     mp: 20
     attackPower: 3
+    turnCount: 0
 
   attack: (enemey) ->
     MvcKata.Living.prototype.attack.call(this, enemey)
@@ -68,12 +69,18 @@ class MvcKata.Player extends MvcKata.Living
     else
       @set message: @get('name') + ' call hoimi.'
 
-    @set hp: (_.min([cure_point + @get('hp'), @get('max_hp')]))
+    @set hp: (_.min([cure_point + @get('hp'), @get('maxHp')]))
 
     if window.locale == 'ja'
       @set message: "HPが" + cure_point + "回復した"
     else
       @set message: @get('name') + " cured " + cure_point + " point(s)"
+
+  encount: (target) ->
+    if window.locale == 'ja'
+      @set message: target.get('name') + "があらわれた"
+    else
+      @set message: @get('name') + " encounted a " + target.get('name')
 
 class MvcKata.BattleView extends Backbone.View
   el: '#container'
@@ -91,8 +98,11 @@ class MvcKata.BattleView extends Backbone.View
 
   render: =>
     $(@el).html @template()
+
     $(@el).append new MvcKata.EventMenuView(model: @model, enemey: @options.enemey).render().el
     $(@el).append new MvcKata.EventHistoryView(model: @model, enemey: @options.enemey).render().el
+
+    @model.encount(@options.enemey)
 
   setJa: ->
     window.locale = 'ja'
@@ -108,7 +118,7 @@ class MvcKata.EventHistoryView extends Backbone.View
     @options.enemey.bind 'change', @renderEnemeyMessage
 
   template: _.template '''
-    <div class="message"></pre>
+    <div class="message"></div>
   '''
 
   messageTemplate: _.template '''
@@ -121,10 +131,12 @@ class MvcKata.EventHistoryView extends Backbone.View
     this
 
   renderPlayerMessage: =>
+    return unless @model.get('message')
     @$('.message').append @messageTemplate(@model.toJSON())
     @model.set message: ''
 
   renderEnemeyMessage: =>
+    return unless @options.enemey.get('message')
     @$('.message').append @messageTemplate(@options.enemey.toJSON())
     @options.enemey.set message: ''
 
@@ -141,7 +153,7 @@ class MvcKata.EventMenuView extends Backbone.View
   '''
 
   templateJa: _.template '''
-    <div><%= name %>のHP: <%= hp %></div>
+    <div><%= name %>のHP: <%= hp %>/<%= maxHp %> ターン数: <%= turnCount %></div>
     <ol>
       <li><a href="#" class="attack">アタック</a></li>
       <li><a href="#" class="hoimi">ホイミ</a></li>
@@ -149,7 +161,7 @@ class MvcKata.EventMenuView extends Backbone.View
   '''
 
   templateEn: _.template '''
-     <div><%= name %> HP: <%= hp %></div>
+     <div><%= name %> HP: <%= hp %>/<%= maxHp %> Turn: <%= turnCount %></div>
     <ol>
       <li><a href="#" class="attack">Attack</a></li>
       <li><a href="#" class="hoimi">Hoimi</a></li>
@@ -170,6 +182,10 @@ class MvcKata.EventMenuView extends Backbone.View
     @model.attack(@options.enemey)
     @options.enemey.attack(@model)
 
+    @model.set turnCount: @model.get('turnCount') + 1
+
   hoimi: ->
     @model.hoimi()
     @options.enemey.attack(@model)
+
+    @model.set turnCount: @model.get('turnCount') + 1
