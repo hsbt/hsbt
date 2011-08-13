@@ -1,0 +1,11 @@
+guard 'bundler' do
+  watch(%r{^Gemfile$})
+end
+
+guard 'livereload' do
+  watch(%r{^.+\.(css|js|html)})
+end
+
+guard 'coffeescript', :output => '.' do
+  watch(%r{^.+\.coffee})
+end
