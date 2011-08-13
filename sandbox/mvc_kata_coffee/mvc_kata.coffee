@@ -1,7 +1,7 @@
 window.MvcKata = {}
 
 $ ->
-  enemey = if ((Math.random() * 100) % 2) > 1
+  enemey = if Math.floor((Math.random() * 100) % 2) == 1
     new MvcKata.Slime()
   else
     new MvcKata.Dragon()
@@ -10,37 +10,70 @@ $ ->
   
   new MvcKata.BattleView(model: player, enemey: enemey).render()
 
-class MvcKata.Slime extends Backbone.Model
+class MvcKata.Living extends Backbone.Model
+  defaults:
+    message: ''
+
+  attack: (target) ->
+    damage_point = Math.floor((Math.random() * @get('attackPower')) + 1)
+
+    if window.locale == 'ja'
+      @set message: @get('name') + ' のこうげき'
+    else
+      @set message: @get('name') + ' attack.'
+
+    target.set hp: target.get('hp') - damage_point
+
+    if window.locale == 'ja'
+      @set message: target.get('name') + "に" + damage_point + "のダメージ"
+    else
+      @set message: target.get('name') + " damaged " + damage_point + " point(s)"
+
+class MvcKata.Slime extends MvcKata.Living
   defaults:
     name: 'SLIME'
     hp: 10
     attackPower: 4
     exp: 1
-    message: ''
 
   attack: (player) ->
+    MvcKata.Living.prototype.attack.call(this, player)
 
-class MvcKata.Dragon extends Backbone.Model
+class MvcKata.Dragon extends MvcKata.Living
   defaults:
     name: 'DRAGON'
     hp: 20
     attackPower: 8
     exp: 3000
-    message: ''
 
   attack: (player) ->
+    MvcKata.Living.prototype.attack.call(this, player)
 
-class MvcKata.Player extends Backbone.Model
+class MvcKata.Player extends MvcKata.Living
   defaults:
     name: 'PLAYER'
+    max_hp: 10
     hp: 10
     mp: 20
     attackPower: 3
-    message: ''
 
   attack: (enemey) ->
+    MvcKata.Living.prototype.attack.call(this, enemey)
 
   hoimi: ->
+    cure_point = Math.floor((Math.random() * 8) + 1)
+
+    if window.locale == 'ja'
+      @set message: @get('name') + ' はホイミをとなえた'
+    else
+      @set message: @get('name') + ' call hoimi.'
+
+    @set hp: (_.min([cure_point + @get('hp'), @get('max_hp')]))
+
+    if window.locale == 'ja'
+      @set message: "HPが" + cure_point + "回復した"
+    else
+      @set message: @get('name') + " cured " + cure_point + " point(s)"
 
 class MvcKata.BattleView extends Backbone.View
   el: '#container'
@@ -54,14 +87,12 @@ class MvcKata.BattleView extends Backbone.View
     <div class='locale'>
       <a href="#" class="setJa">日本語</a> / <a href="#" class="setEn">English</a>
     </div>
-    <div class="message"></div>
-    <div class="action"></div>
   '''
 
   render: =>
     $(@el).html @template()
-    @$('.message').html new MvcKata.EventHistoryView(model: @model, enemey: @options.enemey).render().el
-    @$('.action').html new MvcKata.EventMenuView(model: @model, enemey: @options.enemery).render().el
+    $(@el).append new MvcKata.EventMenuView(model: @model, enemey: @options.enemey).render().el
+    $(@el).append new MvcKata.EventHistoryView(model: @model, enemey: @options.enemey).render().el
 
   setJa: ->
     window.locale = 'ja'
@@ -72,20 +103,30 @@ class MvcKata.BattleView extends Backbone.View
     @render()
 
 class MvcKata.EventHistoryView extends Backbone.View
-  templateJa: _.template '''
-    <h1>ほげほげ</h1>
+  initialize: ->
+    @model.bind 'change', @renderPlayerMessage
+    @options.enemey.bind 'change', @renderEnemeyMessage
+
+  template: _.template '''
+    <div class="message"></pre>
   '''
 
-  templateEn: _.template '''
-    <h1>hogehoge</h1>
+  messageTemplate: _.template '''
+    <p><%= message %></p>
   '''
 
   render: =>
-    if window.locale == 'ja'
-      $(@el).html @templateJa()
-    else
-      $(@el).html @templateEn()
+    $(@el).html @template()
+
     this
+
+  renderPlayerMessage: =>
+    @$('.message').append @messageTemplate(@model.toJSON())
+    @model.set message: ''
+
+  renderEnemeyMessage: =>
+    @$('.message').append @messageTemplate(@options.enemey.toJSON())
+    @options.enemey.set message: ''
 
 class MvcKata.EventMenuView extends Backbone.View
   initialize: ->
@@ -94,6 +135,10 @@ class MvcKata.EventMenuView extends Backbone.View
   events:
     'click .attack': 'attack'
     'click .hoimi': 'hoimi'
+
+  template: _.template '''
+    <div class="action"></div>
+  '''
 
   templateJa: _.template '''
     <div><%= name %>のHP: <%= hp %></div>
@@ -112,16 +157,19 @@ class MvcKata.EventMenuView extends Backbone.View
   '''
 
   render: =>
+    $(@el).html @template()
+
     if window.locale == 'ja'
-      $(@el).html @templateJa(@model.toJSON())
+      @$('.action').html @templateJa(@model.toJSON())
     else
-      $(@el).html  @templateEn(@model.toJSON())
+      @$('.action').html  @templateEn(@model.toJSON())
+
     this
 
   attack: ->
     @model.attack(@options.enemey)
-    @enemey.attack(@model)
+    @options.enemey.attack(@model)
 
   hoimi: ->
-    @model.hoimi
-    @enemey.attack(@model)
+    @model.hoimi()
+    @options.enemey.attack(@model)
