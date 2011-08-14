@@ -6,6 +6,6 @@ guard 'livereload' do
   watch(%r{^.+\.(css|js|html)})
 end
 
-guard 'coffeescript', :output => '.' do
+guard 'coffeescript', :output => 'js' do
   watch(%r{^.+\.coffee})
 end
