@@ -7,37 +7,50 @@ $ ->
     new MvcKata.Dragon()
 
   player = new MvcKata.Player()
+  state = new MvcKata.State()
 
-  new MvcKata.BattleView(model: player, enemey: enemey).render()
+  new MvcKata.BattleView(model: state, player: player, enemey: enemey).render()
 
-class MvcKata.Living extends Backbone.Model
+class MvcKata.State extends Backbone.Model
   defaults:
     message: ''
 
-  attack: (target) ->
+class MvcKata.Living extends Backbone.Model
+  attack: (target, state) ->
     damage_point = Math.floor((Math.random() * @get('attackPower')) + 1)
-
-    if window.locale == 'ja'
-      @set message: @get('name') + ' のこうげき'
-    else
-      @set message: @get('name') + ' attack.'
-
     target.set hp: target.get('hp') - damage_point
 
     if window.locale == 'ja'
-      @set message: target.get('name') + "に" + damage_point + "のダメージ"
+      state.set message: @get('name') + ' のこうげき'
+      state.set message: target.get('name') + "に" + damage_point + "のダメージ"
     else
-      @set message: target.get('name') + " damaged " + damage_point + " point(s)"
+      state.set message: @get('name') + ' attack.'
+      state.set message: target.get('name') + " damaged " + damage_point + " point(s)"
 
-class MvcKata.Slime extends MvcKata.Living
+    target.check(target)
+
+class MvcKata.Enemey extends MvcKata.Living
+  check: (player)->
+    if @get('hp') <= 0
+      if window.locale == 'ja'
+        alert @get('name') + "をたおした\n経験値" + @get('exp') + 'かくとく'
+      else
+        alert player.get('name') + " win!\n" + player.get('name') + ' get ' + @get('exp') + ' EXP'
+
+      location.reload()
+
+class MvcKata.Slime extends MvcKata.Enemey
   defaults:
     name: 'SLIME'
     hp: 10
     attackPower: 4
     exp: 1
 
-  attack: (player) ->
-    MvcKata.Living.prototype.attack.call(this, player)
+  attack: (player, state) ->
+    MvcKata.Living.prototype.attack.call(this, player, state)
+
+  check: (player) ->
+    MvcKata.Enemey.prototype.check.call(this, player)
 
 class MvcKata.Dragon extends MvcKata.Living
   defaults:
@@ -46,8 +59,11 @@ class MvcKata.Dragon extends MvcKata.Living
     attackPower: 8
     exp: 3000
 
-  attack: (player) ->
-    MvcKata.Living.prototype.attack.call(this, player)
+  attack: (player, state) ->
+    MvcKata.Living.prototype.attack.call(this, player, state)
+
+  check: (player) ->
+    MvcKata.Enemey.prototype.check.call(this, player)
 
 class MvcKata.Player extends MvcKata.Living
   defaults:
@@ -56,31 +72,40 @@ class MvcKata.Player extends MvcKata.Living
     hp: 10
     mp: 20
     attackPower: 3
-    turnCount: 0
+    turnCount: 1
 
-  attack: (enemey) ->
-    MvcKata.Living.prototype.attack.call(this, enemey)
+  attack: (enemey, state) ->
+    MvcKata.Living.prototype.attack.call(this, enemey, state)
 
-  hoimi: ->
+  hoimi: (state)->
     cure_point = Math.floor((Math.random() * 8) + 1)
 
     if window.locale == 'ja'
-      @set message: @get('name') + ' はホイミをとなえた'
+      state.set message: @get('name') + ' はホイミをとなえた'
     else
-      @set message: @get('name') + ' call hoimi.'
+      state.set message: @get('name') + ' call hoimi.'
 
     @set hp: (_.min([cure_point + @get('hp'), @get('maxHp')]))
 
     if window.locale == 'ja'
-      @set message: "HPが" + cure_point + "回復した"
+      state.set message: "HPが" + cure_point + "回復した"
     else
-      @set message: @get('name') + " cured " + cure_point + " point(s)"
+      state.set message: @get('name') + " cured " + cure_point + " point(s)"
 
-  encount: (target) ->
+  encounter: (target, state) ->
     if window.locale == 'ja'
-      @set message: target.get('name') + "があらわれた"
+      state.set message: target.get('name') + "があらわれた"
     else
-      @set message: @get('name') + " encounted a " + target.get('name')
+      state.set message: @get('name') + " encounted a " + target.get('name')
+
+  check: ->
+    if @get('hp') <= 0
+      if window.locale == 'ja'
+        alert @get('name') + "はたおれました\nゲームオーバー"
+      else
+        alert @get('name') + " lose...\nGAME OVER"
+
+      location.reload()
 
 class MvcKata.BattleView extends Backbone.View
   el: '#container'
@@ -99,10 +124,10 @@ class MvcKata.BattleView extends Backbone.View
   render: =>
     $(@el).html @template()
 
-    $(@el).append new MvcKata.EventMenuView(model: @model, enemey: @options.enemey).render().el
-    $(@el).append new MvcKata.EventHistoryView(model: @model, enemey: @options.enemey).render().el
+    $(@el).append new MvcKata.EventMenuView(model: @model, player: @options.player, enemey: @options.enemey).render().el
+    $(@el).append new MvcKata.EventHistoryView(model: @model).render().el
 
-    @model.encount(@options.enemey)
+    @options.player.encounter(@options.enemey, @model)
 
   setJa: ->
     window.locale = 'ja'
@@ -114,8 +139,7 @@ class MvcKata.BattleView extends Backbone.View
 
 class MvcKata.EventHistoryView extends Backbone.View
   initialize: ->
-    @model.bind 'change', @renderPlayerMessage
-    @options.enemey.bind 'change', @renderEnemeyMessage
+    @model.bind 'change', @renderMessage
 
   template: _.template '''
     <div class="message"></div>
@@ -130,19 +154,13 @@ class MvcKata.EventHistoryView extends Backbone.View
 
     this
 
-  renderPlayerMessage: =>
+  renderMessage: =>
     return unless @model.get('message')
     @$('.message').append @messageTemplate(@model.toJSON())
-    @model.set message: ''
-
-  renderEnemeyMessage: =>
-    return unless @options.enemey.get('message')
-    @$('.message').append @messageTemplate(@options.enemey.toJSON())
-    @options.enemey.set message: ''
 
 class MvcKata.EventMenuView extends Backbone.View
   initialize: ->
-    @model.bind 'change', @render
+    @options.player.bind 'change', @render
 
   events:
     'click .attack': 'attack'
@@ -172,20 +190,18 @@ class MvcKata.EventMenuView extends Backbone.View
     $(@el).html @template()
 
     if window.locale == 'ja'
-      @$('.action').html @templateJa(@model.toJSON())
+      @$('.action').html @templateJa(@options.player.toJSON())
     else
-      @$('.action').html  @templateEn(@model.toJSON())
+      @$('.action').html @templateEn(@options.player.toJSON())
 
     this
 
   attack: ->
-    @model.attack(@options.enemey)
-    @options.enemey.attack(@model)
-
-    @model.set turnCount: @model.get('turnCount') + 1
+    @options.player.attack(@options.enemey, @model)
+    @options.enemey.attack(@options.player, @model)
+    @options.player.set turnCount: @options.player.get('turnCount') + 1
 
   hoimi: ->
-    @model.hoimi()
-    @options.enemey.attack(@model)
-
-    @model.set turnCount: @model.get('turnCount') + 1
+    @options.player.hoimi(@model)
+    @options.enemey.attack(@options.player, @model)
+    @options.player.set turnCount: @options.player.get('turnCount') + 1

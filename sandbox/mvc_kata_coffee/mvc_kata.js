@@ -9,51 +9,75 @@
   }, __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
   window.MvcKata = {};
   $(function() {
-    var enemey, player;
+    var enemey, player, state;
     enemey = Math.floor((Math.random() * 100) % 2) === 1 ? new MvcKata.Slime() : new MvcKata.Dragon();
     player = new MvcKata.Player();
+    state = new MvcKata.State();
     return new MvcKata.BattleView({
-      model: player,
+      model: state,
+      player: player,
       enemey: enemey
     }).render();
   });
+  MvcKata.State = (function() {
+    __extends(State, Backbone.Model);
+    function State() {
+      State.__super__.constructor.apply(this, arguments);
+    }
+    State.prototype.defaults = {
+      message: ''
+    };
+    return State;
+  })();
   MvcKata.Living = (function() {
     __extends(Living, Backbone.Model);
     function Living() {
       Living.__super__.constructor.apply(this, arguments);
     }
-    Living.prototype.defaults = {
-      message: ''
-    };
-    Living.prototype.attack = function(target) {
+    Living.prototype.attack = function(target, state) {
       var damage_point;
       damage_point = Math.floor((Math.random() * this.get('attackPower')) + 1);
-      if (window.locale === 'ja') {
-        this.set({
-          message: this.get('name') + ' のこうげき'
-        });
-      } else {
-        this.set({
-          message: this.get('name') + ' attack.'
-        });
-      }
       target.set({
         hp: target.get('hp') - damage_point
       });
       if (window.locale === 'ja') {
-        return this.set({
+        state.set({
+          message: this.get('name') + ' のこうげき'
+        });
+        state.set({
           message: target.get('name') + "に" + damage_point + "のダメージ"
         });
       } else {
-        return this.set({
+        state.set({
+          message: this.get('name') + ' attack.'
+        });
+        state.set({
           message: target.get('name') + " damaged " + damage_point + " point(s)"
         });
       }
+      return target.check(target);
     };
     return Living;
   })();
+  MvcKata.Enemey = (function() {
+    __extends(Enemey, MvcKata.Living);
+    function Enemey() {
+      Enemey.__super__.constructor.apply(this, arguments);
+    }
+    Enemey.prototype.check = function(player) {
+      if (this.get('hp') <= 0) {
+        if (window.locale === 'ja') {
+          alert(this.get('name') + "をたおした\n経験値" + this.get('exp') + 'かくとく');
+        } else {
+          alert(player.get('name') + " win!\n" + player.get('name') + ' get ' + this.get('exp') + ' EXP');
+        }
+        return location.reload();
+      }
+    };
+    return Enemey;
+  })();
   MvcKata.Slime = (function() {
-    __extends(Slime, MvcKata.Living);
+    __extends(Slime, MvcKata.Enemey);
     function Slime() {
       Slime.__super__.constructor.apply(this, arguments);
     }
@@ -63,8 +87,11 @@
       attackPower: 4,
       exp: 1
     };
-    Slime.prototype.attack = function(player) {
-      return MvcKata.Living.prototype.attack.call(this, player);
+    Slime.prototype.attack = function(player, state) {
+      return MvcKata.Living.prototype.attack.call(this, player, state);
+    };
+    Slime.prototype.check = function(player) {
+      return MvcKata.Enemey.prototype.check.call(this, player);
     };
     return Slime;
   })();
@@ -79,8 +106,11 @@
       attackPower: 8,
       exp: 3000
     };
-    Dragon.prototype.attack = function(player) {
-      return MvcKata.Living.prototype.attack.call(this, player);
+    Dragon.prototype.attack = function(player, state) {
+      return MvcKata.Living.prototype.attack.call(this, player, state);
+    };
+    Dragon.prototype.check = function(player) {
+      return MvcKata.Enemey.prototype.check.call(this, player);
     };
     return Dragon;
   })();
@@ -95,20 +125,20 @@
       hp: 10,
       mp: 20,
       attackPower: 3,
-      turnCount: 0
+      turnCount: 1
     };
-    Player.prototype.attack = function(enemey) {
-      return MvcKata.Living.prototype.attack.call(this, enemey);
+    Player.prototype.attack = function(enemey, state) {
+      return MvcKata.Living.prototype.attack.call(this, enemey, state);
     };
-    Player.prototype.hoimi = function() {
+    Player.prototype.hoimi = function(state) {
       var cure_point;
       cure_point = Math.floor((Math.random() * 8) + 1);
       if (window.locale === 'ja') {
-        this.set({
+        state.set({
           message: this.get('name') + ' はホイミをとなえた'
         });
       } else {
-        this.set({
+        state.set({
           message: this.get('name') + ' call hoimi.'
         });
       }
@@ -116,25 +146,34 @@
         hp: _.min([cure_point + this.get('hp'), this.get('maxHp')])
       });
       if (window.locale === 'ja') {
-        return this.set({
+        return state.set({
           message: "HPが" + cure_point + "回復した"
         });
       } else {
-        return this.set({
+        return state.set({
           message: this.get('name') + " cured " + cure_point + " point(s)"
         });
       }
     };
-    Player.prototype.encount = function(target) {
-      alert('hoge');
+    Player.prototype.encounter = function(target, state) {
       if (window.locale === 'ja') {
-        return this.set({
+        return state.set({
           message: target.get('name') + "があらわれた"
         });
       } else {
-        return this.set({
+        return state.set({
           message: this.get('name') + " encounted a " + target.get('name')
         });
+      }
+    };
+    Player.prototype.check = function() {
+      if (this.get('hp') <= 0) {
+        if (window.locale === 'ja') {
+          alert(this.get('name') + "はたおれました\nゲームオーバー");
+        } else {
+          alert(this.get('name') + " lose...\nGAME OVER");
+        }
+        return location.reload();
       }
     };
     return Player;
@@ -155,13 +194,13 @@
       $(this.el).html(this.template());
       $(this.el).append(new MvcKata.EventMenuView({
         model: this.model,
+        player: this.options.player,
         enemey: this.options.enemey
       }).render().el);
       $(this.el).append(new MvcKata.EventHistoryView({
-        model: this.model,
-        enemey: this.options.enemey
+        model: this.model
       }).render().el);
-      return this.model.encount(this.options.enemey);
+      return this.options.player.encounter(this.options.enemey, this.model);
     };
     BattleView.prototype.setJa = function() {
       window.locale = 'ja';
@@ -176,14 +215,12 @@
   MvcKata.EventHistoryView = (function() {
     __extends(EventHistoryView, Backbone.View);
     function EventHistoryView() {
-      this.renderEnemeyMessage = __bind(this.renderEnemeyMessage, this);
-      this.renderPlayerMessage = __bind(this.renderPlayerMessage, this);
+      this.renderMessage = __bind(this.renderMessage, this);
       this.render = __bind(this.render, this);
       EventHistoryView.__super__.constructor.apply(this, arguments);
     }
     EventHistoryView.prototype.initialize = function() {
-      this.model.bind('change', this.renderPlayerMessage);
-      return this.options.enemey.bind('change', this.renderEnemeyMessage);
+      return this.model.bind('change', this.renderMessage);
     };
     EventHistoryView.prototype.template = _.template('<div class="message"></div>');
     EventHistoryView.prototype.messageTemplate = _.template('<p><%= message %></p>');
@@ -191,23 +228,11 @@
       $(this.el).html(this.template());
       return this;
     };
-    EventHistoryView.prototype.renderPlayerMessage = function() {
+    EventHistoryView.prototype.renderMessage = function() {
       if (!this.model.get('message')) {
         return;
       }
-      this.$('.message').append(this.messageTemplate(this.model.toJSON()));
-      return this.model.set({
-        message: ''
-      });
-    };
-    EventHistoryView.prototype.renderEnemeyMessage = function() {
-      if (!this.options.enemey.get('message')) {
-        return;
-      }
-      this.$('.message').append(this.messageTemplate(this.options.enemey.toJSON()));
-      return this.options.enemey.set({
-        message: ''
-      });
+      return this.$('.message').append(this.messageTemplate(this.model.toJSON()));
     };
     return EventHistoryView;
   })();
@@ -218,7 +243,7 @@
       EventMenuView.__super__.constructor.apply(this, arguments);
     }
     EventMenuView.prototype.initialize = function() {
-      return this.model.bind('change', this.render);
+      return this.options.player.bind('change', this.render);
     };
     EventMenuView.prototype.events = {
       'click .attack': 'attack',
@@ -230,24 +255,24 @@
     EventMenuView.prototype.render = function() {
       $(this.el).html(this.template());
       if (window.locale === 'ja') {
-        this.$('.action').html(this.templateJa(this.model.toJSON()));
+        this.$('.action').html(this.templateJa(this.options.player.toJSON()));
       } else {
-        this.$('.action').html(this.templateEn(this.model.toJSON()));
+        this.$('.action').html(this.templateEn(this.options.player.toJSON()));
       }
       return this;
     };
     EventMenuView.prototype.attack = function() {
-      this.model.attack(this.options.enemey);
-      this.options.enemey.attack(this.model);
-      return this.model.set({
-        turnCount: this.model.get('turnCount') + 1
+      this.options.player.attack(this.options.enemey, this.model);
+      this.options.enemey.attack(this.options.player, this.model);
+      return this.options.player.set({
+        turnCount: this.options.player.get('turnCount') + 1
       });
     };
     EventMenuView.prototype.hoimi = function() {
-      this.model.hoimi();
-      this.options.enemey.attack(this.model);
-      return this.model.set({
-        turnCount: this.model.get('turnCount') + 1
+      this.options.player.hoimi(this.model);
+      this.options.enemey.attack(this.options.player, this.model);
+      return this.options.player.set({
+        turnCount: this.options.player.get('turnCount') + 1
       });
     };
     return EventMenuView;
