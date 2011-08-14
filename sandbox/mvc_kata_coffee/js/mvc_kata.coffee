@@ -79,17 +79,13 @@ class MvcKata.Player extends MvcKata.Living
 
   hoimi: (state)->
     cure_point = Math.floor((Math.random() * 8) + 1)
-
-    if window.locale == 'ja'
-      state.set message: @get('name') + ' はホイミをとなえた'
-    else
-      state.set message: @get('name') + ' call hoimi.'
-
     @set hp: (_.min([cure_point + @get('hp'), @get('maxHp')]))
 
     if window.locale == 'ja'
+      state.set message: @get('name') + ' はホイミをとなえた'
       state.set message: "HPが" + cure_point + "回復した"
     else
+      state.set message: @get('name') + ' call hoimi.'
       state.set message: @get('name') + " cured " + cure_point + " point(s)"
 
   encounter: (target, state) ->
@@ -156,12 +152,10 @@ class MvcKata.EventHistoryView extends Backbone.View
 
   renderMessage: =>
     return unless @model.get('message')
+
     @$('.message').append @messageTemplate(@model.toJSON())
 
 class MvcKata.EventMenuView extends Backbone.View
-  initialize: ->
-    @options.player.bind 'change', @render
-
   events:
     'click .attack': 'attack'
     'click .hoimi': 'hoimi'
@@ -171,7 +165,6 @@ class MvcKata.EventMenuView extends Backbone.View
   '''
 
   templateJa: _.template '''
-    <div><%= name %>のHP: <%= hp %>/<%= maxHp %> ターン数: <%= turnCount %></div>
     <ol>
       <li><a href="#" class="attack">アタック</a></li>
       <li><a href="#" class="hoimi">ホイミ</a></li>
@@ -179,7 +172,6 @@ class MvcKata.EventMenuView extends Backbone.View
   '''
 
   templateEn: _.template '''
-     <div><%= name %> HP: <%= hp %>/<%= maxHp %> Turn: <%= turnCount %></div>
     <ol>
       <li><a href="#" class="attack">Attack</a></li>
       <li><a href="#" class="hoimi">Hoimi</a></li>
@@ -189,19 +181,45 @@ class MvcKata.EventMenuView extends Backbone.View
   render: =>
     $(@el).html @template()
 
+    @$('.action').append new MvcKata.PlayerStatusView(model: @options.player).render().el
+
     if window.locale == 'ja'
-      @$('.action').html @templateJa(@options.player.toJSON())
+      @$('.action').append @templateJa(@options.player.toJSON())
     else
-      @$('.action').html @templateEn(@options.player.toJSON())
+      @$('.action').append @templateEn(@options.player.toJSON())
 
     this
 
   attack: ->
     @options.player.attack(@options.enemey, @model)
+
     @options.enemey.attack(@options.player, @model)
+
     @options.player.set turnCount: @options.player.get('turnCount') + 1
 
   hoimi: ->
     @options.player.hoimi(@model)
+
     @options.enemey.attack(@options.player, @model)
+
     @options.player.set turnCount: @options.player.get('turnCount') + 1
+
+class MvcKata.PlayerStatusView extends Backbone.View
+  initialize: ->
+    @model.bind 'change', @render
+
+  render: =>
+    if window.locale == 'ja'
+      $(@el).html @templateJa(@model.toJSON())
+    else
+      $(@el).html @templateEn(@model.toJSON())
+
+    this
+
+  templateJa: _.template '''
+    <div><%= name %>のHP: <%= hp %>/<%= maxHp %> ターン数: <%= turnCount %></div>
+  '''
+
+  templateEn: _.template '''
+     <div><%= name %> HP: <%= hp %>/<%= maxHp %> Turn: <%= turnCount %></div>
+  '''

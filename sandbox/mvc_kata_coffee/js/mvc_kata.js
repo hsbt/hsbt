@@ -133,23 +133,20 @@
     Player.prototype.hoimi = function(state) {
       var cure_point;
       cure_point = Math.floor((Math.random() * 8) + 1);
+      this.set({
+        hp: _.min([cure_point + this.get('hp'), this.get('maxHp')])
+      });
       if (window.locale === 'ja') {
         state.set({
           message: this.get('name') + ' はホイミをとなえた'
+        });
+        return state.set({
+          message: "HPが" + cure_point + "回復した"
         });
       } else {
         state.set({
           message: this.get('name') + ' call hoimi.'
         });
-      }
-      this.set({
-        hp: _.min([cure_point + this.get('hp'), this.get('maxHp')])
-      });
-      if (window.locale === 'ja') {
-        return state.set({
-          message: "HPが" + cure_point + "回復した"
-        });
-      } else {
         return state.set({
           message: this.get('name') + " cured " + cure_point + " point(s)"
         });
@@ -242,22 +239,22 @@
       this.render = __bind(this.render, this);
       EventMenuView.__super__.constructor.apply(this, arguments);
     }
-    EventMenuView.prototype.initialize = function() {
-      return this.options.player.bind('change', this.render);
-    };
     EventMenuView.prototype.events = {
       'click .attack': 'attack',
       'click .hoimi': 'hoimi'
     };
     EventMenuView.prototype.template = _.template('<div class="action"></div>');
-    EventMenuView.prototype.templateJa = _.template('<div><%= name %>のHP: <%= hp %>/<%= maxHp %> ターン数: <%= turnCount %></div>\n<ol>\n  <li><a href="#" class="attack">アタック</a></li>\n  <li><a href="#" class="hoimi">ホイミ</a></li>\n</ol>');
-    EventMenuView.prototype.templateEn = _.template(' <div><%= name %> HP: <%= hp %>/<%= maxHp %> Turn: <%= turnCount %></div>\n<ol>\n  <li><a href="#" class="attack">Attack</a></li>\n  <li><a href="#" class="hoimi">Hoimi</a></li>\n</ol>');
+    EventMenuView.prototype.templateJa = _.template('<ol>\n  <li><a href="#" class="attack">アタック</a></li>\n  <li><a href="#" class="hoimi">ホイミ</a></li>\n</ol>');
+    EventMenuView.prototype.templateEn = _.template('<ol>\n  <li><a href="#" class="attack">Attack</a></li>\n  <li><a href="#" class="hoimi">Hoimi</a></li>\n</ol>');
     EventMenuView.prototype.render = function() {
       $(this.el).html(this.template());
+      this.$('.action').append(new MvcKata.PlayerStatusView({
+        model: this.options.player
+      }).render().el);
       if (window.locale === 'ja') {
-        this.$('.action').html(this.templateJa(this.options.player.toJSON()));
+        this.$('.action').append(this.templateJa(this.options.player.toJSON()));
       } else {
-        this.$('.action').html(this.templateEn(this.options.player.toJSON()));
+        this.$('.action').append(this.templateEn(this.options.player.toJSON()));
       }
       return this;
     };
@@ -276,5 +273,26 @@
       });
     };
     return EventMenuView;
+  })();
+  MvcKata.PlayerStatusView = (function() {
+    __extends(PlayerStatusView, Backbone.View);
+    function PlayerStatusView() {
+      this.render = __bind(this.render, this);
+      PlayerStatusView.__super__.constructor.apply(this, arguments);
+    }
+    PlayerStatusView.prototype.initialize = function() {
+      return this.model.bind('change', this.render);
+    };
+    PlayerStatusView.prototype.render = function() {
+      if (window.locale === 'ja') {
+        $(this.el).html(this.templateJa(this.model.toJSON()));
+      } else {
+        $(this.el).html(this.templateEn(this.model.toJSON()));
+      }
+      return this;
+    };
+    PlayerStatusView.prototype.templateJa = _.template('<div><%= name %>のHP: <%= hp %>/<%= maxHp %> ターン数: <%= turnCount %></div>');
+    PlayerStatusView.prototype.templateEn = _.template('<div><%= name %> HP: <%= hp %>/<%= maxHp %> Turn: <%= turnCount %></div>');
+    return PlayerStatusView;
   })();
 }).call(this);
