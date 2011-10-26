@@ -1,0 +1,28 @@
+# global alias
+alias -g L='| less'
+alias -g G='| grep'
+alias -g H='| head'
+alias -g T='| tail'
+
+# application alias
+alias g='git'
+alias r='rails'
+alias b='bundle'
+
+alias reload='source $HOME/.zshrc'
+alias cdp='cd -P'
+alias dr='cd $DROPBOX'
+alias s3='s3cmd'
+
+alias grep="grep --color=auto --binary-files=without-match --directories=recurse"
+alias ls="gls --color"
+alias la='ls -lhAF'
+alias ll='ls -al'
+
+alias be='bundle exec'
+alias bo='bundle open'
+alias bu='bundle update'
+alias pr='padrino rake'
+
+alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs -nw"
+alias emacsclient="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient"
