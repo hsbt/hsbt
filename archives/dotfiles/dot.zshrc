@@ -78,7 +78,7 @@ setopt hist_save_nodups
 setopt hist_reduce_blanks
 setopt inc_append_history
 
-HISTFILE=$DROPBOX/config/dotfiles/private/dot.zsh-history
+HISTFILE=$DROPBOX/config/dotfiles/history/dot.zsh-history
 HISTSIZE=10000000
 SAVEHIST=$HISTSIZE
 
@@ -95,17 +95,13 @@ zstyle ':filter-select' max-lines -10 # use $LINES - 10 for filter-select
 zstyle ':filter-select' case-insensitive yes # enable case-insensitive search
 zstyle ':filter-select' extended-search yes # see below
 
-# Homebrew packages
-export PYTHONPATH=/usr/local/lib/python2.7/site-packages
+# rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
+source $HOME/.rbenv/completions/rbenv.zsh
+eval "$(rbenv init -)"
 
-# MySQL
-export MYSQL_HISTFILE=$DROPBOX/config/dotfiles/private/.mysql_history
-export MYSQL_PS1='\u@\h[\d]> '
-
-# nodejs
-export NODE_PATH=$HOME/.npm/libraries:$NODE_PATH
-export PATH=$HOME/.npm/bin:$PATH
-export MANPATH=$HOME/.npm/man:$MANPATH
+# nave
+alias nave=$HOME/.nave/nave.sh
 
 # perlbrew
 export PERLBREW_ROOT="$HOME/.perlbrew"
@@ -114,13 +110,9 @@ source $HOME/.perlbrew/etc/bashrc
 # pythonbrew
 source $HOME/.pythonbrew/etc/bashrc
 
-# rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
-source $HOME/.rbenv/completions/rbenv.zsh
-eval "$(rbenv init -)"
-
-# nave
-alias nave=$HOME/.nave/nave.sh
+# MySQL
+export MYSQL_HISTFILE=$DROPBOX/config/dotfiles/history/dot.mysql_history
+export MYSQL_PS1='\u@\h[\d]> '
 
 # aliases & function
 source $HOME/.zsh.d/function
