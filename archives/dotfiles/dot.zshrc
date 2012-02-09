@@ -27,14 +27,22 @@ setopt sh_word_split
 setopt zle
 setopt long_list_jobs
 
+# zsh function path
+fpath=($HOME/.zsh.d/zsh-completions $HOME/.zsh.d/zsh-git-escape-magic $HOME/.zsh.d/zsh-manydots-magic $fpath)
+
 # Zsh module
 zmodload zsh/files
 
+# ?
 autoload zmv
 alias zmv='noglob zmv'
 
-# Homebrew aliases
-#source $HOME/.zsh/homebrew
+# knu special
+autoload -Uz git-escape-magic
+git-escape-magic
+
+autoload -Uz manydots-magic
+manydots-magic
 
 # ls colors
 autoload colors; colors
@@ -42,7 +50,6 @@ export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46
 export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
 # autocomp
-fpath=($HOME/.zsh.d/zsh-completions $fpath)
 autoload -U compinit
 compinit -d /tmp/$USER.zcompdump
 zstyle ':completion:*:default' menu select=1
@@ -95,9 +102,18 @@ zstyle ':filter-select' max-lines -10 # use $LINES - 10 for filter-select
 zstyle ':filter-select' case-insensitive yes # enable case-insensitive search
 zstyle ':filter-select' extended-search yes # see below
 
+# homebrew
+export PATH="$HOME/.homebrew/bin:$PATH"
+export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+export LDFLAGS="-L/Users/hsbt/.homebrew/lib:$LDFLAGS"
+export CPPFLAGS="-I/Users/hsbt/.homebrew/include:$CPPFLAGS"
+export CFLAGS=$CPPFLAGS
+
+# rsruby
+export R_HOME=/Library/Frameworks/R.framework/Resources
+
 # rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
-source $HOME/.rbenv/completions/rbenv.zsh
 eval "$(rbenv init -)"
 
 # nave
