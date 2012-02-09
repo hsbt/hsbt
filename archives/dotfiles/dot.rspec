@@ -1,2 +1,4 @@
 --color
 --profile
+--order rand
+<%= begin; require 'ruby-debug'; Debugger::Command.settings[:autolist] = Debugger::Command.settings[:autoeval] = 1 ; '--debugger' ; rescue LoadError ; '' ; end %>
