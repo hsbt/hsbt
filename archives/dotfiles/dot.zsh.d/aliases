@@ -5,8 +5,8 @@ alias -g H='| head'
 alias -g T='| tail'
 
 # application alias
+alias -g r='rails'
 alias g='git'
-alias r='rails'
 alias b='bundle'
 
 alias reload='source $HOME/.zshrc'
