@@ -8,6 +8,19 @@ class Rubima2Mobi
     @filename = ARGV.shift
   end
 
+  def to_html
+    open(@filename + '.html', 'w') do |f|
+      f.puts html_header ARGV.shift
+      f.puts html_body
+      f.puts html_footer
+    end
+  end
+
+  def to_mobi
+    require 'kindlegen'
+    Kindlegen.run(@filename + '.html', "-o", @filename + '.mobi')
+  end
+
   def html_header( title )
     <<-HTML
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -33,14 +46,6 @@ HTML
     html = HikiDoc.to_html(File.open(@filename).read)
     html.gsub!(/{{.*}}/, '') # TODO remove hiki plugin syntax
     html
-  end
-
-  def to_mobi
-    open(@filename.sub(/\.hiki\z/, '.html'), 'w') do |f|
-      f.puts html_header ARGV.shift
-      f.puts html_body
-      f.puts html_footer
-    end
   end
 end
 
