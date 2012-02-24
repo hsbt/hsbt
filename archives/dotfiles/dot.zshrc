@@ -69,7 +69,8 @@ precmd() {
   psvar=()
   LANG=en_US.UTF-8 vcs_info
   [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
-  psvar[2]=`ruby -e 'puts "#{RUBY_VERSION}p#{RUBY_PATCHLEVEL > -1 ? RUBY_PATCHLEVEL : 0}"'`
+  psvar[2]=`rbenv version-name`
+  # psvar[2]=`ruby -e 'puts "#{RUBY_VERSION}p#{RUBY_PATCHLEVEL > -1 ? RUBY_PATCHLEVEL : 0}"'`
   [[ -e $PWD/.git/refs/stash ]] && psvar[3]="$(git stash list 2>/dev/null | wc -l) stashed"
 }
 PROMPT=$'[%{$fg[magenta]%}%n%{$reset_color%}@%{$fg[red]%}%M%{$reset_color%}] %{$fg[cyan]%}%d %1(V|%F{green}%1v%3(V| - %3v|)%f |)%2(V|%F{red}(%2v%)%f|)\n%{$fg[yellow]%}%#%{$reset_color%} '
@@ -105,22 +106,22 @@ zstyle ':filter-select' extended-search yes # see below
 # homebrew
 export PATH="$HOME/.homebrew/bin:$PATH"
 export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
-export LDFLAGS="-L/Users/hsbt/.homebrew/lib:$LDFLAGS"
-export CPPFLAGS="-I/Users/hsbt/.homebrew/include:$CPPFLAGS"
+export LDFLAGS="-L$HOME/.homebrew/lib"
+export CPPFLAGS="-I$HOME/.homebrew/include"
 export CFLAGS=$CPPFLAGS
 
 # rsruby
 export R_HOME=/Library/Frameworks/R.framework/Resources
 
 # rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH=$HOME/.rbenv/bin:$PATH
 eval "$(rbenv init -)"
 
-# nave
-alias nave=$HOME/.nave/nave.sh
+# nodebrew
+export PATH=$HOME/.nodebrew/current/bin:$PATH
 
 # perlbrew
-export PERLBREW_ROOT="$HOME/.perlbrew"
+export PERLBREW_ROOT=$HOME/.perlbrew
 source $HOME/.perlbrew/etc/bashrc
 
 # pythonbrew
