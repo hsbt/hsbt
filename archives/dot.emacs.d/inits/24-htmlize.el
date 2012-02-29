@@ -30,4 +30,3 @@
     (set-buffer-modified-p nil)
     (kill-buffer htmlize-and-browse-buffer-file-name)
     (shell-command (concat "open -a safari " htmlize-and-browse-buffer-file-path))))
-

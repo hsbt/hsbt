@@ -20,8 +20,8 @@
                 (progn (my-make-scratch 0) nil)
               t)))
 
+;; *scratch* バッファの内容を保存したら *scratch* バッファを新しく作る
 (add-hook 'after-save-hook
-          ;; *scratch* バッファの内容を保存したら *scratch* バッファを新しく作る
           (lambda ()
             (unless (member (get-buffer "*scratch*") (buffer-list))
               (my-make-scratch 1))))

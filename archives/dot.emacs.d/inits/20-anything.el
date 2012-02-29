@@ -6,6 +6,10 @@
         anything-c-source-files-in-current-dir+
         anything-c-source-file-name-history))
 
+(global-set-key (kbd "C-¥") 'anything)
+(global-set-key (kbd "M-y") 'anything-show-kill-ring)
+(setq anything-allow-skipping-current-buffer t)
+
 (require 'color-moccur)
 (setq moccur-split-word t)
 (require 'anything-c-moccur)
@@ -13,29 +17,26 @@
       anything-c-moccur-higligt-info-line-flag t
       anything-c-moccur-enable-auto-look-flag t
       anything-c-moccur-enable-initial-pattern t)
+;(global-set-key (kbd "C-s") 'anything-c-moccur-occur-by-moccur)
 
 (require 'anything-project)
 (global-set-key (kbd "C-c C-f") 'anything-project)
 (ap:add-project
  :name 'ruby
  :look-for '("Gemfile" "Rakefile") ; or
- :include-regexp '("\\.rb$" "\\.haml$" "\\.coffee$" "\\.js$"))
+ :include-regexp '("\\.rb$" "\\.yml$" "\\.haml$" "\\.coffee$" "\\.js$" "\\.scss"))
 
-;; emacs commands
+(require 'anything-rdefs)
+(setq ar:command "~/.rbenv/versions/2.0.0-dev/bin/rdefs")
+(add-hook 'ruby-mode-hook
+  (lambda ()
+    (define-key ruby-mode-map (kbd "C-@") 'anything-rdefs)))
+
 (define-key global-map (kbd "M-x")
   (lambda ()
     "Execute emacs commands in anything"
     (interactive)
     (anything '(anything-c-source-emacs-commands))))
 
-(global-set-key (kbd "C-¥") 'anything)
-(global-set-key (kbd "M-y") 'anything-show-kill-ring)
-(global-set-key (kbd "C-s") 'anything-c-moccur-occur-by-moccur)
-
-;; (require 'sha1-el)
-;; (require 'anything-hatena-bookmark)
-;; (define-key global-map (kbd "C-c C-a b") 'anything-hatena-bookmark)
-
-;; (require 'anything-dabbrev-expand)
-;; (global-set-key (kbd "M-p") 'anything-dabbrev-expand)
-;; (define-key anything-dabbrev-map (kbd "M-p") 'anything-dabbrev-find-all-buffers)
+(setq anything-c-filelist-file-name "~/.emacs.d/all.filelist")
+(global-set-key (kbd "C-;") 'anything-filelist+)

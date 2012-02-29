@@ -6,7 +6,7 @@
 (add-hook 'coffee-mode-hook
   '(lambda() (coffee-custom)))
 
-(require 'javascript-mode)
+(require 'js2-mode)
 (defun javascript-custom ()
   "javascript-mode-hook"
  (set (make-local-variable 'tab-width) 2))

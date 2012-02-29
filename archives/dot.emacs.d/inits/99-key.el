@@ -15,9 +15,4 @@
 (global-set-key (kbd "C-M-r")   'replace-regexp)
 (global-set-key (kbd "C-r")     'replace-string)
 (global-set-key (kbd "C-/")     'undo)
-
-;; フォントサイズの変更(from kakutani)
-;; cmd('super) + +/- 
-(global-set-key [(s ?+)] (lambda () (interactive) (text-scale-increase 1)))
-(global-set-key [(s ?-)] (lambda () (interactive) (text-scale-decrease 1)))
-(global-set-key [(s ?0)] (lambda () (interactive) (text-scale-increase 0)))
+(global-set-key (kbd "M-m")     'magit-status)

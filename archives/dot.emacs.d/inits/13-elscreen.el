@@ -2,4 +2,5 @@
 (require 'elscreen)
 (load "elscreen")
 
-(setq elscreen-display-tab nil) ; タブを非表示
+;; タブを非表示
+(setq elscreen-display-tab nil)

@@ -71,8 +71,13 @@
 
 ;; クライアントを終了するとき終了するかどうかを聞かない
 (remove-hook 'kill-buffer-query-functions 'server-kill-buffer-query-function)
+
 ;; 終了時にプロセスが残っていてもとにかく殺す
 (defadvice save-buffers-kill-terminal (before my-save-buffers-kill-terminal activate)
   (when (process-list)
     (dolist (p (process-list))
       (set-process-query-on-exit-flag p nil))))
+
+;; (defadvice save-buffers-kill-emacs (around no-query-kill-emacs activate)
+;;   "Prevent annoying \"Active processes exist\" query when you quit Emacs."
+;;   (flet ((process-list ())) ad-do-it))

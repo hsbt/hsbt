@@ -1,6 +1,8 @@
 (setq interpreter-mode-alist
       (append '(("ruby" . ruby-mode)) interpreter-mode-alist))
 
+(require 'inf-ruby)
+
 (add-hook 'ruby-mode-hook
           '(lambda ()
              (inf-ruby-keys)
