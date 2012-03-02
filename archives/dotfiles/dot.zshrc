@@ -28,7 +28,7 @@ setopt zle
 setopt long_list_jobs
 
 # zsh function path
-fpath=($HOME/.zsh.d/zsh-completions $HOME/.zsh.d/zsh-git-escape-magic $HOME/.zsh.d/zsh-manydots-magic $fpath)
+fpath=($HOME/.zsh.d/zsh-completions $HOME/.zsh.d/zsh-functions $HOME/.zsh.d/zsh-git-escape-magic $HOME/.zsh.d/zsh-manydots-magic $fpath)
 
 # Zsh module
 zmodload zsh/files
@@ -127,6 +127,9 @@ source $HOME/.perlbrew/etc/bashrc
 # pythonbrew
 source $HOME/.pythonbrew/etc/bashrc
 
+# Java
+export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Home
+
 # MySQL
 export MYSQL_HISTFILE=$DROPBOX/config/dotfiles/history/dot.mysql_history
 export MYSQL_PS1='\u@\h[\d]> '
@@ -134,3 +137,4 @@ export MYSQL_PS1='\u@\h[\d]> '
 # aliases & function
 source $HOME/.zsh.d/function
 source $HOME/.zsh.d/aliases
+source `brew --prefix`/etc/autojump.zsh
