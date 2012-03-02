@@ -2,7 +2,7 @@ umask 022
 bindkey -e
 
 # zsh function path
-fpath=(~/.zsh.d/zsh-completions ~/.zsh.d/zsh-functions ~/.zsh.d/zsh-git-escape-magic ~/.zsh.d/zsh-manydots-magic $fpath)
+fpath=(~/.zsh.d/zsh-completions ~/.zsh.d/zsh-git-escape-magic ~/.zsh.d/zsh-manydots-magic ~/.homebrew/share/zsh/functions $fpath)
 
 # Set shell options
 setopt always_last_prompt
@@ -57,22 +57,6 @@ zstyle ':completion:*' use-cache yes
 zstyle ':completion:*' verbose yes
 zstyle ':completion:sudo:*' environ PATH="$SUDO_PATH:$PATH"
 
-# Prompt setting
-autoload -Uz vcs_info
-zstyle ':vcs_info:*' enable git svn hg
-zstyle ':vcs_info:*' formats '[%b]'
-zstyle ':vcs_info:*' actionformats '[%b] (%a)'
-precmd() {
-  psvar=()
-  LANG=en_US.UTF-8 vcs_info
-  [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
-  psvar[2]=`rbenv version-name`
-  # psvar[2]=`ruby -e 'puts "#{RUBY_VERSION}p#{RUBY_PATCHLEVEL > -1 ? RUBY_PATCHLEVEL : 0}"'`
-  [[ -e $PWD/.git/refs/stash ]] && psvar[3]="$(git stash list 2>/dev/null | wc -l) stashed"
-}
-PROMPT=$'[%{$fg[magenta]%}%n%{$reset_color%}@%{$fg[red]%}%M%{$reset_color%}] %{$fg[cyan]%}%d %1(V|%F{green}%1v%3(V| - %3v|)%f |)%2(V|%F{red}(%2v%)%f|)\n%{$fg[yellow]%}%#%{$reset_color%} '
-RPROMPT=''
-
 # History
 setopt extended_history
 setopt share_history
@@ -93,15 +77,27 @@ zle -N history-beginning-search-forward-end history-search-end
 bindkey "^p" history-beginning-search-backward-end
 bindkey "^n" history-beginning-search-forward-end
 
+# Prompt setting
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' enable git svn hg
+zstyle ':vcs_info:*' formats '[%b]'
+zstyle ':vcs_info:*' actionformats '[%b] (%a)'
+precmd() {
+  psvar=()
+  LANG=en_US.UTF-8 vcs_info
+  [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
+  psvar[2]=`rbenv version-name`
+  [[ -e $PWD/.git/refs/stash ]] && psvar[3]="($(git stash list 2>/dev/null | wc -l))"
+}
+PROMPT=$'[%{$fg[magenta]%}%n%{$reset_color%}@%{$fg[red]%}%M%{$reset_color%}] %{$fg[cyan]%}%d %1(V|%F{green}%1v%3(V| - %3v|)%f |)%2(V|%F{red}(%2v%)%f|)\n%{$fg[yellow]%}%#%{$reset_color%} '
+RPROMPT=''
+
 # homebrew
 export PATH="$HOME/.homebrew/bin:$PATH"
 export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
 export LDFLAGS="-L$HOME/.homebrew/lib"
 export CPPFLAGS="-I$HOME/.homebrew/include"
 export CFLAGS=$CPPFLAGS
-
-# rsruby
-export R_HOME=/Library/Frameworks/R.framework/Resources
 
 # rbenv
 export PATH=$HOME/.rbenv/bin:$PATH
@@ -117,10 +113,8 @@ source $HOME/.perlbrew/etc/bashrc
 # pythonbrew
 source $HOME/.pythonbrew/etc/bashrc
 
-# Java
+export R_HOME=/Library/Frameworks/R.framework/Resources
 export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Home
-
-# MySQL
 export MYSQL_HISTFILE=$DROPBOX/config/dotfiles/history/dot.mysql_history
 export MYSQL_PS1='\u@\h[\d]> '
 
