@@ -1,9 +1,0 @@
-[submodule "dot.zsh.d/zsh-completions"]
-	path = dot.zsh.d/zsh-completions
-	url = git://github.com/zsh-users/zsh-completions.git
-[submodule "dot.zsh.d/zsh-manydots-magic"]
-	path = dot.zsh.d/zsh-manydots-magic
-	url = git://github.com/knu/zsh-manydots-magic.git
-[submodule "dot.zsh.d/zsh-git-escape-magic"]
-	path = dot.zsh.d/zsh-git-escape-magic
-	url = git://github.com/knu/zsh-git-escape-magic.git
