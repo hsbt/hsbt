@@ -4,8 +4,9 @@
  */
 
 var express = require('express'),
-    routes = require('./routes'),
-    mongoose = require('mongoose').Mongoose,
+    routes = require('./routes');
+
+var mongoose = require('mongoose'),
     db = mongoose.connect('mongodb://localhost/nodepad'),
     Document = require('./models.js').Document(db);
 
@@ -15,8 +16,8 @@ var app = module.exports = express.createServer();
 
 app.configure(function(){
   app.set('views', __dirname + '/views');
-  // app.set('view engine', 'jade');
-  app.use(express.bodyDecoder());
+  app.set('view engine', 'jade');
+  app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(express.compiler({src: __dirname + '/public', enable: ['less']}));
   app.use(app.router);
