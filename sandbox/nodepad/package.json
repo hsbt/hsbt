@@ -1,10 +1,14 @@
 {
-    "name": "application-name"
-  , "version": "0.0.1"
-  , "private": true
-  , "dependencies": {
-      "express": "2.5.8",
-      "jade": ">= 0.0.1",
-      "mongoose": ">= 0.0.1"
-  }
+    "name": "application-name",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+	"express": ">= 2.5.8",
+	"jade": ">= 0.18.0",
+	"mongoose": ">= 2.3.12",
+	"less": ">= 0.0.0"
+    },
+    "devDependencies": {
+	"expresso": ">= 0.0.1"
+    }
 }
