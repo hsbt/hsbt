@@ -47,8 +47,8 @@ app.Document = Document = require('./models.js').Document(db);
 
 app.get('/', routes.index);
 
-app.get('/documents.:format', function(req, res) {
-  Document.find().all(function(documents) {
+app.get('/documents.:format?', function(req, res) {
+  Document.find({}, [], {}, function(err, documents) {
     switch(req.params.format) {
     case 'json':
       res.send(documents.map(function(d) {
@@ -56,7 +56,9 @@ app.get('/documents.:format', function(req, res) {
       }));
       break;
     default:
-      res.render('documents/index.jade');
+      res.render('documents/index.jade', {
+	locals: { documents: documents }
+      });
     }
   });
 });
@@ -74,10 +76,49 @@ app.post('/documents.:format?', function(req, res) {
   });
 });
 
+app.get('/documents/:id.:format?/edit', function(req, res) {
+  Document.findById(req.params.id, function(err, d) {
+    res.render('documents/edit.jade', {
+      locals: {d:d}
+    });
+  });
+});
+
+app.get('/documents/new', function(req, res) {
+  res.render('documents/new.jade', {
+    locals: { d: new Document() }
+  });
+});
+
 app.get('/documents/:id.:format?', function(req, res) {
+  Document.findById(req.params.id, function(err, d) {
+    switch (req.params.format) {
+      case 'json':
+      res.send(d.__doc);
+      break;
+    default:
+      res.render('documents/show.jade', {
+	locals: {d:d}
+      });
+    }
+  });
 });
 
 app.put('/documents/:id.:format?', function(req, res) {
+  Document.findById(req.body.document.id, function(err, d) {
+    d.title = req.body.document.title;
+    d.data = req.body.document.data;
+
+    d.save(function() {
+      switch(req.params.format) {
+      case 'json':
+	res.send(d.__doc);
+	break;
+      default:
+	res.redirect('/documents');
+      }
+    });
+  });
 });
 
 app.del('/documents/:id.:format?', function(req, res) {

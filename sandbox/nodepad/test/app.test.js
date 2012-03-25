@@ -26,7 +26,8 @@ module.exports = {
       status: 200,
       headers: { 'Content-Type': 'text/html; charset=utf-8' }
     }, function (res) {
-      assert.includes(res.body, '<title>Express</title>');
+      assert.includes(res.body, '<h1>Express</h1>');
+      process.exit();
     });
   }
 };
