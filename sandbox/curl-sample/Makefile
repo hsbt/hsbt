@@ -1,7 +1,7 @@
 all: build
 
 build: 
-	g++ helloworld.cpp -o helloworld
+	g++ curlsample.cpp -o curlsample
 
 clean:
-	rm -f helloworld
+	rm -f curlsample
