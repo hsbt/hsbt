@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Sorcery::Application.load_tasks
+SorcerySample::Application.load_tasks

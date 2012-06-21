@@ -1,4 +1,4 @@
-Sorcery::Application.routes.draw do
+SorcerySample::Application.routes.draw do
   root :to => "users#index"
 
   resources :users
