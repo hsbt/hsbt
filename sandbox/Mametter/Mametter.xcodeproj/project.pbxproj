@@ -1,0 +1,287 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4244209F15ECC296007AD670 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4244209E15ECC296007AD670 /* UIKit.framework */; };
+		424420A115ECC296007AD670 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 424420A015ECC296007AD670 /* Foundation.framework */; };
+		424420A315ECC296007AD670 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 424420A215ECC296007AD670 /* CoreGraphics.framework */; };
+		424420A915ECC296007AD670 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 424420A715ECC296007AD670 /* InfoPlist.strings */; };
+		424420AB15ECC296007AD670 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 424420AA15ECC296007AD670 /* main.m */; };
+		424420AF15ECC296007AD670 /* MametterAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 424420AE15ECC296007AD670 /* MametterAppDelegate.m */; };
+		424420B215ECC296007AD670 /* MametterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 424420B115ECC296007AD670 /* MametterViewController.m */; };
+		424420B515ECC296007AD670 /* MametterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 424420B315ECC296007AD670 /* MametterViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		4244209A15ECC296007AD670 /* Mametter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mametter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4244209E15ECC296007AD670 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		424420A015ECC296007AD670 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		424420A215ECC296007AD670 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		424420A615ECC296007AD670 /* Mametter-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Mametter-Info.plist"; sourceTree = "<group>"; };
+		424420A815ECC296007AD670 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		424420AA15ECC296007AD670 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		424420AC15ECC296007AD670 /* Mametter-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Mametter-Prefix.pch"; sourceTree = "<group>"; };
+		424420AD15ECC296007AD670 /* MametterAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MametterAppDelegate.h; sourceTree = "<group>"; };
+		424420AE15ECC296007AD670 /* MametterAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MametterAppDelegate.m; sourceTree = "<group>"; };
+		424420B015ECC296007AD670 /* MametterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MametterViewController.h; sourceTree = "<group>"; };
+		424420B115ECC296007AD670 /* MametterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MametterViewController.m; sourceTree = "<group>"; };
+		424420B415ECC296007AD670 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MametterViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4244209715ECC296007AD670 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4244209F15ECC296007AD670 /* UIKit.framework in Frameworks */,
+				424420A115ECC296007AD670 /* Foundation.framework in Frameworks */,
+				424420A315ECC296007AD670 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4244208F15ECC296007AD670 = {
+			isa = PBXGroup;
+			children = (
+				424420A415ECC296007AD670 /* Mametter */,
+				4244209D15ECC296007AD670 /* Frameworks */,
+				4244209B15ECC296007AD670 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4244209B15ECC296007AD670 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4244209A15ECC296007AD670 /* Mametter.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4244209D15ECC296007AD670 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4244209E15ECC296007AD670 /* UIKit.framework */,
+				424420A015ECC296007AD670 /* Foundation.framework */,
+				424420A215ECC296007AD670 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		424420A415ECC296007AD670 /* Mametter */ = {
+			isa = PBXGroup;
+			children = (
+				424420AD15ECC296007AD670 /* MametterAppDelegate.h */,
+				424420AE15ECC296007AD670 /* MametterAppDelegate.m */,
+				424420B015ECC296007AD670 /* MametterViewController.h */,
+				424420B115ECC296007AD670 /* MametterViewController.m */,
+				424420B315ECC296007AD670 /* MametterViewController.xib */,
+				424420A515ECC296007AD670 /* Supporting Files */,
+			);
+			path = Mametter;
+			sourceTree = "<group>";
+		};
+		424420A515ECC296007AD670 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				424420A615ECC296007AD670 /* Mametter-Info.plist */,
+				424420A715ECC296007AD670 /* InfoPlist.strings */,
+				424420AA15ECC296007AD670 /* main.m */,
+				424420AC15ECC296007AD670 /* Mametter-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4244209915ECC296007AD670 /* Mametter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 424420B815ECC296007AD670 /* Build configuration list for PBXNativeTarget "Mametter" */;
+			buildPhases = (
+				4244209615ECC296007AD670 /* Sources */,
+				4244209715ECC296007AD670 /* Frameworks */,
+				4244209815ECC296007AD670 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Mametter;
+			productName = Mametter;
+			productReference = 4244209A15ECC296007AD670 /* Mametter.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4244209115ECC296007AD670 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = Mametter;
+				LastUpgradeCheck = 0440;
+				ORGANIZATIONNAME = "SHIBATA Hiroshi";
+			};
+			buildConfigurationList = 4244209415ECC296007AD670 /* Build configuration list for PBXProject "Mametter" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 4244208F15ECC296007AD670;
+			productRefGroup = 4244209B15ECC296007AD670 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4244209915ECC296007AD670 /* Mametter */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4244209815ECC296007AD670 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				424420A915ECC296007AD670 /* InfoPlist.strings in Resources */,
+				424420B515ECC296007AD670 /* MametterViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4244209615ECC296007AD670 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				424420AB15ECC296007AD670 /* main.m in Sources */,
+				424420AF15ECC296007AD670 /* MametterAppDelegate.m in Sources */,
+				424420B215ECC296007AD670 /* MametterViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		424420A715ECC296007AD670 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				424420A815ECC296007AD670 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		424420B315ECC296007AD670 /* MametterViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				424420B415ECC296007AD670 /* en */,
+			);
+			name = MametterViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		424420B615ECC296007AD670 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		424420B715ECC296007AD670 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		424420B915ECC296007AD670 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Mametter/Mametter-Prefix.pch";
+				INFOPLIST_FILE = "Mametter/Mametter-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		424420BA15ECC296007AD670 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Mametter/Mametter-Prefix.pch";
+				INFOPLIST_FILE = "Mametter/Mametter-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4244209415ECC296007AD670 /* Build configuration list for PBXProject "Mametter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				424420B615ECC296007AD670 /* Debug */,
+				424420B715ECC296007AD670 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		424420B815ECC296007AD670 /* Build configuration list for PBXNativeTarget "Mametter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				424420B915ECC296007AD670 /* Debug */,
+				424420BA15ECC296007AD670 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4244209115ECC296007AD670 /* Project object */;
+}
