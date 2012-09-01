@@ -7,6 +7,7 @@
 //
 
 #import "MametterViewController.h"
+#import <Twitter/Twitter.h>
 
 @interface MametterViewController ()
 
@@ -31,4 +32,16 @@
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
+-(IBAction) handleTweetButtonTapped: (id) sender
+{
+  if ([TWTweetComposeViewController canSendTweet]) {
+    TWTweetComposeViewController *tweetVC =
+      [[TWTweetComposeViewController alloc] init];
+      [tweetVC setInitialText:
+         @"I just finished the first project in iOS SDK Development. #pragsios"];
+      [self presentViewController:tweetVC animated:YES completion:NULL];
+  }else{
+    NSLog (@"Can't send tweet");
+  }
+}
 @end

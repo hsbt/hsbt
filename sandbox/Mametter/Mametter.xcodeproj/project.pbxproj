@@ -15,6 +15,7 @@
 		424420AF15ECC296007AD670 /* MametterAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 424420AE15ECC296007AD670 /* MametterAppDelegate.m */; };
 		424420B215ECC296007AD670 /* MametterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 424420B115ECC296007AD670 /* MametterViewController.m */; };
 		424420B515ECC296007AD670 /* MametterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 424420B315ECC296007AD670 /* MametterViewController.xib */; };
+		424420BC15ECC9AE007AD670 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 424420BB15ECC9AE007AD670 /* Twitter.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		424420B015ECC296007AD670 /* MametterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MametterViewController.h; sourceTree = "<group>"; };
 		424420B115ECC296007AD670 /* MametterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MametterViewController.m; sourceTree = "<group>"; };
 		424420B415ECC296007AD670 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MametterViewController.xib; sourceTree = "<group>"; };
+		424420BB15ECC9AE007AD670 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				424420BC15ECC9AE007AD670 /* Twitter.framework in Frameworks */,
 				4244209F15ECC296007AD670 /* UIKit.framework in Frameworks */,
 				424420A115ECC296007AD670 /* Foundation.framework in Frameworks */,
 				424420A315ECC296007AD670 /* CoreGraphics.framework in Frameworks */,
@@ -50,6 +53,7 @@
 		4244208F15ECC296007AD670 = {
 			isa = PBXGroup;
 			children = (
+				424420BB15ECC9AE007AD670 /* Twitter.framework */,
 				424420A415ECC296007AD670 /* Mametter */,
 				4244209D15ECC296007AD670 /* Frameworks */,
 				4244209B15ECC296007AD670 /* Products */,
