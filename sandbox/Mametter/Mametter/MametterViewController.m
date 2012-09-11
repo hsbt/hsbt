@@ -14,6 +14,7 @@
 @end
 
 @implementation MametterViewController
+@synthesize twitterWebView;
 
 - (void)viewDidLoad
 {
@@ -23,6 +24,7 @@
 
 - (void)viewDidUnload
 {
+    [self setTwitterWebView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -37,11 +39,19 @@
   if ([TWTweetComposeViewController canSendTweet]) {
     TWTweetComposeViewController *tweetVC =
       [[TWTweetComposeViewController alloc] init];
-      [tweetVC setInitialText:
-         @"I just finished the first project in iOS SDK Development. #pragsios"];
+      [tweetVC setInitialText: NSLocalizedString(
+         @"I just finished the first project in iOS SDK Development. #pragsios",
+         nil)];
       [self presentViewController:tweetVC animated:YES completion:NULL];
   }else{
     NSLog (@"Can't send tweet");
   }
 }
+
+-(IBAction) handleShowMyTweetsTapped: (id) sender {
+    [self.twitterWebView loadRequest:
+     [NSURLRequest requestWithURL:
+      [NSURL URLWithString:@"http://www.twitter.com/hsbt"]]];
+}
+
 @end

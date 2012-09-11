@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		420DA4A615FF51540041465D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 420DA4A815FF51540041465D /* Localizable.strings */; };
 		4244209F15ECC296007AD670 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4244209E15ECC296007AD670 /* UIKit.framework */; };
 		424420A115ECC296007AD670 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 424420A015ECC296007AD670 /* Foundation.framework */; };
 		424420A315ECC296007AD670 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 424420A215ECC296007AD670 /* CoreGraphics.framework */; };
@@ -19,6 +20,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		420DA4A115FF4FA90041465D /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/MametterViewController.xib; sourceTree = "<group>"; };
+		420DA4A215FF4FA90041465D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		420DA4A715FF51540041465D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4244209A15ECC296007AD670 /* Mametter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mametter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4244209E15ECC296007AD670 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		424420A015ECC296007AD670 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -85,6 +89,7 @@
 				424420AE15ECC296007AD670 /* MametterAppDelegate.m */,
 				424420B015ECC296007AD670 /* MametterViewController.h */,
 				424420B115ECC296007AD670 /* MametterViewController.m */,
+				420DA4A815FF51540041465D /* Localizable.strings */,
 				424420B315ECC296007AD670 /* MametterViewController.xib */,
 				424420A515ECC296007AD670 /* Supporting Files */,
 			);
@@ -156,6 +161,7 @@
 			files = (
 				424420A915ECC296007AD670 /* InfoPlist.strings in Resources */,
 				424420B515ECC296007AD670 /* MametterViewController.xib in Resources */,
+				420DA4A615FF51540041465D /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,10 +181,19 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		420DA4A815FF51540041465D /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				420DA4A715FF51540041465D /* ja */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		424420A715ECC296007AD670 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				424420A815ECC296007AD670 /* en */,
+				420DA4A215FF4FA90041465D /* ja */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -187,6 +202,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				424420B415ECC296007AD670 /* en */,
+				420DA4A115FF4FA90041465D /* ja */,
 			);
 			name = MametterViewController.xib;
 			sourceTree = "<group>";
@@ -284,6 +300,7 @@
 				424420BA15ECC296007AD670 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
