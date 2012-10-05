@@ -10,7 +10,8 @@
 #import <Twitter/Twitter.h>
 
 @interface MametterViewController ()
-
+- (void) reloadTweets;
+@property (weak, nonatomic) IBOutlet UIWebView *twitterWebView;
 @end
 
 @implementation MametterViewController
@@ -36,22 +37,34 @@
 
 -(IBAction) handleTweetButtonTapped: (id) sender
 {
-  if ([TWTweetComposeViewController canSendTweet]) {
-    TWTweetComposeViewController *tweetVC =
-      [[TWTweetComposeViewController alloc] init];
-      [tweetVC setInitialText: NSLocalizedString(
-         @"I just finished the first project in iOS SDK Development. #pragsios",
-         nil)];
-      [self presentViewController:tweetVC animated:YES completion:NULL];
-  }else{
-    NSLog (@"Can't send tweet");
-  }
+    if ([SLComposeViewController isAvailableForServiceType: SLServiceTypeTwitter]) {
+        SLComposeViewController *tweetVC = [SLComposeViewController composeViewControllerForServiceType: SLServiceTypeTwitter];
+        [tweetVC setInitialText: @"I just finished the first project in iOS SDK Development. #pragsios"];
+        [self presentViewController:tweetVC animated:YES completion:NULL];
+    }else{
+        NSLog (@"Can't send tweet");
+    }
 }
 
--(IBAction) handleShowMyTweetsTapped: (id) sender {
+-(void) reloadTweets {
     [self.twitterWebView loadRequest:
      [NSURLRequest requestWithURL:
       [NSURL URLWithString:@"http://www.twitter.com/hsbt"]]];
 }
 
+-(IBAction) handleShowMyTweetsTapped: (id) sender {
+    if ([SLComposeViewController isAvailableForServiceType: SLServiceTypeTwitter]) {
+        SLComposeViewController *tweetVC = [SLComposeViewController composeViewControllerForServiceType: SLServiceTypeTwitter];
+        [tweetVC setInitialText: NSLocalizedString (
+                                                    @"I just finished the first project in iOS SDK Development. #pragsios",
+                                                    nil)];
+        tweetVC.completionHandler = ^(SLComposeViewControllerResult result) {
+            if (result == SLComposeViewControllerResultDone) {
+                [self dismissViewControllerAnimated:YES completion:NULL];
+                [self reloadTweets];
+            }
+        };
+        [self presentViewController:tweetVC animated:YES completion:NULL];
+    }
+}
 @end

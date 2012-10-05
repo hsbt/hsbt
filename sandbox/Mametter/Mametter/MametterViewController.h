@@ -10,6 +10,4 @@
 
 @interface MametterViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UIWebView *twitterWebView;
-
 @end
