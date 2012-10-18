@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MameRecipe.h"
 
 @interface MameRecipeViewController : UIViewController
+
+@property (weak, nonatomic) IBOutlet UILabel *recipeTitle;
+@property(nonatomic, strong) MameRecipe *recipe;
+@property (weak, nonatomic) IBOutlet UITextView *directionsView;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @end

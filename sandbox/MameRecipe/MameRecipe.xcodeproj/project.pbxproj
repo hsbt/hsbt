@@ -18,6 +18,8 @@
 		424F449C163010250077334F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 424F449B163010250077334F /* Default-568h@2x.png */; };
 		424F449F163010250077334F /* MameRecipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 424F449E163010250077334F /* MameRecipeViewController.m */; };
 		424F44A2163010250077334F /* MameRecipeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 424F44A0163010250077334F /* MameRecipeViewController.xib */; };
+		424F44AA163010BE0077334F /* MameRecipe.m in Sources */ = {isa = PBXBuildFile; fileRef = 424F44A9163010BE0077334F /* MameRecipe.m */; };
+		424F44AC163018C70077334F /* edamame.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 424F44AB163018C60077334F /* edamame.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +39,9 @@
 		424F449D163010250077334F /* MameRecipeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MameRecipeViewController.h; sourceTree = "<group>"; };
 		424F449E163010250077334F /* MameRecipeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MameRecipeViewController.m; sourceTree = "<group>"; };
 		424F44A1163010250077334F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MameRecipeViewController.xib; sourceTree = "<group>"; };
+		424F44A8163010BE0077334F /* MameRecipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MameRecipe.h; sourceTree = "<group>"; };
+		424F44A9163010BE0077334F /* MameRecipe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MameRecipe.m; sourceTree = "<group>"; };
+		424F44AB163018C60077334F /* edamame.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = edamame.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,9 +61,12 @@
 		424F4476163010250077334F = {
 			isa = PBXGroup;
 			children = (
+				424F44A8163010BE0077334F /* MameRecipe.h */,
+				424F44A9163010BE0077334F /* MameRecipe.m */,
 				424F448B163010250077334F /* MameRecipe */,
 				424F4484163010250077334F /* Frameworks */,
 				424F4482163010250077334F /* Products */,
+				424F44AB163018C60077334F /* edamame.jpg */,
 			);
 			sourceTree = "<group>";
 		};
@@ -164,6 +172,7 @@
 				424F449A163010250077334F /* Default@2x.png in Resources */,
 				424F449C163010250077334F /* Default-568h@2x.png in Resources */,
 				424F44A2163010250077334F /* MameRecipeViewController.xib in Resources */,
+				424F44AC163018C70077334F /* edamame.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,6 +186,7 @@
 				424F4492163010250077334F /* main.m in Sources */,
 				424F4496163010250077334F /* MameRecipeAppDelegate.m in Sources */,
 				424F449F163010250077334F /* MameRecipeViewController.m in Sources */,
+				424F44AA163010BE0077334F /* MameRecipe.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

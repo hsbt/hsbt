@@ -14,9 +14,16 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    MameRecipe *recipe = [[MameRecipe alloc] init];
+
+    recipe.title = @"Edamame";
+    recipe.directions = @"Edamame is good";
+    recipe.image = [UIImage imageNamed:@"edamame.jpg"];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.viewController = [[MameRecipeViewController alloc] initWithNibName:@"MameRecipeViewController" bundle:nil];
+    self.viewController.recipe = recipe;
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     return YES;
