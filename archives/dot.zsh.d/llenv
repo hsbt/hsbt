@@ -1,0 +1,20 @@
+# rbenv
+export PATH=$HOME/.rbenv/bin:$PATH
+eval "$(rbenv init -)"
+
+# phpenv
+export PATH=$HOME/.phpenv/bin:$HOME/.phpenv/shims:$PATH
+eval "$(phpenv init -)"
+
+# nodebrew
+export PATH=$HOME/.nodebrew/current/bin:$PATH
+alias -g nb='nodebrew'
+
+# perlbrew
+export PERLBREW_ROOT=$HOME/.perlbrew
+[[ -s "$HOME/.perlbrew/etc/bashrc" ]] && source ~/.perlbrew/etc/bashrc
+alias -g pb='perlbrew'
+
+# pythonbrew
+[[ -s "$HOME/.pythonbrew/etc/bashrc" ]] && source "$HOME/.pythonbrew/etc/bashrc"
+alias -g pyb='pythonbrew'

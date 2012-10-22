@@ -5,5 +5,4 @@ export ARCHFLAGS="-arch x86_64"
 export EDITOR="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient"
 export DROPBOX=$HOME/Dropbox
 
-# gisty
-export GISTY_DIR=$DROPBOX/dev/gists
+source ~/.zsh.d/gisty
