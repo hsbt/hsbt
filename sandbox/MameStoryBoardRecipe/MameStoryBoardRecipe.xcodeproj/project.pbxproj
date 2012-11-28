@@ -1,0 +1,300 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		429DDB0B16661A1D00105968 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 429DDB0A16661A1D00105968 /* UIKit.framework */; };
+		429DDB0D16661A1D00105968 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 429DDB0C16661A1D00105968 /* Foundation.framework */; };
+		429DDB0F16661A1D00105968 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 429DDB0E16661A1D00105968 /* CoreGraphics.framework */; };
+		429DDB1516661A1D00105968 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 429DDB1316661A1D00105968 /* InfoPlist.strings */; };
+		429DDB1716661A1D00105968 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 429DDB1616661A1D00105968 /* main.m */; };
+		429DDB1B16661A1D00105968 /* MameRecipeAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 429DDB1A16661A1D00105968 /* MameRecipeAppDelegate.m */; };
+		429DDB1D16661A1D00105968 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 429DDB1C16661A1D00105968 /* Default.png */; };
+		429DDB1F16661A1D00105968 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 429DDB1E16661A1D00105968 /* Default@2x.png */; };
+		429DDB2116661A1D00105968 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 429DDB2016661A1D00105968 /* Default-568h@2x.png */; };
+		429DDB2416661A1D00105968 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 429DDB2216661A1D00105968 /* MainStoryboard.storyboard */; };
+		429DDB2716661A1D00105968 /* MameRecipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 429DDB2616661A1D00105968 /* MameRecipeViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		429DDB0616661A1D00105968 /* MameStoryBoardRecipe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MameStoryBoardRecipe.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		429DDB0A16661A1D00105968 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		429DDB0C16661A1D00105968 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		429DDB0E16661A1D00105968 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		429DDB1216661A1D00105968 /* MameStoryBoardRecipe-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MameStoryBoardRecipe-Info.plist"; sourceTree = "<group>"; };
+		429DDB1416661A1D00105968 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		429DDB1616661A1D00105968 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		429DDB1816661A1D00105968 /* MameStoryBoardRecipe-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MameStoryBoardRecipe-Prefix.pch"; sourceTree = "<group>"; };
+		429DDB1916661A1D00105968 /* MameRecipeAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MameRecipeAppDelegate.h; sourceTree = "<group>"; };
+		429DDB1A16661A1D00105968 /* MameRecipeAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MameRecipeAppDelegate.m; sourceTree = "<group>"; };
+		429DDB1C16661A1D00105968 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		429DDB1E16661A1D00105968 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		429DDB2016661A1D00105968 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		429DDB2316661A1D00105968 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		429DDB2516661A1D00105968 /* MameRecipeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MameRecipeViewController.h; sourceTree = "<group>"; };
+		429DDB2616661A1D00105968 /* MameRecipeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MameRecipeViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		429DDB0316661A1D00105968 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				429DDB0B16661A1D00105968 /* UIKit.framework in Frameworks */,
+				429DDB0D16661A1D00105968 /* Foundation.framework in Frameworks */,
+				429DDB0F16661A1D00105968 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		429DDAFB16661A1D00105968 = {
+			isa = PBXGroup;
+			children = (
+				429DDB1016661A1D00105968 /* MameStoryBoardRecipe */,
+				429DDB0916661A1D00105968 /* Frameworks */,
+				429DDB0716661A1D00105968 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		429DDB0716661A1D00105968 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				429DDB0616661A1D00105968 /* MameStoryBoardRecipe.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		429DDB0916661A1D00105968 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				429DDB0A16661A1D00105968 /* UIKit.framework */,
+				429DDB0C16661A1D00105968 /* Foundation.framework */,
+				429DDB0E16661A1D00105968 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		429DDB1016661A1D00105968 /* MameStoryBoardRecipe */ = {
+			isa = PBXGroup;
+			children = (
+				429DDB1916661A1D00105968 /* MameRecipeAppDelegate.h */,
+				429DDB1A16661A1D00105968 /* MameRecipeAppDelegate.m */,
+				429DDB2216661A1D00105968 /* MainStoryboard.storyboard */,
+				429DDB2516661A1D00105968 /* MameRecipeViewController.h */,
+				429DDB2616661A1D00105968 /* MameRecipeViewController.m */,
+				429DDB1116661A1D00105968 /* Supporting Files */,
+			);
+			path = MameStoryBoardRecipe;
+			sourceTree = "<group>";
+		};
+		429DDB1116661A1D00105968 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				429DDB1216661A1D00105968 /* MameStoryBoardRecipe-Info.plist */,
+				429DDB1316661A1D00105968 /* InfoPlist.strings */,
+				429DDB1616661A1D00105968 /* main.m */,
+				429DDB1816661A1D00105968 /* MameStoryBoardRecipe-Prefix.pch */,
+				429DDB1C16661A1D00105968 /* Default.png */,
+				429DDB1E16661A1D00105968 /* Default@2x.png */,
+				429DDB2016661A1D00105968 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		429DDB0516661A1D00105968 /* MameStoryBoardRecipe */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 429DDB2A16661A1D00105968 /* Build configuration list for PBXNativeTarget "MameStoryBoardRecipe" */;
+			buildPhases = (
+				429DDB0216661A1D00105968 /* Sources */,
+				429DDB0316661A1D00105968 /* Frameworks */,
+				429DDB0416661A1D00105968 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MameStoryBoardRecipe;
+			productName = MameStoryBoardRecipe;
+			productReference = 429DDB0616661A1D00105968 /* MameStoryBoardRecipe.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		429DDAFD16661A1D00105968 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = MameRecipe;
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "SHIBATA Hiroshi";
+			};
+			buildConfigurationList = 429DDB0016661A1D00105968 /* Build configuration list for PBXProject "MameStoryBoardRecipe" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 429DDAFB16661A1D00105968;
+			productRefGroup = 429DDB0716661A1D00105968 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				429DDB0516661A1D00105968 /* MameStoryBoardRecipe */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		429DDB0416661A1D00105968 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				429DDB1516661A1D00105968 /* InfoPlist.strings in Resources */,
+				429DDB1D16661A1D00105968 /* Default.png in Resources */,
+				429DDB1F16661A1D00105968 /* Default@2x.png in Resources */,
+				429DDB2116661A1D00105968 /* Default-568h@2x.png in Resources */,
+				429DDB2416661A1D00105968 /* MainStoryboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		429DDB0216661A1D00105968 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				429DDB1716661A1D00105968 /* main.m in Sources */,
+				429DDB1B16661A1D00105968 /* MameRecipeAppDelegate.m in Sources */,
+				429DDB2716661A1D00105968 /* MameRecipeViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		429DDB1316661A1D00105968 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				429DDB1416661A1D00105968 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		429DDB2216661A1D00105968 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				429DDB2316661A1D00105968 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		429DDB2816661A1D00105968 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		429DDB2916661A1D00105968 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		429DDB2B16661A1D00105968 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MameStoryBoardRecipe/MameStoryBoardRecipe-Prefix.pch";
+				INFOPLIST_FILE = "MameStoryBoardRecipe/MameStoryBoardRecipe-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		429DDB2C16661A1D00105968 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MameStoryBoardRecipe/MameStoryBoardRecipe-Prefix.pch";
+				INFOPLIST_FILE = "MameStoryBoardRecipe/MameStoryBoardRecipe-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		429DDB0016661A1D00105968 /* Build configuration list for PBXProject "MameStoryBoardRecipe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				429DDB2816661A1D00105968 /* Debug */,
+				429DDB2916661A1D00105968 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		429DDB2A16661A1D00105968 /* Build configuration list for PBXNativeTarget "MameStoryBoardRecipe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				429DDB2B16661A1D00105968 /* Debug */,
+				429DDB2C16661A1D00105968 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 429DDAFD16661A1D00105968 /* Project object */;
+}
