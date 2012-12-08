@@ -9,30 +9,30 @@
       (set-frame-parameter nil 'alpha 85)))
 
 ;; Menloを使う
-;; (set-face-attribute 'default nil
-;;                  :family "Menlo"
-;;                  :height 160)
-;; (set-fontset-font
-;;  (frame-parameter nil 'font)
-;;  'japanese-jisx0208
-;;  '("Hiragino Maru Gothic Pro" . "iso10646-1"))
-;; (set-fontset-font
-;;  (frame-parameter nil 'font)
-;;  'japanese-jisx0212
-;;  '("Hiragino Maru Gothic Pro" . "iso10646-1"))
+(set-face-attribute 'default nil
+                 :family "Menlo"
+                 :height 120)
+(set-fontset-font
+ (frame-parameter nil 'font)
+ 'japanese-jisx0208
+ '("Hiragino Maru Gothic Pro" . "iso10646-1"))
+(set-fontset-font
+ (frame-parameter nil 'font)
+ 'japanese-jisx0212
+ '("Hiragino Maru Gothic Pro" . "iso10646-1"))
 
 ;; Ricty を使う
-(set-face-attribute 'default nil
-                    :family "Ricty"
-                    :height 160)
-(set-fontset-font
- nil
- 'japanese-jisx0208
- (font-spec :family "Ricty"))
-(set-fontset-font
- nil
- 'japanese-jisx0212
- (font-spec :family "Ricty"))
+;; (set-face-attribute 'default nil
+;;                     :family "Ricty"
+;;                     :height 160)
+;; (set-fontset-font
+;;  nil
+;;  'japanese-jisx0208
+;;  (font-spec :family "Ricty"))
+;; (set-fontset-font
+;;  nil
+;;  'japanese-jisx0212
+;;  (font-spec :family "Ricty"))
 
 ;; フォントサイズ変更の割合
 (setq face-font-rescale-alist

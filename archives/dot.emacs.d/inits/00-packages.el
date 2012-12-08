@@ -1,9 +1,9 @@
 ;; exec-path
 (dolist (dir (list
+      "~/.rbenv/shims"
       "/usr/local/bin"
       "/usr/bin"
-      "/bin"
-      "/Users/hsbt/.homebrew/bin"))
+      "/bin"))
   (when (and (file-exists-p dir) (not (member dir exec-path)))
     (setenv "PATH" (concat dir ":" (getenv "PATH")))
     (setq exec-path (append (list dir) exec-path))))
@@ -17,10 +17,11 @@
 (auto-install-compatibility-setup)
 
 ;; ELPA
-(when
-  (load (expand-file-name "~/.emacs.d/elpa/package.el")) 
-  (package-initialize))
+;;(setq debug-on-error t)
+(require 'package)
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(package-initialize)
 
 ;; てきとーにバイトコンパイルしてくれる
-(require 'auto-async-byte-compile)
-(add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode)
+;; (require 'auto-async-byte-compile)
+;; (add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode)

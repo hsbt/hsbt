@@ -11,6 +11,22 @@
              (setq ruby-indent-level tab-width)
              (setq ruby-deep-indent-paren-style nil)))
 
+;; http://willnet.in/13
+(defadvice ruby-indent-line (after unindent-closing-paren activate)
+  (let ((column (current-column))
+        indent offset)
+    (save-excursion
+      (back-to-indentation)
+      (let ((state (syntax-ppss)))
+        (setq offset (- column (current-column)))
+        (when (and (eq (char-after) ?\))
+                   (not (zerop (car state))))
+          (goto-char (cadr state))
+          (setq indent (current-indentation)))))
+    (when indent
+      (indent-line-to indent)
+      (when (> offset 0) (forward-char offset)))))
+
 ;; ido-mode
 (ido-mode 'buffer)
 (setq ido-enable-flex-matching t)
@@ -19,6 +35,10 @@
 (ido-mode t)
 (ido-everywhere t)
 (icomplete-mode t) 
+
+(require 'rhtml-mode)
+(add-hook 'rhtml-mode-hook
+  (lambda () (rinari-launch)))
 
 (require 'feature-mode)
 (setq feature-default-language "ja")

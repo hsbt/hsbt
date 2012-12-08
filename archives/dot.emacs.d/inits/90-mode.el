@@ -1,6 +1,8 @@
 ;; auto-mode
 (require 'markdown-mode)
 (require 'css-mode)
+(require 'inao-mode)
+(require 'puppet-mode)
 
 (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
@@ -23,4 +25,5 @@
 (add-to-list 'auto-mode-alist '("\\.css$" . css-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.coffee$" . coffee-mode))
+(add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))
 (add-to-list 'auto-mode-alist '("Cakefile" . coffee-mode))
