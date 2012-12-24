@@ -7,26 +7,25 @@
 //
 
 #import "MameRecipeAppDelegate.h"
-
-#import "MameRecipeViewController.h"
+#import "MameRecipe.h"
+#import "MameRecipesListViewController.h"
+#import "MameRecipesSource.h"
 
 @implementation MameRecipeAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    MameRecipe *recipe = [[MameRecipe alloc] init];
+  self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
-    recipe.title = @"Edamame";
-    recipe.directions = @"Edamame is good";
-    recipe.image = [UIImage imageNamed:@"edamame.jpg"];
-    
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    self.viewController = [[MameRecipeViewController alloc] initWithNibName:@"MameRecipeViewController" bundle:nil];
-    self.viewController.recipe = recipe;
-    self.window.rootViewController = self.viewController;
-    [self.window makeKeyAndVisible];
-    return YES;
+  self.viewController = [[MameRecipesListViewController alloc]
+                         initWithNibName:@"MameRecipesListViewController"
+                         bundle:nil];
+  self.window.rootViewController = self.viewController;
+
+  self.viewController.dataSource = [[MameRecipesSource alloc] init];
+
+  [self.window makeKeyAndVisible];
+  return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

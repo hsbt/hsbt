@@ -20,6 +20,9 @@
 		424F44A2163010250077334F /* MameRecipeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 424F44A0163010250077334F /* MameRecipeViewController.xib */; };
 		424F44AA163010BE0077334F /* MameRecipe.m in Sources */ = {isa = PBXBuildFile; fileRef = 424F44A9163010BE0077334F /* MameRecipe.m */; };
 		424F44AC163018C70077334F /* edamame.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 424F44AB163018C60077334F /* edamame.jpg */; };
+		C887C20E16883FCD00825200 /* MameRecipesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C887C20C16883FCD00825200 /* MameRecipesListViewController.m */; };
+		C887C20F16883FCD00825200 /* MameRecipesListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C887C20D16883FCD00825200 /* MameRecipesListViewController.xib */; };
+		C887C21516884D1700825200 /* MameRecipesSource.m in Sources */ = {isa = PBXBuildFile; fileRef = C887C21416884D1700825200 /* MameRecipesSource.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +45,12 @@
 		424F44A8163010BE0077334F /* MameRecipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MameRecipe.h; sourceTree = "<group>"; };
 		424F44A9163010BE0077334F /* MameRecipe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MameRecipe.m; sourceTree = "<group>"; };
 		424F44AB163018C60077334F /* edamame.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = edamame.jpg; sourceTree = "<group>"; };
+		C887C20B16883FCD00825200 /* MameRecipesListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MameRecipesListViewController.h; sourceTree = "<group>"; };
+		C887C20C16883FCD00825200 /* MameRecipesListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MameRecipesListViewController.m; sourceTree = "<group>"; };
+		C887C20D16883FCD00825200 /* MameRecipesListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MameRecipesListViewController.xib; sourceTree = "<group>"; };
+		C887C211168849B800825200 /* MameRecipesListDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MameRecipesListDataSource.h; path = MameRecipe/MameRecipesListDataSource.h; sourceTree = "<group>"; };
+		C887C21316884D1700825200 /* MameRecipesSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MameRecipesSource.h; sourceTree = "<group>"; };
+		C887C21416884D1700825200 /* MameRecipesSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MameRecipesSource.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +72,9 @@
 			children = (
 				424F44A8163010BE0077334F /* MameRecipe.h */,
 				424F44A9163010BE0077334F /* MameRecipe.m */,
+				C887C21316884D1700825200 /* MameRecipesSource.h */,
+				C887C21416884D1700825200 /* MameRecipesSource.m */,
+				C887C211168849B800825200 /* MameRecipesListDataSource.h */,
 				424F448B163010250077334F /* MameRecipe */,
 				424F4484163010250077334F /* Frameworks */,
 				424F4482163010250077334F /* Products */,
@@ -96,6 +108,9 @@
 				424F449D163010250077334F /* MameRecipeViewController.h */,
 				424F449E163010250077334F /* MameRecipeViewController.m */,
 				424F44A0163010250077334F /* MameRecipeViewController.xib */,
+				C887C20B16883FCD00825200 /* MameRecipesListViewController.h */,
+				C887C20C16883FCD00825200 /* MameRecipesListViewController.m */,
+				C887C20D16883FCD00825200 /* MameRecipesListViewController.xib */,
 				424F448C163010250077334F /* Supporting Files */,
 			);
 			path = MameRecipe;
@@ -173,6 +188,7 @@
 				424F449C163010250077334F /* Default-568h@2x.png in Resources */,
 				424F44A2163010250077334F /* MameRecipeViewController.xib in Resources */,
 				424F44AC163018C70077334F /* edamame.jpg in Resources */,
+				C887C20F16883FCD00825200 /* MameRecipesListViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,6 +203,8 @@
 				424F4496163010250077334F /* MameRecipeAppDelegate.m in Sources */,
 				424F449F163010250077334F /* MameRecipeViewController.m in Sources */,
 				424F44AA163010BE0077334F /* MameRecipe.m in Sources */,
+				C887C20E16883FCD00825200 /* MameRecipesListViewController.m in Sources */,
+				C887C21516884D1700825200 /* MameRecipesSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,6 +321,7 @@
 				424F44A7163010250077334F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

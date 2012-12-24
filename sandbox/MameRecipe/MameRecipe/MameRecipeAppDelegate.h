@@ -8,12 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class MameRecipeViewController;
+@class MameRecipesListViewController;
 
 @interface MameRecipeAppDelegate : UIResponder <UIApplicationDelegate>
-
 @property (strong, nonatomic) UIWindow *window;
-
-@property (strong, nonatomic) MameRecipeViewController *viewController;
+@property (strong, nonatomic) MameRecipesListViewController *viewController;
+@property (copy, nonatomic) NSArray *recipes;
 
 @end

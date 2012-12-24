@@ -15,5 +15,7 @@
 @property(nonatomic, strong) MameRecipe *recipe;
 @property (weak, nonatomic) IBOutlet UITextView *directionsView;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
-
+@property(nonatomic, strong) IBOutlet UILabel *prepTime;
+@property(nonatomic, strong) NSNumberFormatter *formatter;
+- (IBAction)dismiss:(id)sender;
 @end
