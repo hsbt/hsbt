@@ -11,3 +11,5 @@ Exec["apt-update"] -> Package <||>
 package { "openjdk-6-jdk":
   ensure => present
 }
+
+include jruby
