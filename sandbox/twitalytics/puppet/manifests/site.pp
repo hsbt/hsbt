@@ -14,3 +14,4 @@ package { "openjdk-6-jdk":
 
 include jruby
 include apache2
+include postgres
