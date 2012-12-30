@@ -11,10 +11,9 @@ set :use_sudo, false
 
 set :deploy_to, "/opt/trinidad"
 set :application, "twitalytics"
-set :repository, "."
-set :scm, :none
+set :repository, "git://github.com/hsbt/twitalytics.git"
+set :scm, :git
 set :deploy_via, :copy
-set :copy_exclude, [".git", "log", "tmp", "*.box", "*.war", ".idea", ".DS_Store"]
 
 set :default_environment, "PATH" => "/opt/jruby/bin:$PATH", "JSVC_ARGS_EXTRA" => "-user vagrant"
 set :bundle_dir, ""
@@ -30,6 +29,6 @@ namespace :deploy do
   end
   task :stop, :roles => :app do ; end
   task :restart, :roles => :app, :except => { :no_release => true } do
-    run "touch #{File.join(current_path,'tmp','restart.txt')}"
+    run "touch #{current_release}/tmp/restart.txt"
   end
 end
