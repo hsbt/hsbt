@@ -2,7 +2,7 @@ source :rubygems
 
 gem 'rails'
 gem 'jquery-rails'
-gem 'twitter'
+gem 'twitter', '~> 2.0.2'
 
 platform :jruby do
   gem 'therubyrhino'
