@@ -14,14 +14,14 @@ class postgres {
   }
 
   exec { "createuser":
-    command => "createuser -U postgres -SdRw vagrant",
+    command => "createuser -SdRw vagrant",
     user => "postgres",
     path => $path,
-    unless => "psql -c \"select * from pg_user where username='vagrant'\" | grep -c vagrant",
+    unless => "psql postgres -c \"select * from pg_user where usename='vagrant'\" | grep -c vagrant",
     require => Group["postgres"]
   }
 
-  exec { "psql -c \"alter user vagrant with password 'Passw0rd'\"":
+  exec { "psql postgres -c \"alter user vagrant with password 'Passw0rd'\"":
     user => "postgres",
     path => $path,
     require => Exec["createuser"],
