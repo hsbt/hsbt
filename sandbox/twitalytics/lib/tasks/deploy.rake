@@ -31,18 +31,6 @@ namespace :deploy do
     scp_upload("twitalytics.war", "deploy/")
 
     with_ssh do |ssh|
-      ssh.exec <<-SH do |ch, stream, data|
-cd deploy
-export PATH=$PATH:/opt/jruby/bin
-export RAILS_ENV=production
-sudo jgem install warbler-exec
-jruby -S warbler-exec twitalytics.war bin/rake db:migrate
-SH
-        print data
-      end
-    end
-
-    with_ssh do |ssh|
       ssh.exec! "sudo mv deploy/twitalytics.war /var/lib/tomcat6/webapps/"
       puts "Deployment complete!"
     end

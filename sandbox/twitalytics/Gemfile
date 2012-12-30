@@ -9,6 +9,7 @@ gem 'trinidad_scheduler_extension'
 gem 'trinidad_worker_extension'
 gem 'resque'
 
+gem 'capistrano'
 gem 'twitter', '~> 2.0.2'
 
 platform :jruby do

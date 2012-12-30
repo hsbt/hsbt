@@ -38,6 +38,12 @@ GEM
     arel (3.0.2)
     bouncy-castle-java (1.5.0146.1)
     builder (3.0.4)
+    capistrano (2.13.5)
+      highline
+      net-scp (>= 1.0.0)
+      net-sftp (>= 2.0.0)
+      net-ssh (>= 2.0.14)
+      net-ssh-gateway (>= 1.1.0)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -52,6 +58,7 @@ GEM
     faraday (0.8.4)
       multipart-post (~> 1.1)
     get_back (0.1.0-java)
+    highline (1.6.15)
     hike (1.2.1)
     i18n (0.6.1)
     jdbc-postgres (9.1.901)
@@ -81,7 +88,11 @@ GEM
     multipart-post (1.1.5)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
+    net-sftp (2.0.5)
+      net-ssh (>= 2.0.9)
     net-ssh (2.6.2)
+    net-ssh-gateway (1.1.0)
+      net-ssh (>= 1.99.1)
     nokogiri (1.5.6)
     nokogiri (1.5.6-java)
     polyglot (0.3.3)
@@ -192,6 +203,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord-jdbcpostgresql-adapter
   activerecord-jdbcsqlite3-adapter
+  capistrano
   coffee-rails
   get_back
   jquery-rails
