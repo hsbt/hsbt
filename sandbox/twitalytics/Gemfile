@@ -15,6 +15,7 @@ gem 'trinidad_scheduler_extension'
 gem 'trinidad_worker_extension'
 
 gem "torquebox"
+gem 'torquebox-stomp'
 
 group :assets do
   gem 'sass-rails'
@@ -31,6 +32,7 @@ end
 group :development, :test do
   gem 'activerecord-jdbcsqlite3-adapter'
   gem 'rspec-rails'
+  gem 'torquebox-no-op'
 end
 
 group :production do

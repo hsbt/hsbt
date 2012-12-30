@@ -1,4 +1,10 @@
 class Status < ActiveRecord::Base
+  extend TorqueBox::Injectors
+  always_background :retweet
+
+  def self.topic
+    @@topic ||= inject('/topics/statuses')
+  end
 
   def self.find_or_create_from(tweets)
     r = tweets.map do |tweet|
@@ -18,8 +24,9 @@ class Status < ActiveRecord::Base
       end
     end.compact
 
-    require Rails.root.join 'lib/workers/update_analytics'
-    Resque.enqueue(UpdateAnalytics, r.map(&:id))
+    # require Rails.root.join 'lib/workers/update_analytics'
+    # Resque.enqueue(UpdateAnalytics, r.map(&:id))
+    topic.publish r.to_json
 
     r
   end

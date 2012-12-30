@@ -192,6 +192,7 @@ GEM
       torquebox-core (= 2.2.0)
       torquebox-transactions (= 2.2.0)
     torquebox-naming (2.2.0-java)
+    torquebox-no-op (2.2.0)
     torquebox-rake-support (2.2.0)
       rake (>= 0.8.7)
     torquebox-security (2.2.0-java)
@@ -253,6 +254,8 @@ DEPENDENCIES
   sass-rails
   therubyrhino
   torquebox
+  torquebox-no-op
+  torquebox-stomp
   trinidad
   trinidad_diagnostics_extension
   trinidad_scheduler_extension
