@@ -8,6 +8,7 @@
 #---
 class CompanyController < ApplicationController
   include TwitterUtil
+  extend GetBack::JoJo
 
   def index
     with_twitter_account do |username|
@@ -19,11 +20,7 @@ class CompanyController < ApplicationController
   end
 
   def update
-    child = fork do
-      post_update(params[:status_text])
-    end
-    Process.detach(child)
-    
+    post_update(params[:status_text])
     flash[:notice] = "Status updated!"
     redirect_to company_path
   end
@@ -36,4 +33,6 @@ class CompanyController < ApplicationController
     sleep 10
     puts "update posted successfully"
   end
+
+  get_back :post_update, pool: 10
 end
