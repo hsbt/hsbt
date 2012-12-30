@@ -6,15 +6,16 @@
 # We make no guarantees that this code is fit for any purpose. 
 # Visit http://www.pragmaticprogrammer.com/titles/jkdepj for more book information.
 #---
-class DeleteOldStatuses
+class DeleteOldStatuses < TrinidadScheduler.Cron "0 0/5 * * * ?"
   def run
-    ids = Status.where("created_at < ?", 30.days.ago)
-    if ids.size > 0
-      Status.destroy(ids)
-      puts "#{ids.size} statuses have been deleted!"
-    else
-      puts "No statuses have been deleted."
+    ActiveRecord::Base.connection_pool.with_connection do
+      ids = Status.where("created_at < ?", 30.days.ago)
+      if ids.size > 0
+        Status.destroy(ids)
+        puts "#{ids.size} statuses have been deleted!"
+      else
+        puts "No statuses have been deleted."
+      end
     end
   end
 end
-DeleteOldStatuses.new.run

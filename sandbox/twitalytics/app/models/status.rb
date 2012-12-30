@@ -26,7 +26,7 @@ class Status < ActiveRecord::Base
       end
     end.compact
 
-    #Resque.enqueue(UpdateAnalytics, r.map(&:id))
+    Resque.enqueue(UpdateAnalytics, r.map(&:id))
 
     r
   end
