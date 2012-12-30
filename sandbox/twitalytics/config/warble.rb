@@ -11,13 +11,13 @@ Warbler::Config.new do |config|
   # config.features = %w(gemjar)
 
   # Application directories to be included in the webapp.
-  config.dirs = %w(app config lib log vendor tmp)
+  config.dirs = %w(app config lib db log vendor tmp)
 
   # Additional files/directories to include, above those in config.dirs
   # config.includes = FileList["db"]
 
   # Additional files/directories to exclude
-  # config.excludes = FileList["lib/tasks/*"]
+  config.excludes = FileList["**/*/*.box"]
 
   # Additional Java .jar files to include.  Note that if .jar files are placed
   # in lib (and not otherwise excluded) then they need not be mentioned here.
@@ -42,7 +42,7 @@ Warbler::Config.new do |config|
 
   # An array of Bundler groups to avoid including in the war file.
   # Defaults to ["development", "test"].
-  # config.bundle_without = []
+  config.bundle_without = []
 
   # Other gems to be included. If you don't use Bundler or a gemspec
   # file, you need to tell Warbler which gems your application needs
@@ -78,7 +78,7 @@ Warbler::Config.new do |config|
 
   # Name of the archive (without the extension). Defaults to the basename
   # of the project directory.
-  # config.jar_name = "mywar"
+  config.jar_name = "twitalytics"
 
   # Name of the MANIFEST.MF template for the war file. Defaults to a simple
   # MANIFEST.MF that contains the version of Warbler used to create the war file.
