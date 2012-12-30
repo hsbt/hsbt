@@ -1,29 +1,20 @@
 source :rubygems
 
 gem 'rails'
+gem 'therubyrhino'
 gem 'jquery-rails'
 
+gem 'get_back'
+gem 'resque'
+gem 'twitter', '~> 2.0.2'
+
+gem 'capistrano'
 gem 'trinidad'
 gem 'trinidad_diagnostics_extension'
 gem 'trinidad_scheduler_extension'
 gem 'trinidad_worker_extension'
-gem 'resque'
 
-gem 'capistrano'
-gem 'twitter', '~> 2.0.2'
-
-platform :jruby do
-  gem 'therubyrhino'
-  gem 'get_back'
-
-  group :production do
-    gem 'activerecord-jdbcpostgresql-adapter'
-  end
-
-  group :development, :test do
-    gem 'activerecord-jdbcsqlite3-adapter'
-  end
-end
+gem "torquebox"
 
 group :assets do
   gem 'sass-rails'
@@ -31,12 +22,17 @@ group :assets do
   gem 'uglifier'
 end
 
-group :development, :test do
-  gem 'rspec-rails'
-end
-
 group :deploy do
   gem "net-ssh", require: "net/ssh"
   gem "net-scp", require: "net/scp"
   gem "warbler"
+end
+
+group :development, :test do
+  gem 'activerecord-jdbcsqlite3-adapter'
+  gem 'rspec-rails'
+end
+
+group :production do
+  gem 'activerecord-jdbcpostgresql-adapter'
 end
