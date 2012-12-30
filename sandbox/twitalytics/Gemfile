@@ -1,39 +1,30 @@
-source 'http://rubygems.org'
+source :rubygems
 
-gem 'rails', '3.2.3'
+gem 'rails'
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'uglifier', '>= 1.0.3'
+platform :jruby do
+  gem 'activerecord-jdbc-adapter', require: false
+  gem 'therubyrhino'
+  gem 'get_back'
+
+  group :production do
+    gem 'jdbc-postgres'
+  end
+
+  group :development, :test do
+    gem 'jdbc-sqlite3'
+  end
 end
 
 gem 'jquery-rails'
-gem 'json'
 gem 'twitter', '2.0.2'
 
-# START:therubyracer
-platform :ruby do
-  gem 'therubyracer'
-end
-# END:therubyracer
-
-group :test do
-  gem 'rspec-rails'
-end
-
-# START:db_driver
-group :production do
-  # START:pg
-  gem 'pg'
-  # END:pg
+group :assets do
+  gem 'sass-rails'
+  gem 'coffee-rails'
+  gem 'uglifier'
 end
 
 group :development, :test do
-  # START:sqlite
-  gem 'sqlite3'
-  # END:sqlite
+  gem 'rspec-rails'
 end
-# END:db_driver
