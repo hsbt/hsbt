@@ -1,23 +1,21 @@
 source :rubygems
 
 gem 'rails'
+gem 'jquery-rails'
+gem 'twitter'
 
 platform :jruby do
-  gem 'activerecord-jdbc-adapter', require: false
   gem 'therubyrhino'
   gem 'get_back'
 
   group :production do
-    gem 'jdbc-postgres'
+    gem 'activerecord-jdbcpostgresql-adapter'
   end
 
   group :development, :test do
-    gem 'jdbc-sqlite3'
+    gem 'activerecord-jdbcsqlite3-adapter'
   end
 end
-
-gem 'jquery-rails'
-gem 'twitter', '2.0.2'
 
 group :assets do
   gem 'sass-rails'
