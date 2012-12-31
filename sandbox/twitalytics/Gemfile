@@ -16,6 +16,7 @@ gem 'trinidad_worker_extension'
 
 gem "torquebox"
 gem 'torquebox-stomp'
+gem 'torquebox-remote-deployer'
 
 group :assets do
   gem 'sass-rails'
