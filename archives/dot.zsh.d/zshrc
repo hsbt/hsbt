@@ -85,7 +85,7 @@ zstyle ':vcs_info:*' actionformats '[%b] (%a)'
 precmd() {
   psvar=()
   LANG=en_US.UTF-8 vcs_info
-  [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
+  [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_ $(git rev-parse --short HEAD 2>/dev/null)"
   psvar[2]=`rbenv version-name`
   [[ -e $PWD/.git/refs/stash ]] && psvar[3]="($(git stash list 2>/dev/null | wc -l))"
 }
@@ -111,6 +111,12 @@ export JAVA_HOME=/Library/Java/Home
 # mysql
 export MYSQL_HISTFILE=$DROPBOX/config/dotfiles/history/dot.mysql_history
 export MYSQL_PS1='\u@\h[\d]> '
+
+# AWS beanstalk
+export PATH=$PATH:~/Dropbox/misc/AWS-ElasticBeanstalk-CLI-2.2/eb/macosx/python3
+
+# nonopaste
+export NONOPASTE=http://192.168.25.37/nonopaste/add
 
 source ~/.zsh.d/functions
 source ~/.zsh.d/aliases
