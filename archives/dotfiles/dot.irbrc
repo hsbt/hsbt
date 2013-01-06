@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-%w(irb/completion pp rubygems tapp what_methods awesome_print).each do |l|
+%w(irb/completion pp rubygems tapp what_methods awesome_print yaih).each do |l|
   begin
     require l
   rescue LoadError
