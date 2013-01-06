@@ -1,4 +1,6 @@
 .DS_Store
 .rvmrc
+.powrc
 .rbenv-version
-config/dev_database.yml
+.rspec-local
+.elasticbeanstalk
