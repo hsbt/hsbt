@@ -7,3 +7,6 @@
 [submodule "zsh-git-escape-magic"]
 	path = zsh-git-escape-magic
 	url = git://github.com/knu/zsh-git-escape-magic.git
+[submodule "z"]
+	path = z
+	url = git@github.com:knu/z.git

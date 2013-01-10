@@ -77,6 +77,11 @@ zle -N history-beginning-search-forward-end history-search-end
 bindkey "^p" history-beginning-search-backward-end
 bindkey "^n" history-beginning-search-forward-end
 
+# z
+export _Z_CMD=j
+export _Z_DATA=$DROPBOX/config/history.dotfiles/dot.$USER.z
+. ~/.zsh.d/z/z.sh
+
 # Prompt setting
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git svn hg
@@ -88,6 +93,8 @@ precmd() {
   [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_ $(git rev-parse --short HEAD 2>/dev/null)"
   psvar[2]=`rbenv version-name`
   [[ -e $PWD/.git/refs/stash ]] && psvar[3]="($(git stash list 2>/dev/null | wc -l))"
+
+  j --add "$(pwd -P)"
 }
 PROMPT=$'[%{$fg[magenta]%}%n%{$reset_color%}@%{$fg[red]%}%M%{$reset_color%}] %{$fg[cyan]%}%d %1(V|%F{green}%1v%3(V| - %3v|)%f |)%2(V|%F{red}(%2v%)%f|)\n%{$fg[yellow]%}%#%{$reset_color%} '
 RPROMPT=''
@@ -98,9 +105,6 @@ export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
 
 # llenv
 source ~/.zsh.d/llenv
-
-# autojump
-source `brew --prefix`/etc/autojump.zsh
 
 # not open editor when `git pull --rebase`
 export GIT_MERGE_AUTOEDIT=no
