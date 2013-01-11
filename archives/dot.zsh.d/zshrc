@@ -2,7 +2,7 @@ umask 022
 bindkey -e
 
 # zsh function path
-fpath=(~/.zsh.d/zsh-completions ~/.zsh.d/zsh-git-escape-magic ~/.zsh.d/zsh-manydots-magic /usr/local/share/zsh/functions $fpath)
+fpath=(~/.zsh.d/zsh-completions/src ~/.zsh.d/zsh-git-escape-magic ~/.zsh.d/zsh-manydots-magic /usr/local/share/zsh/functions $fpath)
 
 # Set shell options
 setopt always_last_prompt
