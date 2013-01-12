@@ -91,3 +91,6 @@
 ;; 同じファイル名の表示を見やすく
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
+
+(require 'popwin)
+(setq display-buffer-function 'popwin:display-buffer)
