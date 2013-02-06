@@ -3,7 +3,7 @@ class InquiriesController < ApplicationController
     @inquiries = Inquiry.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
     end
   end
 
@@ -11,7 +11,7 @@ class InquiriesController < ApplicationController
     @inquiry = Inquiry.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
     end
   end
 
@@ -19,7 +19,7 @@ class InquiriesController < ApplicationController
     @inquiry = Inquiry.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
     end
   end
 
