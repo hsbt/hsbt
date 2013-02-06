@@ -34,7 +34,7 @@ class InquiriesController < ApplicationController
       if @inquiry.save
         format.html { redirect_to @inquiry, :notice => 'Inquiry was successfully created.' }
       else
-        format.html { render action: "new" }
+        format.html { render :action => "new" }
       end
     end
   end
