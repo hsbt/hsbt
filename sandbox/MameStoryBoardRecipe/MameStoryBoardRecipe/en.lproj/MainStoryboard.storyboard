@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ikC-3v-OPY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ikC-3v-OPY">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
         <!--Mame Recipes List View Controller-->
@@ -9,7 +9,7 @@
             <objects>
                 <tableViewController id="Pke-oy-lfR" customClass="MameRecipesListViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="dNw-dp-716">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -47,7 +47,15 @@
                             <outlet property="delegate" destination="Pke-oy-lfR" id="4GH-lB-PL2"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="zQl-4h-cl4"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="zQl-4h-cl4">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="mPT-gh-jgf">
+                            <connections>
+                                <segue destination="5eo-Vy-QNs" kind="modal" identifier="addNewRecipe" id="4wv-Gf-OIt"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T0t-bV-gMB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -70,6 +78,9 @@
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Boa-RU-wPX" id="pgE-LD-FxI"/>
+                                </connections>
                             </textView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Prep time:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6K6-H0-zYh">
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -86,13 +97,20 @@
                                     <constraint firstAttribute="height" constant="214" id="IhF-kZ-yr5"/>
                                 </constraints>
                             </imageView>
-                            <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="chZ-L9-i9K"/>
+                            <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="chZ-L9-i9K">
+                                <connections>
+                                    <action selector="changePreparationTime:" destination="5eo-Vy-QNs" eventType="valueChanged" id="A7L-qJ-yyS"/>
+                                </connections>
+                            </stepper>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Boa-RU-wPX">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="261" id="dEA-0P-WQM"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="5eo-Vy-QNs" id="vLk-Pt-j45"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -113,6 +131,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="cMZ-Tc-Wcf"/>
+                    <connections>
+                        <outlet property="directionsText" destination="Y0E-yC-6SM" id="bGe-VR-3yW"/>
+                        <outlet property="prepTimeLabel" destination="xhY-Lm-JeF" id="Jzq-GQ-hsK"/>
+                        <outlet property="prepTimeStepper" destination="chZ-L9-i9K" id="nSQ-nU-uCW"/>
+                        <outlet property="recipeImage" destination="3GF-4J-h0J" id="at8-S6-ZK5"/>
+                        <outlet property="titleField" destination="Boa-RU-wPX" id="DCj-rS-1hw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MHw-b5-BZ2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -123,7 +148,7 @@
             <objects>
                 <viewController id="2" customClass="MameRecipeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k5h-NY-3bk">
@@ -216,6 +241,14 @@
     <classes>
         <class className="MameRecipeEditorViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MameRecipeEditorViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="changePreparationTime:" candidateClass="UIStepper"/>
+                <relationship kind="outlet" name="directionsText" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="prepTimeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="prepTimeStepper" candidateClass="UIStepper"/>
+                <relationship kind="outlet" name="recipeImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="titleField" candidateClass="UITextField"/>
+            </relationships>
         </class>
         <class className="MameRecipeViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MameRecipeViewController.h"/>
@@ -237,4 +270,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="0jK-wV-ZgS"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -50,4 +50,10 @@
   [self.recipes removeObjectAtIndex:index];
 }
 
+- (MameRecipe *)createNewRecipe {
+    MameRecipe *recipe = [[MameRecipe alloc] init];
+    [self.recipes addObject:recipe];
+    return recipe;
+}
+
 @end

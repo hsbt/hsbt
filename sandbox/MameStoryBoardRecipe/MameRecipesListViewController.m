@@ -7,6 +7,7 @@
 //
 
 #import "MameRecipesListViewController.h"
+#import "MameRecipeEditorViewController.h"
 #import "MameRecipeViewController.h"
 
 @interface MameRecipesListViewController ()
@@ -16,11 +17,19 @@
 @implementation MameRecipesListViewController
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-  if([@"presentRecipeDetail" isEqualToString:segue.identifier]) {
-    NSIndexPath *index = [self.tableView indexPathForCell:sender];
-    MameRecipe *recipe = [self.dataSource recipeAtIndex:index.row];
-    [[segue destinationViewController] setRecipe:recipe];
-  }
+    if([@"presentRecipeDetail" isEqualToString:segue.identifier]) {
+        NSIndexPath *index = [self.tableView indexPathForCell:sender];
+        MameRecipe *recipe = [self.dataSource recipeAtIndex:index.row];
+        [[segue destinationViewController] setRecipe:recipe];
+    }
+    if([@"addNewRecipe" isEqualToString:segue.identifier]) {
+        MameRecipe *recipe = [self.dataSource createNewRecipe];
+        //UIViewController *topVC = [[segue destinationViewController]
+        //                           topViewController];
+        //MameRecipeEditorViewController *editor = (MameRecipeEditorViewController *)topVC;
+        MameRecipeEditorViewController *editor = [segue destinationViewController];
+        editor.recipe = recipe;
+    }
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
