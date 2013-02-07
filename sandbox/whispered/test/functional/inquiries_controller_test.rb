@@ -11,17 +11,16 @@ class InquiriesControllerTest < ActionController::TestCase
     assert_not_nil assigns(:inquiries)
   end
 
-  test "should get new" do
-    get :new
-    assert_response :success
+  test "should not get new" do
+    assert_raise(ActionController::RoutingError) do
+      get :new
+    end
   end
 
-  test "should create inquiry" do
-    assert_difference('Inquiry.count') do
+  test "should not create inquiry" do
+    assert_raise(ActionController::RoutingError) do
       post :create, :inquiry => { :email => @inquiry.email, :inq_type => @inquiry.inq_type, :message => @inquiry.message, :name => @inquiry.name }
     end
-
-    assert_redirected_to inquiry_path(assigns(:inquiry))
   end
 
   test "should show inquiry" do
@@ -39,11 +38,9 @@ class InquiriesControllerTest < ActionController::TestCase
     assert_redirected_to inquiry_path(assigns(:inquiry))
   end
 
-  test "should destroy inquiry" do
-    assert_difference('Inquiry.count', -1) do
+  test "should not destroy inquiry" do
+    assert_raise(ActionController::RoutingError) do
       delete :destroy, :id => @inquiry
     end
-
-    assert_redirected_to inquiries_path
   end
 end

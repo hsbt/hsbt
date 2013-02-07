@@ -17,11 +17,6 @@
     <td><%= inquiry.message %></td>
     <td><%= link_to 'Show', inquiry %></td>
     <td><%= link_to 'Edit', edit_inquiry_path(inquiry) %></td>
-    <td><%= link_to 'Destroy', inquiry, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Inquiry', new_inquiry_path %>
