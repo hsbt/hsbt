@@ -10,6 +10,7 @@ gem 'progress_bar'
 group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
+  gem 'bootstrap-sass'
   gem 'therubyracer'
   gem 'uglifier'
 end
