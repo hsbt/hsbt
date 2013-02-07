@@ -16,3 +16,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+
+group :development, :test do
+  gem 'factory_girl_rails'
+end

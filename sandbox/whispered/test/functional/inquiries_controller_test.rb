@@ -2,7 +2,7 @@ require 'test_helper'
 
 class InquiriesControllerTest < ActionController::TestCase
   setup do
-    @inquiry = inquiries(:one)
+    @inquiry = create(:inquiry)
   end
 
   test "should get index" do
