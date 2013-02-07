@@ -7,6 +7,14 @@ class InquiriesController < ApplicationController
     end
   end
 
+  def search
+    @inquiries = Inquiry.search { fulltext params[:q] }.results
+
+    respond_to do |format|
+      format.html
+    end
+  end
+
   def show
     @inquiry = Inquiry.find(params[:id])
 

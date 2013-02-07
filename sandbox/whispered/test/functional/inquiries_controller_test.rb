@@ -11,6 +11,12 @@ class InquiriesControllerTest < ActionController::TestCase
     assert_not_nil assigns(:inquiries)
   end
 
+  test "should get search" do
+    get :search, :q => "example"
+    assert_response :success
+    assert_match /example/, @response.body
+  end
+
   test "should not get new" do
     assert_raise(ActionController::RoutingError) do
       get :new
