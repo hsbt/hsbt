@@ -22,11 +22,14 @@
               <li><%= link_to "Inquiry", inquiries_path %></li>
               <li><a href="#about">About</a></li>
             </ul>
+            <form class="navbar-form pull-right" action="/inquiries/search">
+              <input class="span2" type="text" name="q" placeholder="search" value="<%= params[:q] %>">
+              <button type="submit" class="btn">Search</button>
+            </form>
           </div>
         </div>
       </div>
     </div>
-
     <div class="container">
       <%= yield %>
     </div>
