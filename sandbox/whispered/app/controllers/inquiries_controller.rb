@@ -17,14 +17,4 @@ class InquiriesController < ApplicationController
   def show
     @inquiry = Inquiry.find(params[:id])
   end
-
-  def update
-    @inquiry = Inquiry.find(params[:id])
-
-    if @inquiry.update_attributes(params[:inquiry])
-      redirect_to @inquiry, :notice => 'Inquiry was successfully updated.'
-    else
-      render :action => "edit"
-    end
-  end
 end
