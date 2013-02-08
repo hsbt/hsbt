@@ -5,6 +5,7 @@ gem 'rails'
 # gem 'mysql2'
 # gem 'pg'
 gem 'mysql', '~> 2.8.1'
+gem 'passenger'
 
 gem 'bootstrap-sass'
 gem 'jquery-rails'

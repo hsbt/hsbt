@@ -39,6 +39,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.4.0)
+    daemon_controller (1.1.1)
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
@@ -47,6 +48,7 @@ GEM
     factory_girl_rails (4.2.0)
       factory_girl (~> 4.2.0)
       railties (>= 3.0.0)
+    fastthread (1.0.7)
     fattr (2.2.1)
     forgery (0.5.0)
     highline (1.6.15)
@@ -68,6 +70,11 @@ GEM
     nokogiri (1.5.6)
     options (2.3.0)
       fattr
+    passenger (3.0.19)
+      daemon_controller (>= 1.0.0)
+      fastthread (>= 1.0.1)
+      rack
+      rake (>= 0.8.1)
     polyglot (0.3.3)
     pr_geohash (1.0.0)
     progress_bar (0.4.0)
@@ -141,6 +148,7 @@ DEPENDENCIES
   forgery
   jquery-rails
   mysql (~> 2.8.1)
+  passenger
   progress_bar
   rails
   sass-rails
