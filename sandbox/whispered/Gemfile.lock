@@ -63,7 +63,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.20.1)
     multi_json (1.5.0)
-    mysql2 (0.3.11)
+    mysql (2.8.1)
     nokogiri (1.5.6)
     options (2.3.0)
       fattr
@@ -138,7 +138,7 @@ DEPENDENCIES
   coffee-rails
   factory_girl_rails
   jquery-rails
-  mysql2
+  mysql (~> 2.8.1)
   progress_bar
   rails
   sass-rails
