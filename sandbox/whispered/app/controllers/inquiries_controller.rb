@@ -13,10 +13,6 @@ class InquiriesController < ApplicationController
     @inquiry = Inquiry.find(params[:id])
   end
 
-  def edit
-    @inquiry = Inquiry.find(params[:id])
-  end
-
   def update
     @inquiry = Inquiry.find(params[:id])
 

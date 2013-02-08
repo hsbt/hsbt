@@ -1,6 +1,7 @@
 ActiveKokyaku::Application.routes.draw do
   root :to => "inquiries#index"
-  resources :inquiries, :except => [:new, :create, :destroy] do
+
+  resources :inquiries, :only => [:index, :show] do
     collection do
       get "search"
     end
