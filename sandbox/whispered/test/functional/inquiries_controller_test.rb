@@ -33,7 +33,7 @@ class InquiriesControllerTest < ActionController::TestCase
 
   test "should not create inquiry" do
     assert_raise(ActionController::RoutingError) do
-      post :create, :inquiry => { :email => @inquiry.email, :inq_type => @inquiry.inq_type, :message => @inquiry.message, :name => @inquiry.name }
+      post :create, :inquiry => { :email => @inquiry.email, :message => @inquiry.message, :name => @inquiry.name }
     end
   end
 
@@ -50,7 +50,7 @@ class InquiriesControllerTest < ActionController::TestCase
 
   test "should not update inquiry" do
     assert_raise(ActionController::RoutingError) do
-      put :update, :id => @inquiry, :inquiry => { :email => @inquiry.email, :inq_type => @inquiry.inq_type, :message => @inquiry.message, :name => @inquiry.name }
+      put :update, :id => @inquiry, :inquiry => { :email => @inquiry.email, :message => @inquiry.message, :name => @inquiry.name }
     end
   end
 
