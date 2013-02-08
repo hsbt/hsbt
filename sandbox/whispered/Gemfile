@@ -11,6 +11,10 @@ gem 'bootstrap-sass'
 gem 'jquery-rails'
 gem 'kaminari'
 
+gem 'omniauth-github'
+gem 'rails_config'
+gem 'certified'
+
 gem 'sunspot_rails'
 gem 'sunspot_solr', '~> 2.0.0.pre'
 gem 'progress_bar'
