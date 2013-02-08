@@ -6,3 +6,4 @@
 /config/*.yml
 /solr
 /vendor/bundle
+/public/assets
