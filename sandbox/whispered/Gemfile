@@ -21,5 +21,6 @@ group :assets do
 end
 
 group :development, :test do
+  gem 'forgery'
   gem 'factory_girl_rails'
 end
