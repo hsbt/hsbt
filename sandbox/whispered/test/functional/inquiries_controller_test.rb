@@ -17,6 +17,14 @@ class InquiriesControllerTest < ActionController::TestCase
     assert_match /example/, @response.body
   end
 
+  test "should get search with paginate" do
+    11.times { create(:inquiry) }
+
+    get :search, :q => "example"
+    assert_response :success
+    assert_match /next/, @response.body
+  end
+
   test "should not get new" do
     assert_raise(ActionController::RoutingError) do
       get :new

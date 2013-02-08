@@ -6,7 +6,10 @@ class InquiriesController < ApplicationController
   end
 
   def search
-    @inquiries = Inquiry.search { fulltext params[:q] }.results
+    @inquiries = Inquiry.search do
+      fulltext params[:q]
+      paginate :page => (params[:page] || 1), :per_page => 10
+    end.results
   end
 
   def show

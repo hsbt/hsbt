@@ -9,6 +9,7 @@ gem 'passenger'
 
 gem 'bootstrap-sass'
 gem 'jquery-rails'
+gem 'kaminari'
 
 gem 'sunspot_rails'
 gem 'sunspot_solr', '~> 2.0.0.pre'
