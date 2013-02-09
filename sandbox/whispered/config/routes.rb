@@ -1,4 +1,4 @@
-ActiveKokyaku::Application.routes.draw do
+Whispered::Application.routes.draw do
   root :to => "inquiries#index"
 
   match '/auth/:provider/callback', :to => 'sessions#create'
