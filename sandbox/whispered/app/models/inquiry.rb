@@ -1,7 +1,7 @@
 class Inquiry < ActiveRecord::Base
-  attr_accessible :email, :message, :name
+  table_name = Settings.inqueries_table_name
 
   searchable do
-    text :email, :name, :message
+    text *columns.select{|c| c.type == :string}.map{|c| c.name.to_sym}
   end
 end
