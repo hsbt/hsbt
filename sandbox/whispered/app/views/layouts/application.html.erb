@@ -10,9 +10,9 @@
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
+          <% if current_user %>
           <ul class="nav">
             <li><%= link_to "Home", root_path %></li>
-            <% if current_user %>
             <li><%= link_to "Inquiry", inquiries_path %></li>
             <li>
               <form class="navbar-form" action="/inquiries/search">
@@ -20,10 +20,12 @@
                 <button type="submit" class="btn">Search</button>
               </form>
             </li>
-            <li><%= link_to image_tag(current_user[:image], {:size => "16x16"}) + current_user[:nickname], "http://github.com/#{current_user[:nickname]}" %></li>
-            <li><%= link_to "Sign out", signout_path %>
-            <% end %>
           </ul>
+          <p class="navbar-text pull-right dropdown">
+            <%= image_tag(current_user[:image], {:size => "16x16"}) + " " + current_user[:nickname] %>
+            <%= link_to "Sign out", signout_path %>
+          </p>
+          <% end %>
         </div>
       </div>
     </div>

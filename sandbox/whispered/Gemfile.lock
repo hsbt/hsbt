@@ -75,7 +75,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.21)
-    multi_json (1.5.1)
+    multi_json (1.6.0)
     multipart-post (1.1.5)
     mysql (2.8.1)
     nokogiri (1.5.6)
