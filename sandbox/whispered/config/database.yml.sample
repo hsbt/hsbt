@@ -1,20 +1,20 @@
 development:
-  adapter: mysql2
+  adapter: mysql
   host: localhost
-  database: active_kokyaku_development
+  database: whispered_development
   username: root
   password:
 
 test:
-  adapter: mysql2
+  adapter: mysql
   host: localhost
-  database: active_kokyaku_test
+  database: whispered_test
   username: root
   password:
 
 production:
-  adapter: mysql2
+  adapter: mysql
   host: localhost
-  database: active_kokyaku_production
+  database: whispered_production
   username: root
   password:
