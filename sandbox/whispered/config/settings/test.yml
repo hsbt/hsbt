@@ -1,3 +1,5 @@
+inqueries_table_names:
+  - inquiries
 github:
   key: 
   secret:
