@@ -1,19 +1,19 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
 gem 'rails'
 
 # gem 'mysql2'
-# gem 'pg'
 gem 'mysql', '~> 2.8.1'
+# gem 'pg'
 gem 'passenger'
 
+gem 'slim-rails'
 gem 'bootstrap-sass'
 gem 'jquery-rails'
 gem 'kaminari'
 
 gem 'omniauth-github'
 gem 'rails_config'
-gem 'certified'
 
 gem 'sunspot_rails'
 gem 'sunspot_solr', '~> 2.0.0.pre'

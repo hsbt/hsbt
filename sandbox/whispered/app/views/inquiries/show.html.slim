@@ -1,0 +1,16 @@
+p id="notice"
+  = notice
+
+p
+  b Name:
+  = @inquiry.name
+
+p
+  b Email:
+  = @inquiry.email
+
+p
+  b Message:
+  = @inquiry.message
+
+= link_to 'Back', inquiries_path

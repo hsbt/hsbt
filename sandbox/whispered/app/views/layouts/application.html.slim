@@ -1,0 +1,29 @@
+doctype html
+html
+  head
+    title Whispered
+    = stylesheet_link_tag 'application', :media => 'all'
+    = javascript_include_tag 'application'
+    = csrf_meta_tags
+
+  body
+    div class="navbar navbar-fixed-top"
+      div class="navbar-inner"
+        div class="container"
+          - if current_user
+            ul class="nav"
+              li
+                = link_to "Home", root_path
+              li
+                = link_to "Inquiry", inquiries_path
+              li
+                form class="navbar-form" action="/inquiries/search"
+                  input class="span4" type="text" name="q" placeholder="search" value="#{params[:q]}"
+                  button type="submit" class="btn" Search
+
+            p class="navbar-text pull-right dropdown"
+              = image_tag(current_user[:image], {:size => "16x16"}) + " " + current_user[:nickname] + " "
+              = link_to "Sign out", signout_path
+
+    div class="container"
+      = yield
