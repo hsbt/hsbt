@@ -7,9 +7,9 @@ html
     = csrf_meta_tags
 
   body
-    div.navbar.navbar-fixed-top
-      div.navbar-inner
-        div.container
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
           - if current_user
             ul.nav
               li
@@ -25,5 +25,5 @@ html
               = image_tag(current_user[:image], {:size => "16x16"}) + " " + current_user[:nickname] + " "
               = link_to "Sign out", signout_path
 
-    div.container
+    .container
       = yield

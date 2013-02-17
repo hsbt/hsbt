@@ -1,14 +1,14 @@
 - @inquiries.each do |inquiry|
-  div.row-fluid
-    div.span12
-      div.row-fluid
-        div.span12
-          div.span4
+  .row-fluid
+    .span12
+      .row-fluid
+        .span12
+          .span4
             = inquiry.name
-          div.span4
+          .span4
             = inquiry.email
-          div.span2
+          .span2
             = link_to 'Show', inquiry, :class => "btn"
-      div.row-fluid
-        div.span12
+      .row-fluid
+        .span12
           = inquiry.message[0..140]
