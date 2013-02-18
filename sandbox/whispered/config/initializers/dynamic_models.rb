@@ -6,4 +6,4 @@ Settings.inquiries_table_names.each do |name|
       text *columns.select{|c| [:string, :text].include? c.type}.map{|c| c.name.to_sym}
     end
   }
-end
+end if Settings.inquiries_table_names.present?
