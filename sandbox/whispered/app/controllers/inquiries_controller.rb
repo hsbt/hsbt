@@ -7,8 +7,9 @@ class InquiriesController < ApplicationController
     @inquiries = []
     Settings.inquiries_table_names.each do |name|
       class_name = name.singularize.classify
-      @inquiries << *class_name.constantize.all(:limit => 5)
+      @inquiries << class_name.constantize.all(:limit => 5)
     end
+    @inquiries.flatten!
   end
 
   def search
