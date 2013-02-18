@@ -25,6 +25,6 @@ class InquiriesController < ApplicationController
   end
 
   def show
-    @inquiry = Inquiry.find(params[:id])
+    @inquiry = params[:class_name].constantize.find(params[:id])
   end
 end

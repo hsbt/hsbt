@@ -14,7 +14,7 @@ class InquirySearchTest < ActionDispatch::IntegrationTest
     @inquiry = create(:inquiry)
     post_via_redirect "/auth/github"
 
-    get "/inquiries", :id => @inquiry.id
+    get "/inquiries", {:id => @inquiry.id, :class_name => "Inquiry"}
     assert_response :success
   end
 end
