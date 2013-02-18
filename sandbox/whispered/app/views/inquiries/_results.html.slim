@@ -5,6 +5,6 @@
         .span12
           .span4 = inquiry.name
           .span4 = inquiry.email
-          .span2 = link_to 'Show', inquiry, :class => "btn"
+          .span2 = link_to 'Show', inquiry_path(inquiry, :class_name => inquiry.class), :class => "btn"
       .row-fluid
         .span12 = inquiry.message[0..140]
