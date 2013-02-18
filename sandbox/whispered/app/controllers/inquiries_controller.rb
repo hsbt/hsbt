@@ -13,10 +13,15 @@ class InquiriesController < ApplicationController
   end
 
   def search
-    @inquiries = Inquiry.search do
-      fulltext params[:q]
-      paginate :page => (params[:page] || 1), :per_page => 10
-    end.results
+    @inquiries = []
+    Settings.inquiries_table_names.each do |name|
+      class_name = name.singularize.classify
+      @inquiries << class_name.constantize.search do
+        fulltext params[:q]
+      end.results
+    end
+    @inquiries.flatten!
+    @inquiries = Kaminari.paginate_array(@inquiries).page(params[:page]).per(10)
   end
 
   def show
