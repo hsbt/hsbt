@@ -4,7 +4,11 @@ class InquiriesController < ApplicationController
   respond_to :html
 
   def index
-    @inquiries = Inquiry.all(:limit => 5)
+    @inquiries = []
+    Settings.inquiries_table_names.each do |name|
+      class_name = name.singularize.classify
+      @inquiries << *class_name.constantize.all(:limit => 5)
+    end
   end
 
   def search
