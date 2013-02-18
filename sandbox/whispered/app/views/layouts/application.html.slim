@@ -12,10 +12,8 @@ html
         .container
           - if current_user
             ul.nav
-              li
-                = link_to "Home", root_path
-              li
-                = link_to "Inquiry", inquiries_path
+              li = link_to "Home", root_path
+              li = link_to "Inquiry", inquiries_path
               li
                 form.navbar-form action="/inquiries/search"
                   input.span4 type="text" name="q" placeholder="search" value="#{params[:q]}"

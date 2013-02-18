@@ -3,12 +3,8 @@
     .span12
       .row-fluid
         .span12
-          .span4
-            = inquiry.name
-          .span4
-            = inquiry.email
-          .span2
-            = link_to 'Show', inquiry, :class => "btn"
+          .span4 = inquiry.name
+          .span4 = inquiry.email
+          .span2 = link_to 'Show', inquiry, :class => "btn"
       .row-fluid
-        .span12
-          = inquiry.message[0..140]
+        .span12 = inquiry.message[0..140]
