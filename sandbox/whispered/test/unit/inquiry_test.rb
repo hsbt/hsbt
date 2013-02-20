@@ -1,7 +1,11 @@
 require 'test_helper'
 
 class InquiryTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "self.text_columns" do
+    assert_equal Inquiry.text_columns, [:name, :email, :message]
+  end
+
+  test "self.display_columns" do
+    assert_equal Inquiry.display_columns, [:name, :email, :message]
+  end
 end

@@ -1,5 +1,9 @@
-inquiries_table_names:
-  - inquiries
+inquiries_tables:
+  - name: inquiries
+    display_columns:
+      - name
+      - email
+      - message
 github:
   key: 
   secret:
