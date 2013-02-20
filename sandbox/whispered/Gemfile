@@ -18,7 +18,7 @@ gem 'rails_config'
 gem 'sunspot_rails'
 gem 'sunspot_solr', '~> 2.0.0.pre'
 gem 'progress_bar'
-gem 'system_timer'
+gem 'system_timer' if RUBY_VERSION < '1.9'
 
 group :assets do
   gem 'sass-rails'
