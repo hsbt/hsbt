@@ -61,14 +61,10 @@
     <!-- *** This fieldType is used by Sunspot! *** -->
     <fieldType name="text" class="solr.TextField" omitNorms="false">
       <analyzer>
-         <charFilter class="solr.MappingCharFilterFactory" mapping="mapping-FullNumber.txt"/>
-         <tokenizer class="solr.JapaneseTokenizerFactory" mode="search"/>
-         <filter class="solr.JapaneseBaseFormFilterFactory"/>
-         <!-- <filter class="solr.JapanesePartOfSpeechStopFilterFactory" tags="lang/stoptags_ja.txt" enablePositionIncrements="true"/> -->
-         <filter class="solr.CJKWidthFilterFactory"/>
-         <filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_ja.txt" enablePositionIncrements="true" />
-         <filter class="solr.JapaneseKatakanaStemFilterFactory" minimumLength="4"/>
-         <filter class="solr.LowerCaseFilterFactory"/>
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.StandardFilterFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+        <filter class="solr.PorterStemFilterFactory"/>
       </analyzer>
     </fieldType>
     <!-- *** This fieldType is used by Sunspot! *** -->
