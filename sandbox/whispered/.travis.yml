@@ -1,5 +1,6 @@
 before_script:
   - curl https://raw.github.com/moliware/travis-solr/master/travis-solr.sh | SOLR_VERSION=3.6.1 bash
+  - cp config/database.yml.sample config/database.yml
   - bundle exec rake db:setup
 
 rvm:
