@@ -3,8 +3,8 @@
     .span12
       .row-fluid
         .span12
-          .span4 = inquiry.name
-          .span4 = inquiry.email
-          .span2 = link_to 'Show', inquiry_path(inquiry, :class_name => inquiry.class), :class => "btn"
-      .row-fluid
-        .span12 = inquiry.message[0..140]
+          table.table
+            - inquiry.class.column_names.each do |c|
+              tr
+                td= c
+                td= inquiry.send(c.to_sym)
