@@ -1,4 +1,11 @@
 - @inquiries.each do |inquiry|
   .row-fluid
     .span12
-      = render :partial => 'item', :locals => {:inquiry => inquiry}
+      .fieldset
+        .legend = inquiry.send(inquiry.class.primary_key.to_sym)
+        table.table
+          - inquiry.class.text_columns.each do |c|
+            - next unless inquiry.class.display_columns.include? c
+            tr
+              td= c.to_s
+              td= inquiry.send(c.to_sym)
