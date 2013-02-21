@@ -16,5 +16,6 @@ class InquirySearchTest < ActionDispatch::IntegrationTest
 
     get "/inquiries", {:id => @inquiry.id, :class_name => "Inquiry"}
     assert_response :success
+    assert_match /lorem/, @response.body
   end
 end
