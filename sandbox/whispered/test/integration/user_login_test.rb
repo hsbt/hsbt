@@ -9,5 +9,6 @@ class UserLoginTest < ActionDispatch::IntegrationTest
     post_via_redirect "/auth/github"
     assert_equal '/', path
     assert_match /hsbt/, @response.body
+    assert_no_match /awesome/, @response.body
   end
 end
