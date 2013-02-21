@@ -18,6 +18,7 @@ class InquiriesController < ApplicationController
       class_name = table.name.singularize.classify
       @inquiries << class_name.constantize.search do
         fulltext params[:q]
+        order table.order.name.to_sym, table.order.type.to_sym if table.order
         paginate :page => 1, :per_page => 250
       end.results
     end
