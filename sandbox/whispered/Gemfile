@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 gem 'rails'
 
 gem 'mysql2'
-# gem 'mysql', '~> 2.8.1'
 # gem 'pg'
 gem 'passenger'
 
@@ -28,6 +27,7 @@ group :assets do
 end
 
 group :development, :test do
+  gem 'spring'
   gem 'forgery'
   gem 'factory_girl_rails'
 end
