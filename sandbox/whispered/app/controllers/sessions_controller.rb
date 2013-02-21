@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   def create
     self.current_user = request.env['omniauth.auth'][:info]
-    redirect_to search_inquiries_path
+    redirect_to root_path
   end
 
   def destroy

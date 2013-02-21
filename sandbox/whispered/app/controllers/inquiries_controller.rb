@@ -1,5 +1,5 @@
 class InquiriesController < ApplicationController
-  before_filter :login_required, :except => [:index]
+  before_filter :login_required
 
   respond_to :html
 

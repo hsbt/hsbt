@@ -5,10 +5,10 @@ class InquiriesControllerTest < ActionController::TestCase
     @inquiry = create(:inquiry)
   end
 
-  test "should get index" do
+  test "should not get index without login" do
     get :index
-    assert_response :success
-    assert_not_nil assigns(:inquiries)
+    assert_response :redirect
+    assert_redirected_to root_path
   end
 
   test "should not get search without login" do

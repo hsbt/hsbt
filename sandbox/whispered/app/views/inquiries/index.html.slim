@@ -1,7 +1,1 @@
-- if current_user
-  = render :partial => 'results', :locals => {:inquiries => @inquiries}
-- else
-  .hero-unit
-    h1 Whispered
-    p awesome inquiry management
-    p = link_to "Sign in with github", "/auth/github", :class => "btn btn-primary btn-large"
+= render :partial => 'results', :locals => {:inquiries => @inquiries}
