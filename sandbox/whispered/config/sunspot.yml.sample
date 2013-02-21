@@ -7,7 +7,7 @@ development:
 test:
   solr:
     hostname: localhost
-    port: <%= ENV['TRAVIS'] ? 8983 : 8981 %>
+    port: 8981
     log_level: WARNING
 
 production:
