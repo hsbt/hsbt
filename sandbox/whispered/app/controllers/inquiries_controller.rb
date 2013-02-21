@@ -18,7 +18,7 @@ class InquiriesController < ApplicationController
       class_name = table.name.singularize.classify
       @inquiries << class_name.constantize.search do
         fulltext params[:q]
-        paginate :page => 1, :per_page => 500
+        paginate :page => 1, :per_page => 250
       end.results
     end
     @inquiries.flatten!
