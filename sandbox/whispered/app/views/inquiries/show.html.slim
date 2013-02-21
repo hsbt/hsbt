@@ -1,16 +1,6 @@
 p#notice
   = notice
 
-p
-  b Name:
-  = @inquiry.name
-
-p
-  b Email:
-  = @inquiry.email
-
-p
-  b Message:
-  = @inquiry.message
+= render :partial => 'item', :locals => {:inquiry => inquiry}
 
 = link_to 'Back', inquiries_path
