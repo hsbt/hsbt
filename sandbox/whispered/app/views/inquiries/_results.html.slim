@@ -2,7 +2,7 @@
   .row-fluid
     .span12
       .fieldset
-        .legend = inquiry.send(inquiry.class.primary_key.to_sym)
+        .legend = link_to inquiry.send(inquiry.class.primary_key.to_sym), inquiry_path(inquiry, :class_name => inquiry.class)
         table.table
           - inquiry.class.text_columns.each do |c|
             - next unless inquiry.class.display_columns.include? c
