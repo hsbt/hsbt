@@ -5,7 +5,7 @@ class InquirySearchTest < ActionDispatch::IntegrationTest
     26.times { create(:inquiry) }
     post_via_redirect "/auth/github"
 
-    get "/inquiries/search", :q => "example"
+    get "/inquiries/search", :q => "lorem"
     assert_response :success
     assert_match /next/, @response.body
   end
