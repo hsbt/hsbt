@@ -1,7 +1,7 @@
 before_script:
   - curl https://raw.github.com/moliware/travis-solr/master/travis-solr.sh | SOLR_VERSION=3.6.1 bash
   - cp config/database.yml.sample config/database.yml
-  - TRAVIS=1 bundle exec rake db:create db:migrate
+  - TRAVIS_INIT=1 bundle exec rake db:create db:migrate
 
 rvm:
   - 1.9.3
