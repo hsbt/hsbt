@@ -17,4 +17,4 @@ Settings.inquiries_tables.each do |table|
       text *text_columns
     end
   RUBY
-end if Settings.inquiries_tables.present?
+end if Settings.inquiries_tables.present? && !ENV['TRAVIS']
