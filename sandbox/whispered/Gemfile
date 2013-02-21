@@ -2,8 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails'
 
-# gem 'mysql2'
-gem 'mysql', '~> 2.8.1'
+gem 'mysql2'
+# gem 'mysql', '~> 2.8.1'
 # gem 'pg'
 gem 'passenger'
 
