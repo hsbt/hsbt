@@ -5,18 +5,16 @@ class InquiriesController < ApplicationController
 
   def index
     @inquiries = []
-    Settings.inquiries_tables.each do |table|
-      class_name = table.name.singularize.classify
-      @inquiries << class_name.constantize.all(:limit => 5)
+    DynamicModel.all.each do |klass|
+      @inquiries << klass.all(:limit => 5)
     end
     @inquiries.flatten!
   end
 
   def search
     @inquiries = []
-    Settings.inquiries_tables.each do |table|
-      class_name = table.name.singularize.classify
-      @inquiries << class_name.constantize.search do
+    DynamicModel.all.each do |klass|
+      @inquiries << klass.search do
         fulltext params[:q]
       end.results
     end

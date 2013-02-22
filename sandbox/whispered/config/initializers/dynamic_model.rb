@@ -18,3 +18,12 @@ Settings.inquiries_tables.each do |table|
     end
   RUBY
 end if Settings.inquiries_tables.present? && !ENV['TRAVIS_INIT']
+
+module DynamicModel
+  def all
+    Settings.inquiries_tables.map do |table|
+      table.name.singularize.classify.constantize
+    end
+  end
+  module_function :all
+end
