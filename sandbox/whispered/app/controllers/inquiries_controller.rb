@@ -6,7 +6,7 @@ class InquiriesController < ApplicationController
   def index
     @inquiries = []
     DynamicModel.all.each do |klass|
-      @inquiries << klass.all(:limit => 5)
+      @inquiries << klass.limit(5)
     end
     @inquiries.flatten!
   end
