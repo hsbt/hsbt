@@ -27,9 +27,14 @@ group :assets do
 end
 
 group :development, :test do
+  gem 'pit', :require => false
+  gem 'capistrano', :require => false
+  gem 'capistrano_colors', :require => false
+
   gem 'sunspot_solr'
-  gem 'spring'
   gem 'pry-rails'
+  gem 'spring'
+
   gem 'forgery'
   gem 'factory_girl_rails'
 end
