@@ -4,7 +4,6 @@ gem 'rails'
 
 gem 'mysql2'
 # gem 'pg'
-gem 'passenger'
 
 gem 'slim-rails'
 gem 'bootstrap-sass'
@@ -31,4 +30,8 @@ group :development, :test do
   gem 'sextant'
   gem 'forgery'
   gem 'factory_girl_rails'
+end
+
+group :production do
+  gem 'puma'
 end
