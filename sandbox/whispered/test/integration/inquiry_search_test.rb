@@ -2,7 +2,7 @@ require 'test_helper'
  
 class InquirySearchTest < ActionDispatch::IntegrationTest
   test "paginate inquiry" do
-    26.times { create(:inquiry) }
+    11.times { create(:inquiry) }
     post_via_redirect "/auth/github"
 
     get "/inquiries/search", :q => "lorem"
