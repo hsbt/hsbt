@@ -4,21 +4,13 @@ class InquiriesController < ApplicationController
   respond_to :html
 
   def index
-    @inquiries = []
-    DynamicModel.all.each do |klass|
-      @inquiries << klass.limit(5)
-    end
-    @inquiries.flatten!
+    @inquiries = DynamicModel.all.map{|model| model.limit(5)}.flatten
   end
 
   def search
-    @inquiries = []
-    DynamicModel.all.each do |klass|
-      @inquiries << klass.search do
-        fulltext params[:q]
-      end.results
-    end
-    @inquiries.flatten!
+    @inquiries = DynamicModel.all.map {|model|
+      model.search { fulltext params[:q] }.results
+    }.flatten
     @inquiries = Kaminari.paginate_array(@inquiries).page(params[:page]).per(10)
   end
 
