@@ -19,7 +19,7 @@ class InquiriesController < ApplicationController
       end.results
     end
     @inquiries.flatten!
-    @inquiries = Kaminari.paginate_array(@inquiries).page(params[:page]).per(25)
+    @inquiries = Kaminari.paginate_array(@inquiries).page(params[:page]).per(10)
   end
 
   def show

@@ -1,1 +1,1 @@
-Sunspot.config.pagination.default_per_page = 250
+Sunspot.config.pagination.default_per_page = 100
