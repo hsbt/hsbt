@@ -4,6 +4,7 @@ inquiries_tables:
       - name
       - email
       - message
+    created_at: create_date
 github:
   key: 
   secret:
