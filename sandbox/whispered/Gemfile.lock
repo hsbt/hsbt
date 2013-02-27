@@ -73,7 +73,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.21)
     multi_json (1.6.1)
-    multipart-post (1.1.5)
+    multipart-post (1.2.0)
     mysql2 (0.3.11)
     nokogiri (1.5.6)
     oauth2 (0.8.1)
@@ -152,13 +152,13 @@ GEM
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    sunspot (1.3.3)
+    sunspot (2.0.0)
       pr_geohash (~> 1.0)
       rsolr (~> 1.0.7)
-    sunspot_rails (1.3.3)
+    sunspot_rails (2.0.0)
       nokogiri
-      sunspot (= 1.3.3)
-    sunspot_solr (2.0.0.pre.130115)
+      sunspot (= 2.0.0)
+    sunspot_solr (2.0.0)
     temple (0.5.5)
     therubyracer (0.11.4)
       libv8 (~> 3.11.8.12)
@@ -194,6 +194,6 @@ DEPENDENCIES
   slim-rails
   spring
   sunspot_rails
-  sunspot_solr (~> 2.0.0.pre)
+  sunspot_solr
   therubyracer
   uglifier

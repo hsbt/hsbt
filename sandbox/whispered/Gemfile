@@ -14,7 +14,7 @@ gem 'omniauth-github'
 gem 'rails_config'
 
 gem 'sunspot_rails'
-gem 'sunspot_solr', '~> 2.0.0.pre'
+gem 'sunspot_solr'
 gem 'progress_bar'
 gem 'system_timer' if RUBY_VERSION < '1.9'
 
