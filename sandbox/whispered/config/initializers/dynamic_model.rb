@@ -18,6 +18,8 @@ Settings.inquiries_tables.each do |table|
 
     def created_at
       Time.parse(send(self.class.settings.created_at.to_sym))
+    rescue
+      nil
     end if table.created_at && !respond_to?(:created_at)
 
     attr_accessible *text_columns if Rails.env.development?
