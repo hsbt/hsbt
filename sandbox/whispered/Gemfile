@@ -28,6 +28,7 @@ end
 group :development, :test do
   gem 'spring'
   gem 'sextant'
+  gem 'pry-rails'
   gem 'forgery'
   gem 'factory_girl_rails'
 end
