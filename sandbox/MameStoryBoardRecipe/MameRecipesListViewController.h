@@ -11,4 +11,6 @@
 
 @interface MameRecipesListViewController : UITableViewController
 @property(nonatomic, strong) id <MameRecipesListDataSource> dataSource;
+
+- (void)finishedEditingRecipe:(MameRecipe *)recipe;
 @end

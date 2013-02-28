@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		422B665E16CB9D02003DDB46 /* MameRecipeDirectionsEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 422B665D16CB9D02003DDB46 /* MameRecipeDirectionsEditorViewController.m */; };
+		425753B016D4DCED00654620 /* DSC_8421dxo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 425753AF16D4DCED00654620 /* DSC_8421dxo.jpg */; };
 		42717F6116A810F00026CD39 /* MameRecipeEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42717F6016A810F00026CD39 /* MameRecipeEditorViewController.m */; };
 		429DDB0B16661A1D00105968 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 429DDB0A16661A1D00105968 /* UIKit.framework */; };
 		429DDB0D16661A1D00105968 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 429DDB0C16661A1D00105968 /* Foundation.framework */; };
@@ -26,6 +28,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		422B665C16CB9D02003DDB46 /* MameRecipeDirectionsEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MameRecipeDirectionsEditorViewController.h; sourceTree = SOURCE_ROOT; };
+		422B665D16CB9D02003DDB46 /* MameRecipeDirectionsEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MameRecipeDirectionsEditorViewController.m; sourceTree = SOURCE_ROOT; };
+		425753AF16D4DCED00654620 /* DSC_8421dxo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DSC_8421dxo.jpg; sourceTree = "<group>"; };
 		42717F5F16A810F00026CD39 /* MameRecipeEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MameRecipeEditorViewController.h; sourceTree = SOURCE_ROOT; };
 		42717F6016A810F00026CD39 /* MameRecipeEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MameRecipeEditorViewController.m; sourceTree = SOURCE_ROOT; };
 		429DDB0616661A1D00105968 /* MameStoryBoardRecipe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MameStoryBoardRecipe.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,6 +117,8 @@
 				C8E31FE7168858C100AB5A01 /* MameRecipeViewController.m */,
 				42717F5F16A810F00026CD39 /* MameRecipeEditorViewController.h */,
 				42717F6016A810F00026CD39 /* MameRecipeEditorViewController.m */,
+				422B665C16CB9D02003DDB46 /* MameRecipeDirectionsEditorViewController.h */,
+				422B665D16CB9D02003DDB46 /* MameRecipeDirectionsEditorViewController.m */,
 				C8E31FEB1688591900AB5A01 /* edamame.jpg */,
 				429DDB1116661A1D00105968 /* Supporting Files */,
 			);
@@ -128,6 +135,7 @@
 				429DDB1C16661A1D00105968 /* Default.png */,
 				429DDB1E16661A1D00105968 /* Default@2x.png */,
 				429DDB2016661A1D00105968 /* Default-568h@2x.png */,
+				425753AF16D4DCED00654620 /* DSC_8421dxo.jpg */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -190,6 +198,7 @@
 				429DDB2116661A1D00105968 /* Default-568h@2x.png in Resources */,
 				429DDB2416661A1D00105968 /* MainStoryboard.storyboard in Resources */,
 				C8E31FEC1688591900AB5A01 /* edamame.jpg in Resources */,
+				425753B016D4DCED00654620 /* DSC_8421dxo.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,6 +216,7 @@
 				C8E31FE8168858C100AB5A01 /* MameRecipesListViewController.m in Sources */,
 				C8E31FEA168858C100AB5A01 /* MameRecipeViewController.m in Sources */,
 				42717F6116A810F00026CD39 /* MameRecipeEditorViewController.m in Sources */,
+				422B665E16CB9D02003DDB46 /* MameRecipeDirectionsEditorViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

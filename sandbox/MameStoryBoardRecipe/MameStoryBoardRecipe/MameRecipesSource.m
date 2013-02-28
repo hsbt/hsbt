@@ -56,4 +56,8 @@
     return recipe;
 }
 
+- (NSUInteger)indexOfRecipe:(MameRecipe *)recipe {
+    return [self.recipes indexOfObject:recipe];
+}
+
 @end

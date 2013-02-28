@@ -14,4 +14,5 @@
 - (MameRecipe *)recipeAtIndex:(NSInteger)index;
 - (void)deleteRecipeAtIndex:(NSInteger)index;
 - (MameRecipe *)createNewRecipe;
+- (NSUInteger)indexOfRecipe:(MameRecipe *)recipe;
 @end

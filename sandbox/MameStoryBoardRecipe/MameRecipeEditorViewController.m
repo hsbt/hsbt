@@ -48,6 +48,7 @@
         self.recipeImage.image = self.recipe.image;
     }
 }
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
@@ -61,6 +62,30 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if([@"editDirections" isEqualToString:segue.identifier]) {
+        [[segue destinationViewController] setRecipe:self.recipe];
+    }
+    if([@"choosePhoto" isEqualToString:segue.identifier]) {
+        [[segue destinationViewController] setDelegate:self];
+    }
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    self.recipe.image = [info valueForKey:UIImagePickerControllerOriginalImage];
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (IBAction)done:(UIBarButtonItem *)sender {
+    [self dismissViewControllerAnimated:YES
+                             completion:NULL];
+    [self.recipeListVC finishedEditingRecipe:self.recipe];
 }
 
 @end

@@ -24,10 +24,8 @@
     }
     if([@"addNewRecipe" isEqualToString:segue.identifier]) {
         MameRecipe *recipe = [self.dataSource createNewRecipe];
-        //UIViewController *topVC = [[segue destinationViewController]
-        //                           topViewController];
-        //MameRecipeEditorViewController *editor = (MameRecipeEditorViewController *)topVC;
         MameRecipeEditorViewController *editor = [segue destinationViewController];
+        editor.recipeListVC = self;
         editor.recipe = recipe;
     }
 }
@@ -88,6 +86,13 @@
     [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
   } else if (editingStyle == UITableViewCellEditingStyleInsert) {
   }
+}
+-
+(void)finishedEditingRecipe:(MameRecipe *)recipe {
+    NSUInteger row = [self.dataSource indexOfRecipe:recipe];
+    NSIndexPath *path = [NSIndexPath indexPathForRow:row inSection:0];
+    [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:path]
+                    withRowAnimation:UITableViewRowAnimationLeft];
 }
 
 @end

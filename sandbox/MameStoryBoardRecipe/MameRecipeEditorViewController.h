@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "Mamerecipe.h"
+#import "MameRecipesListViewController.h"
 
 @interface MameRecipeEditorViewController : UIViewController
-<UITextFieldDelegate>
+<UITextFieldDelegate, UIImagePickerControllerDelegate>
 
 @property(nonatomic, strong) MameRecipe *recipe;
 @property(nonatomic, strong) NSNumberFormatter *formatter;
@@ -19,5 +20,8 @@
 @property(nonatomic, strong) IBOutlet UILabel *prepTimeLabel;
 @property(nonatomic, strong) IBOutlet UIImageView *recipeImage;
 @property(nonatomic, strong) IBOutlet UIStepper *prepTimeStepper;
+
+- (IBAction)done:(UIBarButtonItem *)sender;
+@property(nonatomic, weak) MameRecipesListViewController *recipeListVC;
 
 @end
