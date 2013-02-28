@@ -9,7 +9,10 @@ class InquiriesController < ApplicationController
 
   def search
     @inquiries = DynamicModel.all.map {|model|
-      model.search { fulltext params[:q] }.results
+      model.search {
+        fulltext params[:q]
+        order_by model.class.settings.created_at.to_sym, :desc if model.class.settings.created_at
+      }.results
     }.flatten
     @inquiries = Kaminari.paginate_array(@inquiries).page(params[:page]).per(10)
   end
