@@ -11,4 +11,15 @@ class UserLoginTest < ActionDispatch::IntegrationTest
     assert_match /hsbt/, @response.body
     assert_no_match /awesome/, @response.body
   end
+
+  test "ignored unregistered user" do
+    OmniAuth.config.mock_auth[:github][:info][:nickname] = 'antipop'
+
+    post_via_redirect "/auth/github"
+    assert_equal '/', path
+    assert_no_match /hsbt/, @response.body
+    assert_match /awesome/, @response.body
+
+    OmniAuth.config.mock_auth[:github][:info][:nickname] = 'hsbt'
+  end
 end

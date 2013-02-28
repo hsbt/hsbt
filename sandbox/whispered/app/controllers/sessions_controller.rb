@@ -1,6 +1,10 @@
 class SessionsController < ApplicationController
   def create
-    self.current_user = request.env['omniauth.auth'][:info]
+    if Settings.members.include? request.env['omniauth.auth'][:info][:nickname]
+      self.current_user = request.env['omniauth.auth'][:info]
+    else
+      flash[:error] = "Access denied, You can't have permissions."
+    end
     redirect_to root_path
   end
 

@@ -5,6 +5,8 @@ inquiries_tables:
       - email
       - message
     created_at: create_date
+members:
+  - hsbt
 github:
   key: 
   secret:
