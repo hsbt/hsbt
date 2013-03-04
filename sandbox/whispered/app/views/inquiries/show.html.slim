@@ -8,5 +8,9 @@ p#notice
       tr
         td= c.to_s
         td= @inquiry.send(c.to_sym)
+    - if inquiry.class.settings.created_at
+      tr
+        td= inquiry.class.settings.created_at.to_s
+        td= inquiry.send(inquiry.class.settings.created_at.to_sym)
 
 = link_to 'Back', inquiries_path
