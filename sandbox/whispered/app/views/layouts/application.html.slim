@@ -21,7 +21,7 @@ html
 
             p.navbar-text.pull-right.dropdown
               = image_tag(current_user[:image], {:size => "16x16"}) + " " + current_user[:nickname] + " "
-              = link_to "Sign out", signout_path
+              = link_to raw("<i class=icon-remove-sign></i>"), signout_path
 
     .container
       = yield
