@@ -7,7 +7,8 @@ p#notice
     - @inquiry.class.text_columns.each do |c|
       tr
         td= c.to_s
-        td= @inquiry.send(c.to_sym)
+        td
+          pre= raw(@inquiry.send(c.to_sym))
     - if @inquiry.class.settings.created_at
       tr
         td= @inquiry.class.settings.created_at.to_s
