@@ -61,7 +61,9 @@ module Whispered
 
     config.generators do |g|
       g.fixture_replacement :factory_girl
+      g.stylesheets = false
+      g.javascripts = false
+      g.heler = false
     end
-
   end
 end
