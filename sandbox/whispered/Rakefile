@@ -5,3 +5,7 @@
 require File.expand_path('../config/application', __FILE__)
 
 Whispered::Application.load_tasks
+
+%w[test test:units test:functionals test:integration].each do |t|
+  Rake::Task[t].prerequisites.delete('test:prepare')
+end
