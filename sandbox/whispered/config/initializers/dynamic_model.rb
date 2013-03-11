@@ -1,6 +1,7 @@
 Settings.inquiries_tables.each do |table|
   class_name = table.name.singularize.classify
   self.class.const_set class_name, Class.new(ActiveRecord::Base)
+  class_name.constantize.establish_connection table.database.to_hash
   class_name.constantize.table_name = table.name
 
   class_name.constantize.class_eval do |klass|

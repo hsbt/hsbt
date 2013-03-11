@@ -1,23 +1,8 @@
 development:
-  adapter: mysql2
-  host: localhost
-  database: whispered_development
-  username: root
-  password:
-  reconnect: true
+  adapter: nulldb
 
 test:
-  adapter: mysql2
-  host: localhost
-  database: whispered_test
-  username: root
-  password:
-  reconnect: true
+  adapter: nulldb
 
 production:
-  adapter: mysql2
-  host: localhost
-  database: whispered_production
-  username: root
-  password:
-  reconnect: true
+  adapter: nulldb

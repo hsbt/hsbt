@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails'
 
+gem 'activerecord-nulldb-adapter'
 gem 'mysql2'
 # gem 'pg'
 

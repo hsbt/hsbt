@@ -1,5 +1,12 @@
 inquiries_tables:
-  - name: inquiries
+  - database:
+      adapter: mysql2
+      host: localhost
+      database: whispered_test
+      username: root
+      password:
+      reconnect: true
+    name: inquiries
     display_columns:
       - name
       - email
