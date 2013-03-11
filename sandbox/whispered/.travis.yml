@@ -1,6 +1,8 @@
 before_script:
   - cp config/database.yml.sample config/database.yml
-  - TRAVIS_INIT=1 bundle exec rake db:create db:migrate
+  - mysql -uroot -e 'create database whispered_test;'
+  - mysql -uroot -e "grant all on whispered_test.* to ''@localhost;"
+  - mysql -uroot whispered_test < db/structure.sql
   - rm -r solr
   - RAILS_ENV=test bundle exec rake sunspot:solr:start
 
