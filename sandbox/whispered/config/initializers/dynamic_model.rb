@@ -1,10 +1,11 @@
 Settings.inquiries_tables.each do |table|
   class_name = table.name.singularize.classify
   self.class.const_set class_name, Class.new(ActiveRecord::Base)
-  class_name.constantize.establish_connection table.database.to_hash
-  class_name.constantize.table_name = table.name
 
   class_name.constantize.class_eval do |klass|
+    klass.establish_connection table.database.to_hash
+    klass.table_name = table.name
+
     def klass.text_columns
       columns.select{|c| [:string, :text].include?(c.type) && c.name != settings.created_at }.map{|c| c.name.to_sym}
     end
