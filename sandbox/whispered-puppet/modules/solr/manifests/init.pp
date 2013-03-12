@@ -55,6 +55,17 @@ class solr::supervisord ($install_dir, $solr_home_dir, $solr_data_dir) {
     content => template("solr/solr.sh"),
     require => Exec["create-solr-home"],
   }
+  file { "$solr_home_dir/solr-conf.tgz":
+    ensure => present,
+    source => "puppet:///modules/solr/solr-conf.tgz",
+  }
+  exec { "unpack-solr-conf":
+    command => "tar xf $solr_home_dir/solr-conf.tgz -C $solr_home_dir",
+    path => "/bin",
+    refreshonly => true,
+    subscribe => File["$solr_home_dir/solr-conf.tgz"],
+    require => File["$solr_home_dir/solr-conf.tgz"],
+  }
   file { "/etc/supervisord.conf":
     ensure => present,
     content => template("solr/supervisord.conf"),
@@ -63,6 +74,7 @@ class solr::supervisord ($install_dir, $solr_home_dir, $solr_data_dir) {
     ensure => "running",
     require => [
       Package["supervisor"],
+      Exec["unpack-solr-conf"],
       File["$solr_home_dir/solr.sh"],
       File["/etc/supervisord.conf"],
     ]
