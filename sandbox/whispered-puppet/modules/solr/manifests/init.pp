@@ -42,26 +42,39 @@ class solr::supervisord ($install_dir, $solr_home_dir, $solr_data_dir) {
   }
 
   $start_dir = "$install_dir/apache-solr/example"
+  exec { "create-solr-home":
+    command => "mkdir -p $solr_home_dir",
+    unless => "test -d $solr_home_dir",
+    path => "/usr/bin:/bin",
+  }
+  file { "$solr_home_dir/solr.sh":
+    ensure => present,
+    owner => root, 
+    group => root, 
+    mode => 0755,
+    content => template("solr/solr.sh"),
+    require => Exec["create-solr-home"],
+  }
   file { "/etc/supervisord.conf":
     ensure => present,
     content => template("solr/supervisord.conf"),
-    require => Exec['create-conf-supervisor'],
   }
   service { "supervisord":
     ensure => "running",
     require => [
       Package["supervisor"],
-      File["/etc/supervisor/conf.d/solr.conf"]
+      File["$solr_home_dir/solr.sh"],
+      File["/etc/supervisord.conf"],
     ]
   }
 }
 
 class solr (
   $source_url="http://ftp.tsukuba.wide.ad.jp/software/apache/lucene/solr/3.6.2/apache-solr-3.6.2.tgz",
-  $install_dir="/opt",
   $package="apache-solr-3.6.2",
-  $solr_home_dir,
-  $solr_data_dir="/opt/data"
+  $install_dir="/opt",
+  $solr_home_dir="/opt/solr",
+  $solr_data_dir="/opt/solr/data"
 ) {
   class { "solr::install":
     source_url => $source_url,
