@@ -58,6 +58,7 @@ class solr::supervisord ($install_dir, $solr_home_dir, $solr_data_dir) {
   file { "$solr_home_dir/solr-conf.tgz":
     ensure => present,
     source => "puppet:///modules/solr/solr-conf.tgz",
+    require => Exec["create-solr-home"],
   }
   exec { "unpack-solr-conf":
     command => "tar xf $solr_home_dir/solr-conf.tgz -C $solr_home_dir",
