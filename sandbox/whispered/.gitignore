@@ -4,8 +4,7 @@
 /log/*.lck
 /tmp
 /config/*.yml
-/solr/data
-/solr/pids
+/solr
 /vendor/bundle
 /public/assets
 
