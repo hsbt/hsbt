@@ -42,14 +42,9 @@ class solr::supervisord ($install_dir, $solr_home_dir, $solr_data_dir) {
   }
 
   $start_dir = "$install_dir/apache-solr/example"
-  exec { "create-conf-supervisor":
-    command => "mkdir -p /etc/supervisor/conf.d",
-    unless => "test -d /etc/supervisor/conf.d",
-    path => "/usr/bin:/bin",
-  }
-  file { "/etc/supervisor/conf.d/solr.conf":
+  file { "/etc/supervisord.conf":
     ensure => present,
-    content => template("solr/solr.conf"),
+    content => template("solr/supervisord.conf"),
     require => Exec['create-conf-supervisor'],
   }
   service { "supervisord":
