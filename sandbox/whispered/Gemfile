@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '~> 4.0.0.beta1'
+gem 'protected_attributes'
 
 gem 'activerecord-nulldb-adapter'
 gem 'mysql2'
