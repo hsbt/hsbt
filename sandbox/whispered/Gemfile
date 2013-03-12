@@ -15,7 +15,6 @@ gem 'omniauth-github'
 gem 'rails_config'
 
 gem 'sunspot_rails'
-gem 'sunspot_solr'
 gem 'progress_bar'
 gem 'system_timer' if RUBY_VERSION < '1.9'
 
@@ -27,6 +26,7 @@ group :assets do
 end
 
 group :development, :test do
+  gem 'sunspot_solr'
   gem 'spring'
   gem 'sextant'
   gem 'pry-rails'
