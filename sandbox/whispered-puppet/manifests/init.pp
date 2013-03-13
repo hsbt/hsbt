@@ -1,1 +1,2 @@
-class { "solr": }
+include solr
+include nginx
