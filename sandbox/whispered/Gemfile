@@ -6,6 +6,7 @@ gem 'activerecord-nulldb-adapter'
 gem 'mysql2'
 # gem 'pg'
 
+gem 'puma'
 gem 'slim-rails'
 gem 'bootstrap-sass'
 gem 'jquery-rails'
@@ -31,8 +32,4 @@ group :development, :test do
   gem 'pry-rails'
   gem 'forgery'
   gem 'factory_girl_rails'
-end
-
-group :production do
-  gem 'puma'
 end
