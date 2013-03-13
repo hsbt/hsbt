@@ -121,8 +121,8 @@ GEM
       slop (~> 3.4)
     pry-rails (0.2.2)
       pry (>= 0.9.10)
-    puma (1.6.3)
-      rack (~> 1.2)
+    puma (2.0.0.b6)
+      rack (>= 1.1, < 2.0)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -214,7 +214,7 @@ DEPENDENCIES
   pit
   progress_bar
   pry-rails
-  puma
+  puma (~> 2.0.0.b6)
   rails (~> 4.0.0.beta1)
   rails_config
   sass-rails (~> 4.0.0.beta1)

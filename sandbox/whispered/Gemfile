@@ -6,7 +6,7 @@ gem 'activerecord-nulldb-adapter'
 gem 'mysql2'
 # gem 'pg'
 
-gem 'puma'
+gem 'puma', '~> 2.0.0.b6'
 gem 'slim-rails'
 gem 'bootstrap-sass'
 gem 'jquery-rails'
