@@ -34,7 +34,7 @@ namespace :deploy do
   task :update_symlink, :roles => :app do
     require 'pathname'
 
-    ["solr/data", "config/settings/production.local.yml", "config/database.yml"].each do |path|
+    ["config/settings/production.local.yml", "config/database.yml"].each do |path|
       src = "#{shared_path}/system/#{Pathname.new(path).basename.to_s}"
       dest = "#{latest_release}/#{path}"
 
