@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails'
+gem 'rails', '~> 4.0.0.beta1'
 
 gem 'activerecord-nulldb-adapter'
 gem 'mysql2'
@@ -19,8 +19,8 @@ gem 'progress_bar'
 gem 'system_timer' if RUBY_VERSION < '1.9'
 
 group :assets do
-  gem 'sass-rails'
-  gem 'coffee-rails'
+  gem 'sass-rails', '~> 4.0.0.beta1'
+  gem 'coffee-rails', '~> 4.0.0.beta1'
   gem 'therubyracer'
   gem 'uglifier'
 end
@@ -28,7 +28,6 @@ end
 group :development, :test do
   gem 'sunspot_solr'
   gem 'spring'
-  gem 'sextant'
   gem 'pry-rails'
   gem 'forgery'
   gem 'factory_girl_rails'
