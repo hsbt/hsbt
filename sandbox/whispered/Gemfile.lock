@@ -32,6 +32,13 @@ GEM
     bootstrap-sass (2.3.0.1)
       sass (~> 3.2)
     builder (3.1.4)
+    capistrano (2.14.2)
+      highline
+      net-scp (>= 1.0.0)
+      net-sftp (>= 2.0.0)
+      net-ssh (>= 2.0.14)
+      net-ssh-gateway (>= 1.1.0)
+    capistrano_colors (0.5.5)
     coderay (1.0.9)
     coffee-rails (4.0.0.beta1)
       coffee-script (>= 2.2.0)
@@ -77,6 +84,13 @@ GEM
     multi_json (1.6.1)
     multipart-post (1.2.0)
     mysql2 (0.3.11)
+    net-scp (1.1.0)
+      net-ssh (>= 2.6.5)
+    net-sftp (2.1.1)
+      net-ssh (>= 2.6.5)
+    net-ssh (2.6.6)
+    net-ssh-gateway (1.2.0)
+      net-ssh (>= 2.6.5)
     nokogiri (1.5.6)
     oauth2 (0.8.1)
       faraday (~> 0.8)
@@ -95,6 +109,7 @@ GEM
       omniauth (~> 1.0)
     options (2.3.0)
       fattr
+    pit (0.0.7)
     polyglot (0.3.3)
     pr_geohash (1.0.0)
     progress_bar (0.4.0)
@@ -106,8 +121,8 @@ GEM
       slop (~> 3.4)
     pry-rails (0.2.2)
       pry (>= 0.9.10)
-    puma (1.6.3)
-      rack (~> 1.2)
+    puma (2.0.0.b6)
+      rack (>= 1.1, < 2.0)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -187,6 +202,8 @@ PLATFORMS
 DEPENDENCIES
   activerecord-nulldb-adapter
   bootstrap-sass
+  capistrano
+  capistrano_colors
   coffee-rails (~> 4.0.0.beta1)
   factory_girl_rails
   forgery
@@ -194,9 +211,10 @@ DEPENDENCIES
   kaminari
   mysql2
   omniauth-github
+  pit
   progress_bar
   pry-rails
-  puma
+  puma (~> 2.0.0.b6)
   rails (~> 4.0.0.beta1)
   rails_config
   sass-rails (~> 4.0.0.beta1)
