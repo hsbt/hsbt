@@ -2,7 +2,7 @@ Whispered::Application.routes.draw do
   root :to => 'welcome#index'
 
   get '/auth/:provider/callback', :to => 'sessions#create'
-  post '/signout' => 'sessions#destroy', :as => :signout
+  get '/signout' => 'sessions#destroy', :as => :signout
 
   resources :inquiries, :only => [:index, :show] do
     collection do

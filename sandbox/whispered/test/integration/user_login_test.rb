@@ -22,4 +22,15 @@ class UserLoginTest < ActionDispatch::IntegrationTest
 
     OmniAuth.config.mock_auth[:github][:info][:nickname] = 'hsbt'
   end
+
+  test "logout" do
+    post_via_redirect "/auth/github"
+    assert_equal '/', path
+    assert_match /hsbt/, @response.body
+    assert_no_match /awesome/, @response.body
+
+    get_via_redirect "/signout"
+    assert_no_match /hsbt/, @response.body
+    assert_match /awesome/, @response.body
+  end
 end
