@@ -30,7 +30,7 @@ Settings.inquiries_tables.each do |table|
       time :created_at if settings.created_at
     end
   end
-end if Settings.inquiries_tables.present? && !ENV['TRAVIS_INIT']
+end if Settings.inquiries_tables.present?
 
 module DynamicModel
   def all
