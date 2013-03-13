@@ -8,9 +8,9 @@ gem 'mysql2'
 
 gem 'puma', '~> 2.0.0.b6'
 gem 'slim-rails'
-gem 'bootstrap-sass'
 gem 'jquery-rails'
 gem 'kaminari'
+gem 'kaminari-bootstrap'
 
 gem 'omniauth-github'
 gem 'rails_config'
@@ -20,6 +20,7 @@ gem 'progress_bar'
 gem 'system_timer' if RUBY_VERSION < '1.9'
 
 group :assets do
+  gem 'bootstrap-sass'
   gem 'sass-rails', '~> 4.0.0.beta1'
   gem 'coffee-rails', '~> 4.0.0.beta1'
   gem 'therubyracer'
