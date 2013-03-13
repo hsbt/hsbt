@@ -24,7 +24,6 @@ Settings.inquiries_tables.each do |table|
       nil
     end if table.created_at && !respond_to?(:created_at)
 
-    attr_accessible *text_columns if Rails.env.development?
     searchable do
       text *text_columns
       time :created_at if settings.created_at
