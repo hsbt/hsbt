@@ -24,10 +24,11 @@ class rbenv ($user="whispered") {
     require => Exec["rbenv"];
   }
 
-  file { "/home/$user/.bash_profile":
-    source  => "puppet:///modules/rbenv/.bash_profile",
-    ensure => present,
-    owner => $user,
+  exec { "/home/$user/.bash_profile":
+    path    => ["/usr/bin", "/bin"],
+    command => "echo 'export PATH=\"\$HOME/.rbenv/bin:\$PATH\"' >> ~/.bash_profile; echo 'eval \"$(rbenv init -)\"' >> ~/.bash_profile",
+    unless => "grep -q rbenv ~/.bash_profile",
+    user => $user,
     require => User[$user],
   }
 }
