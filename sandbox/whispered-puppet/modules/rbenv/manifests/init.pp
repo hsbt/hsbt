@@ -27,7 +27,7 @@ class rbenv ($user="whispered") {
   file { "/home/$user/.bash_profile":
     source  => "puppet:///modules/rbenv/.bash_profile",
     ensure => present,
-    user => $user,
+    owner => $user,
     require => User[$user],
   }
 }
