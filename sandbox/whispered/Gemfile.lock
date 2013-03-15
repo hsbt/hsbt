@@ -38,7 +38,6 @@ GEM
       net-sftp (>= 2.0.0)
       net-ssh (>= 2.0.14)
       net-ssh-gateway (>= 1.1.0)
-    capistrano-puma (0.0.1)
     capistrano_colors (0.5.5)
     coderay (1.0.9)
     coffee-rails (4.0.0.beta1)
@@ -210,7 +209,6 @@ DEPENDENCIES
   activerecord-nulldb-adapter
   bootstrap-sass
   capistrano
-  capistrano-puma
   capistrano_colors
   coffee-rails (~> 4.0.0.beta1)
   factory_girl_rails

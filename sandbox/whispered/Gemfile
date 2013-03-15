@@ -31,7 +31,6 @@ end
 group :development, :test do
   gem 'pit', :require => false
   gem 'capistrano', :require => false
-  gem 'capistrano-puma', :require => false
   gem 'capistrano_colors', :require => false
 
   gem 'sunspot_solr'
