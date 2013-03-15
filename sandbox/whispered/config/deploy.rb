@@ -2,7 +2,7 @@
 
 require 'capistrano_colors'
 require 'bundler/capistrano'
-require 'puma/capistrano'
+require 'capistrano-puma'
 
 set :default_environment, {
   'PATH' => "$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
