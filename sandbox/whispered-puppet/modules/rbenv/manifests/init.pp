@@ -27,7 +27,7 @@ class rbenv ($user="whispered") {
   exec { "/home/$user/.bash_profile":
     path    => ["/usr/bin", "/bin"],
     command => "echo 'export PATH=\"\$HOME/.rbenv/bin:\$PATH\"' >> ~/.bash_profile; echo 'eval \"$(rbenv init -)\"' >> ~/.bash_profile",
-    unless => "grep -q rbenv ~/.bash_profile",
+    unless => "grep -q rbenv \$HOME/.bash_profile",
     user => $user,
     require => User[$user],
   }
