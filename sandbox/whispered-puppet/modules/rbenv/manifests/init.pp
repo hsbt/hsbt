@@ -1,6 +1,6 @@
 class rbenv ($user="whispered") {
   user { $user:
-    ensure     => "present",
+    ensure     => present,
     managehome => true,
   }
 
