@@ -18,5 +18,6 @@ server config[:server], :app, :web, :db, :primary => true
 
 set :user, config[:username]
 set :deploy_to, defer { "/home/#{user}/app/#{application}" }
+set :use_sudo, false
 
 after 'deploy:update', 'deploy:cleanup'
