@@ -7,14 +7,12 @@ set :default_environment, {
   'PATH' => "$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
 }
 
-set :puma_env, 'production'
-set :rails_env, 'production'
-
 require 'pit'
-config = Pit.get('whispered', :require => {
-    :username => 'your username',
-    :server => 'your server address'
-  })
+require_params = {
+  :username => 'your username',
+  :server => 'your server address'
+}
+config = Pit.get('whispered', :require => require_params)
 
 set :application, 'whispered'
 set :scm, :git
@@ -46,6 +44,8 @@ namespace :deploy do
   after 'deploy:update', 'deploy:cleanup'
 end
 
+set :puma_env, 'production'
+set :rails_env, 'production'
 set :stage, 'production'
 set :shared_children, shared_children << 'tmp/sockets'
 
