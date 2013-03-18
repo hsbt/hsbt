@@ -36,6 +36,7 @@ group :development, :test do
   gem 'sunspot_solr'
   gem 'pry-rails'
   gem 'spring'
+  gem 'quiet_assets'
 
   gem 'forgery'
   gem 'factory_girl_rails'
