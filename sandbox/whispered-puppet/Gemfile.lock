@@ -1,0 +1,16 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    facter (1.6.18)
+    hiera (1.1.2)
+      json_pure
+    json_pure (1.7.7)
+    puppet (3.1.1)
+      facter (~> 1.6)
+      hiera (~> 1.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  puppet
