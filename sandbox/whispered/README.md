@@ -1,5 +1,7 @@
 # Whispered
 
+[![Build Status](https://secure.travis-ci.org/hsbt/whispered.png)](https://travis-ci.org/hsbt/whispered) [![Coverage Status](https://coveralls.io/repos/hsbt/whispered/badge.png?branch=master)](https://coveralls.io/r/hsbt/whispered) [![Dependency Status](https://gemnasium.com/hsbt/whispered.png)](https://gemnasium.com/hsbt/whispered) [![Code Climate](https://codeclimate.com/github/hsbt/whispered.png)](https://codeclimate.com/github/hsbt/whispered)
+
 ```
 $ git clone git://github.com/hsbt/whispered.git
 $ cd whispered
