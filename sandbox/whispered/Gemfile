@@ -40,4 +40,6 @@ group :development, :test do
 
   gem 'forgery'
   gem 'factory_girl_rails'
+
+  gem 'coveralls', :require => false
 end
