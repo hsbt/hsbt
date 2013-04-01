@@ -1,11 +1,7 @@
-# coding: utf-8
-
-require 'capistrano_colors'
-require 'bundler/capistrano'
-
-set :default_environment, {
-  'PATH' => "$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
-}
+require 'mina/bundler'
+require 'mina/rails'
+require 'mina/git'
+require 'mina/rbenv'
 
 require 'pit'
 require_params = {
@@ -14,60 +10,53 @@ require_params = {
 }
 config = Pit.get('whispered', :require => require_params)
 
-set :application, 'whispered'
-set :scm, :git
-set :repository, File.expand_path('../..', __FILE__)
-set :branch, 'master'
-set :deploy_via, :copy
-
-server config[:server], :app, :web, :db, :primary => true
-
+set :domain, config[:server]
 set :user, config[:username]
-set :deploy_to, defer { "/home/#{user}/app/#{application}" }
-set :use_sudo, false
+set :deploy_to, "/home/#{user}/app/whispered"
+set :repository, 'git://github.com/hsbt/whispered.git'
+set :branch, 'master'
+set :stage, 'production'
+set :shared_paths, ['config/database.yml', 'config/settings/production.local.yml', 'log']
 
-namespace :deploy do
-  desc 'update symlink'
-  task :update_symlink, :roles => :app do
-    require 'pathname'
-
-    ["config/settings/production.local.yml"].each do |path|
-      src = "#{shared_path}/system/#{Pathname.new(path).basename.to_s}"
-      dest = "#{latest_release}/#{path}"
-
-      run "if [ -e #{dest} -o -h #{dest} ]; then rm -rf #{dest}; fi"
-      run "ln -s #{src} #{dest}"
-    end
-  end
-
-  after 'deploy:finalize_update', 'deploy:update_symlink'
-  after 'deploy:update', 'deploy:cleanup'
+task :environment do
+  invoke :'rbenv:load'
 end
 
-set :puma_env, 'production'
-set :rails_env, 'production'
-set :stage, 'production'
-set :shared_children, shared_children << 'tmp/sockets'
+task :setup => :environment do
+  queue! %[mkdir -p "#{deploy_to}/shared/log"]
+  queue! %[chmod g+rx,u+rwx "#{deploy_to}/shared/log"]
 
-puma_sock    = "unix://#{shared_path}/sockets/puma.sock"
-puma_control = "unix://#{shared_path}/sockets/pumactl.sock"
-puma_state   = "#{shared_path}/sockets/puma.state"
-puma_log     = "#{shared_path}/log/puma-#{stage}.log"
+  queue! %[mkdir -p "#{deploy_to}/shared/config"]
+  queue! %[chmod g+rx,u+rwx "#{deploy_to}/shared/config"]
 
-namespace :deploy do
-  desc "Start the application"
-  task :start do
-    run "cd #{current_path} && RAILS_ENV=#{stage} && bundle exec puma -d -b '#{puma_sock}' -e #{stage} -t2:4 --control '#{puma_control}' -S #{puma_state} >> #{puma_log} 2>&1 &", :pty => false
-  end
+  queue! %[touch "#{deploy_to}/shared/config/database.yml"]
+  queue  %[echo "-----> Be sure to edit 'shared/config/database.yml'."]
+end
 
-  desc "Stop the application"
-  task :stop do
-    run "cd #{current_path} && RAILS_ENV=#{stage} && bundle exec pumactl -S #{puma_state} stop"
-  end
+set :puma_sock,    "unix://#{deploy_to}/shared/sockets/puma.sock"
+set :puma_control, "unix://#{deploy_to}/shared/sockets/pumactl.sock"
+set :puma_state,   "#{deploy_to}/shared/sockets/puma.state"
+set :puma_log,     "#{deploy_to}/shared/log/puma-#{stage}.log"
 
-  desc "Restart the application"
-  task :restart, :roles => :app, :except => { :no_release => true } do
-    stop
-    start
+task :start => :environment do
+  queue! %[cd #{deploy_to}/current && RAILS_ENV=#{stage} && bundle exec puma -d -b '#{puma_sock}' -e #{stage} -t2:4 --control '#{puma_control}' -S #{puma_state} >> #{puma_log} 2>&1 &]
+end
+
+task :stop => :environment do
+  queue! %[cd #{deploy_to}/current && RAILS_ENV=#{stage} && bundle exec pumactl -S #{puma_state} stop]
+end
+
+desc "Deploys the current version to the server."
+task :deploy => :environment do
+  deploy do
+    invoke :'git:clone'
+    invoke :'deploy:link_shared_paths'
+    invoke :'bundle:install'
+    invoke :'rails:assets_precompile'
+
+    to :launch do
+      invoke :stop
+      invoke :start
+    end
   end
 end

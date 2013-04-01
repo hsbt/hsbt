@@ -30,8 +30,7 @@ end
 
 group :development, :test do
   gem 'pit', :require => false
-  gem 'capistrano', :require => false
-  gem 'capistrano_colors', :require => false
+  gem 'mina', :require => false
 
   gem 'sunspot_solr'
   gem 'pry-rails'
