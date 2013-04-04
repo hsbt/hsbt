@@ -1,4 +1,3 @@
-require 'mina/bundler'
 require 'mina/git'
 
 require 'pit'
@@ -13,16 +12,8 @@ set :deploy_to, "/home/#{user}/app/whispered-puppet"
 set :repository, 'git://github.com/hsbt/whispered-puppet.git'
 set :branch, 'master'
 
-task :environment do
-  # noop
-end
-
-task :setup => :environment do
-  # noop
-end
-
 desc "Deploys the current version to the server."
-task :deploy => :environment do
+task :deploy do
   deploy do
     invoke :'git:clone'
   end
