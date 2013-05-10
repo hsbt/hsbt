@@ -1,6 +1,6 @@
 # Be sure to restart your server when you modify this file.
 
-# Your secret key for verifying the integrity of signed cookies.
+# Your secret key is used for verifying the integrity of signed cookies.
 # If you change this key, all old signed cookies will become invalid!
 
 # Make sure the secret is at least 30 characters and all random,
@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Whispered::Application.config.secret_key_base = '34e485fc345a5fa4ea0a0a9858873b4136ebe2e992981c523f3786857653c67a23ea812e6434588d99d88cf61f4c50bc9f72a42c236fd5f6e414791a05d35e64'
+Whispered::Application.config.secret_key_base = 'e0c352766ac520fc26baf19a2e8fc59f85bb277215fce7a67d46d12608f78371a20ba6f6c28cdd986f7aa5870509f3019ef4f27ac17139e80225e7eb5d33a7ee'
