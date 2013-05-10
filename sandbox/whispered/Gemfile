@@ -2,12 +2,12 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 4.0.0.rc1'
 
-gem 'activerecord-nulldb-adapter'
+gem 'activerecord-nulldb-adapter', github: 'hsbt/nulldb', branch: 'rails4'
 gem 'mysql2'
-# gem 'pg'
 
 gem 'puma'
 gem 'slim-rails'
+gem 'tilt', '~> 1.3.3'
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'kaminari-bootstrap'
@@ -17,16 +17,13 @@ gem 'rails_config'
 
 gem 'sunspot_rails'
 gem 'progress_bar'
-gem 'system_timer' if RUBY_VERSION < '1.9'
 
-group :assets do
-  gem 'bootstrap-sass'
-  gem 'font-awesome-sass-rails'
-  gem 'sass-rails', '~> 4.0.0.rc1'
-  gem 'coffee-rails', '~> 4.0.0.rc1'
-  gem 'therubyracer'
-  gem 'uglifier'
-end
+gem 'bootstrap-sass'
+gem 'font-awesome-sass-rails'
+gem 'sass-rails', '~> 4.0.0.rc1'
+gem 'coffee-rails', '~> 4.0.0.rc1'
+gem 'therubyracer'
+gem 'uglifier'
 
 group :development, :test do
   gem 'pit', :require => false

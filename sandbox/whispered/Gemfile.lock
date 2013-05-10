@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/hsbt/nulldb.git
+  revision: 5dc2da088df42e2765ae0d9877dcfcdf431f4c48
+  branch: rails4
+  specs:
+    activerecord-nulldb-adapter (0.2.3)
+      activerecord (>= 2.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -19,8 +27,6 @@ GEM
       activesupport (= 4.0.0.rc1)
       arel (~> 4.0.0)
     activerecord-deprecated_finders (1.0.2)
-    activerecord-nulldb-adapter (0.2.3)
-      activerecord (>= 2.0.0)
     activesupport (4.0.0.rc1)
       i18n (~> 0.6, >= 0.6.4)
       minitest (~> 4.2)
@@ -28,7 +34,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     arel (4.0.0)
-    atomic (1.1.8)
+    atomic (1.1.9)
     bootstrap-sass (2.3.1.1)
       sass (~> 3.2)
     builder (3.1.4)
@@ -88,8 +94,8 @@ GEM
     mina (0.2.1)
       open4
       rake
-    minitest (4.7.3)
-    multi_json (1.7.2)
+    minitest (4.7.4)
+    multi_json (1.7.3)
     multipart-post (1.2.0)
     mysql2 (0.3.11)
     nokogiri (1.5.9)
@@ -121,9 +127,9 @@ GEM
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.4)
-    pry-rails (0.2.2)
+    pry-rails (0.3.0)
       pry (>= 0.9.10)
-    puma (2.0.0)
+    puma (2.0.1)
       rack (>= 1.1, < 2.0)
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
@@ -199,7 +205,7 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.37)
-    uglifier (2.0.1)
+    uglifier (2.1.0)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
 
@@ -207,7 +213,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activerecord-nulldb-adapter
+  activerecord-nulldb-adapter!
   bootstrap-sass
   coffee-rails (~> 4.0.0.rc1)
   coveralls
@@ -233,4 +239,5 @@ DEPENDENCIES
   sunspot_rails
   sunspot_solr
   therubyracer
+  tilt (~> 1.3.3)
   uglifier
