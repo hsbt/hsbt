@@ -7,7 +7,6 @@ gem 'mysql2'
 
 gem 'puma'
 gem 'slim-rails'
-gem 'tilt', '~> 1.3.3'
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'kaminari-bootstrap'
