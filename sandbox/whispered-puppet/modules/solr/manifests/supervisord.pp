@@ -7,14 +7,17 @@ class solr::supervisord ($install_dir, $solr_home_dir, $solr_data_dir) {
   }
 
   $start_dir = "$install_dir/apache-solr/example"
+
   exec { "create-solr-home":
     command => "mkdir -p $solr_home_dir",
     unless => "test -d $solr_home_dir",
     path => "/usr/bin:/bin",
   }
+
   class { "solr::config":
     solr_home_dir => $solr_home_dir,
   }
+
   file { "$solr_home_dir/solr.sh":
     ensure => present,
     owner => root, 
@@ -23,6 +26,7 @@ class solr::supervisord ($install_dir, $solr_home_dir, $solr_data_dir) {
     content => template("solr/solr.sh"),
     require => Exec["create-solr-home"],
   }
+
   file { "/etc/supervisord.conf":
     ensure => present,
     content => template("solr/supervisord.conf"),

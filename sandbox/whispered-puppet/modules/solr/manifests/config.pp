@@ -4,6 +4,7 @@ class solr::config ($solr_home_dir) {
     source => "puppet:///modules/solr/solr-conf.tgz",
     require => Exec["create-solr-home"],
   }
+
   exec { "unpack-solr-conf":
     command => "tar xf $solr_home_dir/solr-conf.tgz -C $solr_home_dir",
     path => "/bin",
