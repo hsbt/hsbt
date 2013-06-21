@@ -9,9 +9,15 @@ class nginx ($user="whispered"){
     require => Package['nginx'],
   }
 
-  file { "/etc/nginx/conf.d/default.conf":
+  file { "/etc/nginx/conf.d/whispered.conf":
     ensure => present,
-    content => template("nginx/default.conf"),
+    content => template("nginx/whispered.conf"),
+    require => Package['nginx'],
+  }
+
+  file { "/etc/nginx/conf.d/solr.conf":
+    ensure => present,
+    content => template("nginx/solr.conf"),
     require => Package['nginx'],
   }
 
@@ -19,7 +25,8 @@ class nginx ($user="whispered"){
     ensure => "running",
     require => [
       File["/etc/nginx/nginx.conf"],
-      File["/etc/nginx/conf.d/default.conf"]
+      File["/etc/nginx/conf.d/whispered.conf"],
+      File["/etc/nginx/conf.d/solr.conf"]
     ]
   }
 }
