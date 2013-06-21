@@ -3,7 +3,7 @@ class monit {
     ensure => present,
   }
 
-  file { "/etc/nginx/conf.d/whispered.conf":
+  file { "/etc/monit/conf.d/whispered.conf":
     ensure => present,
     content => template("monit/whispered.conf"),
     require => Package['monit'],
@@ -12,7 +12,7 @@ class monit {
   service { "monit":
     ensure => "running",
     require => [
-      File["/etc/nginx/conf.d/whispered.conf"]
+      File["/etc/monit/conf.d/whispered.conf"]
     ]
   }
 }
