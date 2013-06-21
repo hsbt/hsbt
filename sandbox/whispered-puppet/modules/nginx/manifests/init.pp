@@ -9,15 +9,15 @@ class nginx ($user="whispered"){
     require => Package['nginx'],
   }
 
+  file { "/home/$user/.htaccess":
+    ensure => present,
+    source => "puppet:///modules/nginx/dot.htaccess",
+    require => User[$user],
+  }
+
   file { "/etc/nginx/conf.d/whispered.conf":
     ensure => present,
     content => template("nginx/whispered.conf"),
-    require => Package['nginx'],
-  }
-
-  file { "/etc/nginx/conf.d/solr.conf":
-    ensure => present,
-    content => template("nginx/solr.conf"),
     require => Package['nginx'],
   }
 
@@ -26,7 +26,6 @@ class nginx ($user="whispered"){
     require => [
       File["/etc/nginx/nginx.conf"],
       File["/etc/nginx/conf.d/whispered.conf"],
-      File["/etc/nginx/conf.d/solr.conf"]
     ]
   }
 }
