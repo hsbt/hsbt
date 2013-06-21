@@ -41,7 +41,7 @@ class rbenv ($user="whispered") {
   exec { "/home/$user/.rbenv/version":
     path => ["/home/$user/.rbenv/bin", "/home/$user/.rbenv/plugins/ruby-build/bin", "/usr/bin", "/bin"],
     command => "ruby-build $ruby_version /home/$user/.rbenv/versions/$ruby_version; echo '$ruby_version' > /home/$user/.rbenv/version",
-    unless => "test -f /home/$user/.rbenv/versions/$ruby_version",
+    unless => "test -d /home/$user/.rbenv/versions/$ruby_version",
     user => $user,
     timeout => 900,
     require => [
