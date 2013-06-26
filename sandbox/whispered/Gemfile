@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.0.0.rc1'
+gem 'rails'
 
-gem 'activerecord-nulldb-adapter', github: 'hsbt/nulldb', branch: 'rails4'
+gem 'activerecord-nulldb-adapter', github: 'nulldb/nulldb'
 gem 'mysql2'
 
 gem 'puma'
@@ -19,8 +19,8 @@ gem 'progress_bar'
 
 gem 'bootstrap-sass'
 gem 'font-awesome-sass-rails'
-gem 'sass-rails', '~> 4.0.0.rc1'
-gem 'coffee-rails', '~> 4.0.0.rc1'
+gem 'sass-rails'
+gem 'coffee-rails'
 gem 'therubyracer'
 gem 'uglifier'
 
