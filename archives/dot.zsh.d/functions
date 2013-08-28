@@ -1,3 +1,9 @@
+# auto ls
 function chpwd() { ls }
+
+# github integration
 function git(){ hub "$@" }
-function cdb() { cd -P `ruby -rubygems -rbundler -e "Bundler.load.specs.each{|s| puts s.full_gem_path if s.name == '${1}'}"` }
+
+# bundler integration
+function bcd() { cd -P `ruby -rubygems -rbundler -e "Bundler.load.specs.each{|s| puts s.full_gem_path if s.name == '${1}'}"` }
+function bag() { ag "$@" `bundle show --paths` }
