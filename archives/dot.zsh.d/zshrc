@@ -82,6 +82,9 @@ export _Z_CMD=j
 export _Z_DATA=$DROPBOX/config/history.dotfiles/dot.$USER.z
 . ~/.zsh.d/z/z.sh
 
+# Ruby, Perl, Python, PHP, node.js
+source ~/.zsh.d/llenv
+
 # Prompt setting
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git svn hg
@@ -93,8 +96,6 @@ precmd() {
   [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_ $(git rev-parse --short HEAD 2>/dev/null)"
   psvar[2]=`rbenv version-name`
   [[ -e $PWD/.git/refs/stash ]] && psvar[3]="($(git stash list 2>/dev/null | wc -l))"
-
-  j --add "$(pwd -P)"
 }
 PROMPT=$'[%{$fg[magenta]%}%n%{$reset_color%}@%{$fg[red]%}%M%{$reset_color%}] %{$fg[cyan]%}%d %1(V|%F{green}%1v%3(V| - %3v|)%f |)%2(V|%F{red}(%2v%)%f|)\n%{$fg[yellow]%}%#%{$reset_color%} '
 RPROMPT=''
@@ -103,21 +104,18 @@ REPORTTIME=3
 # homebrew
 export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
 
-# llenv
-source ~/.zsh.d/llenv
-
 # not open editor when `git pull --rebase`
 export GIT_MERGE_AUTOEDIT=no
 
 # use oracle jdk
 export JAVA_HOME=/Library/Java/Home
 
-# mysql
-export MYSQL_HISTFILE=$DROPBOX/config/dotfiles/history/dot.mysql_history
-export MYSQL_PS1='\u@\h[\d]> '
+# calibre
+export PATH="/Applications/calibre.app/Contents/MacOS:$PATH"
 
-# AWS beanstalk
-export PATH=$PATH:~/Dropbox/misc/AWS-ElasticBeanstalk-CLI-2.2/eb/macosx/python3
+# mysql
+export MYSQL_HISTFILE=$DROPBOX/config/history.dotfiles/dot.mysql_history
+export MYSQL_PS1='\u@\h[\d]> '
 
 # nonopaste
 export NONOPASTE=http://192.168.25.37/nonopaste/add
