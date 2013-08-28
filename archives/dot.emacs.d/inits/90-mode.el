@@ -3,6 +3,8 @@
 (require 'css-mode)
 (require 'inao-mode)
 (require 'puppet-mode)
+(require 'slim-mode)
+(require 'php-mode)
 
 (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
@@ -26,4 +28,7 @@
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.coffee$" . coffee-mode))
 (add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))
-(add-to-list 'auto-mode-alist '("Cakefile" . coffee-mode))
+(add-to-list 'auto-mode-alist '("Cakefile$" . coffee-mode))
+(add-to-list 'auto-mode-alist '("\\.slim$" . slim-mode))
+(add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
+(add-to-list 'auto-mode-alist '("\\.phtml$" . php-mode))

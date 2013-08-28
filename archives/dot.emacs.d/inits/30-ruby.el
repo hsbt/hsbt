@@ -43,3 +43,5 @@
 (require 'feature-mode)
 (setq feature-default-language "ja")
 (setq feature-default-i18n-file "~/.emacs.d/plugins/feature-mode/i18n.yml")
+
+(require 'ruby-end)

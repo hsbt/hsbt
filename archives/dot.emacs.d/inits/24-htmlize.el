@@ -1,5 +1,5 @@
 ;; htmlize
-(setq htmlize-and-browse-directory-path "~/Dropbox/misc/htmlize/")
+(setq htmlize-and-browse-directory-path "/tmp/")
 
 (defun htmlize-and-browse ()
   (interactive)

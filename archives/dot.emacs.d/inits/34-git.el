@@ -9,3 +9,7 @@
      (set-face-foreground 'magit-diff-file-header "#4040ff")))
 
 (require 'gist)
+
+(require 'git-gutter)
+(require 'git-gutter-fringe)
+(global-git-gutter-mode t)
