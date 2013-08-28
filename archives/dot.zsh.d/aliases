@@ -13,8 +13,10 @@ alias bu='bundle update'
 
 alias reload='source $HOME/.zshrc'
 alias s3='s3cmd'
+alias e='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -n'
 
 alias grep="grep --color=auto --binary-files=without-match --directories=recurse"
-alias ls="gls --color"
-alias la='ls -lhAF'
-alias ll='ls -al'
+alias ls="gls --color -F"
+alias l="ls"
+alias la='ls -hA'
+alias ll='la -la'
