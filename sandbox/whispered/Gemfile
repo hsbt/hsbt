@@ -14,8 +14,7 @@ gem 'kaminari-bootstrap'
 gem 'omniauth-github'
 gem 'rails_config'
 
-gem 'sunspot_rails'
-gem 'progress_bar'
+gem 'tire'
 
 gem 'bootstrap-sass'
 gem 'font-awesome-sass-rails'
