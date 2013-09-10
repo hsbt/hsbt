@@ -4,9 +4,6 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-# workaround for https://github.com/sunspot/sunspot/pull/380
-require 'sunspot/solr/railtie' unless Rails.env.production?
-
 Whispered::Application.load_tasks
 
 %w[test test:units test:functionals test:integration].each do |t|

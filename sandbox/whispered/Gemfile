@@ -27,7 +27,6 @@ group :development, :test do
   gem 'pit', :require => false
   gem 'mina', :require => false
 
-  gem 'sunspot_solr'
   gem 'pry-rails'
   gem 'spring'
   gem 'quiet_assets'

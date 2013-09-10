@@ -6,6 +6,9 @@ Settings.inquiries_tables.each do |table|
     klass.establish_connection table.database.to_hash
     klass.table_name = table.name
 
+    klass.send(:include, Tire::Model::Search)
+    klass.send(:include, Tire::Model::Callbacks)
+
     def klass.text_columns
       columns.select{|c| [:string, :text].include?(c.type) && c.name != settings.created_at }.map{|c| c.name.to_sym}
     end
@@ -24,9 +27,11 @@ Settings.inquiries_tables.each do |table|
       nil
     end if table.created_at && !respond_to?(:created_at)
 
-    searchable do
-      text *text_columns
-      time :created_at if settings.created_at
+    mapping do
+      text_columns.each do |attr|
+        indexes attr.to_sym, :type => 'string', :index => :not_analyzed
+      end
+      indexes :created_at, :type => 'date', :index => :not_analyzed if settings.created_at
     end
   end
 end if Settings.inquiries_tables.present?

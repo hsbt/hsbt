@@ -15,8 +15,7 @@ configuring follow files:
 if you use development environment, you can use sunspot_solr.
 
 ```
-$ rake sunspot:solr:start
-$ rake sunspot:reindex
+$ rake environment tire:import:all
 $ rails s
 ```
 

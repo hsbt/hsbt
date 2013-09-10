@@ -8,11 +8,13 @@ class InquiriesController < ApplicationController
   end
 
   def search
+    query_string = params[:q]
     @inquiries = DynamicModel.all.map {|model|
-      model.search {
-        fulltext params[:q]
-        order_by :created_at, :desc if model.settings.created_at
-      }.results
+      model.search do
+        query { string query_string }
+        sort { by :created_at, 'desc' } if model.settings.created_at
+        size 50 # per_page * 5
+      end.results
     }.flatten
     @inquiries = Kaminari.paginate_array(@inquiries).page(params[:page]).per(10)
   end
