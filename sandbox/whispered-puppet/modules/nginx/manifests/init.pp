@@ -9,15 +9,9 @@ class nginx ($user="whispered"){
     require => Package['nginx'],
   }
 
-  file { "/home/$user/.htaccess":
+  file { "/etc/nginx/conf.d/default.conf":
     ensure => present,
-    source => "puppet:///modules/nginx/dot.htaccess",
-    require => User[$user],
-  }
-
-  file { "/etc/nginx/conf.d/whispered.conf":
-    ensure => present,
-    content => template("nginx/whispered.conf"),
+    content => template("nginx/default.conf"),
     require => Package['nginx'],
   }
 
@@ -25,7 +19,7 @@ class nginx ($user="whispered"){
     ensure => "running",
     require => [
       File["/etc/nginx/nginx.conf"],
-      File["/etc/nginx/conf.d/whispered.conf"],
+      File["/etc/nginx/conf.d/default.conf"],
     ]
   }
 }
