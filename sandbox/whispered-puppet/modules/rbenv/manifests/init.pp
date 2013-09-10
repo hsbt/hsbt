@@ -37,10 +37,10 @@ class rbenv ($user="whispered") {
     require => User[$user],
   }
 
-  $ruby_version = "2.0.0-p195"
+  $ruby_version = "2.0.0-p247"
   exec { "/home/$user/.rbenv/version":
     path => ["/home/$user/.rbenv/bin", "/home/$user/.rbenv/plugins/ruby-build/bin", "/usr/bin", "/bin"],
-    command => "ruby-build $ruby_version /home/$user/.rbenv/versions/$ruby_version; echo '$ruby_version' > /home/$user/.rbenv/version",
+    command => "ruby-build $ruby_version /home/$user/.rbenv/versions/$ruby_version; rm /home/$user/.rbenv/version; echo '$ruby_version' > /home/$user/.rbenv/version",
     unless => "test -d /home/$user/.rbenv/versions/$ruby_version",
     user => $user,
     timeout => 900,
