@@ -16,6 +16,7 @@ define yumgroup($ensure = "present", $optional = false) {
    }
 }
 
+include epel
 include nginx
 include monit
 include elasticsearch
