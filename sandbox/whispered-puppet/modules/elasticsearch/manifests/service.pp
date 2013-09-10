@@ -5,5 +5,6 @@ class elasticsearch::service {
       enable     => true,
       hasrestart => true,
       hasstatus  => true,
+      require    => Package['elasticsearch'],
   }
 }
