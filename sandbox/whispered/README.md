@@ -12,11 +12,12 @@ configuring follow files:
 
  * config/settings/production.yml
 
-if you use development environment, you can use sunspot_solr.
+if you use development environment, you can use elasticsearch of homebrew.
 
 ```
+$ brew install elasticsearch
 $ rake environment tire:import:all
 $ rails s
 ```
 
-if you need to run in production environment, you can use [whispered-puppet](https://github.com/hsbt/whispered-puppet). it is manifests of solr and supervisord.
+if you need to run in production environment, you can use [whispered-puppet](https://github.com/hsbt/whispered-puppet). it is manifests of elasticsearch.
