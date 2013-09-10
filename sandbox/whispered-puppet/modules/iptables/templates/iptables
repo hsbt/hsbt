@@ -1,0 +1,15 @@
+*filter
+:INPUT ACCEPT [0:0]
+:FORWARD ACCEPT [0:0]
+:OUTPUT ACCEPT [0:0]
+
+-A INPUT -i lo -j ACCEPT
+-A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+<% accept_from.each do |ip| -%>
+-A INPUT -i eth0 -p tcp --dport 9200 -s <%= ip %> -j ACCEPT
+<% end %>
+
+-A INPUT -i eth0 -p tcp --dport 9200 -s 0.0.0.0/0 -j DROP
+
+COMMIT

@@ -16,7 +16,8 @@ define yumgroup($ensure = "present", $optional = false) {
    }
 }
 
-include monit
-include solr
+include epel
 include nginx
+include monit
+include elasticsearch
 include rbenv
