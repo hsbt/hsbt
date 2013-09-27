@@ -1,21 +1,21 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    facter (1.7.1)
+    facter (1.7.3)
     hiera (1.2.1)
       json_pure
     json_pure (1.8.0)
-    mina (0.2.1)
+    mina (0.3.0)
       open4
       rake
     open4 (1.3.0)
     pit (0.0.7)
-    puppet (3.2.2)
+    puppet (3.3.0)
       facter (~> 1.6)
       hiera (~> 1.0)
-      rgen (~> 0.6)
+      rgen (~> 0.6.5)
     rake (10.1.0)
-    rgen (0.6.5)
+    rgen (0.6.6)
 
 PLATFORMS
   ruby
