@@ -3,7 +3,7 @@ IRB.conf.update(
   :SAVE_HISTORY => 10000,
   :PROMPT_MODE => :SIMPLE
 )
-IRB.conf[:LOAD_MODULES] = 'irb/completion', 'pp', 'rubygems', 'tapp', 'what_methods', 'awesome_print', 'yaih'
+IRB.conf[:LOAD_MODULES] = 'irb/completion', 'pp', 'rubygems', 'awesome_print'
 
 IRB::Irb.class_eval do
   def output_value
