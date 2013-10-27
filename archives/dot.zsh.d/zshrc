@@ -78,6 +78,7 @@ bindkey "^p" history-beginning-search-backward-end
 bindkey "^n" history-beginning-search-forward-end
 
 # z
+autoload -Uz is-at-least
 export _Z_CMD=j
 export _Z_DATA=$DROPBOX/config/history.dotfiles/dot.$USER.z
 . ~/.zsh.d/z/z.sh
@@ -120,5 +121,13 @@ export MYSQL_PS1='\u@\h[\d]> '
 # nonopaste
 export NONOPASTE=http://192.168.25.37/nonopaste/add
 
+# go
+export GOPATH=~/.go
+export PATH=~/.go/bin:$PATH
+
+# perl
+export PERL_RL=Caroline
+
 source ~/.zsh.d/functions
 source ~/.zsh.d/aliases
+source ~/.zsh.d/percol
