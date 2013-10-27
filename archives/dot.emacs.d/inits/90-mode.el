@@ -5,6 +5,7 @@
 (require 'puppet-mode)
 (require 'slim-mode)
 (require 'php-mode)
+(require 'go-mode)
 
 (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
@@ -32,3 +33,4 @@
 (add-to-list 'auto-mode-alist '("\\.slim$" . slim-mode))
 (add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
 (add-to-list 'auto-mode-alist '("\\.phtml$" . php-mode))
+(add-to-list 'auto-mode-alist '("\\.go$" . go-mode))

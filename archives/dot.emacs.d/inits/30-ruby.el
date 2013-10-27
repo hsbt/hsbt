@@ -45,3 +45,6 @@
 (setq feature-default-i18n-file "~/.emacs.d/plugins/feature-mode/i18n.yml")
 
 (require 'ruby-end)
+
+(require 'flymake-ruby)
+(add-hook 'ruby-mode-hook 'flymake-ruby-load)
