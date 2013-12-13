@@ -128,6 +128,13 @@ export PATH=~/.go/bin:$PATH
 # perl
 export PERL_RL=Caroline
 
+typeset -U path PATH
+path=(
+    # allow directories only (-/)
+    # reject world-writable directories (^W)
+    $path(N-/^W)
+)
+
 source ~/.zsh.d/functions
 source ~/.zsh.d/aliases
 source ~/.zsh.d/percol
