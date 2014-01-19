@@ -3,13 +3,6 @@ hosted_zone "hsbt.org." do
     dns_name "fourier.hsbt.org."
   end
 
-  rrset "anonymous.hsbt.org.", "CNAME" do
-    ttl 300
-    resource_records(
-      "tdiary.herokuapp.com"
-    )
-  end
-
   rrset "bakagaiku.hsbt.org.", "CNAME" do
     ttl 300
     resource_records(
@@ -18,13 +11,16 @@ hosted_zone "hsbt.org." do
   end
 
   rrset "ci.hsbt.org.", "A" do
-    dns_name "fourier.hsbt.org."
+    ttl 300
+    resource_records(
+      "118.151.171.74"
+    )
   end
 
   rrset "fourier.hsbt.org.", "A" do
     ttl 300
     resource_records(
-      "133.242.17.37"
+      "133.242.53.199"
     )
   end
 
@@ -34,13 +30,6 @@ hosted_zone "hsbt.org." do
 
   rrset "munin.hsbt.org.", "A" do
     dns_name "fourier.hsbt.org."
-  end
-
-  rrset "tumblr.hsbt.org.", "CNAME" do
-    ttl 300
-    resource_records(
-      "domains.tumblr.com"
-    )
   end
 
   rrset "www.hsbt.org.", "A" do
