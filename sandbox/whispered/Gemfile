@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails'
+gem 'rails', '~> 4.0.0'
 
 gem 'activerecord-nulldb-adapter', github: 'nulldb/nulldb'
 gem 'mysql2'
@@ -14,7 +14,7 @@ gem 'kaminari-bootstrap'
 gem 'omniauth-github'
 gem 'rails_config'
 
-gem 'tire'
+gem 'elasticsearch-rails', github: 'elasticsearch/elasticsearch-rails'
 
 gem 'bootstrap-sass'
 gem 'font-awesome-sass-rails'
