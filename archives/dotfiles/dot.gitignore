@@ -1,7 +1,8 @@
 .DS_Store
-.rvmrc
-.powrc
-.rbenv-version
 .ruby-version
+.rbenv-version
+.rvmrc
+.bundle
 .rspec-local
 .elasticbeanstalk
+.powrc
