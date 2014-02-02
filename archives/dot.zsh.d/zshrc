@@ -135,6 +135,8 @@ path=(
     $path(N-/^W)
 )
 
+export TUMBLRHOST=hsbt.tumblr.com
+
 source ~/.zsh.d/functions
 source ~/.zsh.d/aliases
 source ~/.zsh.d/percol
