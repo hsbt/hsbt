@@ -12,3 +12,9 @@
 ;; 書き込み不可能な時は赤くする
 (setq viewer-modeline-color-unwritable "tomato")
 (viewer-change-modeline-color-setup)
+
+;; (require 'auto-highlight-symbol-config)
+;; (require 'highlight-symbol)
+;; (setq highlight-symbol-colors '("DarkOrange" "DodgerBlue1" "DeepPink1"))
+;; (global-set-key (kbd "<f3>") 'highlight-symbol-at-point)
+;; (global-set-key (kbd "M-<f3>") 'highlight-symbol-remove-all)

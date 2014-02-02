@@ -2,7 +2,6 @@
 (define-key global-map [?¥] [?\\])
 
 ;; キー割り当て
-(global-set-key (kbd "M-<RET>") 'ns-toggle-fullscreen)
 (global-set-key (kbd "M-g")     'goto-line)
 (global-set-key (kbd "C-c a")   'align)
 (global-set-key (kbd "C-c M-a") 'align-regexp)

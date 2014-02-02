@@ -94,5 +94,3 @@
 
 (require 'popwin)
 (setq display-buffer-function 'popwin:display-buffer)
-
-(require 'auto-highlight-symbol-config)
