@@ -144,7 +144,6 @@ install s3cmd
 install s3sync
 install scala
 install scons
-install screen
 install solr
 install spidermonkey
 install sqlite
