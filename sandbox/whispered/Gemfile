@@ -14,7 +14,7 @@ gem 'kaminari-bootstrap'
 gem 'omniauth-github'
 gem 'rails_config'
 
-gem 'elasticsearch-rails', github: 'elasticsearch/elasticsearch-rails'
+gem 'tire'
 
 gem 'bootstrap-sass'
 gem 'font-awesome-sass-rails'
