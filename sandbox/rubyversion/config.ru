@@ -1,9 +1,9 @@
 require 'sinatra/base'
 
-class MyApp < Sinatra::Base
+class RubyVersionApp < Sinatra::Base
   get '/' do
-    "Hello, Namahage: #{RUBY_VERSION}"
+    "Hello, Ruby!: #{RUBY_VERSION} #{RUBY_PATCHLEVEL}"
   end
 end
 
-run MyApp
+run RubyVersionApp
