@@ -2,7 +2,7 @@
 require 'pathname'
 
 Dir.glob(File.expand_path("~/.rbenv/versions/*")).each do |v|
-  if !v.include?("1.9.3-dev") && !v.include?("jruby-1.7.11")
+  if !v.include?("jruby")
     system "rbenv install #{Pathname(v).basename.to_s} --force"
   end
 
