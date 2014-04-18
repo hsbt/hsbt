@@ -1,10 +1,11 @@
-tap homebrew/apache
-tap homebrew/boneyard
-tap homebrew/dupes
-tap homebrew/games
-tap homebrew/science
-tap homebrew/versions
-tap phinze/cask
+homebrew/apache
+homebrew/boneyard
+homebrew/dupes
+homebrew/games
+homebrew/science
+homebrew/versions
+phinze/cask
+thoughtbot/formulae
 
 update
 
