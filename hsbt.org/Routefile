@@ -10,11 +10,36 @@ hosted_zone "hsbt.org." do
     )
   end
 
-  rrset "ci.hsbt.org.", "A" do
+  rrset "chkbuild001.hsbt.org.", "A" do
     ttl 300
     resource_records(
-      "118.151.171.74"
+      "54.197.73.98"
     )
+  end
+
+  rrset "chkbuild002.hsbt.org.", "A" do
+    ttl 300
+    resource_records(
+      "128.199.250.128"
+    )
+  end
+
+  rrset "chkbuild003.hsbt.org.", "A" do
+    ttl 300
+    resource_records(
+      "128.199.242.93"
+    )
+  end
+
+  rrset "chkbuild004.hsbt.org.", "A" do
+    ttl 300
+    resource_records(
+      "128.199.254.220"
+    )
+  end
+
+  rrset "ci.hsbt.org.", "A" do
+    dns_name "fourier.hsbt.org."
   end
 
   rrset "fourier.hsbt.org.", "A" do
