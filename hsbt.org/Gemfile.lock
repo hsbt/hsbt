@@ -1,29 +1,28 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    aws-sdk (1.32.0)
+    aws-sdk (1.39.0)
       json (~> 1.4)
       nokogiri (>= 1.4.4)
-      uuidtools (~> 2.1)
     json (1.8.1)
-    macaddr (1.6.1)
-      systemu (~> 2.5.0)
-    mini_portile (0.5.2)
+    macaddr (1.7.1)
+      systemu (~> 2.6.2)
+    mini_portile (0.6.0)
     net-dns (0.8.0)
-    nokogiri (1.6.1)
-      mini_portile (~> 0.5.0)
-    roadworker (0.3.10)
-      aws-sdk (>= 1.14.1)
+    nokogiri (1.6.2.1)
+      mini_portile (= 0.6.0)
+    roadworker (0.4.4)
+      aws-sdk (= 1.39.0)
       net-dns (~> 0.8.0)
-      term-ansicolor (>= 1.2.2)
-      uuid (>= 2.3.7)
-    systemu (2.5.2)
-    term-ansicolor (1.2.2)
-      tins (~> 0.8)
-    tins (0.13.1)
+      systemu
+      term-ansicolor
+      uuid
+    systemu (2.6.4)
+    term-ansicolor (1.3.0)
+      tins (~> 1.0)
+    tins (1.3.0)
     uuid (2.3.7)
       macaddr (~> 1.0)
-    uuidtools (2.1.4)
 
 PLATFORMS
   ruby
