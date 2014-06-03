@@ -2,8 +2,11 @@
 require 'uri'
 require 'fileutils'
 
-[Dir.glob('*')].flatten.each do |dir|
+TARGET = ENV['TARGET'] || "~/Documents"
+
+[Dir.glob('*') + Dir.glob('*/*')].flatten.each do |dir|
   next unless File.directory? dir
+  p dir
   remote = Dir.chdir(dir) do
     next unless File.directory?('.git')
     git = `git remote -v`.chomp
@@ -16,6 +19,6 @@ require 'fileutils'
   h = uri.hostname
   u, _ = *uri.path.scan(/\/?(.+)\/(\w+)\/?/).first
 
-  FileUtils.mkdir_p File.expand_path("~/Documents/#{h}/#{u}")
-  FileUtils.mv dir, File.expand_path("~/Documents/#{h}/#{u}")
+  FileUtils.mkdir_p File.expand_path("#{TARGET}/#{h}/#{u}")
+  FileUtils.mv dir, File.expand_path("#{TARGET}/#{h}/#{u}")
 end
