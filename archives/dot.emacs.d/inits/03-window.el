@@ -43,11 +43,12 @@
       (windmove-default-keybindings))
 (setq windmove-wrap-around t)
 
-;; スクロールバーはいらない
-(set-scroll-bar-mode nil)
-
+;; メニューバーはいらない
+(menu-bar-mode -1)
 ;; ツールバーはいらない
-(tool-bar-mode 0)
+(tool-bar-mode -1)
+;; スクロールバーはいらない
+(scroll-bar-mode -1)
 
 ;; ダイアログは出さない
 (setq use-dialog-box nil)
@@ -55,6 +56,9 @@
 
 ;; D&D で新しくフレームを作らない
 (setq ns-pop-up-frames nil)
+
+;; 右-左の言語を無効
+(setq-default bidi-display-reordering nil)
 
 ;; 起動時のメッセージを消す
 (setq initial-scratch-message nil)
