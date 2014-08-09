@@ -2,6 +2,8 @@
 require 'pathname'
 
 Dir.glob(File.expand_path("~/.rbenv/versions/*")).each do |v|
+  next unless v.include?('dev')
+
   gem_cmd = "#{v}/bin/gem"
 
   system "rbenv install #{Pathname(v).basename.to_s} --force"
