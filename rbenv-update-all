@@ -2,8 +2,10 @@
 require 'pathname'
 
 Dir.glob(File.expand_path("~/.rbenv/versions/*")).each do |v|
-  if %w(2.1.0-dev 2.2.0-dev).include? v
-    system "rbenv install #{Pathname(v).basename.to_s} --force"
+  %w(2.1.0-dev 2.2.0-dev).each do |dev|
+    if v.include? dev
+      system "rbenv install #{Pathname(v).basename.to_s} --force"
+    end
   end
 
   if v.include?('dev')
