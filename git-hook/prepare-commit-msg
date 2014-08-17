@@ -1,0 +1,58 @@
+#!/usr/bin/ruby
+# -*- mode: Ruby -*-
+
+# usage: ruby-commit-hook <file>
+
+changelog = nil
+
+# find out ChangeLog file
+diff = `git diff --stat HEAD`
+diff.scan(/^ (ChangeLog) +\|/) { |ary|
+  changelog = ary[0]
+}
+
+if changelog == nil then
+  exit 1
+end
+
+str = `git diff HEAD #{changelog}`
+
+# see http://d.hatena.ne.jp/nurse/20100413
+# git add -u && git diff --cached ChangeLog|ruby -e'puts$<.read[/^\+\w.*\n((?:^\+[ \t]?.*\n)+)/,1].to_s.gsub(/\+\t?/,"")'|git commit -F-
+
+#
+# * example input
+#
+#+Fri Aug 15 08:39:38 2014  KOSAKI Motohiro  <kosaki.motohiro@gmail.com>
+#+
+#+	* thread.c (foo): abcd
+#+	* fuga.c (fugafuga): example.
+#+	  example2
+#
+# * example output
+#
+#+
+#+	* thread.c (foo): abcd
+#+	* fuga.c (fugafuga): example.
+#+	  example2
+#+
+
+regex = /^\+\w.*\n     # +Fri Aug 15 08:39:38 2014  KOSAKI Motohiro  <kosaki.motohiro@gmail.com>
+	((?:^\+.*\n)+) # rest + lines
+	/x
+str = str.match(regex)[1]
+
+# remove whitespace only lines
+str.gsub!(/^\+\n/, "")
+
+# remove + and tab
+str.gsub!(/^\+\t?/, "")
+
+commit_file = ARGV.shift
+open(commit_file, "r+") { |f|
+  content = f.read
+  f.seek(0)
+  f.puts str
+  f.puts content
+}
+
