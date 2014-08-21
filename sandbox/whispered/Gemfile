@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.0.0'
+gem 'rails', '~> 4.1.5'
 
 gem 'activerecord-nulldb-adapter', github: 'nulldb/nulldb'
 gem 'mysql2'
@@ -18,9 +18,9 @@ gem 'tire'
 
 gem 'bootstrap-sass'
 gem 'font-awesome-sass-rails'
-gem 'sass-rails'
+gem 'sass-rails', '~> 4.0'
 gem 'coffee-rails'
-gem 'therubyracer'
+# gem 'therubyracer'
 gem 'uglifier'
 
 group :development, :test do
