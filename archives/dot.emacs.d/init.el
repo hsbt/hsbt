@@ -1,5 +1,5 @@
 ;; load-path
-(let ((default-directory "~/.emacs.d/"))
+(let ((default-directory "~/.emacs.d/plugins"))
   (setq load-path (cons default-directory load-path))
   (normal-top-level-add-subdirs-to-load-path))
 
