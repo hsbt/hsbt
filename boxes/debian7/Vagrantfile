@@ -9,7 +9,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.synced_folder "../../../../localhost", "/vagrant/localhost"
 
   config.vm.provision :itamae do |config|
-    config.recipes = ['../recipe.rb']
+    config.recipes = ['../recipe_apt.rb']
     config.json = '../node.json'
   end
 end
