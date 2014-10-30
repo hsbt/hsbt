@@ -3,7 +3,7 @@ execute 'yumupdate' do
 end
 
 execute 'groupinstall' do
-  command 'sudo yum groupinstall "Development Tools"'
+  command 'sudo yum groupinstall "Development Tools" -y'
 end
 
 package 'openssl-devel'
