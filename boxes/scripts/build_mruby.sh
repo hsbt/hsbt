@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+sudo yum install pcre pcre-devel -y
+
 cd /vagrant/github.com/matsumoto-r/ngx_mruby/
 ./configure --with-ngx-src-root=/vagrant/github.com/nginx/nginx
 make build_mruby
