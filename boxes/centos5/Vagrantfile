@@ -6,7 +6,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "http://puppet-vagrant-boxes.puppetlabs.com/centos-59-x64-vbox4210.box"
 
   config.vm.synced_folder "../../../../github.com", "/vagrant/github.com"
-  config.vm.synced_folder "../../../../localhost", "/vagrant/localhost"
 
   config.vm.provision :shell, :path => "../scripts/install_epel_centos5.sh"
   config.vm.provision :itamae do |config|
