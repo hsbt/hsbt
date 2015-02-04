@@ -14,6 +14,7 @@ rbenv shell 2.1.5
 
 sudo yum install pcre pcre-devel -y
 
+cp /vagrant/build_config.rb /vagrant/github.com/matsumoto-r/ngx_mruby/
 cd /vagrant/github.com/matsumoto-r/ngx_mruby/
 ./configure --with-ngx-src-root=/vagrant/github.com/nginx/nginx
 make build_mruby
