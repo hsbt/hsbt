@@ -1,5 +1,17 @@
 #!/usr/bin/env bash
 
+if [ ! -f ~/.rbenv ]; then
+  git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+  rm ~/.bash_profile
+  echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
+  echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
+  git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+  source ~/.bash_profile
+  rbenv install 2.1.5
+fi
+
+rbenv shell 2.1.5
+
 sudo yum install pcre pcre-devel -y
 
 cd /vagrant/github.com/matsumoto-r/ngx_mruby/
