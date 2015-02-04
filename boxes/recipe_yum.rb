@@ -4,7 +4,5 @@ end
 
 execute 'groupinstall' do
   command 'sudo yum groupinstall "Development Tools" -y'
+  command 'sudo yum install openssl-devel zlib-devel -y'
 end
-
-package 'openssl-devel'
-package 'zlib-devel'
