@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+require 'fileutils'
+
+[Dir.glob('*') + Dir.glob('*/*')].flatten.shuffle.each do |dir|
+  next unless File.directory? dir
+  Dir.chdir(dir) do
+    next unless File.directory?('.git')
+    url = Dir.pwd.gsub(/\/.*\/.*\/Documents\/(.*)\/(.*)\/(.*)/, 'git@\1:\2/\3.git')
+    `git remote set-url origin #{url}`
+  end
+end
