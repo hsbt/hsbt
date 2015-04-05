@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 require 'pathname'
 
-Dir.glob(File.expand_path("~/.rbenv/versions/*")).each do |v|
+Dir.glob(File.expand_path("~/.anyenv/envs/rbenv/versions/*")).each do |v|
   next if v.include? "jruby"
 
   %w(2.0.0-dev 2.1.0-dev 2.2.0-dev 2.3.0-dev).each do |dev|
