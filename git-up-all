@@ -6,8 +6,10 @@ require 'open3'
   next unless File.directory? dir
   Dir.chdir(dir) do
     next unless File.directory?('.git')
+    puts dir
     `git checkout master`
     `git remote prune origin`
     `git pull --rebase`
+    `git fsck --full`
   end
 end
