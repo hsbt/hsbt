@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-require 'fileutils'
 
 [Dir.glob('*') + Dir.glob('*/*')].flatten.shuffle.each do |dir|
   next unless File.directory? dir
