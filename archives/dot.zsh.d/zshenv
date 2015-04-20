@@ -3,7 +3,16 @@ export LC_CTYPE=ja_JP.UTF-8
 export LANG=ja_JP.UTF-8
 export OUTPUT_CHARSET=UTF-8
 export ARCHFLAGS="-arch x86_64"
-export EDITOR="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient"
+export EDITOR="vim"
+
 export DROPBOX=$HOME/Dropbox
 
-source ~/.zsh.d/gisty
+export GISTY_DIR=$DROPBOX/dev/gists
+
+source $DROPBOX/config/github.token
+
+export MYSQL_HISTFILE=$DROPBOX/config/history.dotfiles/dot.mysql_history
+export MYSQL_PS1='\u@\h[\d]> '
+
+# not open editor when `git pull --rebase`
+export GIT_MERGE_AUTOEDIT=no

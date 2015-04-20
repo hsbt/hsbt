@@ -1,23 +1,28 @@
 # global alias
 alias -g L="| less"
-alias -g G="| ag"
+alias -g G="| pt"
 alias -g H="| head"
 alias -g T="| tail"
 
 alias ls="gls --color -F"
-alias la="ls -hA"
-alias ll="la -la"
-alias l="ls"
+alias l="ls -Ah"
+alias ll="ls -lah"
 
 alias b="bundle"
-alias be="bundle exec"
+alias bx="bundle exec"
 alias bo="bundle open"
 alias bu="bundle update"
 
 alias -g r="rails"
 alias g="git"
-alias e="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -n"
+alias e="atom"
 alias pd="perldoc -MPod::Text::Color::Delight"
-alias s3="s3cmd"
 alias grep="grep --color=auto --binary-files=without-match --directories=recurse"
 alias reload="source $HOME/.zshrc"
+alias strace="dtruss"
+
+alias -g any='anyenv'
+alias -g rb='rbenv'
+alias -g pl='plenv'
+alias -g py='pyenv'
+alias -g nd='ndenv'

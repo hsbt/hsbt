@@ -1,10 +1,8 @@
 umask 022
 bindkey -e
 
-# zsh function path
-fpath=(~/.zsh.d/zsh-completions/src ~/.zsh.d/zsh-git-escape-magic ~/.zsh.d/zsh-manydots-magic /usr/local/share/zsh/functions $fpath)
+fpath=(~/.zsh.d/zsh-git-escape-magic ~/.zsh.d/zsh-manydots-magic /usr/local/share/zsh/functions $fpath)
 
-# Set shell options
 setopt always_last_prompt
 setopt auto_list
 setopt auto_menu
@@ -19,8 +17,6 @@ setopt interactive_comments
 setopt list_packed
 setopt list_types
 setopt magic_equal_subst
-setopt no_beep
-setopt no_flow_control
 setopt prompt_subst
 setopt print_eight_bit
 setopt numeric_glob_sort
@@ -29,35 +25,37 @@ setopt sun_keyboard_hack
 setopt sh_word_split
 setopt zle
 setopt long_list_jobs
+setopt ignore_eof
+setopt no_flow_control
+setopt no_beep
 
-# Zsh module
 zmodload zsh/files
 autoload zmv
 alias zmv='noglob zmv'
 
-# knu special
+source ~/.zsh.d/antigen/antigen.zsh
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-completions src
+antigen apply
 autoload -Uz git-escape-magic
 git-escape-magic
 autoload -Uz manydots-magic
 manydots-magic
 
-# ls colors
 autoload colors; colors
 export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
 export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
-# autocomp
 autoload -U compinit
 compinit -d /tmp/$USER.zcompdump
 zstyle ':completion:*:default' menu select=1
-zstyle ':completion:*:sudo:*' command-path 
+zstyle ':completion:*:sudo:*' command-path
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' use-cache yes
 zstyle ':completion:*' verbose yes
 zstyle ':completion:sudo:*' environ PATH="$SUDO_PATH:$PATH"
 
-# History
 setopt extended_history
 setopt share_history
 setopt hist_ignore_all_dups
@@ -77,16 +75,11 @@ zle -N history-beginning-search-forward-end history-search-end
 bindkey "^p" history-beginning-search-backward-end
 bindkey "^n" history-beginning-search-forward-end
 
-# z
 autoload -Uz is-at-least
 export _Z_CMD=j
 export _Z_DATA=$DROPBOX/config/history.dotfiles/dot.$USER.z
 . ~/.zsh.d/z/z.sh
 
-# Ruby, Perl, Python, PHP, node.js
-source ~/.zsh.d/llenv
-
-# Prompt setting
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git svn hg
 zstyle ':vcs_info:*' formats '[%b]'
@@ -100,33 +93,27 @@ precmd() {
 }
 PROMPT=$'[%{$fg[magenta]%}%n%{$reset_color%}@%{$fg[red]%}%M%{$reset_color%}] %{$fg[cyan]%}%d %1(V|%F{green}%1v%3(V| - %3v|)%f |)%2(V|%F{red}(%2v%)%f|)\n%{$fg[yellow]%}%#%{$reset_color%} '
 RPROMPT=''
+
+export PATH="$HOME/.anyenv/bin:$PATH"
+eval "$(anyenv init -)"
+RUBYOPT="-W"
+MAKEOPTS="-j4"
+CONFIGURE_OPTS="--disable-install-doc"
+PERL_RL=Caroline
+SBT_OPTS="-XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=256M"
 REPORTTIME=3
 
-# homebrew
-export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
-
-# not open editor when `git pull --rebase`
-export GIT_MERGE_AUTOEDIT=no
-
-# use oracle jdk
-export JAVA_HOME=/Library/Java/Home
-
-# calibre
-export PATH="/Applications/calibre.app/Contents/MacOS:$PATH"
-
-# mysql
-export MYSQL_HISTFILE=$DROPBOX/config/history.dotfiles/dot.mysql_history
-export MYSQL_PS1='\u@\h[\d]> '
-
-# nonopaste
-export NONOPASTE=http://192.168.25.37/nonopaste/add
-
-# go
 export GOPATH=~/.go
-export PATH=~/.go/bin:$PATH
+export PATH=$GOPATH/bin:$PATH
 
-# perl
-export PERL_RL=Caroline
+export PATH="/usr/local/google-cloud-sdk/bin:$PATH"
+export CLOUDSDK_PYTHON=/usr/bin/python
+source '/usr/local/google-cloud-sdk/completion.zsh.inc'
+
+[ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
+export PATH="$HOME/Documents/github.com/hsbt/scripts:$PATH"
+export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+export PATH="/Applications/calibre.app/Contents/MacOS:$PATH"
 
 typeset -U path PATH
 path=(
@@ -135,8 +122,8 @@ path=(
     $path(N-/^W)
 )
 
-export TUMBLRHOST=hsbt.tumblr.com
+zle -N peco-src
+bindkey '^s' peco-src
 
 source ~/.zsh.d/functions
 source ~/.zsh.d/aliases
-source ~/.zsh.d/percol

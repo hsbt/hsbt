@@ -10,3 +10,6 @@
 [submodule "z"]
 	path = z
 	url = git@github.com:knu/z.git
+[submodule "antigen"]
+	path = antigen
+	url = git@github.com:zsh-users/antigen.git
