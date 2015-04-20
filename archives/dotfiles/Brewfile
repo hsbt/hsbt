@@ -12,7 +12,6 @@ update
 upgrade
 
 install asciidoc
-install atk
 install autoconf
 install automake
 install aws-elasticbeanstalk
@@ -20,7 +19,6 @@ install binutils
 install boost
 install brew-cask
 install bsdmake
-install cairo
 install chromedriver
 install leiningen
 install cmake
@@ -29,11 +27,8 @@ install coreutils
 install couchdb
 install ctags
 install curl
-install curl-ca-bundle
 install dirmngr
 install dnsmasq
-install docbook
-install docbook-xsl
 install elasticsearch
 install elixir
 install erlang
@@ -42,9 +37,6 @@ install faac
 install fcgi
 install ffmpeg
 install findutils
-install fontconfig
-install fontforge
-install freetype
 install fribidi
 install gawk
 install gdbm
@@ -64,9 +56,7 @@ install gnupg2
 install go
 install google-perftools
 install gpg-agent
-install graphviz
 install groff
-install help2man
 install htop-osx
 install httpd
 install hub
@@ -141,8 +131,6 @@ install rename
 install riak
 install rsync
 install rtmpdump
-install s3cmd
-install s3sync
 install scala
 install scons
 install solr
@@ -165,5 +153,19 @@ install xmlto
 install xvid
 install xz
 install yasm
+
+cask install atom
+cask install boot2docker
+cask install cyberduck
+cask install launchrocket
+cask install libreoffice
+cask install onyx
+cask install skim
+cask install skitch
+cask install skype
+cask install vagrant
+cask install virtualbox
+cask install vmware-fusion
+cask install google-japanese-ime
 
 cleanup
