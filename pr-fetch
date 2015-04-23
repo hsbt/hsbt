@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require 'pathname'
+
+gopath = Dir.pwd.gsub(/^#{Pathname.new("#{ENV['GOPATH']}/src/github.com").realpath.to_s}\//, '')
+`curl https://patch-diff.githubusercontent.com/raw/#{gopath}/pull/#{ARGV[0]}.patch | patch -p1`
