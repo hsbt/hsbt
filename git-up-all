@@ -8,6 +8,6 @@ Dir.glob('*/*/*').shuffle.each do |dir|
     `git checkout master`
     `git remote prune origin`
     `git pull --rebase`
-    `git fsck --full`
+    # `git fsck --full`
   end
 end
