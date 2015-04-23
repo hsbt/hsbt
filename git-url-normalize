@@ -2,7 +2,7 @@
 
 require 'pathname'
 
-[Dir.glob('*') + Dir.glob('*/*')].flatten.shuffle.each do |dir|
+Dir.glob('*/*/*').shuffle.each do |dir|
   next unless File.directory? dir
   Dir.chdir(dir) do
     next unless File.directory?('.git')
