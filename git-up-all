@@ -1,13 +1,22 @@
 #!/usr/bin/env ruby
+require 'open3'
 
 Dir.glob('*/*/*').shuffle.each do |dir|
   next unless File.directory? dir
+  cleanup = false
+
   Dir.chdir(dir) do
     next unless File.directory?('.git')
     puts dir
     `git checkout master`
-    `git remote prune origin`
-    `git pull --rebase`
-    # `git fsck --full`
+    _, _, stderr = *Open3.popen3('git remote prune origin')
+    if stderr.read.include?("Repository not found")
+      cleanup = true
+    else
+      `git pull --rebase`
+      # `git fsck --full`
+    end
   end
+
+  `rm -rf #{dir}` if cleanup
 end
