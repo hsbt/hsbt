@@ -9,7 +9,7 @@ Dir.glob('*/*/*').shuffle.each do |dir|
     next unless File.directory?('.git')
     puts dir
     branch = dir.include?('rubysl') ? '2.0' : 'master'
-    `git checkout ${branch}`
+    `git checkout #{branch}`
     _, _, stderr = *Open3.popen3('git remote prune origin')
     if stderr.read.include?("Repository not found")
       cleanup = true
