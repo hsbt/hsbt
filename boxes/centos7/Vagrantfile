@@ -11,7 +11,4 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.recipes = ['../recipe_yum.rb']
     config.json = '../node.json'
   end
-
-  config.vm.provision :shell, :path => "../scripts/install_libmemcached_centos7.sh"
-  config.vm.provision :shell, :path => "../scripts/build_mruby.sh"
 end
