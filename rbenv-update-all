@@ -1,19 +1,15 @@
 #!/usr/bin/env ruby
 require 'pathname'
+require 'parallel'
 
-Dir.glob(File.expand_path("~/.anyenv/envs/rbenv/versions/*")).each do |v|
-  next if v.include? "jruby"
+system "rbenv install 2.3.0-dev --force"
 
-  %w(2.1.0-dev 2.2.0-dev 2.3.0-dev).each do |dev|
-    if v.include? dev
-      system "rbenv install #{Pathname(v).basename.to_s} --force"
-    end
-  end
-
-  if v.include?('dev')
-    gem_cmd = "#{v}/bin/gem"
-    system "#{gem_cmd} update --system"
-    system "yes | #{gem_cmd} update"
-    system "yes | #{gem_cmd} cleanup"
-  end
+Parallel.map(%w(2.0.0-dev 2.1.0-dev 2.2.0-dev 2.3.0-dev)) do |dev|
+  gem_cmd = File.expand_path("~/.anyenv/envs/rbenv/versions/#{dev}/bin/gem")
+  system "#{gem_cmd} install rb-readline"
+  system "#{gem_cmd} update --system"
+  system "yes | #{gem_cmd} update"
+  system "yes | #{gem_cmd} cleanup"
 end
+
+system `find ~/.anyenv/envs/rbenv/versions/2.3.0-dev -name readline.bundle -delete`

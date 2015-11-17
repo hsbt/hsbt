@@ -1,7 +1,8 @@
 #!/usr/bin/env ruby
 require 'open3'
+require 'parallel'
 
-Dir.glob('*/*/*').shuffle.each do |dir|
+Parallel.map(Dir.glob('*/*/*').shuffle) do |dir|
   next unless File.directory? dir
   cleanup = false
 
