@@ -1,6 +1,5 @@
-# global alias
-alias -g L="| less"
 alias -g G="| pt"
+alias -g L="| less"
 alias -g H="| head"
 alias -g T="| tail"
 
@@ -8,18 +7,18 @@ alias ls="gls --color -F"
 alias l="ls -Ah"
 alias ll="ls -lah"
 
-alias b="bundle"
 alias bx="bundle exec"
 alias bo="bundle open"
 alias bu="bundle update"
 
-alias -g r="rails"
 alias g="git"
 alias e="atom"
-alias pd="perldoc -MPod::Text::Color::Delight"
-alias grep="grep --color=auto --binary-files=without-match --directories=recurse"
 alias reload="source $HOME/.zshrc"
+
 alias strace="dtruss"
+alias xargs="gxargs"
+alias find="gfind"
+alias tar="gtar"
 
 alias -g any='anyenv'
 alias -g rb='rbenv'

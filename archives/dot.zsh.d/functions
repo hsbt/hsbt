@@ -40,7 +40,7 @@ function gpi () {
 
 function cl () {
   timestamp="`date | sed 's/JST //'`  `git config --get user.name`  <`git config --get user.email`>"
-  gsed -i -e "1i $timestamp\n\n\t* " Changelog
+  gsed -i -e "1i $timestamp\n\n\t* \n" Changelog
   atom Changelog
 }
 

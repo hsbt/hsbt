@@ -115,6 +115,8 @@ export PATH="$HOME/Documents/github.com/hsbt/scripts:$PATH"
 export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
 export PATH="/Applications/calibre.app/Contents/MacOS:$PATH"
 
+eval "$(docker-machine env default)"
+
 typeset -U path PATH
 path=(
     # allow directories only (-/)
@@ -125,5 +127,6 @@ path=(
 zle -N peco-src
 bindkey '^s' peco-src
 
+source dnvm.sh
 source ~/.zsh.d/functions
 source ~/.zsh.d/aliases

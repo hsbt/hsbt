@@ -6,8 +6,9 @@ export ARCHFLAGS="-arch x86_64"
 export EDITOR="vim"
 
 export DROPBOX=$HOME/Dropbox
-
 export GISTY_DIR=$DROPBOX/dev/gists
+export RUBYMOTION_ANDROID_SDK=$HOME/.rubymotion-android/sdk
+export RUBYMOTION_ANDROID_NDK=$HOME/.rubymotion-android/ndk
 
 source $DROPBOX/config/github.token
 
@@ -16,3 +17,5 @@ export MYSQL_PS1='\u@\h[\d]> '
 
 # not open editor when `git pull --rebase`
 export GIT_MERGE_AUTOEDIT=no
+# dn not use third party CDN
+export RUBY_BUILD_SKIP_MIRROR=1
