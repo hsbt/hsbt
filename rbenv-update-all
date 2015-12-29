@@ -4,7 +4,7 @@ require 'parallel'
 
 system "rbenv install 2.4.0-dev --force"
 
-Parallel.map(%w(2.2.0-dev 2.3.0-dev 2.4.0-dev)) do |dev|
+Parallel.map(%w(2.3.0-dev 2.4.0-dev)) do |dev|
   gem_cmd = File.expand_path("~/.anyenv/envs/rbenv/versions/#{dev}/bin/gem")
   system "#{gem_cmd} install rb-readline"
   system "#{gem_cmd} update --system"
@@ -12,4 +12,4 @@ Parallel.map(%w(2.2.0-dev 2.3.0-dev 2.4.0-dev)) do |dev|
   system "yes | #{gem_cmd} cleanup"
 end
 
-#system `find ~/.anyenv/envs/rbenv/versions/2.3.0-dev -name readline.bundle -delete`
+# system `find ~/.anyenv/envs/rbenv/versions/2.3.0-dev -name readline.bundle -delete`
