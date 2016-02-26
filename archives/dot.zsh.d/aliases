@@ -13,6 +13,7 @@ alias bu="bundle update"
 
 alias g="git"
 alias e="atom"
+alias dayone="dayone -j='~/Library/Group Containers/5U8NS4GX82.dayoneapp2/Data/Auto Import/Default Journal.dayone'"
 alias reload="source $HOME/.zshrc"
 
 alias strace="dtruss"

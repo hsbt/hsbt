@@ -96,13 +96,6 @@ RPROMPT=''
 
 export PATH="$HOME/.anyenv/bin:$PATH"
 eval "$(anyenv init -)"
-RUBYOPT="-W"
-MAKEOPTS="-j4"
-CONFIGURE_OPTS="--disable-install-doc"
-PERL_RL=Caroline
-SBT_OPTS="-XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=256M"
-REPORTTIME=3
-
 export GOPATH=~/.go
 export PATH=$GOPATH/bin:$PATH
 
@@ -113,7 +106,6 @@ source '/usr/local/google-cloud-sdk/completion.zsh.inc'
 [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
 export PATH="$HOME/Documents/github.com/hsbt/scripts:$PATH"
 export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
-export PATH="/Applications/calibre.app/Contents/MacOS:$PATH"
 
 eval "$(docker-machine env default)"
 
@@ -130,3 +122,12 @@ bindkey '^s' peco-src
 source dnvm.sh
 source ~/.zsh.d/functions
 source ~/.zsh.d/aliases
+
+export REPORTTIME=3
+export HOMEBREW_DEVELOPER=1
+export HOMEBREW_RUBY_PATH=$HOME/.anyenv/envs/rbenv/shims/ruby
+# export RUBYOPT="-ryomikomu"
+export MAKEOPTS="-j4"
+export CONFIGURE_OPTS="--disable-install-doc --with-jemalloc"
+export PERL_RL=Caroline
+export SBT_OPTS="-XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=256M"
