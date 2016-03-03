@@ -120,7 +120,6 @@ zle -N peco-src
 bindkey '^s' peco-src
 
 source dnvm.sh
-source ~/.zsh.d/functions
 source ~/.zsh.d/aliases
 
 export REPORTTIME=3
