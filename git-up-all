@@ -3,11 +3,11 @@ require 'open3'
 require 'parallel'
 
 Parallel.map(Dir.glob('*/*/*').shuffle) do |dir|
-  next unless File.directory? dir
+  next if dir =~ /^www\.github\.com/
+  next unless File.directory?(dir + '/.git')
   cleanup = false
 
   Dir.chdir(dir) do
-    next unless File.directory?('.git')
     puts dir
     branch = dir.include?('rubysl') ? '2.0' : 'master'
     `git checkout #{branch}`
