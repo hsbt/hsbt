@@ -7,6 +7,6 @@ Parallel.map(Dir.glob('*/*/*').shuffle) do |dir|
   Dir.chdir(dir) do
     next unless File.directory?('.git')
     puts dir
-    `git gc --aggresive --prune`
+    `git gc --aggressive --prune`
   end
 end
