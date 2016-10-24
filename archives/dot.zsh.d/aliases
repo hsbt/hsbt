@@ -11,10 +11,8 @@ alias bx="bundle exec"
 alias bo="bundle open"
 alias bu="bundle update"
 
-alias git=hub
+git() { hub $@ }
 alias g="git"
-alias e="atom"
-alias dayone="dayone -j='~/Library/Group Containers/5U8NS4GX82.dayoneapp2/Data/Auto Import/Default Journal.dayone'"
 alias reload="source $HOME/.zshrc"
 
 alias strace="dtruss"
@@ -27,9 +25,6 @@ alias -g rb='rbenv'
 alias -g pl='plenv'
 alias -g py='pyenv'
 alias -g nd='ndenv'
-
-dcu() { docker ps -a -q -f "status=exited" | gxargs --no-run-if-empty docker rm -v && docker images -q -f "dangling=true" | gxargs --no-run-if-empty docker rmi -f }
-alias dm="docker-machine"
 
 # https://raw.githubusercontent.com/tcnksm/docker-alias/master/zshrc
 # Get latest container ID
@@ -105,3 +100,11 @@ function cl () {
 gsf() { /usr/bin/git svn fetch }
 gsr() { /usr/bin/git svn rebase }
 gsd() { /usr/bin/git svn dcommit }
+
+# homebrew
+prs(){(brew ruby -e "formula=Formula[\"$1\"] ; GitHub.issues_for_formula(formula.name, :tap => formula.tap).each { |i| puts i[\"$2\"] }")}
+prurls(){(prs "$1" "html_url")}
+prtitles(){(prs "$1" "title")}
+
+# docker
+dcu() { docker ps -a -q -f "status=exited" | gxargs --no-run-if-empty docker rm -v && docker images -q -f "dangling=true" | gxargs --no-run-if-empty docker rmi -f }

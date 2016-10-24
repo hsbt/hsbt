@@ -69,6 +69,8 @@ HISTFILE=$DROPBOX/config/history.dotfiles/dot.zsh-history
 HISTSIZE=10000000
 SAVEHIST=$HISTSIZE
 
+export REPORTTIME=3
+
 autoload history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
@@ -94,20 +96,32 @@ precmd() {
 PROMPT=$'[%{$fg[magenta]%}%n%{$reset_color%}@%{$fg[red]%}%M%{$reset_color%}] %{$fg[cyan]%}%d %1(V|%F{green}%1v%3(V| - %3v|)%f |)%2(V|%F{red}(%2v%)%f|)\n%{$fg[yellow]%}%#%{$reset_color%} '
 RPROMPT=''
 
-export PATH="$HOME/.anyenv/bin:$PATH"
-eval "$(anyenv init -)"
-export GOPATH=~/.go
-export PATH=$GOPATH/bin:$PATH
-
 export PATH="/usr/local/google-cloud-sdk/bin:$PATH"
 export CLOUDSDK_PYTHON=/usr/bin/python
 source '/usr/local/google-cloud-sdk/completion.zsh.inc'
 
-[ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
+export PATH=/Library/Tex/texbin:$PATH
+
 export PATH="$HOME/Documents/github.com/hsbt/scripts:$PATH"
+
+export PATH="$HOME/.anyenv/bin:$PATH"
+eval "$(anyenv init -)"
+
+export MAKEOPTS="-j4"
+export CONFIGURE_OPTS="--with-openssl-dir=`brew --prefix openssl`"
+export RUBY_CONFIGURE_OPTS="--enable-install-doc"
+
+export PERL_RL=Caroline
+
+export GOPATH=~/.go
+export PATH=$GOPATH/bin:$PATH
+
+export PATH="$HOME/.cargo/bin:$PATH"
+
+# export HOMEBREW_DEVELOPER=1
 export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
 
-eval "$(docker-machine env default)"
+export SBT_OPTS="-XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=256M"
 
 typeset -U path PATH
 path=(
@@ -119,14 +133,6 @@ path=(
 zle -N peco-src
 bindkey '^s' peco-src
 
-source dnvm.sh
-source ~/.zsh.d/aliases
+[ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
 
-export REPORTTIME=3
-export HOMEBREW_DEVELOPER=1
-export HOMEBREW_RUBY_PATH=$HOME/.anyenv/envs/rbenv/shims/ruby
-# export RUBYOPT="-ryomikomu"
-export MAKEOPTS="-j4"
-export CONFIGURE_OPTS="--disable-install-doc --with-jemalloc"
-export PERL_RL=Caroline
-export SBT_OPTS="-XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=256M"
+source ~/.zsh.d/aliases
