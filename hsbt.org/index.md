@@ -57,7 +57,7 @@ Ruby コミッタ、ruby, rubygems, rake, rdoc, ruby-build, psych, syck, tDiary,
 
 ## 講演・発表(海外)
 
-* 2016年9月 RubyKaigi 2016 [How to Begin to Develop Ruby Core](http://www.slideshare.net/hsbt/how-to-begin-to-develop-ruby-core)
+* 2016年9月 Euruko 2016 [How to Begin to Develop Ruby Core](http://www.slideshare.net/hsbt/how-to-begin-to-develop-ruby-core)
 * 2016年6月 RedDotRubyConf 2016 [How to Begin Developing Ruby Core](http://www.slideshare.net/hsbt/how-to-begin-developing-ruby-core)
 * 2016年5月 RailsPacific 2016 [Large\-scaled Deploy Over 100 Servers in 3 Minutes](http://www.slideshare.net/hsbt/largescaled-deploy-over-100-servers-in-3-minutes)
 * 2015年9月 RubyConf Taiwan 2015 [Middleware as Code with mruby](http://www.slideshare.net/hsbt/middleware-as-code-with-mruby-52663708)
@@ -74,7 +74,7 @@ Ruby コミッタ、ruby, rubygems, rake, rdoc, ruby-build, psych, syck, tDiary,
 
 ## 講演・発表(国内)
 
-* 2016年9月 [How DSL works on Ruby](http://www.slideshare.net/hsbt/how-dsl-works-on-ruby)
+* 2016年9月 RubyKaigi 2016 [How DSL works on Ruby](http://www.slideshare.net/hsbt/how-dsl-works-on-ruby)
 * 2016年4月 [High Performance tDiary](http://www.slideshare.net/hsbt/high-performance-tdiary)
 * 2016年2月 nginx tech talk [Practical ngx\_mruby](http://www.slideshare.net/hsbt/practical-ngxmruby)
 * 2015年12月 RubyKaigi 2015 [Practical Testing of Ruby Core](http://www.slideshare.net/hsbt/practical-testing-of-ruby-core)
