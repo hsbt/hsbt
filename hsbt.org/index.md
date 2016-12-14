@@ -22,7 +22,7 @@ Chief engineer at GMO Pepabo, Inc.
 
 ## Work
 
-Ruby コミッタ、ruby, rubygems, rake, rdoc, ruby-build, psych, syck, tDiary, Hiki,  jenkins.rb, kaminari など多数の OSS のメンテナ、*.ruby-lang.org の root として Ruby の開発を支える基盤を統括している。
+Ruby コミッタ、ruby, rubygems, rake, rdoc, ruby-build, psych, syck, tDiary, Hiki,  jenkins.rb, kaminari など多数の OSS のメンテナ、ruby-lang.org の root として Ruby の開発を支える基盤を統括している。
 
 ## 学歴・職歴
 
@@ -55,49 +55,44 @@ Ruby コミッタ、ruby, rubygems, rake, rdoc, ruby-build, psych, syck, tDiary,
 * 2012年10月 WEB+DB PRESS Vol.71 特集3 はじめてのHeroku 柴田 博志,相澤 歩 著 技術評論社
 * 2011年2月 WEB+DB PRESS Vol.61 特集2 Rails 3テスト最前線 浦嶌 啓太,高橋 健一,柴田 博志 著 技術評論社
 
-## 対外発表
+## 講演・発表(海外)
 
-### 海外のカンファレンス
+* 2014年9月 RailsPacific [Crafting Rails Culture](https://speakerdeck.com/hsbt/crafting-rails-culture)
+* 2014年9月 RubyKaigi 2014 [The Twelve-factor Ruby](https://speakerdeck.com/hsbt/the-twelve-factor-ruby)
+* 2014年6月 RedDotRubyConf 2014 [How to improve experiences of Ruby](https://speakerdeck.com/hsbt/how-to-improve-experiences-of-ruby)
+* 2014年4月 RubyConf Taiwan 2014 [From 'Legacy' to 'Edge' 2014 Edition](https://speakerdeck.com/hsbt/from-legacy-to-edge-2014-edition-1)
+* 2013年12月 RubyConf 2013 [Current Status of ruby-lang.org](https://speakerdeck.com/hsbt/current-status-of-ruby-lang-dot-org)
+* 2013年6月 RedDotRubyConf 2013 [From 'Legacy' to 'Edge'](https://speakerdeck.com/hsbt/from-legacy-to-edge)
+* 2013年5月 RubyKaigi 2013 [Ruby 'root'](https://speakerdeck.com/hsbt/ruby-root)
+* 2012年12月 RubyConf Taiwan 2012 [How to discover the Ruby's defects with web application](https://speakerdeck.com/hsbt/how-to-discover-the-rubys-defects-with-web-application)
+* 2012年11月 RubyConf 2012 [tDiary in a nutshell(rubyconf lightning tallks versions)](https://speakerdeck.com/hsbt/tdiary-in-a-nutshell-rubyconf-lightning-tallks-versions)
 
-* 2014年9月 RailsPacific Crafting Rails Culture https://speakerdeck.com/hsbt/crafting-rails-culture
-* 2014年9月 RubyKaigi 2014 The Twelve-factor Ruby https://speakerdeck.com/hsbt/the-twelve-factor-ruby
-* 2014年6月 RedDotRubyConf 2014 How to improve experiences of Ruby https://speakerdeck.com/hsbt/how-to-improve-experiences-of-ruby
-* 2014年4月 RubyConf Taiwan 2014 From 'Legacy' to 'Edge' 2014 Edition https://speakerdeck.com/hsbt/from-legacy-to-edge-2014-edition-1
-* 2013年12月 RubyConf 2013 Current Status of ruby-lang.org https://speakerdeck.com/hsbt/current-status-of-ruby-lang-dot-org
-* 2013年6月 RedDotRubyConf 2013 From 'Legacy' to 'Edge' https://speakerdeck.com/hsbt/from-legacy-to-edge
-* 2013年5月 RubyKaigi 2013 Ruby 'root' // Speaker Deck https://speakerdeck.com/hsbt/ruby-root
-* 2012年12月 RubyConf Taiwan 2012 How to discover the Ruby's defects with web application https://speakerdeck.com/hsbt/how-to-discover-the-rubys-defects-with-web-application
-* 2012年11月 RubyConf 2012 tDiary in a nutshell(rubyconf lightning tallks versions) https://speakerdeck.com/hsbt/tdiary-in-a-nutshell-rubyconf-lightning-tallks-versions
+## 講演・発表(国内)
 
-### 日本国内のカンファレンス
-
-* 2014年4月 OedoRubyKaigi04 From 'Legacy' to 'Edge' 2014 edition https://speakerdeck.com/hsbt/from-legacy-to-edge-2014-edition
-* 2014年3月 WIDECamp 2014 Introduction of SQALE https://speakerdeck.com/hsbt/introduction-of-sqale-1
-* 2013年3月 OedoRubyKaigi03 Awesome Inquiry Management System // Speaker Deck https://speakerdeck.com/hsbt/awesome-inquiry-management-system
-* 2012年9月 SapporoRubyKaigi 2012 Continuous Delivery in Ruby World https://speakerdeck.com/hsbt/20120916-sappororubykaigi2012
-* 2012年7月 Jenkins User Conference 2012 How to develop Jenkins plugin using to ruby and Jenkins.rb https://speakerdeck.com/hsbt/how-to-develop-jenkins-plugin-using-to-ruby-and-jenkins-dot-rb
-* 2011年7月 RubyKaigi 2011 The art of "Legacy" Ruby Code Maintainance https://speakerdeck.com/hsbt/20110718-rubykaigi2011
-* 2011年4月 OedoRubyKaigi01 Leave end-to-end testing to Capybara https://speakerdeck.com/hsbt/oedorubykaigi01
-* 2010年12月 SapporoRubyKaigi03 What's culture and tools in Ruby worlds https://speakerdeck.com/hsbt/sappororubykaigi03
-* 2010年10月 RubyKaigi 2010 How to survive in post Rails' world https://speakerdeck.com/hsbt/how-to-survive-in-post-rails-world
-* 2009年12月 SapporoRubyKaigi02 tDiary annual report 2009 https://speakerdeck.com/hsbt/tdiary-annual-report-2009
-* 2009年7月 RubyKaigi 2009 Our tDiary's policy and strategies to support Ruby 1.9 and our future plan // Speaker Deck https://speakerdeck.com/hsbt/our-tdiarys-policy-and-strategies-to-support-ruby-19-and-our-future-plan
-* 2008年10月 SapporoRubyKaigi01 わたしとtDiary https://speakerdeck.com/hsbt/tdiary
-
-### ワークショップ
-
-* RailsGirls Japan // Speaker Deck https://speakerdeck.com/hsbt/railsgirls-japan
-* How to Change Organization // Speaker Deck https://speakerdeck.com/hsbt/how-to-change-organization
-* How use inception deck in paperboy&co. // Speaker Deck https://speakerdeck.com/hsbt/how-use-inception-deck-in-paperboy-and-co
-* Introduction of paperboy&co., Inc. at RailsGirls Tokyo 3rd // Speaker Deck https://speakerdeck.com/hsbt/introduction-of-paperboy-and-co-dot-inc-at-railsgirls-tokyo-3rd
-* RailsGirls Tokyo 2nd // Speaker Deck https://speakerdeck.com/hsbt/railsgirls-tokyo-2nd
-* RailsGirls Kyoto Opening & Intermission & Closing // Speaker Deck https://speakerdeck.com/hsbt/railsgirls-kyoto-opening-and-intermission-and-closing
-* Introduction of paperboy. // Speaker Deck https://speakerdeck.com/hsbt/introduction-of-paperboy
-* Introduction of Sqale // Speaker Deck https://speakerdeck.com/hsbt/introduction-of-sqale
-* tDiary in a Nutshell // Speaker Deck https://speakerdeck.com/hsbt/tdiary-in-a-nutshell
-* The advanced usage of heroku client // Speaker Deck https://speakerdeck.com/hsbt/the-advanced-usage-of-heroku-client
-* 20110714-CookpadRubyRecipe.pdf // Speaker Deck https://speakerdeck.com/hsbt/20110714-cookpadrubyrecipe
-* JenkinsStudy03.pdf // Speaker Deck https://speakerdeck.com/hsbt/jenkinsstudy03
-* Head First ふつうのシステム開発のご紹介 // Speaker Deck https://speakerdeck.com/hsbt/head-first
-* Rubyをキメて上京するのに必要なこと // Speaker Deck https://speakerdeck.com/hsbt/ruby
-* tDiary Party 2.1 // Speaker Deck https://speakerdeck.com/hsbt/tdiary-party-21
+* 2014年4月 OedoRubyKaigi04 [From 'Legacy' to 'Edge' 2014 edition](https://speakerdeck.com/hsbt/from-legacy-to-edge-2014-edition)
+* 2014年3月 WIDECamp 2014 [Introduction of SQALE](https://speakerdeck.com/hsbt/introduction-of-sqale-1)
+* 2013年3月 OedoRubyKaigi03 [Awesome Inquiry Management System](https://speakerdeck.com/hsbt/awesome-inquiry-management-system)
+* 2012年9月 SapporoRubyKaigi 2012 [Continuous Delivery in Ruby World](https://speakerdeck.com/hsbt/20120916-sappororubykaigi2012)
+* 2012年7月 Jenkins User Conference 2012 [How to develop Jenkins plugin using to ruby and Jenkins.rb](https://speakerdeck.com/hsbt/how-to-develop-jenkins-plugin-using-to-ruby-and-jenkins-dot-rb)
+* 2011年7月 RubyKaigi 2011 [The art of "Legacy" Ruby Code Maintainance](https://speakerdeck.com/hsbt/20110718-rubykaigi2011)
+* 2011年4月 OedoRubyKaigi01 [Leave end-to-end testing to Capybara](https://speakerdeck.com/hsbt/oedorubykaigi01)
+* 2010年12月 SapporoRubyKaigi03 [What's culture and tools in Ruby worlds](https://speakerdeck.com/hsbt/sappororubykaigi03)
+* 2010年10月 RubyKaigi 2010 [How to survive in post Rails' world](https://speakerdeck.com/hsbt/how-to-survive-in-post-rails-world)
+* 2009年12月 SapporoRubyKaigi02 [tDiary annual report 2009](https://speakerdeck.com/hsbt/tdiary-annual-report-2009)
+* 2009年7月 RubyKaigi 2009 [Our tDiary's policy and strategies to support Ruby 1.9 and our future plan](https://speakerdeck.com/hsbt/our-tdiarys-policy-and-strategies-to-support-ruby-19-and-our-future-plan)
+* 2008年10月 SapporoRubyKaigi01 [わたしとtDiary](https://speakerdeck.com/hsbt/tdiary)
+* [RailsGirls Japan](https://speakerdeck.com/hsbt/railsgirls-japan)
+* [How to Change Organization](https://speakerdeck.com/hsbt/how-to-change-organization)
+* [How use inception deck in paperboy&co.](https://speakerdeck.com/hsbt/how-use-inception-deck-in-paperboy-and-co)
+* [Introduction of paperboy&co., Inc. at RailsGirls Tokyo 3rd](https://speakerdeck.com/hsbt/introduction-of-paperboy-and-co-dot-inc-at-railsgirls-tokyo-3rd)
+* [RailsGirls Tokyo 2nd](https://speakerdeck.com/hsbt/railsgirls-tokyo-2nd)
+* [RailsGirls Kyoto Opening & Intermission & Closing](https://speakerdeck.com/hsbt/railsgirls-kyoto-opening-and-intermission-and-closing)
+* [Introduction of paperboy](https://speakerdeck.com/hsbt/introduction-of-paperboy)
+* [Introduction of Sqale](https://speakerdeck.com/hsbt/introduction-of-sqale)
+* [tDiary in a Nutshell](https://speakerdeck.com/hsbt/tdiary-in-a-nutshell)
+* [The advanced usage of heroku client](https://speakerdeck.com/hsbt/the-advanced-usage-of-heroku-client)
+* [20110714-CookpadRubyRecipe.pdf](https://speakerdeck.com/hsbt/20110714-cookpadrubyrecipe)
+* [JenkinsStudy03.pdf](https://speakerdeck.com/hsbt/jenkinsstudy03)
+* [Head First ふつうのシステム開発のご紹介](https://speakerdeck.com/hsbt/head-first)
+* [Rubyをキメて上京するのに必要なこと](https://speakerdeck.com/hsbt/ruby)
+* [tDiary Party 2.1](https://speakerdeck.com/hsbt/tdiary-party-21)
