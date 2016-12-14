@@ -1,7 +1,6 @@
-require 'kramdown'
-
 desc 'generate index.html'
 task :generate do
+  require 'kramdown'
   header = File.read('header.html')
   body = Kramdown::Document.new(File.read('index.md')).to_html
   footer = File.read('footer.html')
@@ -9,4 +8,10 @@ task :generate do
   File.open('index.html', 'w') do |f|
     [header, body, footer].each {|s| f.puts s}
   end
+end
+
+desc 'deploy index.html'
+task :deploy => [:generate] do
+  require 'net/scp'
+  Net::SCP.upload!('www.hsbt.org', 'hsbt', "index.html", "/var/www/hsbt.org/index.html")
 end

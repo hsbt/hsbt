@@ -17,6 +17,9 @@ GEM
       systemu (~> 2.6.2)
     net-dns2 (0.8.7)
       packetfu
+    net-scp (1.2.1)
+      net-ssh (>= 2.6.5)
+    net-ssh (3.2.0)
     network_interface (0.0.1)
     packetfu (1.1.11)
       network_interface (~> 0.0)
@@ -43,6 +46,7 @@ PLATFORMS
 
 DEPENDENCIES
   kramdown
+  net-scp
   rake
   roadworker
 
