@@ -1,0 +1,12 @@
+require 'kramdown'
+
+desc 'generate index.html'
+task :generate do
+  header = File.read('header.html')
+  body = Kramdown::Document.new(File.read('index.md')).to_html
+  footer = File.read('footer.html')
+
+  File.open('index.html', 'w') do |f|
+    [header, body, footer].each {|s| f.puts s}
+  end
+end
