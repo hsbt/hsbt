@@ -1,31 +1,50 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    aws-sdk (1.39.0)
-      json (~> 1.4)
-      nokogiri (>= 1.4.4)
-    json (1.8.1)
+    aws-sdk (2.6.35)
+      aws-sdk-resources (= 2.6.35)
+    aws-sdk-core (2.6.35)
+      aws-sigv4 (~> 1.0)
+      jmespath (~> 1.0)
+    aws-sdk-resources (2.6.35)
+      aws-sdk-core (= 2.6.35)
+    aws-sigv4 (1.0.0)
+    diffy (3.1.0)
+    hashie (3.4.6)
+    jmespath (1.3.1)
+    kramdown (1.13.1)
     macaddr (1.7.1)
       systemu (~> 2.6.2)
-    mini_portile (0.6.0)
-    net-dns (0.8.0)
-    nokogiri (1.6.2.1)
-      mini_portile (= 0.6.0)
-    roadworker (0.4.4)
-      aws-sdk (= 1.39.0)
-      net-dns (~> 0.8.0)
+    net-dns2 (0.8.7)
+      packetfu
+    network_interface (0.0.1)
+    packetfu (1.1.11)
+      network_interface (~> 0.0)
+      pcaprub (~> 0.12)
+    pcaprub (0.12.4)
+    rake (12.0.0)
+    roadworker (0.5.7)
+      aws-sdk (>= 2.2.34)
+      diffy
+      hashie
+      net-dns2 (~> 0.8.6)
       systemu
       term-ansicolor
       uuid
-    systemu (2.6.4)
-    term-ansicolor (1.3.0)
+    systemu (2.6.5)
+    term-ansicolor (1.4.0)
       tins (~> 1.0)
-    tins (1.3.0)
-    uuid (2.3.7)
+    tins (1.13.0)
+    uuid (2.3.8)
       macaddr (~> 1.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  kramdown
+  rake
   roadworker
+
+BUNDLED WITH
+   1.13.6
