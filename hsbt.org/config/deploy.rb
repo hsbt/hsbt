@@ -28,7 +28,6 @@ task :deploy do
       command "echo \"gem 'tdiary-style-gfm', '>= 0.4.0'; gem 'oga'\" > #{fetch(:current_path)}/Gemfile.local"
       command "cp -r #{fetch(:shared_path)}/lib/* #{fetch(:current_path)}/misc/lib"
       command "cp -r #{fetch(:shared_path)}/js/* #{fetch(:current_path)}/js"
-      command "sudo cp -r #{fetch(:current_path)}/theme/* /var/www/hsbt.org/diary/theme"
       command "ln -s /home/hsbt/www/tdiary.conf #{fetch(:current_path)}/tdiary.conf"
 
       in_path(fetch(:current_path)) do
