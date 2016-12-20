@@ -1,6 +1,7 @@
 source "https://rubygems.org"
 
+gem 'mina'
+gem 'rake'
 gem 'roadworker'
 gem 'kramdown'
-gem 'rake'
 gem 'net-scp'
