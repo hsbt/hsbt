@@ -8,10 +8,12 @@ task :generate do
   File.open('index.html', 'w') do |f|
     [header, body, footer].each {|s| f.puts s}
   end
+  `sassc hsbt.scss > hsbt.css`
 end
 
 desc 'deploy index.html'
 task :deploy => [:generate] do
   require 'net/scp'
   Net::SCP.upload!('www.hsbt.org', 'hsbt', "index.html", "/var/www/hsbt.org/index.html")
+  Net::SCP.upload!('www.hsbt.org', 'hsbt', "hsbt.css", "/var/www/hsbt.org/stylesheets/hsbt.css")
 end

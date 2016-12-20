@@ -593,14 +593,15 @@ img.amazon {
   clear: both;
 }
 
+span.amazon-detail {
+  border: none;
+}
+
 div {
   &.profile {
+    border: none;
     margin: 1em;
     text-align: center;
-
-    img {
-      border: none;
-    }
 
     span {
       font-size: 0.9em;
