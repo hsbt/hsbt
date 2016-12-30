@@ -91,10 +91,6 @@ span.adminmenu {
 h1 {
   color: #000;
   text-align: left;
-  background-color: #def;
-  border-radius: 8px;
-  -moz-border-radius: 8px;
-  -webkit-border-radius: 8px;
   padding: 0.2em;
   margin-top: 0.2em;
   margin-bottom: 0.2em;
@@ -102,13 +98,8 @@ h1 {
 
 div.day {
   color: #000;
-  border-radius: 8px;
-  -moz-border-radius: 8px;
-  -webkit-border-radius: 8px;
   margin-top: 0.5em;
   margin-bottom: 0.5em;
-  border: #aaf 1px solid;
-  background-color: #F0F8FF;
 }
 
 h2 {
@@ -133,11 +124,6 @@ h3 {
   font-weight: bold;
   color: #000;
   padding: 0.2em;
-  border-bottom: #DEF 5px solid;
-  border-left: #DEF 5px solid;
-  border-radius: 0px 0px 0px 8px;
-  -moz-border-radius: 0px 0px 0px 8px;
-  -webkit-border-radius: 0px 0px 0px 8px;
 }
 
 div.section p {
@@ -164,10 +150,6 @@ div {
   &.body {
     background-color: #fff;
     color: #000;
-    border: #def 1px solid;
-    border-radius: 8px;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
     margin-left: 0.5em;
     margin-right: 0.5em;
   }
@@ -176,10 +158,6 @@ div {
     font-size: small;
     background-color: #FFF;
     color: #000;
-    border: #def 1px solid;
-    border-radius: 8px;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
     margin: 0.5em;
   }
 
