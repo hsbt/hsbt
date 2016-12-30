@@ -97,6 +97,9 @@ div.day {
 h2 {
   font-size: large;
   margin: 0.1em 1em 0.1em 0.5em;
+  border-style: solid;
+  border-color: #aaf;
+  border-width: 0 0 1px;
 
   span {
     &.date {
