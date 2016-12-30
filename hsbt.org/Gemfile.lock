@@ -9,7 +9,9 @@ GEM
     aws-sdk-resources (2.6.43)
       aws-sdk-core (= 2.6.43)
     aws-sigv4 (1.0.0)
+    bcrypt_pbkdf (1.0.0)
     diffy (3.1.0)
+    ffi (1.9.14)
     hashie (3.4.6)
     jmespath (1.3.1)
     kramdown (1.13.1)
@@ -30,6 +32,10 @@ GEM
       pcaprub (~> 0.12)
     pcaprub (0.12.4)
     rake (12.0.0)
+    rbnacl (3.4.0)
+      ffi
+    rbnacl-libsodium (1.0.11)
+      rbnacl (>= 3.0.1)
     roadworker (0.5.7)
       aws-sdk (>= 2.2.34)
       diffy
@@ -49,10 +55,13 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt_pbkdf
   kramdown
   mina
   net-scp
   rake
+  rbnacl (< 4.0)
+  rbnacl-libsodium
   roadworker
 
 BUNDLED WITH
