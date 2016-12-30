@@ -1,13 +1,13 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    aws-sdk (2.6.42)
-      aws-sdk-resources (= 2.6.42)
-    aws-sdk-core (2.6.42)
+    aws-sdk (2.6.43)
+      aws-sdk-resources (= 2.6.43)
+    aws-sdk-core (2.6.43)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.6.42)
-      aws-sdk-core (= 2.6.42)
+    aws-sdk-resources (2.6.43)
+      aws-sdk-core (= 2.6.43)
     aws-sigv4 (1.0.0)
     diffy (3.1.0)
     hashie (3.4.6)
