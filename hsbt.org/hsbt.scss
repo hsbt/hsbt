@@ -78,11 +78,7 @@ div.adminmenu {
 }
 
 span.adminmenu {
-  border: #DEF 1px solid;
   background-color: #F0F8FF;
-  border-radius: 2px;
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
   color: #000;
   padding: 2px;
   vertical-align: middle;
@@ -206,10 +202,6 @@ div {
   &.form {
     background-color: #fff;
     color: #000;
-    border-radius: 4px;
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
-    border: #aaf 1px solid;
     margin: 0.5em;
 
     form {
