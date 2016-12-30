@@ -18,9 +18,6 @@ div.diary {
 body {
   background-color: #fff;
   color: #000;
-  border-radius: 8px;
-  -moz-border-radius: 8px;
-  -webkit-border-radius: 8px;
   margin-top: 0.5em;
 }
 
@@ -132,9 +129,6 @@ ul, ol {}
 div {
   &.caption {
     font-size: 0.9em;
-    border-style: solid;
-    border-color: #aaf;
-    border-width: 0 0 1px;
     margin: 0.5em;
   }
 
