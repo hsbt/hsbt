@@ -96,32 +96,20 @@ precmd() {
 PROMPT=$'[%{$fg[magenta]%}%n%{$reset_color%}@%{$fg[red]%}%M%{$reset_color%}] %{$fg[cyan]%}%d %1(V|%F{green}%1v%3(V| - %3v|)%f |)%2(V|%F{red}(%2v%)%f|)\n%{$fg[yellow]%}%#%{$reset_color%} '
 RPROMPT=''
 
-export PATH="/usr/local/google-cloud-sdk/bin:$PATH"
-export CLOUDSDK_PYTHON=/usr/bin/python
-source '/usr/local/google-cloud-sdk/completion.zsh.inc'
-
-export PATH=/Library/Tex/texbin:$PATH
-
-export PATH="$HOME/Documents/github.com/hsbt/scripts:$PATH"
-
 export PATH="$HOME/.anyenv/bin:$PATH"
 eval "$(anyenv init -)"
+export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+export GOPATH="$HOME/.go"
+export PATH="`brew --prefix coreutils`/libexec/gnubin:$HOME/.config/yarn/global/node_modules/.bin:$GOPATH/bin:$HOME/.cargo/bin:/usr/local/google-cloud-sdk/bin:/Library/Tex/texbin:$HOME/Documents/github.com/hsbt/scripts:$PATH"
 
+export HOMEBREW_DEVELOPER=1
 export MAKEOPTS="-j4"
-export CONFIGURE_OPTS="--with-openssl-dir=`brew --prefix openssl`"
-export RUBY_CONFIGURE_OPTS="--enable-install-doc"
-
-export PERL_RL=Caroline
-
-export GOPATH=~/.go
-export PATH=$GOPATH/bin:$PATH
-
-export PATH="$HOME/.cargo/bin:$PATH"
-
-# export HOMEBREW_DEVELOPER=1
-export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
-
-export SBT_OPTS="-XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=256M"
+export CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl)"
+export RUBY_CONFIGURE_OPTS="--disable-install-doc"
+export PHP_BUILD_CONFIGURE_OPTS="--with-openssl=$(brew --prefix openssl) --with-libxml-dir=$(brew --prefix libxml2)"
+export PHP_BUILD_EXTRA_MAKE_ARGUMENTS="-j4"
+export CLOUDSDK_PYTHON=/usr/bin/python
+source '/usr/local/google-cloud-sdk/completion.zsh.inc'
 
 typeset -U path PATH
 path=(

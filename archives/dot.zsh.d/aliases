@@ -1,4 +1,4 @@
-alias -g G="| pt"
+alias -g G="| rg"
 alias -g L="| less"
 alias -g H="| head"
 alias -g T="| tail"
@@ -10,21 +10,31 @@ alias ll="ls -lah"
 alias bx="bundle exec"
 alias bo="bundle open"
 alias bu="bundle update"
+bcd () { cd -P `ruby -rubygems -rbundler -e "Bundler.load.specs.each{|s| puts s.full_gem_path if s.name == '${1}'}"` }
+brg () { rg "$@" `bundle show --paths` }
 
 git() { hub $@ }
 alias g="git"
-alias reload="source $HOME/.zshrc"
+gsf() { /usr/bin/git svn fetch }
+gsr() { /usr/bin/git svn rebase }
+gsd() { /usr/bin/git svn dcommit }
 
+alias e="atom-beta"
+alias mk="make"
 alias strace="dtruss"
 alias xargs="gxargs"
 alias find="gfind"
 alias tar="gtar"
 
-alias -g any='anyenv'
-alias -g rb='rbenv'
-alias -g pl='plenv'
-alias -g py='pyenv'
-alias -g nd='ndenv'
+alias any='anyenv'
+alias rb='rbenv'
+alias py='pyenv'
+alias ph='phpenv'
+
+# homebrew development
+prs(){(brew ruby -e "formula=Formula[\"$1\"] ; GitHub.issues_for_formula(formula.name, :tap => formula.tap).each { |i| puts i[\"$2\"] }")}
+prurls(){(prs "$1" "html_url")}
+prtitles(){(prs "$1" "title")}
 
 # https://raw.githubusercontent.com/tcnksm/docker-alias/master/zshrc
 # Get latest container ID
@@ -55,14 +65,8 @@ dri() { docker rmi $(docker images -q); }
 dbu() { docker build -t=$1 .; }
 # Show all alias related docker
 dalias() { alias | grep 'docker' | sed "s/^\([^=]*\)=\(.*\)/\1 => \2/"| sed "s/['|\']//g" | sort; }
-
-function bcd () {
-  cd -P `ruby -rubygems -rbundler -e "Bundler.load.specs.each{|s| puts s.full_gem_path if s.name == '${1}'}"`
-}
-
-function bag () {
-  ag "$@" `bundle show --paths`
-}
+# Clean all intermediate images
+dcu() { docker ps -a -q -f "status=exited" | gxargs --no-run-if-empty docker rm -v && docker images -q -f "dangling=true" | gxargs --no-run-if-empty docker rmi -f }
 
 function peco-src () {
     local selected_dir=$(ghq list --full-path | peco --query "$LBUFFER")
@@ -86,25 +90,3 @@ function peco-select-history() {
     CURSOR=$#BUFFER
     zle clear-screen
 }
-
-function gpi () {
-  [ "$#" -eq 0 ] && echo "Usage : gpi QUERY" && return 1
-  ghs "$@" | peco | awk '{print $1}' | ghq import
-}
-
-function cl () {
-  timestamp="`date | sed 's/JST //'`  `git config --get user.name`  <`git config --get user.email`>"
-  gsed -i -e "1i $timestamp\n\n\t* \n" Changelog
-  atom Changelog
-}
-gsf() { /usr/bin/git svn fetch }
-gsr() { /usr/bin/git svn rebase }
-gsd() { /usr/bin/git svn dcommit }
-
-# homebrew
-prs(){(brew ruby -e "formula=Formula[\"$1\"] ; GitHub.issues_for_formula(formula.name, :tap => formula.tap).each { |i| puts i[\"$2\"] }")}
-prurls(){(prs "$1" "html_url")}
-prtitles(){(prs "$1" "title")}
-
-# docker
-dcu() { docker ps -a -q -f "status=exited" | gxargs --no-run-if-empty docker rm -v && docker images -q -f "dangling=true" | gxargs --no-run-if-empty docker rmi -f }
