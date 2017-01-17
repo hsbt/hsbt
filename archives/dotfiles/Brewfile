@@ -1,171 +1,35 @@
-homebrew/apache
-homebrew/boneyard
-homebrew/dupes
-homebrew/games
-homebrew/science
-homebrew/versions
-phinze/cask
-thoughtbot/formulae
+tap 'Homebrew/science'
 
-update
+brew 'openssl'
+brew 'readline'
+brew 'gmp'
+brew 'autoconf'
+brew 'imagemagick'
 
-upgrade
+brew 'tmux'
+brew 'coreutils'
+brew 'findutils'
+brew 'gnu-sed'
+brew 'gnu-tar'
+brew 'gawk'
+brew 'pstree'
+brew 'aria2'
+brew 'cmake'
+brew 'peco'
+brew 'hub'
 
-install asciidoc
-install autoconf
-install automake
-install aws-elasticbeanstalk
-install binutils
-install boost
-install brew-cask
-install bsdmake
-install chromedriver
-install leiningen
-install cmake
-install colordiff
-install coreutils
-install couchdb
-install ctags
-install curl
-install dirmngr
-install dnsmasq
-install elasticsearch
-install elixir
-install erlang
-install exiftool
-install faac
-install fcgi
-install ffmpeg
-install findutils
-install fribidi
-install gawk
-install gdbm
-install gettext
-install ghostscript
-install gifsicle
-install git
-install glib
-install global
-install gmp
-install gnu-getopt
-install gnu-sed
-install gnu-tar
-install gnu-time
-install gnu-which
-install gnupg2
-install go
-install google-perftools
-install gpg-agent
-install groff
-install htop-osx
-install httpd
-install hub
-install icu4c
-install imagemagick
-install imlib2
-install jasper
-install jbig2dec
-install jpeg
-install jq
-install lame
-install libass
-install libassuan
-install libevent
-install libffi
-install libgcrypt
-install libgpg-error
-install libksba
-install libmpc
-install libogg
-install libpng
-install libtiff
-install libtool
-install libusb
-install libusb-compat
-install libvo-aacenc
-install libvorbis
-install libvpx
-install libxml2
-install libyaml
-install little-cms
-install lv
-install mcrypt
-install memcached
-install mhash
-install mobile-shell
-install mongodb
-install moreutils
-install mpfr
-install multimarkdown
-install mysql
-install neon
-install ngrep
-install ninja
-install nkf
-install nspr
-install objective-caml
-install oniguruma
-install opencore-amr
-install openssl
-install ossp-uuid
-install pcre
-install phantomjs
-install pidof
-install pinentry
-install pixman
-install pkg-config
-install pngquant
-install postgresql
-install proctools
-install protobuf
-install pstree
-install pth
-install qt
-install r
-install ragel
-install re2c
-install readline
-install reattach-to-user-namespace
-install redis
-install rename
-install riak
-install rsync
-install rtmpdump
-install scala
-install scons
-install solr
-install spidermonkey
-install sqlite
-install subversion
-install swig
-install texi2html
-install the_silver_searcher
-install theora
-install tig
-install tmux
-install tomcat
-install unixodbc
-install unrar
-install watch
-install wget
-install x264
-install xmlto
-install xvid
-install xz
-install yasm
+brew 'git'
+brew 'git-extras'
+brew 'gnupg2'
 
-cask install atom
-cask install boot2docker
-cask install cyberduck
-cask install launchrocket
-cask install libreoffice
-cask install onyx
-cask install skim
-cask install skitch
-cask install skype
-cask install vagrant
-cask install virtualbox
-cask install vmware-fusion
-cask install google-japanese-ime
+brew 'node'
+brew 'yarn'
+brew 'perl'
+brew 'go'
+brew 'rust'
+brew 'elixir'
+brew 'crystal-lang'
+brew 'r'
 
-cleanup
+brew 'groonga'
+brew 'mysql'
