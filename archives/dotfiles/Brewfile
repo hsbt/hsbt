@@ -3,6 +3,7 @@ tap 'Homebrew/science'
 brew 'openssl'
 brew 'readline'
 brew 'gmp'
+brew 'gdbm'
 brew 'autoconf'
 brew 'imagemagick'
 
