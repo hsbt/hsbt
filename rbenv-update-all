@@ -1,14 +1,14 @@
 #!/usr/bin/env ruby
-require 'pathname'
 require 'parallel'
 
-Parallel.map(%w(2.4.0-dev)) do |dev|
+devs = %w(2.4.0-dev)
+
+Parallel.map(devs) do |dev|
   system "rbenv install #{dev} --force"
 end
 
-Parallel.map(%w(2.3.0-dev 2.4.0-dev)) do |dev|
+Parallel.map(devs do |dev|
   gem_cmd = File.expand_path("~/.anyenv/envs/rbenv/versions/#{dev}/bin/gem")
-  system "#{gem_cmd} update --system"
   system "yes | #{gem_cmd} update"
   system "yes | #{gem_cmd} cleanup"
 end
