@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 require 'parallel'
 
-Parallel.map(Dir.glob('*/*/*').shuffle) do |dir|
+Parallel.map(Dir.glob('*/*/*').shuffle, in_processes: 2) do |dir|
   next if dir =~ /^www\.github\.com/
   next unless File.directory?(dir + '/.git')
 
