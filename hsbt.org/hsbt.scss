@@ -10,27 +10,45 @@ Comment: Pukiwiki based theme.
 Copyright 2010 (C) SHIBATA Hiroshi <shibata.hiroshi@gmail.com>
 */
 
-div.diary {
-  margin: 0px auto;
-  max-width: 1024px;
-}
-
 body {
   background-color: #fff;
   color: #000;
   margin-top: 0.5em;
 }
 
-p.source {
-  margin-top: 0.3em;
-  text-align: right;
-  font-size: 0.9em;
+h1 {
+  color: #000;
+  text-align: left;
+  padding: 0.2em;
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
 }
 
-div.lwws {
-  text-align: right;
-  font-size: 0.8em;
-  margin: 0.4em;
+h2 {
+  font-size: large;
+  margin: 0.1em 1em 0.1em 0.5em;
+  border-style: solid;
+  border-color: #aaf;
+  border-width: 0 0 1px;
+
+  span {
+    &.date {
+      font-size: medium;
+      margin-right: 0.5em;
+    }
+
+    &.title {
+      font-size: medium;
+    }
+  }
+}
+
+h3 {
+  font-size: 1em;
+  margin: 0;
+  font-weight: bold;
+  color: #000;
+  padding: 0.2em;
 }
 
 a {
@@ -62,74 +80,327 @@ a {
   }
 }
 
-div.adminmenu {
-  text-align: right;
-  font-size: 0.9em;
-  margin-top: 0.2em;
-  margin-bottom: 0.2em;
-  clear: both;
+ul, ol {}
 
-  div, form, select {
-    display: inline;
+p {
+  &.referer {
+    text-align: right;
+    font-size: small;
+    color: #000;
+    padding: 2px;
+    padding-bottom: 1px;
+    margin-left: 1em;
+    margin-right: 1em;
+    border: #DEF 1px solid;
+  }
+
+  &.source {
+    margin-top: 0.3em;
+    text-align: right;
+    font-size: 0.9em;
+  }
+  &.recentitem {
+    font-size: 0.9em;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  &.footnote {
+    margin: 0.5em;
+    padding: 0;
+  }
+
+  &.strong {
+    font-size: 180%;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  &.message {
+    text-align: center;
+    font-size: large;
+    background-color: #d00;
+    color: #fff;
+    padding: 8px;
   }
 }
 
-span.adminmenu {
-  color: #000;
-  padding: 2px;
-  vertical-align: middle;
-}
-
-h1 {
-  color: #000;
-  text-align: left;
-  padding: 0.2em;
-  margin-top: 0.2em;
-  margin-bottom: 0.2em;
-}
-
-div.day {
-  color: #000;
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-}
-
-h2 {
-  font-size: large;
-  margin: 0.1em 1em 0.1em 0.5em;
+hr {
   border-style: solid;
-  border-color: #aaf;
-  border-width: 0 0 1px;
+  border-width: 2px 0 0;
+  border-color: #ddd;
 
-  span {
-    &.date {
-      font-size: medium;
+  &.sep {
+    display: none;
+  }
+}
+
+form {
+  &.comment input {
+    background-color: #eef;
+    color: #000;
+    margin-left: 1em;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+  }
+
+  &.comment textarea {
+    display: block;
+    background-color: #eef;
+    color: #000;
+    margin-left: 3em;
+    width: 30em;
+    height: 5em;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+  }
+
+  &.update div {
+    &.field.title, &.textarea {
+      display: block;
+      margin-top: 1em;
+    }
+  }
+
+  &.update {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+
+    input, textarea {
+      background-color: #eef;
+      color: #000;
+      border-radius: 4px;
+      -moz-border-radius: 4px;
+      -webkit-border-radius: 4px;
+    }
+  }
+
+  &.commentstat input {
+    background-color: #eef;
+    color: #000;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+  }
+
+  &.update {
+    span.field {
+      display: inline;
+      margin-left: 0;
       margin-right: 0.5em;
     }
 
-    &.title {
-      font-size: medium;
+    div.field.title input {
+      border-radius: 4px;
+      -moz-border-radius: 4px;
+      -webkit-border-radius: 4px;
+      margin-left: 0.5em;
+    }
+
+    textarea {
+      display: block;
+      margin-left: 3em;
+      margin-bottom: 1em;
+      width: 35em;
+      height: 15em;
+    }
+
+    span.checkbox.hidediary {
+      margin-left: 1em;
     }
   }
 }
 
-h3 {
-  font-size: 1em;
-  margin: 0;
-  font-weight: bold;
-  color: #000;
-  padding: 0.2em;
-}
+pre {
+  white-space: -moz-pre-wrap;
 
-div.section p {
+  /* Mozilla */
+  white-space: -pre-wrap;
+
+  /* Opera 4-6 */
+  white-space: -o-pre-wrap;
+
+  /* Opera 7 */
+  white-space: pre-wrap;
+
+  /* CSS3 */
+  word-wrap: break-word;
+
+  /* IE 5.5+ */
+  padding: 0.5em;
   margin-left: 1em;
-  margin-right: 1em;
-  line-height: 1.3;
+  margin-right: 2em;
+  background-color: #F8F8F8;
+  color: #000;
+  border: 1px solid #CCC;
+  border-radius: 3px;
 }
 
-ul, ol {}
+img {
+  &.flickr {
+    border: #BCD 1px dashed;
+    display: block;
+    float: none;
+    margin: 0px auto;
+    margin-bottom: 10px;
+  }
+
+  &.amazon {
+    float: right;
+    margin: 0.5em;
+    clear: both;
+  }
+}
+
+.hide {
+  background-color: #000;
+}
+
+span {
+  &.nyear {
+    font-size: small;
+  }
+
+  &.url {
+    font-size: 80%;
+    color: silver;
+  }
+
+  &.commentator, &.todo-priority {
+    font-weight: bold;
+  }
+
+  &.amazon-detail {
+    border: none;
+  }
+
+  &.adminmenu {
+    color: #000;
+    padding: 2px;
+    vertical-align: middle;
+  }
+}
 
 div {
+  &.recentsubtitles {
+    font-size: 0.9em;
+    margin-top: 0;
+    margin-bottom: 1em;
+    margin-left: 1em;
+  }
+
+  &.body span.footnote {
+    vertical-align: super;
+    font-size: 0.7em;
+  }
+
+  &.footnote {
+    font-size: 0.9em;
+    border-style: solid;
+    border-color: #ddf;
+    border-width: 1px 0 0;
+    padding: 0;
+    margin-left: 6em;
+  }
+
+  &.main {
+    width: 79%;
+    float: left;
+  }
+
+  &.body {
+    blockquote {
+      border: #ddf 2px solid;
+      margin-left: 2em;
+      margin-right: 2em;
+      padding: 2px;
+
+      p {
+        margin: 0.5em 1em 0.5em 1em;
+      }
+    }
+
+    ul, ol {
+      margin-top: 0.2em;
+      margin-bottom: 0.2em;
+      margin-left: 1em;
+      margin-right: 1em;
+    }
+
+    dl {
+      margin-left: 2em;
+    }
+
+    dt {
+      margin-bottom: 0.2em;
+      font-weight: bold;
+    }
+
+    dd {
+      margin: 0 3em 0.5em 1em;
+    }
+  }
+
+  &.sidebar {
+    color: #000;
+    float: right;
+    width: 20%;
+    font-size: 90%;
+
+    form {
+      text-align: center;
+      border-radius: 4px;
+      -moz-border-radius: 4px;
+      -webkit-border-radius: 4px;
+    }
+
+    p {
+      margin: 2px 4px;
+    }
+
+    ul.tagcloud {
+      margin-left: 0;
+      padding-left: 0.5em;
+    }
+  }
+
+  &.contents {
+    background-color: #F0F8FF;
+    border: #aaf 1px solid;
+    text-align: left;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    padding: 5px;
+    border-radius: 8px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+  }
+
+  &.strong {
+    background-color: #F0F8FF;
+    margin: 2px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  &.comment form, &.todo {
+    margin-top: 0;
+  }
+
+  &.body-enter {
+    text-align: right;
+    font-size: 80%;
+  }
+
+  &.day div.tags {
+    text-align: right;
+    vertical-align: bottom;
+    font-size: 80%;
+    clear: both;
+  }
+
   &.caption {
     font-size: 0.9em;
     margin: 0.5em;
@@ -181,20 +452,45 @@ div {
     margin: 0.5em;
     margin-left: 2em;
   }
-}
 
-p.referer {
-  text-align: right;
-  font-size: small;
-  color: #000;
-  padding: 2px;
-  padding-bottom: 1px;
-  margin-left: 1em;
-  margin-right: 1em;
-  border: #DEF 1px solid;
-}
+  &.section p {
+    margin-left: 1em;
+    margin-right: 1em;
+    line-height: 1.3;
+  }
 
-div {
+  &.lwws {
+    text-align: right;
+    font-size: 0.8em;
+    margin: 0.4em;
+  }
+
+  &.adminmenu {
+    text-align: right;
+    font-size: 0.9em;
+    margin-top: 0.2em;
+    margin-bottom: 0.2em;
+    clear: both;
+
+    div, form, select {
+      display: inline;
+    }
+  }
+
+  &.day {
+    color: #000;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+
+  &.textarea {
+    display: block;
+    vertical-align: top;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+  }
+
   &.form {
     background-color: #fff;
     color: #000;
@@ -213,38 +509,7 @@ div {
     display: inline;
     margin-right: 2em;
   }
-}
 
-form.comment input {
-  background-color: #eef;
-  color: #000;
-  margin-left: 1em;
-  border-radius: 4px;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-}
-
-div.textarea {
-  display: block;
-  vertical-align: top;
-  border-radius: 4px;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-}
-
-form.comment textarea {
-  display: block;
-  background-color: #eef;
-  color: #000;
-  margin-left: 3em;
-  width: 30em;
-  height: 5em;
-  border-radius: 4px;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-}
-
-div {
   &.button {
     display: block;
     margin-left: 3em;
@@ -277,293 +542,19 @@ div {
       line-height: 1.2em;
     }
   }
-}
 
-hr {
-  border-style: solid;
-  border-width: 2px 0 0;
-  border-color: #ddd;
-
-  &.sep {
-    display: none;
-  }
-}
-
-div.footer {
-  font-size: 0.9em;
-  text-align: center;
-  margin-top: 0em;
-  clear: both;
-}
-
-form {
-  &.update {
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
-
-    input, textarea {
-      background-color: #eef;
-      color: #000;
-      border-radius: 4px;
-      -moz-border-radius: 4px;
-      -webkit-border-radius: 4px;
-    }
-  }
-
-  &.commentstat input {
-    background-color: #eef;
-    color: #000;
-    border-radius: 4px;
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
-  }
-
-  &.update {
-    span.field {
-      display: inline;
-      margin-left: 0;
-      margin-right: 0.5em;
-    }
-
-    div.field.title input {
-      border-radius: 4px;
-      -moz-border-radius: 4px;
-      -webkit-border-radius: 4px;
-      margin-left: 0.5em;
-    }
-
-    textarea {
-      display: block;
-      margin-left: 3em;
-      margin-bottom: 1em;
-      width: 35em;
-      height: 15em;
-    }
-
-    span.checkbox.hidediary {
-      margin-left: 1em;
-    }
-  }
-}
-
-p.message {
-  text-align: center;
-  font-size: large;
-  background-color: #d00;
-  color: #fff;
-  padding: 8px;
-}
-
-pre {
-  white-space: -moz-pre-wrap;
-
-  /* Mozilla */
-  white-space: -pre-wrap;
-
-  /* Opera 4-6 */
-  white-space: -o-pre-wrap;
-
-  /* Opera 7 */
-  white-space: pre-wrap;
-
-  /* CSS3 */
-  word-wrap: break-word;
-
-  /* IE 5.5+ */
-  padding: 0.5em;
-  margin-left: 1em;
-  margin-right: 2em;
-  background-color: #F8F8F8;
-  color: #000;
-  border: 1px solid #CCC;
-  border-radius: 3px;
-}
-
-div.body {
-  blockquote {
-    border: #ddf 2px solid;
-    margin-left: 2em;
-    margin-right: 2em;
-    padding: 2px;
-
-    p {
-      margin: 0.5em 1em 0.5em 1em;
-    }
-  }
-
-  ul, ol {
-    margin-top: 0.2em;
-    margin-bottom: 0.2em;
-    margin-left: 1em;
-    margin-right: 1em;
-  }
-
-  dl {
-    margin-left: 2em;
-  }
-
-  dt {
-    margin-bottom: 0.2em;
-    font-weight: bold;
-  }
-
-  dd {
-    margin: 0 3em 0.5em 1em;
-  }
-}
-
-p.recentitem {
-  font-size: 0.9em;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-div {
-  &.recentsubtitles {
+  &.footer {
     font-size: 0.9em;
-    margin-top: 0;
-    margin-bottom: 1em;
-    margin-left: 1em;
-  }
-
-  &.body span.footnote {
-    vertical-align: super;
-    font-size: 0.7em;
-  }
-
-  &.footnote {
-    font-size: 0.9em;
-    border-style: solid;
-    border-color: #ddf;
-    border-width: 1px 0 0;
-    padding: 0;
-    margin-left: 6em;
-  }
-}
-
-p.footnote {
-  margin: 0.5em;
-  padding: 0;
-}
-
-img.flickr {
-  border: #BCD 1px dashed;
-  display: block;
-  float: none;
-  margin: 0px auto;
-  margin-bottom: 10px;
-}
-
-div.main {
-  width: 79%;
-  float: left;
-}
-
-span.nyear {
-  font-size: small;
-}
-
-p.strong {
-  font-size: 180%;
-  font-weight: bold;
-  text-align: center;
-}
-
-div {
-  &.sidebar {
-    color: #000;
-    float: right;
-    width: 20%;
-    font-size: 90%;
-
-    form {
-      text-align: center;
-      border-radius: 4px;
-      -moz-border-radius: 4px;
-      -webkit-border-radius: 4px;
-    }
-
-    p {
-      margin: 2px 4px;
-    }
-
-    ul.tagcloud {
-      margin-left: 0;
-      padding-left: 0.5em;
-    }
-  }
-
-  &.contents {
-    background-color: #F0F8FF;
-    border: #aaf 1px solid;
-    text-align: left;
-    margin-top: 8px;
-    margin-bottom: 8px;
-    padding: 5px;
-    border-radius: 8px;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
-  }
-
-  &.strong {
-    background-color: #F0F8FF;
-    margin: 2px;
-    font-weight: bold;
     text-align: center;
-  }
-}
-
-.hide {
-  background-color: #000;
-}
-
-span {
-  &.url {
-    font-size: 80%;
-    color: silver;
-  }
-
-  &.commentator, &.todo-priority {
-    font-weight: bold;
-  }
-}
-
-form.update div {
-  &.field.title, &.textarea {
-    display: block;
-    margin-top: 1em;
-  }
-}
-
-div {
-  &.comment form, &.todo {
-    margin-top: 0;
-  }
-
-  &.body-enter {
-    text-align: right;
-    font-size: 80%;
-  }
-
-  &.day div.tags {
-    text-align: right;
-    vertical-align: bottom;
-    font-size: 80%;
+    margin-top: 0em;
     clear: both;
   }
-}
 
-img.amazon {
-  float: right;
-  margin: 0.5em;
-  clear: both;
-}
+  &.diary {
+    margin: 0px auto;
+    max-width: 1024px;
+  }
 
-span.amazon-detail {
-  border: none;
-}
-
-div {
   &.profile {
     border: none;
     margin: 1em;
