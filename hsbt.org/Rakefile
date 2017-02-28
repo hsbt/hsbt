@@ -4,11 +4,15 @@ task :generate do
   header = File.read('header.html')
   body = Kramdown::Document.new(File.read('index.md')).to_html
   footer = File.read('footer.html')
-
   File.open('index.html', 'w') do |f|
     [header, body, footer].each {|s| f.puts s}
   end
-  `sassc hsbt.scss > hsbt.css`
+
+  require 'sassc'
+  sass = File.read('hsbt.scss')
+  File.open('hsbt.css', 'w') do |f|
+    f.puts SassC::Engine.new(sass, style: :compressed).render
+  end
 end
 
 desc 'deploy index.html'
