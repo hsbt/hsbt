@@ -78,6 +78,7 @@ Ruby コミッタ、ruby, rubygems, rake, rdoc, ruby-build, psych, syck, tDiary,
 
 * 2016年09月 RubyKaigi 2016 [How DSL works on Ruby](http://www.slideshare.net/hsbt/how-dsl-works-on-ruby)
 * 2016年08月 Consul Casual Talks [Consul in Production](https://speakerdeck.com/hsbt/consul-in-production)
+* 2016年07月 [やってみよう！TQC](https://speakerdeck.com/hsbt/yatutemiyou-tqc)
 * 2016年04月 [High Performance tDiary](http://www.slideshare.net/hsbt/high-performance-tdiary)
 * 2016年02月 nginx tech talk [Practical ngx\_mruby](http://www.slideshare.net/hsbt/practical-ngxmruby)
 * 2015年12月 RubyKaigi 2015 [Practical Testing of Ruby Core](http://www.slideshare.net/hsbt/practical-testing-of-ruby-core)
