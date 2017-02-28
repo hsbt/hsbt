@@ -43,6 +43,7 @@ Ruby コミッタ、ruby, rubygems, rake, rdoc, ruby-build, psych, syck, tDiary,
 
 ## 表彰
 
+* 2015年04月 GMO グループアワード 2014 最優秀個人賞 エンジニア部門
 * 2014年11月 RubyPrize 2014 [Ruby win My Life](https://speakerdeck.com/hsbt/ruby-win-my-life)
 * 2013年11月 RubyPrize 2013 Final Nominees
 * 2013年05月 RubyKaja 2013 [Introduction of Asakusa.rb](https://speakerdeck.com/hsbt/introduction-of-asakusa-dot-rb)
