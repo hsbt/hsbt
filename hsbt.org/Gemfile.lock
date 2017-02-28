@@ -42,6 +42,11 @@ GEM
       systemu
       term-ansicolor
       uuid
+    sass (3.4.23)
+    sassc (1.11.2)
+      bundler
+      ffi (~> 1.9.6)
+      sass (>= 3.3.0)
     systemu (2.6.5)
     term-ansicolor (1.4.0)
       tins (~> 1.0)
@@ -61,6 +66,7 @@ DEPENDENCIES
   rbnacl (< 4.0)
   rbnacl-libsodium
   roadworker
+  sassc
 
 BUNDLED WITH
    1.14.5
