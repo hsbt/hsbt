@@ -1,4 +1,4 @@
 Lint/AssignmentInCondition:
   Enabled: false
-Lint/Eval:
+Security/Eval:
   Enabled: false
