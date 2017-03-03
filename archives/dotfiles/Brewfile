@@ -1,12 +1,7 @@
 tap 'Homebrew/science'
+tap 'Homebrew/dupes'
 
-brew 'openssl'
-brew 'readline'
-brew 'gmp'
-brew 'gdbm'
-brew 'autoconf'
-brew 'imagemagick'
-
+# dev env
 brew 'tmux'
 brew 'coreutils'
 brew 'findutils'
@@ -15,22 +10,41 @@ brew 'gnu-tar'
 brew 'gawk'
 brew 'pstree'
 brew 'aria2'
-brew 'cmake'
 brew 'peco'
+brew 'ghq'
 brew 'hub'
-
 brew 'git'
+brew 'git-lfs'
 brew 'git-extras'
+brew 'git-secrets'
 brew 'gnupg2'
+brew 'maven'
+brew 'cmake'
 
+# language
 brew 'node'
 brew 'yarn'
 brew 'perl'
 brew 'go'
+brew 'glide'
 brew 'rust'
 brew 'elixir'
 brew 'crystal-lang'
 brew 'r'
 
+# dev for application
+brew 'imagemagick@6'
 brew 'groonga'
 brew 'mysql'
+brew 'redis'
+
+# for ruby
+brew 'autoconf'
+brew 'openssl'
+brew 'readline'
+brew 'gmp'
+brew 'gdbm'
+
+# for php
+brew 'mcrypt'
+brew 'libxml2'
