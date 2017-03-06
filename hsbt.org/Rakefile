@@ -1,16 +1,16 @@
 desc 'generate index.html'
 task :generate do
   require 'kramdown'
-  header = File.read('header.html')
-  body = Kramdown::Document.new(File.read('index.md')).to_html
-  footer = File.read('footer.html')
-  File.open('index.html', 'w') do |f|
+  header = File.read('src/header.html')
+  body = Kramdown::Document.new(File.read('src/index.md')).to_html
+  footer = File.read('src/footer.html')
+  File.open('dist/index.html', 'w') do |f|
     [header, body, footer].each {|s| f.puts s}
   end
 
   require 'sassc'
-  sass = File.read('hsbt.scss')
-  File.open('hsbt.css', 'w') do |f|
+  sass = File.read('src/hsbt.scss')
+  File.open('dist/hsbt.css', 'w') do |f|
     f.puts SassC::Engine.new(sass, style: :compressed).render
   end
 end
@@ -18,6 +18,6 @@ end
 desc 'deploy index.html'
 task :deploy => [:generate] do
   require 'net/scp'
-  Net::SCP.upload!('www.hsbt.org', 'hsbt', "index.html", "/var/www/hsbt.org/index.html")
-  Net::SCP.upload!('www.hsbt.org', 'hsbt', "hsbt.css", "/var/www/hsbt.org/stylesheets/hsbt.css")
+  Net::SCP.upload!('www.hsbt.org', 'hsbt', "dist/index.html", "/var/www/hsbt.org/index.html")
+  Net::SCP.upload!('www.hsbt.org', 'hsbt', "dist/hsbt.css", "/var/www/hsbt.org/stylesheets/hsbt.css")
 end
