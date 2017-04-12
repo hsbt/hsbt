@@ -20,6 +20,7 @@ brew 'git-secrets'
 brew 'gnupg2'
 brew 'maven'
 brew 'cmake'
+brew 'jq'
 
 # language
 brew 'node'
