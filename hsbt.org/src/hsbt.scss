@@ -239,7 +239,7 @@ pre {
 }
 
 img {
-  &.flickr {
+  &.flickr, &.google {
     border: #BCD 1px dashed;
     display: block;
     float: none;
