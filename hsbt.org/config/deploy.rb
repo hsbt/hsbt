@@ -12,7 +12,7 @@ set :branch, 'master'
 set :rbenv_path, "/home/#{fetch(:user)}/.anyenv/envs/rbenv"
 
 set :bundle_bin, "#{fetch(:rbenv_path)}/shims/bundle"
-set :bundle_withouts, "deveploment test server"
+set :bundle_withouts, "development test server"
 set :bundle_options, -> { %{--without #{fetch(:bundle_withouts)}} }
 
 task :environment do
