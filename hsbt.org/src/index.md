@@ -18,7 +18,8 @@ SHIBATA Hiroshi (aka hsbt）
 
 ## Job
 
-Chief engineer at GMO Pepabo, Inc.
+* Executive Officer CPO(Chief Productivity Officer)
+* Director of Business Process Re-engineering Office
 
 ## Work
 
@@ -58,11 +59,15 @@ Ruby コミッタ、ruby, rubygems, rake, rdoc, ruby-build, psych, syck, tDiary,
 * 2012年10月 WEB+DB PRESS Vol.71 特集3 はじめてのHeroku 柴田 博志,相澤 歩 著 技術評論社
 * 2011年02月 WEB+DB PRESS Vol.61 特集2 Rails 3テスト最前線 浦嶌 啓太,高橋 健一,柴田 博志 著 技術評論社
 
-## 講演・発表(海外)
+## 講演・発表(国際カンファレンス)
 
+* 2017年09月 RubyKaigi 2017 [Gemification for Ruby 2\.5/3\.0](https://www.slideshare.net/hsbt/gemification-for-ruby-2530)
+* 2017年05月 CodeEurope 2017 [The secret of programming language development and future](https://www.slideshare.net/hsbt/the-secret-of-programming-language-development-and-future)
 * 2016年09月 Euruko 2016 [How to Begin to Develop Ruby Core](http://www.slideshare.net/hsbt/how-to-begin-to-develop-ruby-core)
+* 2016年09月 RubyKaigi 2016 [How DSL works on Ruby](http://www.slideshare.net/hsbt/how-dsl-works-on-ruby)
 * 2016年06月 RedDotRubyConf 2016 [How to Begin Developing Ruby Core](http://www.slideshare.net/hsbt/how-to-begin-developing-ruby-core)
 * 2016年05月 RailsPacific 2016 [Large\-scaled Deploy Over 100 Servers in 3 Minutes](http://www.slideshare.net/hsbt/largescaled-deploy-over-100-servers-in-3-minutes)
+* 2015年12月 RubyKaigi 2015 [Practical Testing of Ruby Core](http://www.slideshare.net/hsbt/practical-testing-of-ruby-core)
 * 2015年09月 RubyConf Taiwan 2015 [Middleware as Code with mruby](http://www.slideshare.net/hsbt/middleware-as-code-with-mruby-52663708)
 * 2015年06月 RedDotRubyConf 2015 [Middleware as Code with mruby](http://www.slideshare.net/hsbt/middleware-as-code-with-mruby)
 * 2014年09月 RailsPacific [Crafting Rails Culture](https://speakerdeck.com/hsbt/crafting-rails-culture)
@@ -75,14 +80,16 @@ Ruby コミッタ、ruby, rubygems, rake, rdoc, ruby-build, psych, syck, tDiary,
 * 2012年12月 RubyConf Taiwan 2012 [How to discover the Ruby's defects with web application](https://speakerdeck.com/hsbt/how-to-discover-the-rubys-defects-with-web-application)
 * 2012年11月 RubyConf 2012 [tDiary in a nutshell(rubyconf lightning tallks versions)](https://speakerdeck.com/hsbt/tdiary-in-a-nutshell-rubyconf-lightning-tallks-versions)
 
-## 講演・発表(国内)
+## 講演・発表
 
-* 2016年09月 RubyKaigi 2016 [How DSL works on Ruby](http://www.slideshare.net/hsbt/how-dsl-works-on-ruby)
+* 2017年09月 社内テックミーティング [カンファレンス発表の技術](https://speakerdeck.com/hsbt/kanhuarensufa-biao-falseji-shu)
+* 2017年08月 builderscon 2017 [How to take over OSS project](https://speakerdeck.com/hsbt/how-to-take-over-oss-project)
+* 2017年07月 YAPC::Fukuoka 2017 [Productive Development Organization](https://speakerdeck.com/hsbt/productive-development-organization)
+* 2017年06月 GitHub Constellation Tokyo [GitHub Enterprise で 仕事をもっとおもしろくできる](https://speakerdeck.com/hsbt/github-enterprise-de-shi-shi-womotutoomosirokudekiru)
 * 2016年08月 Consul Casual Talks [Consul in Production](https://speakerdeck.com/hsbt/consul-in-production)
 * 2016年07月 [やってみよう！TQC](https://speakerdeck.com/hsbt/yatutemiyou-tqc)
 * 2016年04月 [High Performance tDiary](http://www.slideshare.net/hsbt/high-performance-tdiary)
 * 2016年02月 nginx tech talk [Practical ngx\_mruby](http://www.slideshare.net/hsbt/practical-ngxmruby)
-* 2015年12月 RubyKaigi 2015 [Practical Testing of Ruby Core](http://www.slideshare.net/hsbt/practical-testing-of-ruby-core)
 * 2015年11月 OedoRubyKaigi05 [mruby で mackerel のプラグインを作るはなし](http://www.slideshare.net/hsbt/mruby-mackerel)
 * 2015年10月 [成長を加速する minne の技術基盤戦略](http://www.slideshare.net/hsbt/minne-54244702)
 * 2015年09月 [GitHub Enterprise with GMO Pepabo](http://www.slideshare.net/hsbt/github-enterprise-with-gmo-pepabo)
