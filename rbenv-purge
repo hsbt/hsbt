@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+devs = %w(
+  1.9.3-p551
+  2.0.0-p648
+  2.1.10
+  2.2.9
+  2.3.6
+  2.4.3
+  2.5.0-dev
+)
+
+devs.each do |dev|
+  system "rbenv uninstall -f #{dev} && rbenv install -f #{dev}"
+end
+
+system "rbenv global #{devs.last} && rbenv shell --unset"
