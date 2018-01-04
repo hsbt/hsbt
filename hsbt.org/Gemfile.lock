@@ -1,13 +1,13 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    aws-sdk (2.10.109)
-      aws-sdk-resources (= 2.10.109)
-    aws-sdk-core (2.10.109)
+    aws-sdk (2.10.111)
+      aws-sdk-resources (= 2.10.111)
+    aws-sdk-core (2.10.111)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.10.109)
-      aws-sdk-core (= 2.10.109)
+    aws-sdk-resources (2.10.111)
+      aws-sdk-core (= 2.10.111)
     aws-sigv4 (1.0.2)
     bcrypt_pbkdf (1.0.0)
     diffy (3.2.0)
