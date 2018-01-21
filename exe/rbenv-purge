@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+system "rbenv global system"
+
 devs = %w(
   1.9.3-p551
   2.0.0-p648
@@ -7,7 +9,8 @@ devs = %w(
   2.2.9
   2.3.6
   2.4.3
-  2.5.0-dev
+  2.5.0
+  2.6.0-dev
 )
 
 devs.each do |dev|
