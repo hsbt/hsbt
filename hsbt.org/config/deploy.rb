@@ -9,7 +9,7 @@ set :deploy_to, "/home/#{fetch(:user)}/app/tdiary"
 set :repository, 'git://github.com/tdiary/tdiary-core.git'
 set :branch, 'master'
 
-set :rbenv_path, "/home/#{fetch(:user)}/.anyenv/envs/rbenv"
+set :rbenv_path, "/home/#{fetch(:user)}/.rbenv"
 
 set :bundle_bin, "#{fetch(:rbenv_path)}/shims/bundle"
 set :bundle_withouts, "development test server"
