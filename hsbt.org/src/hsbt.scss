@@ -488,7 +488,8 @@ div {
 
   &.textarea {
     display: block;
-    vertical-align: top;
+    max-width: 600px;
+    width: 80%;
     border-radius: 4px;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
