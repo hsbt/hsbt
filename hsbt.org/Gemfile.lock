@@ -33,7 +33,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
-    rbnacl (3.4.0)
+    rbnacl (5.0.0)
       ffi
     rbnacl-libsodium (1.0.16)
       rbnacl (>= 3.0.1)
@@ -70,7 +70,7 @@ DEPENDENCIES
   mina
   net-scp
   rake
-  rbnacl (< 4.0)
+  rbnacl (< 6.0)
   rbnacl-libsodium
   roadworker (~> 0.5.9.beta4)
   sassc
