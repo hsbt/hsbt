@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 gem 'mina'
 gem 'rake'
-gem 'roadworker', '~> 0.5.9.beta4'
+gem 'roadworker', '~> 0.5.9.beta7'
 gem 'kramdown'
 gem 'sassc'
 gem 'net-scp'
