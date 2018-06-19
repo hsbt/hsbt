@@ -2,16 +2,12 @@
 
 system "rbenv global system"
 
-devs = %w(
-  2.2.10
-  2.3.7
-  2.4.4
-  2.5.1
-  2.6.0-dev
-)
+devs = %x[rbenv versions].split.select{|v| v =~ /[0-9|dev]$/ }
 
 devs.each do |dev|
   system "rbenv uninstall -f #{dev} && rbenv install -f #{dev}"
 end
 
-system "rbenv global #{devs.last} && rbenv shell --unset"
+dev = devs.find{|v| v =~ /dev/ }
+
+system "rbenv global #{dev} && rbenv shell --unset"
