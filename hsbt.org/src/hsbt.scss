@@ -218,23 +218,11 @@ pre {
   /* Mozilla */
   white-space: -pre-wrap;
 
-  /* Opera 4-6 */
-  white-space: -o-pre-wrap;
-
   /* Opera 7 */
   white-space: pre-wrap;
 
   /* CSS3 */
   word-wrap: break-word;
-
-  /* IE 5.5+ */
-  padding: 0.5em;
-  margin-left: 1em;
-  margin-right: 2em;
-  background-color: #F8F8F8;
-  color: #000;
-  border: 1px solid #CCC;
-  border-radius: 3px;
 }
 
 img {
