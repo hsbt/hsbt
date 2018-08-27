@@ -274,6 +274,13 @@ span {
 }
 
 div {
+  &.slideshare {
+    display: block;
+    float: none;
+    margin: 0px auto;
+    width: 60%;
+  }
+
   &.recentsubtitles {
     font-size: 0.9em;
     margin-top: 0;
