@@ -25,7 +25,7 @@ task :deploy do
     invoke :'deploy:cleanup'
 
     on :launch do
-      command "echo \"gem 'tdiary-style-gfm', '>= 1.1.0'; gem 'oga'\" > #{fetch(:current_path)}/Gemfile.local"
+      command "echo \"gem 'tdiary-style-gfm', '>= 1.2.0'; gem 'oga'\" > #{fetch(:current_path)}/Gemfile.local"
       command "cp -r #{fetch(:shared_path)}/lib/* #{fetch(:current_path)}/misc/lib"
       command "cp -r #{fetch(:shared_path)}/js/* #{fetch(:current_path)}/js"
       command "ln -s /home/hsbt/www/tdiary.conf #{fetch(:current_path)}/tdiary.conf"
