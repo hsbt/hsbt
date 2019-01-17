@@ -28,8 +28,9 @@ alias tar="gtar"
 
 alias any='anyenv'
 alias rb='rbenv'
-alias py='pyenv'
 alias ph='phpenv'
+
+alias ar2="aria2c --load-cookies='/Users/hsbt/Library/Application Support/Firefox/Profiles/nxb7th9b.default/cookies.sqlite'"
 
 # homebrew development
 prs(){(brew ruby -e "formula=Formula[\"$1\"] ; GitHub.issues_for_formula(formula.name, :tap => formula.tap).each { |i| puts i[\"$2\"] }")}
