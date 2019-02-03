@@ -1,4 +1,4 @@
-require 'exifr'
+require 'exif'
 require 'time'
 require 'fileutils'
 require 'pathname'
