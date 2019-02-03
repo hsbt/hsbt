@@ -10,4 +10,4 @@ end
 
 dev = devs.find{|v| v =~ /dev/ }
 
-system "rbenv global #{dev} && rbenv shell --unset"
+system "rbenv global #{dev}"
