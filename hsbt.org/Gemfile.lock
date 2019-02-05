@@ -34,7 +34,7 @@ GEM
     open4 (1.3.4)
     public_suffix (3.0.3)
     rake (12.3.2)
-    rbnacl (6.0.0)
+    rbnacl (6.0.1)
       ffi
     rbnacl-libsodium (1.0.16)
       rbnacl (>= 3.0.1)
