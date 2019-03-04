@@ -19,7 +19,7 @@ GEM
     dnsruby (1.61.2)
       addressable (~> 2.5)
     ed25519 (1.2.4)
-    ffi (1.9.25)
+    ffi (1.10.0)
     hashie (3.6.0)
     jmespath (1.4.0)
     kramdown (2.1.0)
@@ -46,8 +46,8 @@ GEM
       systemu
       term-ansicolor
       uuid
-    sassc (2.0.0)
-      ffi (~> 1.9.6)
+    sassc (2.0.1)
+      ffi (~> 1.9)
       rake
     systemu (2.6.5)
     term-ansicolor (1.7.0)
