@@ -64,6 +64,9 @@ Ruby コミッタ、ruby, rubygems, bundler, rake, rdoc, rbenv, ruby-build, psyc
 
 ## 講演・発表(国際カンファレンス)
 
+* 2018年11月 RubyWorld Conference 2018 [Productive Organization with Ruby](https://speakerdeck.com/hsbt/productive-organization-with-ruby)
+* 2018年10月 RubyConf.my 2018 [Gems on Ruby](https://www.slideshare.net/hsbt/gems-on-ruby-120665092)
+* 2018年06月 Paris.rb Conf 2018 [RubyGems 3 & 4](https://www.slideshare.net/hsbt/rubygems-3-4-103593355)
 * 2018年06月 RubyKaigi 2018 [RubyGems 3 & 4](https://www.slideshare.net/hsbt/rubygems-3-4)
 * 2018年04月 RubyElixirConf Taiwan 2018 [How to distribute Ruby to the world](https://www.slideshare.net/hsbt/how-to-distribute-ruby-to-the-world-95183374)
 * 2018年03月 RubyConf Philippines 2018 [How to distribute Ruby to the world](https://www.slideshare.net/hsbt/how-to-distribute-ruby-to-the-world)
@@ -89,6 +92,7 @@ Ruby コミッタ、ruby, rubygems, bundler, rake, rdoc, rbenv, ruby-build, psyc
 
 ## 講演・発表
 
+* 2018年08月 LLEvent 2018 [Gems on Ruby](https://www.slideshare.net/hsbt/gems-on-ruby-111597452)
 * 2017年10月 社内バックオフィス読書会 [人工知能は人間を超えるか 読書会](https://speakerdeck.com/hsbt/ren-gong-zhi-neng-haren-jian-wochao-eruka-du-shu-hui)
 * 2017年09月 社内テックミーティング [カンファレンス発表の技術](https://speakerdeck.com/hsbt/kanhuarensufa-biao-falseji-shu)
 * 2017年08月 builderscon 2017 [How to take over OSS project](https://speakerdeck.com/hsbt/how-to-take-over-oss-project)
