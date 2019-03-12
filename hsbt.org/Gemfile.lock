@@ -3,8 +3,8 @@ GEM
   specs:
     addressable (2.6.0)
       public_suffix (>= 2.0.2, < 4.0)
-    aws-eventstream (1.0.1)
-    aws-partitions (1.141.0)
+    aws-eventstream (1.0.2)
+    aws-partitions (1.144.0)
     aws-sdk-core (3.46.2)
       aws-eventstream (~> 1.0)
       aws-partitions (~> 1.0)
@@ -38,7 +38,7 @@ GEM
       ffi
     rbnacl-libsodium (1.0.16)
       rbnacl (>= 3.0.1)
-    roadworker (0.5.9)
+    roadworker (0.5.10)
       aws-sdk-route53 (>= 1.13.0)
       diffy
       dnsruby
@@ -68,7 +68,7 @@ DEPENDENCIES
   rake
   rbnacl (< 7.0)
   rbnacl-libsodium
-  roadworker (~> 0.5.9)
+  roadworker (~> 0.5.10)
   sassc
 
 BUNDLED WITH
