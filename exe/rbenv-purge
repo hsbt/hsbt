@@ -1,13 +1,20 @@
 #!/usr/bin/env ruby
 
+defs = `rbenv install --list`.split.select{|v| v =~ /[0-9]/ }
+versions = %w[2.3 2.4 2.5 2.6 2.7]
+
 system "rbenv global system"
 
-devs = %x[rbenv versions].split.select{|v| v =~ /[0-9|dev]$/ }
-
-devs.each do |dev|
-  system "rbenv uninstall -f #{dev} && rbenv install -f #{dev}"
+versions.each do |v|
+  system "rbenv uninstall -f #{v}.0-dev && rbenv install -f #{v}.0-dev"
+  Dir.chdir(ENV["HOME"] + "/.rbenv/versions") do
+    File.unlink v if File.exists?(v)
+    File.symlink(v + ".0-dev", v)
+    defs.select{|d| d =~ /^#{v}.\d+$/}.each do |stable|
+      File.unlink stable if File.exists?(stable)
+      File.symlink(v + ".0-dev", stable)
+    end
+  end
 end
 
-dev = devs.find{|v| v =~ /dev/ }
-
-system "rbenv global #{dev}"
+system "rbenv global #{versions.last}.0-dev"
