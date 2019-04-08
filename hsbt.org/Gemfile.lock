@@ -15,7 +15,7 @@ GEM
       aws-sigv4 (~> 1.1)
     aws-sigv4 (1.1.0)
       aws-eventstream (~> 1.0, >= 1.0.2)
-    bcrypt_pbkdf (1.0.0)
+    bcrypt_pbkdf (1.0.1)
     diffy (3.3.0)
     dnsruby (1.61.2)
       addressable (~> 2.5)
