@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 defs = `rbenv install --list`.split.select{|v| v =~ /[0-9]/ }
-versions = %w[2.3 2.4 2.5 2.6 2.7]
+versions = %w[2.4 2.5 2.6 2.7]
 
 system "rbenv global system"
 
@@ -18,3 +18,8 @@ versions.each do |v|
 end
 
 system "rbenv global #{versions.last}.0-dev"
+
+%w[jruby-9.2.6.0 truffleruby-1.0.0-rc15].each do |v|
+  system "rbenv uninstall -f #{v}"
+  system "rbenv install #{v}"
+end
