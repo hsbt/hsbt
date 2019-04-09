@@ -1,5 +1,6 @@
 cask_args appdir: "/Applications"
 
+brew "tmux"
 brew "fish"
 brew "fzf"
 brew "git"
@@ -37,7 +38,7 @@ brew "xdelta"
 brew "terraform"
 brew "wget"
 brew "unrar"
-
+brew "llvm"
 brew "postgresql"
 brew "mysql"
 brew "pkg-config"
@@ -45,6 +46,8 @@ brew "imagemagick@6"
 brew "vips"
 brew "re2"
 brew "libidn"
+brew "icu4c"
+brew "protobuf"
 
 tap "homebrew/cask"
 cask "google-cloud-sdk"
@@ -57,3 +60,9 @@ brew "heroku"
 
 tap "fujiwara/tap"
 brew "aswrap"
+
+tap "buildpack/tap"
+brew "pack"
+
+tap "shopify/shopify"
+brew "toxiproxy"
