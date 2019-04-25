@@ -18,8 +18,7 @@ SHIBATA Hiroshi (aka hsbt）
 
 ## Job Title
 
-* Executive Officer CPO(Chief Productivity Officer)
-* Director of Business Process Re-engineering Office
+* Executive Officer VP of Engineering
 * Director of Technical division
 
 ## Work
@@ -28,7 +27,8 @@ Ruby コミッタ、ruby, rubygems, bundler, rake, rdoc, rbenv, ruby-build, psyc
 
 ## 学歴・職歴
 
-* 2018年03月 GMOペパボ株式会社 執行役員 CPO(Chief Productivity Officer)/業務プロセス革新室 室長 兼 技術部 部長 現職
+* 2019年03月 GMOペパボ株式会社 執行役員 VP of Engineering/技術部 部長 現職
+* 2018年03月 GMOペパボ株式会社 執行役員 CPO(Chief Productivity Officer)/業務プロセス革新室 室長 兼 技術部 部長
 * 2017年03月 GMOペパボ株式会社 執行役員 CPO(Chief Productivity Officer)/業務プロセス革新室 室長
 * 2014年08月 GMOペパボ株式会社 チーフエンジニア
 * 2012年05月 GMOペパボ株式会社 入社 アドバンスドシニア
