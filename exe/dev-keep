@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+rbenv shell --unset
+
+brew upgrade
+brew cask upgrade
+
+rbenv global system
+rbenv uninstall -f 2.7.0-dev
+rbenv install 2.7.0-dev
+rbenv global 2.7.0-dev
+
+gem update
+
+~/Documents/github.com/hsbt/tools/exe/all-pristine
+rbenv shell 2.4
+~/Documents/github.com/hsbt/tools/exe/all-pristine
+rbenv shell 2.5
+~/Documents/github.com/hsbt/tools/exe/all-pristine
+rbenv shell 2.6
+~/Documents/github.com/hsbt/tools/exe/all-pristine
+
+rbenv shell --unset
+~/Documents/github.com/hsbt/tools/exe/gem-shebang
