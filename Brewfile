@@ -66,3 +66,6 @@ brew "pack"
 
 tap "shopify/shopify"
 brew "toxiproxy"
+
+tap "homebrew/cask-fonts"
+cask "font-ricty-diminished"
