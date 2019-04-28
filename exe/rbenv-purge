@@ -17,9 +17,11 @@ versions.each do |v|
   end
 end
 
-system "rbenv global #{versions.last}.0-dev"
+platforms = %w[jruby truffleruby]
 
-%w[jruby-9.2.6.0 truffleruby-1.0.0-rc15].each do |v|
-  system "rbenv uninstall -f #{v}"
-  system "rbenv install #{v}"
+platforms.each do |pf|
+  d = defs.select{|d| d =~ /#{pf}/}.sort_by{|v| v = v.gsub(/-rc/, ".").gsub(/[a-z\-]/, ""); Gem::Version.new(v)}.last
+  system "rbenv uninstall -f #{d} && rbenv install #{d}"
 end
+
+system "rbenv global #{versions.last}.0-dev"
