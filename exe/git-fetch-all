@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 require 'parallel'
 
-Dir.chdir(ENV["HOME"] + "/Documents") do
-  Parallel.map(Dir.glob('*/*/*').shuffle) do |dir|
+Dir.chdir(`ghq root`.chomp) do
+  Parallel.map(`ghq list`.split.shuffle) do |dir|
     next unless File.directory?(dir + '/.git')
-    Dir.chdir(dir) { puts dir; `git fetch --all`; `git gc --prune`}
+    Dir.chdir(dir) { puts dir; `git fetch --all`; `git gc --prune`; }#`git pull --ff-only`}
   end
 end

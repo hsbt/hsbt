@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+eval "$(rbenv init -)"
+
 rbenv shell --unset
 
 brew upgrade
@@ -12,13 +14,15 @@ rbenv global 2.7.0-dev
 
 gem update
 
-~/Documents/github.com/hsbt/tools/exe/all-pristine
 rbenv shell 2.4
 ~/Documents/github.com/hsbt/tools/exe/all-pristine
 rbenv shell 2.5
 ~/Documents/github.com/hsbt/tools/exe/all-pristine
 rbenv shell 2.6
 ~/Documents/github.com/hsbt/tools/exe/all-pristine
+rbenv shell 2.7
+~/Documents/github.com/hsbt/tools/exe/all-pristine
+
+~/Documents/github.com/hsbt/tools/exe/gem-shebang
 
 rbenv shell --unset
-~/Documents/github.com/hsbt/tools/exe/gem-shebang
