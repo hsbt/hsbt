@@ -17,6 +17,8 @@ set -x RUSTUP_HOME $XDG_DATA_HOME/rustup
 set -x CSEARCHINDEX $XDG_CACHE_HOME/csearchindex
 set -x GNUPGHOME $XDG_DATA_HOME/gnupg
 set -x GOPATH $XDG_DATA_HOME/go
+set -x AWS_SHARED_CREDENTIALS_FILE $XDG_CONFIG_HOME/aws/credentials
+set -x AWS_CONFIG_FILE $XDG_CONFIG_HOME/aws/config
 
 set -x LANG en_US.UTF-8
 set -x EDITOR vim
