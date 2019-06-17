@@ -1,8 +1,7 @@
-barnybug/docker-fish-completion
+jethrokuan/z
 jethrokuan/fzf
 decors/fish-ghq
 evanlucas/fish-kubectl-completions
 daenney/pyenv
-daenney/rbenv
-jethrokuan/z
+rbenv/fish-rbenv
 cafedomancer/fish-nodenv
