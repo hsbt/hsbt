@@ -64,6 +64,10 @@ cask "alacritty"
 tap "heroku/brew"
 brew "heroku"
 
+brew "awscli"
+tap "aws/tap"
+brew "aws-sam-cli"
+
 tap "fujiwara/tap"
 brew "aswrap"
 
