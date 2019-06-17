@@ -1,12 +1,12 @@
 #!/usr/bin/env ruby
 
-require 'rubygems/commands/pristine_command'
+require "rubygems/commands/pristine_command"
 
-gems = Gem::Specification.all.map do |spec|
+gems = Gem::Specification.all.map { |spec|
   [spec.name, spec.version] if spec.platform == RUBY_ENGINE && spec.missing_extensions?
-end.compact.uniq
+}.compact.uniq
 
-gems.each do |n,v|
+gems.each do |n, v|
   cmd = Gem::Commands::PristineCommand.new
   cmd.options[:args] = [n]
   cmd.options[:version] = v

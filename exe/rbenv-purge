@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-defs = `rbenv install --list`.split.select{|v| v =~ /[0-9]/ }
+defs = `rbenv install --list`.split.select { |v| v =~ /[0-9]/ }
 versions = %w[2.4 2.5 2.6 2.7]
 
 system "rbenv global system"
@@ -8,10 +8,10 @@ system "rbenv global system"
 versions.each do |v|
   system "rbenv uninstall -f #{v}.0-dev && rbenv install -f #{v}.0-dev"
   Dir.chdir(ENV["RBENV_ROOT"] + "/versions") do
-    File.unlink v if File.exists?(v)
+    File.unlink v if File.exist?(v)
     File.symlink(v + ".0-dev", v)
-    defs.select{|d| d =~ /^#{v}.\d+$/}.each do |stable|
-      File.unlink stable if File.exists?(stable)
+    defs.select { |d| d =~ /^#{v}.\d+$/ }.each do |stable|
+      File.unlink stable if File.exist?(stable)
       File.symlink(v + ".0-dev", stable)
     end
   end
@@ -20,7 +20,7 @@ end
 platforms = %w[jruby truffleruby]
 
 platforms.each do |pf|
-  d = defs.select{|d| d =~ /#{pf}/}.sort_by{|v| v = v.gsub(/-rc/, ".").gsub(/[a-z\-]/, ""); Gem::Version.new(v)}.last
+  d = defs.select { |d| d =~ /#{pf}/ }.max_by { |v| v = v.gsub(/-rc/, ".").gsub(/[a-z\-]/, ""); Gem::Version.new(v) }
   system "rbenv uninstall -f #{d} && rbenv install #{d}"
 end
 

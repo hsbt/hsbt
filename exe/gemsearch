@@ -3,4 +3,4 @@
 require "open3"
 r = Open3.capture3("csearch #{ARGV[0]}")
 
-puts r[0].gsub(/\/Users\/hsbt\/Documents\/github.com\/akr\/gem-codesearch\/latest-gem\//, '')
+puts r[0].gsub(/\/Users\/hsbt\/Documents\/github.com\/akr\/gem-codesearch\/latest-gem\//, "")

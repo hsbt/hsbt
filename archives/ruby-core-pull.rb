@@ -1,35 +1,35 @@
 #!/usr/bin/env ruby
 
 gems = {
-  rubygems: 'rubygems/rubygems',
+  rubygems: "rubygems/rubygems",
   # bigdecimal: 'ruby/bigdecimal',
-  cmath: 'ruby/cmath',
-  csv: 'ruby/csv',
-  date: 'ruby/date',
-  dbm: 'ruby/dbm',
-  etc: 'ruby/etc',
-  fcntl: 'ruby/fcntl',
-  fiddle: 'ruby/fiddle',
-  fileutils: 'ruby/fileutils',
-  gdbm: 'ruby/gdbm',
-  ioconsole: 'ruby/io-console',
-  ipaddr: 'ruby/ipaddr',
-  json: 'flori/json',
-  logger: 'ruby/logger',
-  matrix: 'ruby/matrix',
+  cmath: "ruby/cmath",
+  csv: "ruby/csv",
+  date: "ruby/date",
+  dbm: "ruby/dbm",
+  etc: "ruby/etc",
+  fcntl: "ruby/fcntl",
+  fiddle: "ruby/fiddle",
+  fileutils: "ruby/fileutils",
+  gdbm: "ruby/gdbm",
+  ioconsole: "ruby/io-console",
+  ipaddr: "ruby/ipaddr",
+  json: "flori/json",
+  logger: "ruby/logger",
+  matrix: "ruby/matrix",
   # openssl: 'ruby/openssl',
-  ostruct: 'ruby/ostruct',
-  prime: 'ruby/prime',
-  psych: 'ruby/psych',
-  rdoc: 'ruby/rdoc',
-  rexml: 'ruby/rexml',
-  rss: 'ruby/rss',
-  scanf: 'ruby/scanf',
-  sdbm: 'ruby/sdbm',
-  stringio: 'ruby/stringio',
-  strscan: 'ruby/strscan',
-  webrick: 'ruby/webrick',
-  zlib: 'ruby/zlib',
+  ostruct: "ruby/ostruct",
+  prime: "ruby/prime",
+  psych: "ruby/psych",
+  rdoc: "ruby/rdoc",
+  rexml: "ruby/rexml",
+  rss: "ruby/rss",
+  scanf: "ruby/scanf",
+  sdbm: "ruby/sdbm",
+  stringio: "ruby/stringio",
+  strscan: "ruby/strscan",
+  webrick: "ruby/webrick",
+  zlib: "ruby/zlib",
 }
 
 tags = %w[
@@ -366,7 +366,7 @@ gems.each do |k, v|
   Dir.chdir(dir) do
     r = `git branch`
 
-    if r.match(/ruby-core/)
+    if /ruby-core/.match?(r)
       `git checkout ruby-core`
       `git fetch ruby-core trunk`
       `git rebase ruby-core/trunk`
@@ -374,7 +374,7 @@ gems.each do |k, v|
     else
       `git remote add ruby-core git@github.com:ruby/ruby.git`
       `git fetch ruby-core`
-      tags.each{|t| `git tag -d #{t}` }
+      tags.each { |t| `git tag -d #{t}` }
       `git checkout ruby-core/trunk`
       `git branch ruby-core`
       `git checkout master`

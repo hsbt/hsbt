@@ -1,11 +1,11 @@
-require 'fileutils'
-require 'pathname'
+require "fileutils"
+require "pathname"
 
-require 'parallel'
+require "parallel"
 
-Parallel.each(Dir.glob('**/*.jp*'), in_threads: 4) do |f|
+Parallel.each(Dir.glob("**/*.jp*"), in_threads: 4) do |f|
   p f
-  o = f + '.new'
+  o = f + ".new"
   next if File.exist?(o)
   `guetzli #{f} #{o}`
   if File.exist?(o)

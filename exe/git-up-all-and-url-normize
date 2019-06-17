@@ -1,18 +1,18 @@
 #!/usr/bin/env ruby
-require 'fileutils'
-require 'open3'
+require "fileutils"
+require "open3"
 
-[Dir.glob('*') + Dir.glob('*/*')].flatten.shuffle.each do |dir|
+[Dir.glob("*") + Dir.glob("*/*")].flatten.shuffle.each do |dir|
   url = nil
   next unless File.directory? dir
   Dir.chdir(dir) do
-    next unless File.directory?('.git')
+    next unless File.directory?(".git")
 
     remote = `git remote -v`.chomp
     log = Open3.capture3("git log")[1]
     fetch = Open3.capture3("git fetch")[1]
 
-    if remote.empty? || remote.include?('fatal') || log.include?('fatal') || log.include?('error') || fetch.include?('fatal') || fetch.include?('error')
+    if remote.empty? || remote.include?("fatal") || log.include?("fatal") || log.include?("error") || fetch.include?("fatal") || fetch.include?("error")
       url = Dir.pwd.gsub(/\/.*\/.*\/Documents\/(.*)\/(.*)\/(.*)/, 'git@\1:\2/\3.git')
     else
       if match = remote.match(/git:\/\/[^ ]*/)
@@ -21,7 +21,7 @@ require 'open3'
       p dir
       `git reset --hard`
       `git clean -fd`
-      if dir.include?('rubysl')
+      if dir.include?("rubysl")
         `git checkout 2.0`
       else
         `git checkout master`

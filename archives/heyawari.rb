@@ -1,4 +1,4 @@
-rooms = [4,4,2,2,2]
+rooms = [4, 4, 2, 2, 2]
 
 members = %w[
   kosaki
@@ -17,7 +17,7 @@ members = %w[
   tarui
 ]
 
-members.shuffle!; p rooms.map{|n| members.shift(n) }
+members.shuffle!; p rooms.map { |n| members.shift(n) }
 
 members = %w[
   kosaki
