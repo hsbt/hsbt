@@ -7,7 +7,7 @@ system "rbenv global system"
 
 versions.each do |v|
   system "rbenv uninstall -f #{v}.0-dev && rbenv install -f #{v}.0-dev"
-  Dir.chdir(ENV["HOME"] + "/.rbenv/versions") do
+  Dir.chdir(ENV["RBENV_ROOT"] + "/versions") do
     File.unlink v if File.exists?(v)
     File.symlink(v + ".0-dev", v)
     defs.select{|d| d =~ /^#{v}.\d+$/}.each do |stable|
