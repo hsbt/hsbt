@@ -1,16 +1,16 @@
 #!/usr/bin/env ruby
 
-histories = File.readlines(File.expand_path(ENV['HISTFILE']))
+histories = File.readlines(File.expand_path(ENV["HISTFILE"]))
 
-gogets = histories.map do |history|
-  begin
-    cmd = history.split(';')[1]&.chomp
+gogets = histories.map { |history|
+  
+    cmd = history.split(";")[1]&.chomp
     # only git.example.com, github.com, golang.org, google.golang.org etc.
     cmd.downcase if cmd =~ /^go get -u [git|go]/
   rescue ArgumentError => e
     next
-  end
-end.compact.sort.uniq
+  
+}.compact.sort.uniq
 
 gogets.each do |cmd|
   if cmd =~ /go get -u (.*)/

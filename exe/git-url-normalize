@@ -1,13 +1,13 @@
 #!/usr/bin/env ruby
 
-require 'pathname'
+require "pathname"
 
-Dir.glob('*/*/*').shuffle.each do |dir|
+Dir.glob("*/*/*").shuffle.each do |dir|
   next unless File.directory? dir
   Dir.chdir(dir) do
-    next unless File.directory?('.git')
+    next unless File.directory?(".git")
     puts dir
-    gopath = Dir.pwd.gsub(/^#{Pathname.new("#{ENV['GOPATH']}/src").realpath.to_s}/, '')
+    gopath = Dir.pwd.gsub(/^#{Pathname.new("#{ENV['GOPATH']}/src").realpath.to_s}/, "")
     url = gopath.gsub(/\/(.*)\/(.*)\/(.*)/, 'git@\1:\2/\3.git')
     `git remote set-url origin #{url}`
   end
