@@ -75,3 +75,4 @@ brew "toxiproxy"
 
 tap "homebrew/cask-fonts"
 cask "font-ricty-diminished"
+cask "font-hack-nerd-font"
