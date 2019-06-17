@@ -1,0 +1,31 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    ast (2.4.0)
+    jaro_winkler (1.5.2)
+    parallel (1.17.0)
+    parser (2.6.3.0)
+      ast (~> 2.4.0)
+    psych (3.1.0)
+    rainbow (3.0.0)
+    rubocop (0.67.2)
+      jaro_winkler (~> 1.5.1)
+      parallel (~> 1.10)
+      parser (>= 2.5, != 2.5.1.1)
+      psych (>= 3.1.0)
+      rainbow (>= 2.2.2, < 4.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 1.4.0, < 1.6)
+    ruby-progressbar (1.10.1)
+    standard (0.0.40)
+      rubocop (~> 0.67.1)
+    unicode-display_width (1.5.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  standard
+
+BUNDLED WITH
+   2.1.0.pre.1
