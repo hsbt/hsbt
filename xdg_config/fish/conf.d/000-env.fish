@@ -2,7 +2,6 @@ set -x XDG_CONFIG_HOME $HOME/.config
 set -x XDG_DATA_HOME $HOME/.local/share
 set -x XDG_CACHE_HOME $HOME/.cache
 
-set -x DOCKER_CONFIG $XDG_CONFIG_HOME/docker
 set -x GEMRC $XDG_CONFIG_HOME/gem/gemrc
 set -x GEM_HOME $XDG_DATA_HOME/gem
 set -x GEM_SPEC_CACHE $HOME/.cache/gem
