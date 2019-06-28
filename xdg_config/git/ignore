@@ -1,0 +1,11 @@
+.DS_Store
+.ruby-version
+.rbenv-version
+.rvmrc
+.bundle
+.rspec-local
+.python-version
+.env
+.envrc
+.powrc
+.elasticbeanstalk
