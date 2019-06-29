@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+rbenv update
+pyenv update
+nodenv update
+
 eval "$(rbenv init -)"
 
 rbenv shell --unset
