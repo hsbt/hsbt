@@ -5,6 +5,6 @@
 - https://rubygems.org/
 :update_sources: true
 :verbose: true
-benchmark: false
-gem: "--no-document"
-gemsrc_use_ghq: true
+:benchmark: false
+:gem: "--no-document"
+:gemsrc_use_ghq: true
