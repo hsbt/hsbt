@@ -57,6 +57,8 @@ brew "protobuf"
 brew "ragel"
 brew "parallel"
 brew "kubernetes-helm"
+brew "php"
+brew "composer"
 
 tap "homebrew/cask"
 cask "google-cloud-sdk"
