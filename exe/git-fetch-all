@@ -4,6 +4,11 @@ require "parallel"
 Dir.chdir(`ghq root`.chomp) do
   Parallel.map(`ghq list`.split.shuffle) do |dir|
     next unless File.directory?(dir + "/.git")
-    Dir.chdir(dir) { puts dir; `git fetch --all`; `git gc --prune`; } # `git pull --ff-only`}
+    Dir.chdir(dir) do
+      `git fetch --all`
+      `git pull --rebase --prune`
+      `git submodule update --init --recursive`
+      `git gc --prune`
+    end
   end
 end
