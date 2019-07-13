@@ -1,14 +1,15 @@
-alias l lsd
-alias la "lsd -a"
-alias ll "lsd -la"
-alias lt "lsd --tree"
+alias ls lsd
 alias cat bat
+
+alias l ls
+alias ll "ls -la"
 alias e code-insiders
+
 alias bx "bundle exec"
 alias mk "make -C .x86_64-darwin -j"
 alias all-ruby "docker run --rm -t rubylang/all-ruby /all-ruby/all-ruby"
-
-source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.fish.inc
+alias s3cmd "s3cmd --config $HOME/.config/s3cmd"
+alias mvn "mvn -gs $HOME/.config/maven/settings.xml"
 
 function export
   set arr (echo $argv|tr = \n)
@@ -35,5 +36,7 @@ function fish_prompt
   printf '%s ' (__fish_git_prompt)
   echo -n '> '
 end
+
+source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.fish.inc
 
 eval (direnv hook fish)
