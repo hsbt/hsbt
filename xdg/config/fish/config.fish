@@ -1,5 +1,7 @@
 alias ls lsd
 alias cat bat
+alias libtool glibtool
+alias libtoolize glibtoolize
 
 alias l ls
 alias ll "ls -la"
