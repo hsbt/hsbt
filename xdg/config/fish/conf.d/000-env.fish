@@ -42,3 +42,4 @@ set -x PATH /usr/local/opt/gnu-sed/libexec/gnubin $PATH
 set -x PATH /usr/local/opt/gnu-tar/libexec/gnubin $PATH
 set -x PATH /usr/local/opt/grep/libexec/gnubin $PATH
 set -x PATH /usr/local/opt/bison/bin $PATH
+set -x PATH $GOPATH/src/github.com/hsbt/tools/exe $PATH
