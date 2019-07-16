@@ -19,14 +19,14 @@ rbenv global 2.7.0-dev
 gem update
 
 rbenv shell 2.4
-~/Documents/github.com/hsbt/tools/exe/all-pristine
+~/Documents/github.com/hsbt/tools/libexec/all-pristine
 rbenv shell 2.5
-~/Documents/github.com/hsbt/tools/exe/all-pristine
+~/Documents/github.com/hsbt/tools/libexec/all-pristine
 rbenv shell 2.6
-~/Documents/github.com/hsbt/tools/exe/all-pristine
+~/Documents/github.com/hsbt/tools/libexec/all-pristine
 rbenv shell 2.7
-~/Documents/github.com/hsbt/tools/exe/all-pristine
+~/Documents/github.com/hsbt/tools/libexec/all-pristine
 
-~/Documents/github.com/hsbt/tools/exe/gem-shebang
+~/Documents/github.com/hsbt/tools/libexec/gem-shebang
 
 rbenv shell --unset

@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+command="$1"
+case "$command" in
+* )
+  shift 1
+  exec "libexec/dev-$command" "$@"
+esac
