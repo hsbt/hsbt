@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+cd $GOPATH/src/github.com/akr/gem-codesearch
+export RUBYGEMS_MIRROR_ONLY_LATEST=true
+ulimit -n 8192 && rake mirror unpack && cindex latest-gem
