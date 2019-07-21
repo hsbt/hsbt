@@ -25,3 +25,25 @@ platforms.each do |pf|
 end
 
 system "rbenv global #{versions.last}.0-dev"
+
+versions = %w[3.7 3.8]
+
+system "pyenv global system"
+
+versions.each do |v|
+  system "pyenv uninstall -f #{v}-dev"
+  system "env SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk MACOSX_DEPLOYMENT_TARGET=10.14 pyenv install #{v}-dev"
+end
+
+system "rbenv global #{versions.first}-dev"
+system "pip install ansible pandas pipenv python-openstackclient tldr pylint jupyter notebook bokeh matplotlib"
+
+versions = %w[12]
+
+system "nodenv global system"
+
+versions.each do |v|
+  system "nodenv uninstall -f #{v}.x-next"
+  system "nodenv install #{v}.x-next"
+end
+system "nodenv global 12.x-next"
