@@ -66,6 +66,7 @@ brew "kubernetes-helm"
 brew "php"
 brew "composer"
 brew "guetzli"
+brew "lcov"
 
 tap "homebrew/cask"
 cask "google-cloud-sdk"
