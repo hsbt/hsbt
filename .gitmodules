@@ -7,9 +7,6 @@
 [submodule "sandbox/twitalytics"]
 	path = sandbox/twitalytics
 	url = https://github.com/hsbt/twitalytics
-[submodule "sandbox/nodepad"]
-	path = sandbox/nodepad
-	url = https://github.com/hsbt/nodepad
 [submodule "sandbox/rubyversion"]
 	path = sandbox/rubyversion
 	url = https://github.com/hsbt/rubyversion
