@@ -1,0 +1,17 @@
+{
+    "author": "SHIBATA Hiroshi <shibata.hiroshi@gmail.com>",
+    "name": "nodebeginner",
+    "version": "0.0.0",
+    "repository": {
+	"type": "git",
+	"url": "git://github.com/hsbt/nodebeginner.git"
+    },
+    "dependencies": {
+	"formidable": "~1.0.9"
+    },
+    "devDependencies": {},
+    "optionalDependencies": {},
+    "engines": {
+	"node": "*"
+    }
+}
