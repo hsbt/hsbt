@@ -36,10 +36,11 @@ set -U ZO_CMD "jo"
 
 set -x PATH $GOPATH/bin $CARGO_HOME/bin $RBENV_ROOT/bin $NODENV_ROOT/bin $PYENV_ROOT/bin $PATH
 set -x PATH $HOME/Library/Developer/Toolchains/Custom.xctoolchain/usr/bin $PATH
+set -x PATH /usr/local/sbin $PATH
 set -x PATH /usr/local/opt/coreutils/libexec/gnubin $PATH
 set -x PATH /usr/local/opt/findutils/libexec/gnubin $PATH
 set -x PATH /usr/local/opt/gnu-sed/libexec/gnubin $PATH
 set -x PATH /usr/local/opt/gnu-tar/libexec/gnubin $PATH
 set -x PATH /usr/local/opt/grep/libexec/gnubin $PATH
 set -x PATH /usr/local/opt/bison/bin $PATH
-set -x PATH $GOPATH/src/github.com/hsbt/tools/exe $PATH
+set -x PATH $GOPATH/src/github.com/hsbt/toolbox/exe $PATH
