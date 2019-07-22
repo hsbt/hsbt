@@ -1,0 +1,12 @@
+%h1
+  ログインしてください
+
+%div.login
+  = form_for(:session, url: sessions_path) do |f|
+    %dl
+      %dt= f.label :username
+      %dd= f.text_field :username
+      %dt= f.label :password
+      %dd= f.password_field :password
+
+    .submit= f.submit 'ログイン'
