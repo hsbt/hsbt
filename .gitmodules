@@ -1,6 +1,3 @@
-[submodule "sandbox/rails_sorcery_sample"]
-	path = sandbox/rails_sorcery_sample
-	url = https://github.com/hsbt/rails_sorcery_sample
 [submodule "sandbox/twitalytics"]
 	path = sandbox/twitalytics
 	url = https://github.com/hsbt/twitalytics
