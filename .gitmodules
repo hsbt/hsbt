@@ -10,9 +10,6 @@
 [submodule "sandbox/twitalytics"]
 	path = sandbox/twitalytics
 	url = https://github.com/hsbt/twitalytics
-[submodule "sandbox/Mametter"]
-	path = sandbox/Mametter
-	url = https://github.com/hsbt/Mametter
 [submodule "sandbox/node-twitterstaream-sample"]
 	path = sandbox/node-twitterstaream-sample
 	url = https://github.com/hsbt/node-twitterstaream-sample
