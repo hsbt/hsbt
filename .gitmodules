@@ -7,9 +7,6 @@
 [submodule "sandbox/twitalytics"]
 	path = sandbox/twitalytics
 	url = https://github.com/hsbt/twitalytics
-[submodule "sandbox/node-twitterstaream-sample"]
-	path = sandbox/node-twitterstaream-sample
-	url = https://github.com/hsbt/node-twitterstaream-sample
 [submodule "sandbox/nodepad"]
 	path = sandbox/nodepad
 	url = https://github.com/hsbt/nodepad
