@@ -1,0 +1,329 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		424F4486163010250077334F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 424F4485163010250077334F /* UIKit.framework */; };
+		424F4488163010250077334F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 424F4487163010250077334F /* Foundation.framework */; };
+		424F448A163010250077334F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 424F4489163010250077334F /* CoreGraphics.framework */; };
+		424F4490163010250077334F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 424F448E163010250077334F /* InfoPlist.strings */; };
+		424F4492163010250077334F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 424F4491163010250077334F /* main.m */; };
+		424F4496163010250077334F /* MameRecipeAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 424F4495163010250077334F /* MameRecipeAppDelegate.m */; };
+		424F4498163010250077334F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 424F4497163010250077334F /* Default.png */; };
+		424F449A163010250077334F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 424F4499163010250077334F /* Default@2x.png */; };
+		424F449C163010250077334F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 424F449B163010250077334F /* Default-568h@2x.png */; };
+		424F449F163010250077334F /* MameRecipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 424F449E163010250077334F /* MameRecipeViewController.m */; };
+		424F44A2163010250077334F /* MameRecipeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 424F44A0163010250077334F /* MameRecipeViewController.xib */; };
+		424F44AA163010BE0077334F /* MameRecipe.m in Sources */ = {isa = PBXBuildFile; fileRef = 424F44A9163010BE0077334F /* MameRecipe.m */; };
+		424F44AC163018C70077334F /* edamame.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 424F44AB163018C60077334F /* edamame.jpg */; };
+		C887C20E16883FCD00825200 /* MameRecipesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C887C20C16883FCD00825200 /* MameRecipesListViewController.m */; };
+		C887C20F16883FCD00825200 /* MameRecipesListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C887C20D16883FCD00825200 /* MameRecipesListViewController.xib */; };
+		C887C21516884D1700825200 /* MameRecipesSource.m in Sources */ = {isa = PBXBuildFile; fileRef = C887C21416884D1700825200 /* MameRecipesSource.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		424F4481163010250077334F /* MameRecipe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MameRecipe.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		424F4485163010250077334F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		424F4487163010250077334F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		424F4489163010250077334F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		424F448D163010250077334F /* MameRecipe-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MameRecipe-Info.plist"; sourceTree = "<group>"; };
+		424F448F163010250077334F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		424F4491163010250077334F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		424F4493163010250077334F /* MameRecipe-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MameRecipe-Prefix.pch"; sourceTree = "<group>"; };
+		424F4494163010250077334F /* MameRecipeAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MameRecipeAppDelegate.h; sourceTree = "<group>"; };
+		424F4495163010250077334F /* MameRecipeAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MameRecipeAppDelegate.m; sourceTree = "<group>"; };
+		424F4497163010250077334F /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		424F4499163010250077334F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		424F449B163010250077334F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		424F449D163010250077334F /* MameRecipeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MameRecipeViewController.h; sourceTree = "<group>"; };
+		424F449E163010250077334F /* MameRecipeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MameRecipeViewController.m; sourceTree = "<group>"; };
+		424F44A1163010250077334F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MameRecipeViewController.xib; sourceTree = "<group>"; };
+		424F44A8163010BE0077334F /* MameRecipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MameRecipe.h; sourceTree = "<group>"; };
+		424F44A9163010BE0077334F /* MameRecipe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MameRecipe.m; sourceTree = "<group>"; };
+		424F44AB163018C60077334F /* edamame.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = edamame.jpg; sourceTree = "<group>"; };
+		C887C20B16883FCD00825200 /* MameRecipesListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MameRecipesListViewController.h; sourceTree = "<group>"; };
+		C887C20C16883FCD00825200 /* MameRecipesListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MameRecipesListViewController.m; sourceTree = "<group>"; };
+		C887C20D16883FCD00825200 /* MameRecipesListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MameRecipesListViewController.xib; sourceTree = "<group>"; };
+		C887C211168849B800825200 /* MameRecipesListDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MameRecipesListDataSource.h; path = MameRecipe/MameRecipesListDataSource.h; sourceTree = "<group>"; };
+		C887C21316884D1700825200 /* MameRecipesSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MameRecipesSource.h; sourceTree = "<group>"; };
+		C887C21416884D1700825200 /* MameRecipesSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MameRecipesSource.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		424F447E163010250077334F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				424F4486163010250077334F /* UIKit.framework in Frameworks */,
+				424F4488163010250077334F /* Foundation.framework in Frameworks */,
+				424F448A163010250077334F /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		424F4476163010250077334F = {
+			isa = PBXGroup;
+			children = (
+				424F44A8163010BE0077334F /* MameRecipe.h */,
+				424F44A9163010BE0077334F /* MameRecipe.m */,
+				C887C21316884D1700825200 /* MameRecipesSource.h */,
+				C887C21416884D1700825200 /* MameRecipesSource.m */,
+				C887C211168849B800825200 /* MameRecipesListDataSource.h */,
+				424F448B163010250077334F /* MameRecipe */,
+				424F4484163010250077334F /* Frameworks */,
+				424F4482163010250077334F /* Products */,
+				424F44AB163018C60077334F /* edamame.jpg */,
+			);
+			sourceTree = "<group>";
+		};
+		424F4482163010250077334F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				424F4481163010250077334F /* MameRecipe.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		424F4484163010250077334F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				424F4485163010250077334F /* UIKit.framework */,
+				424F4487163010250077334F /* Foundation.framework */,
+				424F4489163010250077334F /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		424F448B163010250077334F /* MameRecipe */ = {
+			isa = PBXGroup;
+			children = (
+				424F4494163010250077334F /* MameRecipeAppDelegate.h */,
+				424F4495163010250077334F /* MameRecipeAppDelegate.m */,
+				424F449D163010250077334F /* MameRecipeViewController.h */,
+				424F449E163010250077334F /* MameRecipeViewController.m */,
+				424F44A0163010250077334F /* MameRecipeViewController.xib */,
+				C887C20B16883FCD00825200 /* MameRecipesListViewController.h */,
+				C887C20C16883FCD00825200 /* MameRecipesListViewController.m */,
+				C887C20D16883FCD00825200 /* MameRecipesListViewController.xib */,
+				424F448C163010250077334F /* Supporting Files */,
+			);
+			path = MameRecipe;
+			sourceTree = "<group>";
+		};
+		424F448C163010250077334F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				424F448D163010250077334F /* MameRecipe-Info.plist */,
+				424F448E163010250077334F /* InfoPlist.strings */,
+				424F4491163010250077334F /* main.m */,
+				424F4493163010250077334F /* MameRecipe-Prefix.pch */,
+				424F4497163010250077334F /* Default.png */,
+				424F4499163010250077334F /* Default@2x.png */,
+				424F449B163010250077334F /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		424F4480163010250077334F /* MameRecipe */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 424F44A5163010250077334F /* Build configuration list for PBXNativeTarget "MameRecipe" */;
+			buildPhases = (
+				424F447D163010250077334F /* Sources */,
+				424F447E163010250077334F /* Frameworks */,
+				424F447F163010250077334F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MameRecipe;
+			productName = MameRecipe;
+			productReference = 424F4481163010250077334F /* MameRecipe.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		424F4478163010250077334F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = MameRecipe;
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "SHIBATA Hiroshi";
+			};
+			buildConfigurationList = 424F447B163010250077334F /* Build configuration list for PBXProject "MameRecipe" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 424F4476163010250077334F;
+			productRefGroup = 424F4482163010250077334F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				424F4480163010250077334F /* MameRecipe */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		424F447F163010250077334F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				424F4490163010250077334F /* InfoPlist.strings in Resources */,
+				424F4498163010250077334F /* Default.png in Resources */,
+				424F449A163010250077334F /* Default@2x.png in Resources */,
+				424F449C163010250077334F /* Default-568h@2x.png in Resources */,
+				424F44A2163010250077334F /* MameRecipeViewController.xib in Resources */,
+				424F44AC163018C70077334F /* edamame.jpg in Resources */,
+				C887C20F16883FCD00825200 /* MameRecipesListViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		424F447D163010250077334F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				424F4492163010250077334F /* main.m in Sources */,
+				424F4496163010250077334F /* MameRecipeAppDelegate.m in Sources */,
+				424F449F163010250077334F /* MameRecipeViewController.m in Sources */,
+				424F44AA163010BE0077334F /* MameRecipe.m in Sources */,
+				C887C20E16883FCD00825200 /* MameRecipesListViewController.m in Sources */,
+				C887C21516884D1700825200 /* MameRecipesSource.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		424F448E163010250077334F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				424F448F163010250077334F /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		424F44A0163010250077334F /* MameRecipeViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				424F44A1163010250077334F /* en */,
+			);
+			name = MameRecipeViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		424F44A3163010250077334F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		424F44A4163010250077334F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		424F44A6163010250077334F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MameRecipe/MameRecipe-Prefix.pch";
+				INFOPLIST_FILE = "MameRecipe/MameRecipe-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		424F44A7163010250077334F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MameRecipe/MameRecipe-Prefix.pch";
+				INFOPLIST_FILE = "MameRecipe/MameRecipe-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		424F447B163010250077334F /* Build configuration list for PBXProject "MameRecipe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				424F44A3163010250077334F /* Debug */,
+				424F44A4163010250077334F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		424F44A5163010250077334F /* Build configuration list for PBXNativeTarget "MameRecipe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				424F44A6163010250077334F /* Debug */,
+				424F44A7163010250077334F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 424F4478163010250077334F /* Project object */;
+}
