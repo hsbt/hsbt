@@ -99,13 +99,13 @@ cask "font-ricty-diminished"
 cask "font-hack-nerd-font"
 cask "font-source-han-code-jp"
 
-mas "803453959"  # Slack (4.0.0)
-mas "1333542190" # 1Password 7 (7.3.1)
-mas "549083868"  # Display Menu (2.2.3)
-mas "1295203466" # Microsoft Remote Desktop (10.2.13)
-mas "409201541"  # Pages (8.1)
-mas "409203825"  # Numbers (6.1)
-mas "409183694"  # Keynote (9.1)
-mas "462054704"  # Microsoft Word (16.27)
-mas "462058435"  # Microsoft Excel (16.27)
-mas "462062816"  # Microsoft PowerPoint (16.27)
+mas "Slack", id: 803453959"
+mas "1Password 7", id: 1333542190
+mas "Display Menu", id: 549083868
+mas "Microsoft Remote Desktop", id: 1295203466
+mas "Pages", id: 409201541
+mas "Numbers", id: 409203825
+mas "Keynote", id: 409183694
+mas "Microsoft Word", id: 462054704
+mas "Microsoft Excel", id: 462058435
+mas "Microsoft PowerPoint", id: 462062816
