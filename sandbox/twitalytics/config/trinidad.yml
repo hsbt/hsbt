@@ -1,0 +1,15 @@
+jruby_max_runtimes: 1
+
+ajp:
+  port: 8099
+
+extensions:
+  diagnostics:
+  scheduler:
+  worker:
+    resque:
+      queues: critical, normal, low
+      count: 1
+      path: 'lib/workers'
+      redis_host: 'localhost:6379'
+      work_dir: 'work/resque'

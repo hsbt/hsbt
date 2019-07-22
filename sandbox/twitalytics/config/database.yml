@@ -1,0 +1,21 @@
+development:
+  adapter: jdbcsqlite3
+  database: db/development.sqlite3
+  pool: 5
+  timeout: 5000
+
+test: 
+  adapter: jdbcsqlite3
+  database: db/test.sqlite3
+  pool: 5
+  timeout: 5000
+
+production:
+  adapter: postgresql
+  database: postgres
+  host: localhost
+  port: 5432
+  pool: 5
+  timeout: 5000
+  username: vagrant
+  password: Passw0rd
