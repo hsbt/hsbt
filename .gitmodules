@@ -10,9 +10,6 @@
 [submodule "sandbox/nodepad"]
 	path = sandbox/nodepad
 	url = https://github.com/hsbt/nodepad
-[submodule "sandbox/nodebeginner"]
-	path = sandbox/nodebeginner
-	url = https://github.com/hsbt/nodebeginner
 [submodule "sandbox/rubyversion"]
 	path = sandbox/rubyversion
 	url = https://github.com/hsbt/rubyversion
