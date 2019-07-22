@@ -9,13 +9,13 @@ require "parallel"
 RB_EXT_NAMES = %w[.rb .ru .gemspec .rake .cmd .gemfile .thor]
 C_EXT_NAMES = %w[.c .h .cpp .hpp]
 
-Parallel.map(Dir.glob("latest-gem/*").shuffle, in_processes: 1) do |dir|
-  Find.find(dir) { |fn|
+Parallel.map(Dir.glob("latest-gem/*").shuffle) do |dir|
+  Find.find(dir) {|fn|
     st = File.lstat(fn)
     if st.file?
-      if C_EXT_NAMES.any? { |ext| fn.end_with?(ext) }
+      if C_EXT_NAMES.any?{|ext| fn.end_with?(ext)}
         next
-      elsif !(RB_EXT_NAMES.any? { |ext| fn.end_with?(ext) } || Pathname(fn).extname.empty?)
+      elsif !(RB_EXT_NAMES.any?{|ext| fn.end_with?(ext)} || Pathname(fn).extname.empty?) || fn =~ /vendor\/bundle/
         File.unlink fn
         puts "removed: #{fn}"
         next
