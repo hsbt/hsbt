@@ -16,9 +16,6 @@
 [submodule "sandbox/MameStoryBoardRecipe"]
 	path = sandbox/MameStoryBoardRecipe
 	url = https://github.com/hsbt/MameStoryBoardRecipe
-[submodule "sandbox/MameRecipe"]
-	path = sandbox/MameRecipe
-	url = https://github.com/hsbt/MameRecipe
 [submodule "sandbox/node-twitterstaream-sample"]
 	path = sandbox/node-twitterstaream-sample
 	url = https://github.com/hsbt/node-twitterstaream-sample
