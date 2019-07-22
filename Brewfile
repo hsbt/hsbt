@@ -99,7 +99,7 @@ cask "font-ricty-diminished"
 cask "font-hack-nerd-font"
 cask "font-source-han-code-jp"
 
-mas "Slack", id: 803453959"
+mas "Slack", id: 803453959
 mas "1Password 7", id: 1333542190
 mas "Display Menu", id: 549083868
 mas "Microsoft Remote Desktop", id: 1295203466
