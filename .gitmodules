@@ -1,6 +1,3 @@
-[submodule "sandbox/mvc_kata_coffee"]
-	path = sandbox/mvc_kata_coffee
-	url = https://github.com/hsbt/mvc_kata_coffee
 [submodule "sandbox/rails_sorcery_sample"]
 	path = sandbox/rails_sorcery_sample
 	url = https://github.com/hsbt/rails_sorcery_sample
