@@ -1,0 +1,3 @@
+[submodule "archives/dot.emacs.d"]
+	path = archives/dot.emacs.d
+	url = https://github.com/hsbt/dot.emacs.d
