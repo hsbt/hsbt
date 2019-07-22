@@ -4,6 +4,3 @@
 [submodule "sandbox/rubyversion"]
 	path = sandbox/rubyversion
 	url = https://github.com/hsbt/rubyversion
-[submodule "sandbox/rake-issue-chdir"]
-	path = sandbox/rake-issue-chdir
-	url = https://github.com/hsbt/rake-issue-chdir
