@@ -1,0 +1,17 @@
+export LC_CTYPE=ja_JP.UTF-8
+export LANG=ja_JP.UTF-8
+export OUTPUT_CHARSET=UTF-8
+export EDITOR="vim"
+
+export GISTY_DIR=$HOME/Documents/github.com/gist
+export RUBYMOTION_ANDROID_SDK=$HOME/.rubymotion-android/sdk
+export RUBYMOTION_ANDROID_NDK=$HOME/.rubymotion-android/ndk
+
+export DROPBOX=$HOME/Dropbox
+source $DROPBOX/Configuration/github.token
+
+export MYSQL_HISTFILE=$DROPBOX/Configuration/history.dotfiles/dot.mysql_history
+export MYSQL_PS1='\u@\h[\d]> '
+
+# not open editor when `git pull --rebase`
+export GIT_MERGE_AUTOEDIT=no
