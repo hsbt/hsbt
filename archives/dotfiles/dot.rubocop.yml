@@ -1,0 +1,4 @@
+Lint/AssignmentInCondition:
+  Enabled: false
+Security/Eval:
+  Enabled: false

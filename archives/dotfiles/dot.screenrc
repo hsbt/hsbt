@@ -1,0 +1,12 @@
+autodetach on
+escape ^Tt
+hardstatus alwayslastline "%w"
+shell zsh
+defscrollback 10000
+startup_message off
+vbell off
+
+defencoding utf-8
+encoding utf-8 utf-8
+
+termcapinfo xterm* ti@:te@
