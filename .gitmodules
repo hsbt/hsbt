@@ -1,0 +1,39 @@
+[submodule "sandbox/mvc_kata_coffee"]
+	path = sandbox/mvc_kata_coffee
+	url = https://github.com/hsbt/mvc_kata_coffee
+[submodule "sandbox/rails_sorcery_sample"]
+	path = sandbox/rails_sorcery_sample
+	url = https://github.com/hsbt/rails_sorcery_sample
+[submodule "sandbox/rails_carrierwave_sample"]
+	path = sandbox/rails_carrierwave_sample
+	url = https://github.com/hsbt/rails_carrierwave_sample
+[submodule "sandbox/twitalytics"]
+	path = sandbox/twitalytics
+	url = https://github.com/hsbt/twitalytics
+[submodule "sandbox/gtk-sample"]
+	path = sandbox/gtk-sample
+	url = https://github.com/hsbt/gtk-sample
+[submodule "sandbox/Mametter"]
+	path = sandbox/Mametter
+	url = https://github.com/hsbt/Mametter
+[submodule "sandbox/MameStoryBoardRecipe"]
+	path = sandbox/MameStoryBoardRecipe
+	url = https://github.com/hsbt/MameStoryBoardRecipe
+[submodule "sandbox/MameRecipe"]
+	path = sandbox/MameRecipe
+	url = https://github.com/hsbt/MameRecipe
+[submodule "sandbox/node-twitterstaream-sample"]
+	path = sandbox/node-twitterstaream-sample
+	url = https://github.com/hsbt/node-twitterstaream-sample
+[submodule "sandbox/nodepad"]
+	path = sandbox/nodepad
+	url = https://github.com/hsbt/nodepad
+[submodule "sandbox/nodebeginner"]
+	path = sandbox/nodebeginner
+	url = https://github.com/hsbt/nodebeginner
+[submodule "sandbox/rubyversion"]
+	path = sandbox/rubyversion
+	url = https://github.com/hsbt/rubyversion
+[submodule "sandbox/rake-issue-chdir"]
+	path = sandbox/rake-issue-chdir
+	url = https://github.com/hsbt/rake-issue-chdir
