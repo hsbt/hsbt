@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-brew bundle --file=$GOPATH/src/github.com/hsbt/tools/Brewfile
+brew bundle --file=$GOPATH/src/github.com/hsbt/toolbox/Brewfile
