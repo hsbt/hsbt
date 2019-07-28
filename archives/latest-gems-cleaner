@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 
 require "find"
-require "open3"
 require "pathname"
 
 require "parallel"
@@ -15,16 +14,11 @@ Parallel.map(Dir.glob("latest-gem/*").shuffle) do |dir|
     if st.file?
       if C_EXT_NAMES.any?{|ext| fn.end_with?(ext)}
         next
-      elsif !(RB_EXT_NAMES.any?{|ext| fn.end_with?(ext)} || Pathname(fn).extname.empty?) || fn =~ /vendor\/bundle/
+      elsif !(RB_EXT_NAMES.any?{|ext| fn.end_with?(ext)} || Pathname(fn).extname.empty?) ||
+              fn =~ /vendor\/bundle/ || fn =~ /vendor\/ruby\// || fn =~ /bundle\/ruby/
         File.unlink fn
         puts "removed: #{fn}"
         next
-      else
-        _, _, _, wait_thr = *Open3.popen3("ruby -c #{fn}")
-        if wait_thr.value.exitstatus != 0
-          File.unlink fn
-          puts "removed: #{fn}"
-        end
       end
     end
   }
