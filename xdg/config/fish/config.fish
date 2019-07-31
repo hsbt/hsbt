@@ -12,7 +12,6 @@ alias mk "make -C .x86_64-darwin -j"
 alias all-ruby "docker run --rm -t rubylang/all-ruby /all-ruby/all-ruby"
 alias s3cmd "s3cmd --config $HOME/.config/s3cmd"
 alias mvn "mvn -gs $HOME/.config/maven/settings.xml"
-alias svn "svn --config-dir $HOME/.config/subversion"
 
 function export
   set arr (echo $argv|tr = \n)
