@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+require "parallel"
+
+repos = Hash.new
+
+`ghq list`.split.shuffle.each do |dir|
+  match = dir.match(/.*\/(.*)\/(.*)/)
+  next unless match
+  owner = match[1]
+  repo = match[2]
+
+  if repos[repo]
+    repos[repo] << owner
+  else
+    repos[repo] = Array(owner)
+  end
+end
+
+repos.each do |repo, owners|
+  p repo, owners if owners.size > 1
+end
