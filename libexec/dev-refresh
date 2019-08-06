@@ -27,6 +27,6 @@ dev all-pristine
 rbenv shell 2.7
 dev all-pristine
 
-dev update-gem-shebang
+dev gem-shebang-update
 
 rbenv shell --unset
