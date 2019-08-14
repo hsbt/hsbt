@@ -32,6 +32,7 @@ set -x LESSHISTFILE -
 set -x GO111MODULE on
 set -x RUBY_CODESIGN hsbt
 set -x SDKROOT /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk
+set -x MACOSX_DEPLOYMENT_TARGET 10.14
 set -U Z_CMD "j"
 set -U ZO_CMD "jo"
 
