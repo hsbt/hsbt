@@ -31,6 +31,7 @@ set -x GIT_MERGE_AUTOEDIT no
 set -x LESSHISTFILE -
 set -x GO111MODULE on
 set -x RUBY_CODESIGN hsbt
+set -x SDKROOT /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk
 set -U Z_CMD "j"
 set -U ZO_CMD "jo"
 
