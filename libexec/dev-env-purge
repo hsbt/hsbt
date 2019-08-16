@@ -30,9 +30,15 @@ versions = %w[3.7 3.8]
 
 system "pyenv global system"
 
+system `set -x SDKROOT /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk`
+system `set -x MACOSX_DEPLOYMENT_TARGET 10.14`
+
 versions.each do |v|
   system "pyenv uninstall -f #{v}-dev && pyenv install #{v}-dev"
 end
+
+system `set -e SDKROOT`
+system `set -e MACOSX_DEPLOYMENT_TARGET`
 
 system "pyenv global #{versions.first}-dev"
 system "pip install pipenv tldr pylint python-openstackclient jupyter notebook pandas bokeh matplotlib"
