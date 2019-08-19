@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 
 Dir.glob(ENV["GEM_HOME"] + "/bin/*") do |exe|
-  system('gsed -i "s/\/Users\/hsbt\/.rbenv\/versions\/2.[0-9].0-dev\/bin\/ruby/\/usr\/bin\/env\ ruby/" ' + exe)
+  system('gsed -i "s/\/Users\/hsbt\/.local\/share\/rbenv\/versions\/2.[0-9].0-dev\/bin\/ruby/\/usr\/bin\/env\ ruby/" ' + exe)
 end
