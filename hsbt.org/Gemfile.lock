@@ -35,7 +35,7 @@ GEM
     open4 (1.3.4)
     public_suffix (3.1.1)
     rake (12.3.2)
-    rbnacl (6.0.1)
+    rbnacl (7.0.0)
       ffi
     rbnacl-libsodium (1.0.16)
       rbnacl (>= 3.0.1)
@@ -67,7 +67,7 @@ DEPENDENCIES
   mina
   net-scp
   rake
-  rbnacl (< 7.0)
+  rbnacl (< 8.0)
   rbnacl-libsodium
   roadworker (~> 0.5.10)
   sassc
