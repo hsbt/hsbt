@@ -47,9 +47,8 @@ GEM
       systemu
       term-ansicolor
       uuid
-    sassc (2.0.1)
+    sassc (2.1.0)
       ffi (~> 1.9)
-      rake
     systemu (2.6.5)
     term-ansicolor (1.7.1)
       tins (~> 1.0)
