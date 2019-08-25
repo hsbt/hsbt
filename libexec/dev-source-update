@@ -4,7 +4,7 @@ require "parallel"
 Dir.chdir(`ghq root`.chomp) do
   Parallel.map(`ghq list`.split.shuffle) do |dir|
     next unless File.directory?(dir + "/.git")
-    next if dir =~ /github\.com\/ruby/
+    next if /github\.com\/ruby/.match?(dir)
 
     Dir.chdir(dir) do
       `git fetch --all --prune`
