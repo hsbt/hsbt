@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 require "parallel"
 
-repos = Hash.new
+repos = {}
 
 `ghq list`.split.shuffle.each do |dir|
   match = dir.match(/.*\/(.*)\/(.*)/)

@@ -2,7 +2,7 @@
 
 require "slack-ruby-client"
 
-Slack.configure {|config| config.token = ENV["SLACK_API_TOKEN"] }
+Slack.configure { |config| config.token = ENV["SLACK_API_TOKEN"] }
 client = Slack::Web::Client.new
 client.auth_test
 
@@ -13,4 +13,4 @@ if ARGV[0] == "on"
   display_name += "-#{Time.now.strftime("%m%d")}休暇"
 end
 
-client.users_profile_set({:user => uid, :profile => {:display_name => display_name}.to_json})
+client.users_profile_set({user: uid, profile: {display_name: display_name}.to_json})
