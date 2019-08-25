@@ -23,7 +23,7 @@ function g --wraps git
 end
 
 function gemsearch
-  csearch $argv | sed 's/^\/Users\/hsbt\/Documents\/github\.com\/akr\/gem-codesearch\/latest-gem\///g';
+  csearch $argv | sed 's/^\/Users\/hsbt\/.local\/share\/go\/src\/github.com\/akr\/gem-codesearch\/latest-gem\///g';
 end
 
 function history-merge --on-event fish_preexec
