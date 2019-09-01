@@ -41,4 +41,5 @@ end
 
 source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.fish.inc
 
+eval (starship init fish)
 eval (direnv hook fish)
