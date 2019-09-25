@@ -6,11 +6,13 @@ Dir.chdir(`ghq root`.chomp) do
     next unless File.directory?(dir + "/.git")
     next if /github\.com\/ruby/.match?(dir)
 
+    puts dir
+
     Dir.chdir(dir) do
-      `git fetch --all --prune`
-      `git pull --rebase --prune`
-      `git submodule update --init --recursive`
-      `git gc --prune`
+      system('git fetch --all --prune')
+      system('git pull --rebase --prune')
+      system('git submodule update --init --recursive')
+      system('git gc --prune')
     end
   end
 end

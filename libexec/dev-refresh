@@ -16,6 +16,7 @@ rbenv uninstall -f 2.7.0-dev
 rbenv install 2.7.0-dev
 rbenv global 2.7.0-dev
 
+rbenv shell 2.6
 gem update
 
 rbenv shell 2.4
