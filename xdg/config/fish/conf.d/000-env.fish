@@ -31,6 +31,7 @@ set -x GIT_MERGE_AUTOEDIT no
 set -x LESSHISTFILE -
 set -x GO111MODULE on
 set -x RUBY_CODESIGN hsbt
+set -x PKG_CONFIG_PATH /usr/local/opt/imagemagick@6/lib/pkgconfig:/usr/lib/pkgconfig
 set -U Z_CMD "j"
 set -U ZO_CMD "jo"
 
