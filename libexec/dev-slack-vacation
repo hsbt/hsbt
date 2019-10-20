@@ -9,8 +9,17 @@ client.auth_test
 uid = "U03NB3174"
 display_name = "hsbt"
 
-if ARGV[0] == "on"
-  display_name += "-#{Time.now.strftime("%m%d")}休暇"
+if ARGV[0]
+  display_name += "-#{Time.now.strftime("%m%d")}"
+
+  case ARGV[0]
+  when "morning"
+    display_name += "午前休暇"
+  when "noon"
+    display_name += "午後休暇"
+  else
+    display_name += "休暇"
+  end
 end
 
 client.users_profile_set({user: uid, profile: {display_name: display_name}.to_json})
