@@ -23,6 +23,7 @@ set -x AWS_CONFIG_FILE $XDG_CONFIG_HOME/aws/config
 set -x MAVEN_USER_HOME $XDG_CACHE_HOME/maven
 set -x MAVEN_CONFIG "-gs $XDG_CONFIG_HOME/maven/settings.xml"
 set -x PYLINTHOME $XDG_CACHE_HOME/pylint
+set -x HELM_HOME $XDG_CONFIG_HOME/helm
 
 set -x LANG en_US.UTF-8
 set -x EDITOR vim
