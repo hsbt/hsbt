@@ -31,14 +31,6 @@ function history-merge --on-event fish_preexec
   history --merge
 end
 
-function fish_prompt
-  set_color $fish_color_cwd
-  echo -n (prompt_pwd)
-  set_color normal
-  printf '%s ' (__fish_git_prompt)
-  echo -n '> '
-end
-
 source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.fish.inc
 
 eval (starship init fish)
