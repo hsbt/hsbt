@@ -17,7 +17,7 @@ if ARGV[0]
     display_name += "午前休暇"
   when "noon"
     display_name += "午後休暇"
-  else
+  when "on"
     display_name += "休暇"
   end
 end
