@@ -21,17 +21,17 @@ platforms = %w[jruby truffleruby]
 
 platforms.each do |pf|
   d = defs.select { |d| d =~ /#{pf}/ }.max_by { |v| v = v.gsub(/-rc/, ".").gsub(/[a-z\-]/, ""); Gem::Version.new(v) }
-  system "rbenv uninstall -f #{d} && rbenv install #{d}"
+  system "rbenv uninstall -f #{d} && env SDKROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk MACOSX_DEPLOYMENT_TARGET=10.15 rbenv install #{d}"
 end
 
 system "rbenv global #{versions.last}.0-dev"
 
-versions = %w[3.7 3.8]
+versions = %w[3.7 3.8 3.9]
 
 system "pyenv global system"
 
 versions.each do |v|
-  system "pyenv uninstall -f #{v}-dev && env SDKROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk MACOSX_DEPLOYMENT_TARGET=10.14 pyenv install #{v}-dev"
+  system "pyenv uninstall -f #{v}-dev && env SDKROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk MACOSX_DEPLOYMENT_TARGET=10.15 pyenv install #{v}-dev"
 end
 
 system "pyenv global #{versions.first}-dev"
@@ -39,9 +39,11 @@ system "pip install pipenv tldr pylint python-openstackclient jupyter notebook p
 
 versions = %w[12.x node]
 
+system "pyenv shell 3.8-dev"
 system "nodenv global system"
 
 versions.each do |v|
   system "nodenv uninstall -f #{v}-dev && nodenv install #{v}-dev"
 end
 system "nodenv global #{versions.first}-dev"
+system "pyenv shell --unset"
