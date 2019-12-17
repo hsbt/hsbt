@@ -26,7 +26,7 @@ end
 
 system "rbenv global #{versions.last}.0-dev"
 
-versions = %w[3.7 3.8 3.9]
+versions = %w[3.8 3.9]
 
 system "pyenv global system"
 
@@ -39,11 +39,9 @@ system "pip install pipenv tldr pylint python-openstackclient jupyter notebook p
 
 versions = %w[12.x node]
 
-system "pyenv shell 3.8-dev"
 system "nodenv global system"
 
 versions.each do |v|
   system "nodenv uninstall -f #{v}-dev && nodenv install #{v}-dev"
 end
 system "nodenv global #{versions.first}-dev"
-system "pyenv shell --unset"
