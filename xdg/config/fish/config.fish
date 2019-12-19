@@ -6,6 +6,7 @@ alias libtoolize glibtoolize
 alias l ls
 alias ll "ls -la"
 alias e "code-insiders -a ."
+alias en "code-insiders ."
 
 alias bx "bundle exec"
 alias mk "make -C .x86_64-darwin -j"
