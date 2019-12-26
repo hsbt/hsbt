@@ -12,9 +12,9 @@ brew upgrade
 brew cask upgrade
 
 rbenv global system
-rbenv uninstall -f 2.7.0-dev
-rbenv install 2.7.0-dev
-rbenv global 2.7.0-dev
+rbenv uninstall -f 2.8.0-dev
+rbenv install 2.8.0-dev
+rbenv global 2.8.0-dev
 
 rbenv shell 2.6
 gem update
@@ -26,6 +26,8 @@ dev all-pristine
 rbenv shell 2.6
 dev all-pristine
 rbenv shell 2.7
+dev all-pristine
+rbenv shell 2.8
 dev all-pristine
 
 dev gem-shebang-update
