@@ -35,6 +35,7 @@ brew "bison"
 brew "rsync"
 brew "wget"
 
+cask "docker"
 brew "go"
 brew "cmake"
 brew "ninja"
