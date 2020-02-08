@@ -35,6 +35,7 @@ versions.each do |v|
 end
 
 system "pyenv global #{versions.first}-dev"
+system "pip install -U pip"
 system "pip install pipenv tldr pylint python-openstackclient jupyter notebook pandas bokeh matplotlib"
 
 versions = %w[12.x node]
@@ -45,3 +46,4 @@ versions.each do |v|
   system "nodenv uninstall -f #{v}-dev && nodenv install #{v}-dev"
 end
 system "nodenv global #{versions.first}-dev"
+system "npm -g update npm"
