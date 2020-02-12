@@ -79,6 +79,9 @@ brew "mas"
 tap "homebrew/cask"
 cask "google-cloud-sdk"
 
+tap "github/gh"
+brew "gh"
+
 brew "snapcraft"
 cask "multipass"
 cask "alacritty"
