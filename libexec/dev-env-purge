@@ -45,5 +45,4 @@ system "nodenv global system"
 versions.each do |v|
   system "nodenv uninstall -f #{v}-dev && nodenv install #{v}-dev"
 end
-system "nodenv global #{versions.first}-dev"
 system "npm -g update npm"
