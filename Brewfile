@@ -17,6 +17,8 @@ brew "ripgrep"
 brew "fd"
 brew "fx"
 brew "direnv"
+brew "hexyl"
+brew "procs"
 
 brew "automake"
 brew "autoconf"
