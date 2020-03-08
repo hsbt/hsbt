@@ -23,7 +23,8 @@ set -x AWS_CONFIG_FILE $XDG_CONFIG_HOME/aws/config
 set -x MAVEN_USER_HOME $XDG_CACHE_HOME/maven
 set -x MAVEN_CONFIG "-gs $XDG_CONFIG_HOME/maven/settings.xml"
 set -x PYLINTHOME $XDG_CACHE_HOME/pylint
-set -x HELM_HOME $XDG_CONFIG_HOME/helm
+set -x HELM_HOME $XDG_DATA_HOME/helm
+set -x KREW_ROOT $XDG_DATA_HOME/krew
 
 set -x LANG en_US.UTF-8
 set -x EDITOR vim
@@ -46,4 +47,4 @@ set -x PATH /usr/local/opt/gnu-tar/libexec/gnubin $PATH
 set -x PATH /usr/local/opt/grep/libexec/gnubin $PATH
 set -x PATH /usr/local/opt/bison/bin $PATH
 set -x PATH $GOPATH/src/github.com/hsbt/toolbox/exe $PATH
-set -x PATH $HOME/.krew/bin $PATH
+set -x PATH $KREW_ROOT/bin $PATH
