@@ -13,6 +13,7 @@ alias all-ruby "docker run --rm -t rubylang/all-ruby /all-ruby/all-ruby"
 alias s3cmd "s3cmd --config $HOME/.config/s3cmd"
 alias mvn "mvn -gs $HOME/.config/maven/settings.xml"
 alias wget 'wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
+alias gpg 'gpg --homedir "$XDG_DATA_HOME"/gnupg'
 
 function export
   set arr (echo $argv|tr = \n)
