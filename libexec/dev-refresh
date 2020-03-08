@@ -31,3 +31,10 @@ dev all-pristine
 dev gem-shebang-update
 
 rbenv shell --unset
+
+pip freeze --local | grep -v '^\-e' | cut -d = -f 1 | xargs -n1 pip uninstall -y
+
+npm update -g
+
+rustup update
+cargo install-update -a
