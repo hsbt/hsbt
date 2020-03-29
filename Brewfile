@@ -20,6 +20,7 @@ brew "fx"
 brew "direnv"
 brew "hexyl"
 brew "procs"
+brew "sd"
 
 brew "automake"
 brew "autoconf"
