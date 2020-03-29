@@ -17,7 +17,7 @@ versions.each do |v|
   end
 end
 
-platforms = %w[jruby rbx truffleruby]
+platforms = %w[jruby truffleruby]
 
 platforms.each do |pf|
   d = defs.select { |d| d =~ /#{pf}/ }.max_by { |v| v = v.gsub(/-rc/, ".").gsub(/[a-z\-]/, ""); Gem::Version.new(v) }
