@@ -10,6 +10,7 @@ brew upgrade
 brew cask upgrade
 
 rbenv global system
+gem uninstall -f openssl readline zlib psych
 rbenv uninstall -f 2.8.0-dev
 rbenv install 2.8.0-dev
 rbenv global 2.8.0-dev
