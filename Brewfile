@@ -108,6 +108,9 @@ brew "pack"
 tap "shopify/shopify"
 brew "toxiproxy"
 
+tap "nektos/tap"
+brew "act"
+
 tap "homebrew/cask-fonts"
 cask "font-ricty-diminished"
 cask "font-hack-nerd-font"
