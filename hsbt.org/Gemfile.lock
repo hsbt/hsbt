@@ -23,7 +23,8 @@ GEM
     ffi (1.12.2)
     hashie (4.1.0)
     jmespath (1.4.0)
-    kramdown (2.1.0)
+    kramdown (2.2.1)
+      rexml
     macaddr (1.7.2)
       systemu (~> 2.6.5)
     mina (1.2.3)
@@ -39,6 +40,7 @@ GEM
       ffi
     rbnacl-libsodium (1.0.16)
       rbnacl (>= 3.0.1)
+    rexml (3.2.4)
     roadworker (0.5.12)
       aws-sdk-route53 (>= 1.22.0)
       diffy
