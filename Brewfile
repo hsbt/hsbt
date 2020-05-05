@@ -37,6 +37,7 @@ brew "gnu-tar"
 brew "grep"
 brew "gzip"
 brew "gawk"
+brew "bison"
 brew "rsync"
 brew "wget"
 
