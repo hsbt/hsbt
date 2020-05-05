@@ -32,6 +32,8 @@ dev gem-shebang-update
 rbenv shell --unset
 
 pyenv update
+pip install -U pip
+pip install -U wheel
 pip freeze --local | grep -v '^\-e' | cut -d = -f 1 | xargs -n1 pip install -U
 
 nodenv update
