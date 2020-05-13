@@ -15,6 +15,14 @@ alias mvn "mvn -gs $HOME/.config/maven/settings.xml"
 alias wget 'wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
 alias gpg 'gpg --homedir "$XDG_DATA_HOME"/gnupg'
 
+function fish_prompt
+  set_color $fish_color_cwd
+  echo -n (prompt_pwd)
+  set_color normal
+  printf '%s ' (__fish_git_prompt)
+  echo -n '> '
+end
+
 function export
   set arr (echo $argv|tr = \n)
   set -gx $arr[1] $arr[2]
