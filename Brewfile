@@ -2,7 +2,6 @@ cask_args appdir: "/Applications"
 
 brew "tmux"
 brew "fish"
-brew "starship"
 brew "fzf"
 brew "git"
 brew "git-lfs"
