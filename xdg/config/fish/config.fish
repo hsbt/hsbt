@@ -17,8 +17,9 @@ alias gpg 'gpg --homedir "$XDG_DATA_HOME"/gnupg'
 
 function fish_prompt
   set_color $fish_color_cwd
-  echo -e (prompt_pwd)
+  echo -n (prompt_pwd)
   set_color normal
+  echo -e (__fish_git_prompt)
   echo -n '$ '
 end
 
