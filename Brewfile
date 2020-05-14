@@ -42,6 +42,7 @@ brew "wget"
 
 cask "docker"
 brew "go"
+brew "deno"
 brew "cmake"
 brew "ninja"
 brew "maven"
