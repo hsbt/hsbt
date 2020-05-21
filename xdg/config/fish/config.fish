@@ -32,10 +32,6 @@ function g --wraps git
   hub $argv;
 end
 
-function gemsearch
-  csearch $argv | sed 's/^\/Users\/hsbt\/.local\/share\/go\/src\/github.com\/akr\/gem-codesearch\/latest-gem\///g';
-end
-
 function history-merge --on-event fish_preexec
   history --save
   history --merge
