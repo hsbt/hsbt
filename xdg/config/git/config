@@ -1,0 +1,106 @@
+[include]
+	path = ~/.config/git/config.local
+
+[core]
+	whitespace = space-before-tab, trailing-space, cr-at-eol
+	editor = vim
+	precomposeunicode = true
+	commentchar = |
+	pager = diff-so-fancy | less --tabs=4 -RFX
+
+[user]
+	name = Hiroshi SHIBATA
+	email = hsbt@ruby-lang.org
+	signingkey = F9CF13417264FAC2
+
+[commit]
+	gpgsign = true
+
+[credential]
+	helper = osxkeychain
+
+[pager]
+	log = diff-highlight | less
+	show = diff-highlight | less
+	diff = diff-highlight | less
+
+[color]
+	ui = auto
+
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+
+[branch]
+	autosetupmerge = true
+	autosetuprebase = always
+
+[merge]
+	ff = false
+	renameLimit = 999999
+
+[pull]
+	rebase = false
+
+[diff]
+	algorithm = patience
+	noprefix = true
+	compactionHeuristic = true
+
+[push]
+	default = current
+
+[fetch]
+	prune = true
+
+[svn]
+	rmdir = true
+
+[checkout]
+	defaultRemote = origin
+
+[log]
+	date = iso
+
+[github]
+	user = hsbt
+
+[heroku]
+	account = hsbt
+
+[ghq]
+	root = /Users/hsbt/Documents
+
+[ghq "import"]
+	starred = github-list-starred
+
+[filter "lfs"]
+	clean = git lfs clean %f
+	smudge = git lfs smudge %f
+	required = true
+
+[alias]
+	a  = add -A
+	b  = branch
+	ba = branch -a
+	bc = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs git branch -d; }; f"
+	br = browse-remote
+	bm = branch --merged
+	c  = commit -S
+	ca = commit -S --amend
+	cm = !git add -A && git commit -S -m
+	co = checkout
+	d  = diff
+	ds = diff --staged
+	ga = gc --aggressive
+	up = !git pull --rebase --prune $@ && git submodule update --init --recursive
+	s  = status -sb
+	t  = tag -s
+	rv = remote -v
+	l  = log --decorate
+	lo = log --decorate --oneline
+	lp = log --decorate -p
+	lpf = log --decorate -p --follow
+	sr = "!f() { git svn fetch --all; git svn rebase; git up; }; f"
