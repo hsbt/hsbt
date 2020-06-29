@@ -23,7 +23,7 @@ GEM
     ffi (1.13.0)
     hashie (4.1.0)
     jmespath (1.4.0)
-    kramdown (2.2.1)
+    kramdown (2.3.0)
       rexml
     macaddr (1.7.2)
       systemu (~> 2.6.5)
