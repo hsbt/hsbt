@@ -102,7 +102,7 @@ brew "aws-sam-cli"
 tap "fujiwara/tap"
 brew "aswrap"
 
-tap "buildpack/tap"
+tap "buildpacks/tap"
 brew "pack"
 
 tap "shopify/shopify"
