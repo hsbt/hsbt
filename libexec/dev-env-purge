@@ -5,6 +5,8 @@ versions = %w[2.5 2.6 2.7 2.8]
 
 system "rbenv global system"
 
+system "brew uninstall bison"
+
 versions.each do |v|
   system "rbenv uninstall -f #{v}.0-dev && rbenv install -f #{v}.0-dev"
   Dir.chdir(ENV["RBENV_ROOT"] + "/versions") do
@@ -16,6 +18,8 @@ versions.each do |v|
     end
   end
 end
+
+system "brew install  bison"
 
 platforms = %w[jruby truffleruby]
 
