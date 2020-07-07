@@ -4,5 +4,5 @@ command="$1"
 case "$command" in
 * )
   shift 1
-  exec "$GOPATH/src/github.com/hsbt/toolbox/libexec/dev-$command" "$@"
+  exec "$GOPATH/src/github.com/hsbt/hsbt/libexec/dev-$command" "$@"
 esac
