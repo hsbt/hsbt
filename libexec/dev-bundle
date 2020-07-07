@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
 rm -f /usr/local/bin/kubectl
-brew bundle --file=$GOPATH/src/github.com/hsbt/toolbox/Brewfile
+brew bundle --file=$GOPATH/src/github.com/hsbt/hsbt/Brewfile
 brew unlink kubernetes-cli
 brew link kubernetes-cli
