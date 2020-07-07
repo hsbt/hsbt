@@ -48,5 +48,5 @@ set -x PATH /usr/local/opt/gnu-sed/libexec/gnubin $PATH
 set -x PATH /usr/local/opt/gnu-tar/libexec/gnubin $PATH
 set -x PATH /usr/local/opt/grep/libexec/gnubin $PATH
 set -x PATH /usr/local/opt/bison/bin $PATH
-set -x PATH $GOPATH/src/github.com/hsbt/toolbox/exe $PATH
+set -x PATH $GOPATH/src/github.com/hsbt/hsbt/exe $PATH
 set -x PATH $KREW_ROOT/bin $PATH
