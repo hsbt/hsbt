@@ -18,17 +18,3 @@ I also maintain *.ruby-lang.org which is the official web site of the Ruby progr
 * [docs\.ruby\-lang\.org](https://github.com/ruby/docs.ruby-lang.org)
 * [b\.r\-l\.o](https://github.com/ruby/b.r-l.o)
 * [rubyci](https://github.com/ruby/rubyci)
-
-## Usage for this repository
-
-```
-$ rake push
-$ rake pull
-```
-
-## TODO
-
-* Bootstrap to `git clone` to *env software.
-* Invoke brew bundle and fisher commands.
-* Alacritty and other xdg configurations.
-* ...
