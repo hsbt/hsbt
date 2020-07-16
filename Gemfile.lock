@@ -1,12 +1,60 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    addressable (2.7.0)
+      public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.0)
+    aws-eventstream (1.1.0)
+    aws-partitions (1.342.0)
+    aws-sdk-core (3.104.0)
+      aws-eventstream (~> 1, >= 1.0.2)
+      aws-partitions (~> 1, >= 1.239.0)
+      aws-sigv4 (~> 1.1)
+      jmespath (~> 1.0)
+    aws-sdk-route53 (1.40.0)
+      aws-sdk-core (~> 3, >= 3.99.0)
+      aws-sigv4 (~> 1.1)
+    aws-sigv4 (1.2.1)
+      aws-eventstream (~> 1, >= 1.0.2)
+    bcrypt_pbkdf (1.0.1)
+    diffy (3.3.0)
+    dnsruby (1.61.3)
+      addressable (~> 2.5)
+    ed25519 (1.2.4)
+    ffi (1.13.1)
+    hashie (4.1.0)
     jaro_winkler (1.5.3)
+    jmespath (1.4.0)
+    kramdown (2.3.0)
+      rexml
+    macaddr (1.7.2)
+      systemu (~> 2.6.5)
+    mina (1.2.3)
+      open4 (~> 1.3.4)
+      rake
+    net-scp (3.0.0)
+      net-ssh (>= 2.6.5, < 7.0.0)
+    net-ssh (6.1.0)
+    open4 (1.3.4)
     parallel (1.17.0)
     parser (2.6.3.0)
       ast (~> 2.4.0)
+    public_suffix (4.0.5)
     rainbow (3.0.0)
+    rake (13.0.1)
+    rbnacl (7.1.1)
+      ffi
+    rbnacl-libsodium (1.0.16)
+      rbnacl (>= 3.0.1)
+    rexml (3.2.4)
+    roadworker (0.5.12)
+      aws-sdk-route53 (>= 1.22.0)
+      diffy
+      dnsruby
+      hashie
+      systemu
+      term-ansicolor
+      uuid
     rubocop (0.72.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
@@ -17,16 +65,36 @@ GEM
     rubocop-performance (1.4.1)
       rubocop (>= 0.71.0)
     ruby-progressbar (1.10.1)
+    sassc (2.4.0)
+      ffi (~> 1.9)
     standard (0.1.2)
       rubocop (~> 0.72.0)
       rubocop-performance (~> 1.4.0)
+    sync (0.5.0)
+    systemu (2.6.5)
+    term-ansicolor (1.7.1)
+      tins (~> 1.0)
+    tins (1.25.0)
+      sync
     unicode-display_width (1.6.0)
+    uuid (2.3.9)
+      macaddr (~> 1.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt_pbkdf
+  ed25519
+  kramdown
+  mina
+  net-scp
+  rake
+  rbnacl (< 8.0)
+  rbnacl-libsodium
+  roadworker (~> 0.5.10)
+  sassc
   standard
 
 BUNDLED WITH
-   2.1.0.pre.1
+   2.2.0.rc.1
