@@ -28,7 +28,34 @@ class Rubima2Mobi
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
   <title>#{title}</title>
-  <link rel="stylesheet" href="style.css" type="text/css" media="all"></link>
+  <style>
+  * {
+  	margin: 0px;
+  	padding: 0px;
+  	text-indent: 0px;
+  }
+
+  h1 {
+  	font-size: 150%;
+  	font-weight: bold;
+  }
+
+  h2 {
+  	font-size: 120%;
+  	font-weight: bold;
+  	margin: 1em 0em 0em 0em;
+  }
+
+  p {
+  	text-indent: 0em;
+  	margin: 1em 0em 0em 0em;
+  	line-height: 200%;
+  }
+
+  strong {
+          margin-right: 1em;
+  }
+  </style>
 </head>
 <body>
   <h1>#{title}</h1>
