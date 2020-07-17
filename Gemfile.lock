@@ -23,8 +23,12 @@ GEM
     ed25519 (1.2.4)
     ffi (1.13.1)
     hashie (4.1.0)
+    hikidoc (0.1.0)
     jaro_winkler (1.5.3)
     jmespath (1.4.0)
+    kindlegen (3.0.5)
+      rake
+      rubyzip
     kramdown (2.3.0)
       rexml
     macaddr (1.7.2)
@@ -65,6 +69,7 @@ GEM
     rubocop-performance (1.4.1)
       rubocop (>= 0.71.0)
     ruby-progressbar (1.10.1)
+    rubyzip (2.3.0)
     sassc (2.4.0)
       ffi (~> 1.9)
     standard (0.1.2)
@@ -86,6 +91,8 @@ PLATFORMS
 DEPENDENCIES
   bcrypt_pbkdf
   ed25519
+  hikidoc
+  kindlegen
   kramdown
   mina
   net-scp

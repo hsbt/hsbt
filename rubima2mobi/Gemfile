@@ -1,4 +1,0 @@
-source :rubygems
-
-gem 'hikidoc'
-gem 'kindlegen'
