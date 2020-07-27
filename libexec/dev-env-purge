@@ -1,54 +1,48 @@
 #!/usr/bin/env ruby
 
+require 'shellwords'
+
+system "rbenv shell --unset && rbenv global system"
 defs = `rbenv install --list`.split.select { |v| v =~ /[0-9]/ }
-versions = %w[2.5 2.6 2.7 2.8]
-
-system "rbenv global system"
-
+versions = %w[2.8]
 system "brew uninstall bison"
-
 versions.each do |v|
   system "rbenv uninstall -f #{v}.0-dev && rbenv install -f #{v}.0-dev"
   Dir.chdir(ENV["RBENV_ROOT"] + "/versions") do
     File.unlink v if File.exist?(v)
     File.symlink(v + ".0-dev", v)
-    defs.select { |d| d =~ /^#{v}.\d+$/ }.each do |stable|
-      File.unlink stable if File.exist?(stable)
-      File.symlink(v + ".0-dev", stable)
+    d = defs.find { |d| d =~ /^#{v}.\d+$/ }  
+    if d
+      latest = d.match(/\d+$/).to_s.to_i
+      0.upto(latest) do |i|
+        stable = "#{v}.#{i}"
+        File.unlink stable if File.exist?(stable)
+        File.symlink(v + ".0-dev", stable)
+      end
     end
   end
 end
-
-system "brew install  bison"
-
-platforms = %w[jruby truffleruby]
-
+system "brew install bison"
+platforms = %w[jruby rbx truffleruby truffleruby+graalvm]
 platforms.each do |pf|
-  d = defs.select { |d| d =~ /#{pf}/ }.max_by { |v| v = v.gsub(/-rc/, ".").gsub(/[a-z\-]/, ""); Gem::Version.new(v) }
-  system "rbenv uninstall -f #{d} && env SDKROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk MACOSX_DEPLOYMENT_TARGET=10.15 rbenv install #{d}"
+  d = defs.find { |d| d =~ Regexp.new(pf.shellescape) }
+  system "rbenv uninstall -f #{d} && rbenv install #{d}"
 end
-
 system "rbenv global #{versions.last}.0-dev"
 
-versions = %w[3.8 3.9]
-
 system "pyenv global system"
-
+versions = %w[3.8 3.9]
 versions.each do |v|
   system "pyenv uninstall -f #{v}-dev && env SDKROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk MACOSX_DEPLOYMENT_TARGET=10.15 pyenv install #{v}-dev"
 end
-
 system "pyenv global #{versions.first}-dev"
 system "pip install -U pip wheel"
 system "pip install pipenv tldr pylint python-openstackclient jupyter notebook pandas bokeh matplotlib"
 
-versions = %w[14.x node]
-
 system "nodenv global system"
-
+versions = %w[14.x node]
 versions.each do |v|
   system "nodenv uninstall -f #{v}-dev && nodenv install #{v}-dev"
 end
-
 system "nodenv global #{versions.first}-dev"
 system "npm -g update npm"
