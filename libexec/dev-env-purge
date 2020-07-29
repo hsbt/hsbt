@@ -23,7 +23,7 @@ versions.each do |v|
   end
 end
 system "brew install bison"
-platforms = %w[jruby rbx truffleruby truffleruby+graalvm]
+platforms = %w[jruby mruby rbx truffleruby truffleruby+graalvm]
 platforms.each do |pf|
   d = defs.find { |d| d =~ Regexp.new(pf.shellescape) }
   system "rbenv uninstall -f #{d} && rbenv install #{d}"
