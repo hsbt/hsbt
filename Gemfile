@@ -8,7 +8,6 @@ gem "standard"
 
 gem 'mina'
 gem 'rake'
-gem 'roadworker', '~> 0.5.10'
 gem 'kramdown'
 gem 'sassc'
 gem 'net-scp'
