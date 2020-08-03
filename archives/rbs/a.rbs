@@ -1,0 +1,23 @@
+class Commit
+  # コミットのSHA
+  attr_reader sha: String
+end
+
+class Committer
+  # 名前
+  attr_reader name: String
+
+  # メールアドレス
+  attr_reader email: String
+
+  # GitHubアカウント名（あれば）
+  attr_reader github_user: String?
+
+  # コミット
+  attr_reader commits: Array[Commit]
+
+  def initialize: (name: String, email: String, github_user: String?) -> void
+
+  def each_commit: () { (Commit) -> void } -> void
+                 | () -> Enumerator[Commit, void]
+end
