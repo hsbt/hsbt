@@ -39,5 +39,5 @@ end
 
 source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.fish.inc
 
-zoxide init fish | source
+zoxide init fish --cmd j | source
 eval (direnv hook fish)
