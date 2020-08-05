@@ -36,7 +36,7 @@ set -x LESSHISTFILE -
 set -x GO111MODULE on
 set -x RUBY_CODESIGN hsbt
 set -x PKG_CONFIG_PATH /usr/local/opt/imagemagick@6/lib/pkgconfig:/usr/lib/pkgconfig
-set -U _ZO_DATA_DIR $XDG_DATA_HOME/zoxide
+set -x _ZO_DATA_DIR $XDG_DATA_HOME/zoxide
 
 set -x PATH $GOPATH/bin $CARGO_HOME/bin $RBENV_ROOT/bin $NODENV_ROOT/bin $PYENV_ROOT/bin $PATH
 set -x PATH $HOME/Library/Developer/Toolchains/Custom.xctoolchain/usr/bin $PATH
