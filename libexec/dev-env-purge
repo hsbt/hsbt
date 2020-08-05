@@ -37,7 +37,7 @@ versions.each do |v|
 end
 system "pyenv global #{versions.first}-dev"
 system "pip install -U pip wheel"
-system "pip install pipenv tldr pylint python-openstackclient jupyter notebook pandas bokeh matplotlib"
+system "pip install pipenv pylint python-openstackclient jupyter notebook pandas bokeh matplotlib"
 
 system "nodenv global system"
 versions = %w[14.x node]
