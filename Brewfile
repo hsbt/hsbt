@@ -128,8 +128,6 @@ mas "Microsoft Remote Desktop", id: 1295203466
 mas "Microsoft Word", id: 462054704
 mas "Microsoft Excel", id: 462058435
 mas "Microsoft PowerPoint", id: 462062816
-mas "Slack", id: 803453959
 mas "Pixelmator", id: 407963104
-mas "Messenger", id: 1480068668
 mas "1Password 7", id: 1333542190
 mas "Display Menu", id: 549083868
