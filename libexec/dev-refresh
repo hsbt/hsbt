@@ -1,22 +1,22 @@
 #!/usr/bin/env bash
 
+brew upgrade
+brew upgrade --cask
+
 rbenv update
 
 eval "$(rbenv init -)"
 
 rbenv shell --unset
 
-brew upgrade
-brew cask upgrade
-
-rbenv global 2.5
+rbenv global system
 rbenv uninstall -f 3.0.0-dev
 rbenv install 3.0.0-dev
 rbenv global 3.0.0-dev
 
 rbenv shell 3.0.0-dev
 gem update
-gem uninstall --force openssl zlib psych readline-ext
+gem uninstall --force openssl zlib psych
 
 rbenv shell 2.5
 dev all-pristine
