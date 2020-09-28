@@ -84,6 +84,7 @@ brew "lcov"
 brew "ansible"
 brew "mackup"
 brew "mas"
+brew "sshuttle"
 
 tap "homebrew/cask"
 cask "google-cloud-sdk"
