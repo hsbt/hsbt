@@ -42,6 +42,8 @@ brew "gawk"
 brew "bison"
 brew "rsync"
 brew "wget"
+brew "ffmpeg"
+brew "consul-template"
 
 cask "docker"
 brew "go"
