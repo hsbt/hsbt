@@ -47,6 +47,7 @@ brew "consul-template"
 
 cask "docker"
 brew "go"
+brew "node"
 brew "deno"
 brew "cmake"
 brew "ninja"
