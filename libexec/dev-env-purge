@@ -30,14 +30,3 @@ platforms.each do |pf|
   system "rbenv uninstall -f #{d} && rbenv install #{d}"
 end
 system "rbenv global #{versions.last}.0-dev"
-
-system "pyenv global system"
-versions = %w[3.8 3.9]
-versions.each do |v|
-  system "pyenv uninstall -f #{v}-dev && env SDKROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk MACOSX_DEPLOYMENT_TARGET=10.15 pyenv install #{v}-dev"
-end
-system "pyenv global #{versions.first}-dev"
-system "pip install -U pip wheel"
-system "pip install pipenv pylint python-openstackclient jupyter notebook pandas bokeh matplotlib"
-
-system "npm -g update npm"
