@@ -5,7 +5,7 @@ require 'fileutils'
 
 system "rbenv shell --unset && rbenv global system"
 defs = `rbenv install --list`.split.select { |v| v =~ /[0-9]/ }
-versions = %w[2.8 2.7 2.6 2.5]
+versions = %w[3.0 2.7 2.6 2.5]
 system "brew uninstall bison"
 versions.each do |v|
   system "rbenv uninstall -f #{v}.0-dev && rbenv install -f #{v}.0-dev"
@@ -40,10 +40,4 @@ system "pyenv global #{versions.first}-dev"
 system "pip install -U pip wheel"
 system "pip install pipenv pylint python-openstackclient jupyter notebook pandas bokeh matplotlib"
 
-system "nodenv global system"
-versions = %w[14.x node]
-versions.each do |v|
-  system "nodenv uninstall -f #{v}-dev && nodenv install #{v}-dev"
-end
-system "nodenv global #{versions.first}-dev"
 system "npm -g update npm"
