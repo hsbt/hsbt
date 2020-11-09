@@ -24,6 +24,7 @@ brew "direnv"
 brew "hexyl"
 brew "procs"
 brew "sd"
+brew "dog"
 
 brew "automake"
 brew "autoconf"
