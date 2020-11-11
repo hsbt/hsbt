@@ -36,6 +36,7 @@ set -x RUBY_CODESIGN hsbt
 set -x PKG_CONFIG_PATH /usr/local/opt/imagemagick@6/lib/pkgconfig:/usr/lib/pkgconfig
 set -x _ZO_DATA_DIR $XDG_DATA_HOME/zoxide
 set -x TEALDEER_CACHE_DIR $XDG_CACHE_HOME/tldr
+set -x CLOUDSDK_PYTHON /usr/local/opt/python@3.8/libexec/bin/python
 
 set -x PATH $GOPATH/bin $CARGO_HOME/bin $RBENV_ROOT/bin $NODENV_ROOT/bin $PYENV_ROOT/bin $PATH
 set -x PATH $HOME/Library/Developer/Toolchains/Custom.xctoolchain/usr/bin $PATH
