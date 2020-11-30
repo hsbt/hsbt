@@ -11,6 +11,7 @@ set -x BUNDLE_USER_CACHE $XDG_CACHE_HOME/bundle
 set -x BUNDLE_USER_PLUGIN $XDG_DATA_HOME/bundle
 set -x RBENV_ROOT $XDG_DATA_HOME/rbenv
 set -x CARGO_HOME $XDG_DATA_HOME/cargo
+set -x MIX_HOME $XDG_DATA_HOME/mix
 set -x CSEARCHINDEX $XDG_CACHE_HOME/csearchindex
 set -x GNUPGHOME $XDG_DATA_HOME/gnupg
 set -x GPG_TTY (tty)
