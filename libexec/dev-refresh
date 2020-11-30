@@ -30,6 +30,3 @@ dev all-pristine
 dev gem-shebang-update
 
 rbenv shell --unset
-
-rustup update
-cargo install-update -a
