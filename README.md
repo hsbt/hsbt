@@ -1,10 +1,5 @@
 # hsbt
 
-![](https://github-readme-stats.vercel.app/api?username=hsbt&show_icons=true)
-![](https://github-readme-stats.vercel.app/api/top-langs/?username=hsbt&layout=compact)
-
-These cards are powered by https://github.com/anuraghazra/github-readme-stats
-
 ## Profile
 
 A member of the Ruby core team. I maintain the following software and toolchains.
