@@ -129,6 +129,8 @@ cask "font-ricty-diminished"
 cask "font-hack-nerd-font"
 cask "font-source-han-code-jp"
 
+cask "aerial"
+
 mas "Xcode", id: 497799835
 mas "Apple Developer", id: 640199958
 mas "Pages", id: 409201541
