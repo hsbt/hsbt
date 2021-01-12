@@ -131,15 +131,5 @@ cask "font-source-han-code-jp"
 
 cask "aerial"
 
-mas "Xcode", id: 497799835
-mas "Apple Developer", id: 640199958
-mas "Pages", id: 409201541
-mas "Numbers", id: 409203825
-mas "Keynote", id: 409183694
 mas "Microsoft Remote Desktop", id: 1295203466
-mas "Microsoft Word", id: 462054704
-mas "Microsoft Excel", id: 462058435
-mas "Microsoft PowerPoint", id: 462062816
 mas "Pixelmator", id: 407963104
-mas "1Password 7", id: 1333542190
-mas "Display Menu", id: 549083868
