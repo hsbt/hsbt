@@ -64,7 +64,7 @@ brew "m-cli"
 brew "s3cmd"
 brew "xdelta"
 brew "terraform"
-brew "unrar"
+cask "rar"
 brew "llvm"
 brew "postgresql"
 brew "mysql"
@@ -128,7 +128,7 @@ cask "font-ricty-diminished"
 cask "font-hack-nerd-font"
 cask "font-source-han-code-jp"
 
+cask "clipy"
 cask "aerial"
-
 mas "Microsoft Remote Desktop", id: 1295203466
 mas "Pixelmator", id: 407963104
