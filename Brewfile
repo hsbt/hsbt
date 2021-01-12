@@ -46,7 +46,6 @@ brew "wget"
 brew "ffmpeg"
 brew "consul-template"
 
-cask "docker"
 brew "go"
 brew "node"
 brew "deno"
