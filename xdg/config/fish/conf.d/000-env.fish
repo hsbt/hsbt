@@ -15,6 +15,7 @@ set -x MIX_HOME $XDG_DATA_HOME/mix
 set -x GNUPGHOME $XDG_DATA_HOME/gnupg
 set -x NPM_CONFIG_USERCONFIG $XDG_CONFIG_HOME/npm/npmrc
 set -x GOPATH $XDG_DATA_HOME/go
+set -x GOBIN $XDG_DATA_HOME/bin
 set -x AWS_SHARED_CREDENTIALS_FILE $XDG_CONFIG_HOME/aws/credentials
 set -x AWS_CONFIG_FILE $XDG_CONFIG_HOME/aws/config
 set -x MAVEN_USER_HOME $XDG_CACHE_HOME/maven
@@ -37,7 +38,7 @@ set -x _ZO_DATA_DIR $XDG_DATA_HOME/zoxide
 set -x TEALDEER_CACHE_DIR $XDG_CACHE_HOME/tldr
 set -x CLOUDSDK_PYTHON /usr/local/opt/python@3.8/libexec/bin/python
 
-set -x PATH $GOPATH/bin $CARGO_HOME/bin $RBENV_ROOT/bin $KREW_ROOT/bin $PATH
+set -x PATH $GOBIN $CARGO_HOME/bin $RBENV_ROOT/bin $KREW_ROOT/bin $PATH
 set -x PATH /usr/local/sbin $PATH
 set -x PATH /usr/local/opt/coreutils/libexec/gnubin $PATH
 set -x PATH /usr/local/opt/findutils/libexec/gnubin $PATH
