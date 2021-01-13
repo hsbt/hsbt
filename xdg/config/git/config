@@ -104,3 +104,5 @@
 	lp = log --decorate -p
 	lpf = log --decorate -p --follow
 	sr = "!f() { git svn fetch --all; git svn rebase; git up; }; f"
+[init]
+	defaultBranch = master
