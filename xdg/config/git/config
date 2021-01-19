@@ -85,9 +85,8 @@
 	a  = add -A
 	b  = branch
 	ba = branch -a
-	bc = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs git branch -d; }; f"
-	br = browse-remote
 	bm = branch --merged
+	bc = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs git branch -d; }; f"
 	c  = commit -S
 	ca = commit -S --amend
 	cm = !git add -A && git commit -S -m
@@ -103,6 +102,5 @@
 	lo = log --decorate --oneline
 	lp = log --decorate -p
 	lpf = log --decorate -p --follow
-	sr = "!f() { git svn fetch --all; git svn rebase; git up; }; f"
 [init]
 	defaultBranch = master
