@@ -130,5 +130,6 @@ cask "font-source-han-code-jp"
 
 cask "clipy"
 cask "aerial"
+cask "abyssoft-teleport"
 mas "Microsoft Remote Desktop", id: 1295203466
 mas "Pixelmator", id: 407963104
