@@ -7,9 +7,6 @@ GEM
     ffi (1.13.1)
     hikidoc (0.1.0)
     jaro_winkler (1.5.3)
-    kindlegen (3.0.5)
-      rake
-      rubyzip
     kramdown (2.3.0)
       rexml
     mina (1.2.3)
@@ -39,7 +36,6 @@ GEM
     rubocop-performance (1.4.1)
       rubocop (>= 0.71.0)
     ruby-progressbar (1.10.1)
-    rubyzip (2.3.0)
     sassc (2.4.0)
       ffi (~> 1.9)
     standard (0.1.2)
@@ -54,7 +50,6 @@ DEPENDENCIES
   bcrypt_pbkdf
   ed25519
   hikidoc
-  kindlegen
   kramdown
   mina
   net-scp
@@ -65,4 +60,4 @@ DEPENDENCIES
   standard
 
 BUNDLED WITH
-   2.2.0.rc.1
+   2.3.0.dev
