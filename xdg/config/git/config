@@ -1,6 +1,9 @@
 [include]
 	path = ~/.config/git/config.local
 
+[init]
+	defaultBranch = master
+
 [core]
 	whitespace = space-before-tab, trailing-space, cr-at-eol
 	editor = vim
@@ -54,6 +57,10 @@
 
 [fetch]
 	prune = true
+	parallel = 8
+
+[submodule]
+	fetchJobs = 8
 
 [svn]
 	rmdir = true
@@ -102,5 +109,3 @@
 	lo = log --decorate --oneline
 	lp = log --decorate -p
 	lpf = log --decorate -p --follow
-[init]
-	defaultBranch = master
