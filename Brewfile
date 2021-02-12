@@ -25,6 +25,7 @@ brew "hexyl"
 brew "procs"
 brew "sd"
 brew "dog"
+brew "grex"
 
 brew "automake"
 brew "autoconf"
@@ -128,8 +129,18 @@ cask "font-ricty-diminished"
 cask "font-hack-nerd-font"
 cask "font-source-han-code-jp"
 
+cask "docker"
+cask "discord"
+cask "1password"
 cask "clipy"
 cask "aerial"
 cask "abyssoft-teleport"
+cask "krisp"
+cask "zoom"
 mas "Microsoft Remote Desktop", id: 1295203466
 mas "Pixelmator", id: 407963104
+mas "Slack", id: 803453959
+mas "iMovie", id: 408981434
+mas "Pages", id: 409201541
+mas "Keynote", id: 409183694
+mas "Numbers", id: 409203825
