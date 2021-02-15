@@ -136,6 +136,7 @@ cask "1password"
 cask "clipy"
 cask "aerial"
 cask "abyssoft-teleport"
+cask "microsoft-teams"
 cask "krisp"
 cask "zoom"
 mas "Microsoft Remote Desktop", id: 1295203466
