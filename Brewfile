@@ -107,6 +107,7 @@ brew "heroku"
 
 brew "python@3.9"
 brew "pipenv"
+brew "poetry"
 brew "openstackclient"
 brew "awscli"
 tap "aws/tap"
