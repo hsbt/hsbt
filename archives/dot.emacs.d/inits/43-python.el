@@ -1,5 +1,0 @@
-(require 'python-mode)
-(add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
-(add-hook 'python-mode-hook 'jedi:setup)
-(add-hook 'python-mode-hook 'jedi:ac-setup)
-(define-key python-mode-map (kbd "<C-tab>") 'jedi:complete)
