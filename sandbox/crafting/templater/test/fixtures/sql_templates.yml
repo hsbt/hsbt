@@ -1,0 +1,8 @@
+one:
+  id: 1
+  path: "some/path"
+  format: "html"
+  locale: "en"
+  handler: "erb"
+  partial: false
+  body: "Body"

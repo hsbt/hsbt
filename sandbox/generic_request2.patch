@@ -1,0 +1,15 @@
+diff --git a/lib/net/http/generic_request.rb b/lib/net/http/generic_request.rb
+index e8525b3..20afb3f 100644
+--- a/lib/net/http/generic_request.rb
++++ b/lib/net/http/generic_request.rb
+@@ -99,7 +99,9 @@ class Net::HTTPGenericRequest
+   #
+ 
+   def exec(sock, ver, path)   #:nodoc: internal use only
+-    self['host'] = "#{@uri.host}:#{@uri.port}" if @uri
++    if @uri && @uri.port != @uri.default_port
++      self['host'] = "#{@uri.host}:#{@uri.port}"
++    end
+ 
+     if @body
+       send_request_with_body sock, ver, path, @body

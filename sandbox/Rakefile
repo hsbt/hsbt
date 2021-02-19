@@ -1,0 +1,15 @@
+task :a => :d do
+  p @foo
+  raise
+end
+
+task :b => :d do
+  p @foo
+  p :c
+end
+
+task :d do
+  @foo = :bar
+end
+
+task :default => [:b, :a]
