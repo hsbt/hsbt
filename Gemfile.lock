@@ -53,6 +53,7 @@ DEPENDENCIES
   kramdown
   mina
   net-scp
+  parallel (~> 1.17)
   rake
   rbnacl (< 8.0)
   rbnacl-libsodium
