@@ -29,6 +29,7 @@ brew "grex"
 
 brew "automake"
 brew "autoconf"
+brew "make"
 brew "openssl"
 brew "gdbm"
 brew "readline"
