@@ -17,3 +17,5 @@ gem 'rbnacl', '< 8.0'
 gem 'bcrypt_pbkdf'
 
 gem 'hikidoc'
+
+gem "parallel", "~> 1.17"
