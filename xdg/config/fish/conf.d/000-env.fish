@@ -45,6 +45,7 @@ set -x PATH /usr/local/opt/coreutils/libexec/gnubin $PATH
 set -x PATH /usr/local/opt/findutils/libexec/gnubin $PATH
 set -x PATH /usr/local/opt/gnu-sed/libexec/gnubin $PATH
 set -x PATH /usr/local/opt/gnu-tar/libexec/gnubin $PATH
+set -x PATH /usr/local/opt/make/libexec/gnubin $PATH
 set -x PATH /usr/local/opt/grep/libexec/gnubin $PATH
 set -x PATH /usr/local/opt/bison/bin $PATH
 set -x PATH $HOME/Documents/github.com/hsbt/hsbt/exe $PATH
