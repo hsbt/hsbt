@@ -19,3 +19,5 @@ gem 'bcrypt_pbkdf'
 gem 'hikidoc'
 
 gem "parallel", "~> 1.17"
+
+gem "slack-ruby-client", "~> 0.16.0"
