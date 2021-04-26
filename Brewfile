@@ -27,6 +27,7 @@ brew "procs"
 brew "sd"
 brew "dog"
 brew "grex"
+brew "codespell"
 
 brew "automake"
 brew "autoconf"
