@@ -28,6 +28,7 @@ brew "sd"
 brew "dog"
 brew "grex"
 brew "codespell"
+brew "zopfli"
 
 brew "automake"
 brew "autoconf"
