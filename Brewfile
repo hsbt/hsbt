@@ -29,6 +29,7 @@ brew "dog"
 brew "grex"
 brew "codespell"
 brew "zopfli"
+brew "jpegoptim"
 
 brew "automake"
 brew "autoconf"
