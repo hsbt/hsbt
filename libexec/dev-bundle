@@ -1,6 +1,3 @@
 #!/usr/bin/env bash
 
-rm -f /usr/local/bin/kubectl
 brew bundle --file=$(ghq root)/github.com/hsbt/hsbt/Brewfile
-brew unlink kubernetes-cli
-brew link kubernetes-cli
