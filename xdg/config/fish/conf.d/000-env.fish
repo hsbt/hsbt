@@ -24,6 +24,7 @@ set -x PYLINTHOME $XDG_CACHE_HOME/pylint
 set -x HELM_HOME $XDG_DATA_HOME/helm
 set -x KREW_ROOT $XDG_DATA_HOME/krew
 set -x VIMINIT ":source $XDG_CONFIG_HOME"/vim/vimrc
+set -x NODE_REPL_HISTORY $XDG_DATA_HOME"/node_repl_history
 
 set -x LANG en_US.UTF-8
 set -x GPG_TTY (tty)
