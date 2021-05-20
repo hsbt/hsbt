@@ -9,8 +9,6 @@ task :push do
     to = f.gsub(/xdg\/config/, ENV['XDG_CONFIG_HOME'])
     FileUtils.cp from, to
   end
-
-  FileUtils.cp "dotfiles/dot.tmux.conf", "#{ENV["HOME"]}/.tmux.conf"
 end
 
 task :pull do
@@ -19,6 +17,4 @@ task :pull do
     from = f.gsub(/xdg\/config/, ENV['XDG_CONFIG_HOME'])
     FileUtils.cp from, to
   end
-
-  FileUtils.cp "#{ENV["HOME"]}/.tmux.conf", "dotfiles/dot.tmux.conf"
 end
