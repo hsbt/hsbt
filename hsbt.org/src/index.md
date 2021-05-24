@@ -64,6 +64,11 @@ Ruby コミッタ、ruby, rubygems, bundler, rake, rdoc, rbenv, ruby-build, psyc
 
 ## 講演・発表(国際カンファレンス)
 
+* 2020年09月 RubyKaigi takeout 2020 [Dependency Resolution with Standard Libraries](https://www.slideshare.net/hsbt/dependency-resolution-with-standard-libraries)
+* 2019年08月 builderscon 2019 [OSS Security the hard way](https://www.slideshare.net/hsbt/oss-security-the-hard-way)
+* 2019年07月 Rubyconf Taiwan 2019 [The Future of library dependency manageement of Ruby](https://www.slideshare.net/hsbt/the-future-of-library-dependency-manageement-of-ruby)
+* 2019年06月 Saint P RubyConf 2019 [The Future of Dependency Management for Ruby](https://www.slideshare.net/hsbt/the-future-of-dependency-management-for-ruby-148983155)
+* 2019年04月 RubyKaigi 2019 [The Future of Bundled Bundler](https://www.slideshare.net/hsbt/the-future-of-bundled-bundler)
 * 2018年11月 RubyWorld Conference 2018 [Productive Organization with Ruby](https://speakerdeck.com/hsbt/productive-organization-with-ruby)
 * 2018年10月 RubyConf.my 2018 [Gems on Ruby](https://www.slideshare.net/hsbt/gems-on-ruby-120665092)
 * 2018年06月 Paris.rb Conf 2018 [RubyGems 3 & 4](https://www.slideshare.net/hsbt/rubygems-3-4-103593355)
@@ -92,6 +97,10 @@ Ruby コミッタ、ruby, rubygems, bundler, rake, rdoc, rbenv, ruby-build, psyc
 
 ## 講演・発表
 
+* 2020年04月 Ruby3さみっと [Roadmap for RubyGems 4 and Bundler 3](https://www.slideshare.net/hsbt/roadmap-for-rubygems-4-and-bundler-3)
+* 2020年01月 Ginza Rails #10 [The Future of library dependency management of Ruby](https://www.slideshare.net/hsbt/the-future-of-library-dependency-management-of-ruby)
+* 2019年09月 OsakaRubyKaigi02 [Ruby Security the Hard Way](https://www.slideshare.net/hsbt/ruby-security-the-hard-way)
+* 2019年03月 RailsDM 2019 [What's new in RubyGems3](https://www.slideshare.net/hsbt/whats-new-in-rubygems3)
 * 2018年08月 LLEvent 2018 [Gems on Ruby](https://www.slideshare.net/hsbt/gems-on-ruby-111597452)
 * 2017年10月 社内バックオフィス読書会 [人工知能は人間を超えるか 読書会](https://speakerdeck.com/hsbt/ren-gong-zhi-neng-haren-jian-wochao-eruka-du-shu-hui)
 * 2017年09月 社内テックミーティング [カンファレンス発表の技術](https://speakerdeck.com/hsbt/kanhuarensufa-biao-falseji-shu)
