@@ -53,7 +53,7 @@ Ruby コミッタ、ruby, rubygems, bundler, rake, rdoc, rbenv, ruby-build, psyc
 * 2013年05月 RubyKaja 2013 [Introduction of Asakusa.rb](https://speakerdeck.com/hsbt/introduction-of-asakusa-dot-rb)
 * 2002年03月 苫小牧工業高等専門学校 高専賞
 
-## 執筆・寄稿
+## 執筆・寄稿(書籍)
 
 * 2018年02月 WEB+DB PRESS Vol.103 特集2 Ruby最前線［コミッター直伝］新機能の活かし方 まつもとゆきひろ, 村田 賢太, 柴田 博志, 国分 崇志, 遠藤 侑介 著 技術評論社
 * 2015年03月 スクラム実践入門──成果を生み出すアジャイルな開発プロセス 貝瀬 岳志,原田 勝信,和島 史典,栗林 健太郎,柴田 博志,家永 英治 著 技術評論社
@@ -61,6 +61,14 @@ Ruby コミッタ、ruby, rubygems, bundler, rake, rdoc, rbenv, ruby-build, psyc
 * 2013年06月 WEB+DB PRESS Vol.75 特集1 継続的Webサービス改善ガイド 栗林 健太郎, 黒田 良,常松 伸哉. 安宅 啓, 柴田 博志 著 技術評論社
 * 2012年10月 WEB+DB PRESS Vol.71 特集3 はじめてのHeroku 柴田 博志,相澤 歩 著 技術評論社
 * 2011年02月 WEB+DB PRESS Vol.61 特集2 Rails 3テスト最前線 浦嶌 啓太,高橋 健一,柴田 博志 著 技術評論社
+
+## 執筆・寄稿・インタビュー(Web 媒体)
+
+* 2020年10月 [「楽しい・おもしろい」を選び続けた先に今があった GMOペパボ VPofE 兼 技術部長とOSSとの20年間](https://engineer-lab.findy-code.io/enjoy-oss)
+* 2020年07月 [GMO3社の開発トップが教える今後の“採用”と“テレワーク”の在り方](https://logmi.jp/tech/articles/323177)
+* 2019年10月 [GMOペパボ柴田博志が教える。経営者も理解しておくべき「技術的負債」](https://flxy.jp/article/7533)
+* 2017年10月 [800万DLアプリ『minne』でおなじみ！ GMOペパボが全社員でGitHubを使うワケ](https://careerhack.en-japan.com/report/detail/863)
+* 2014年11月 [RubyPrize2014 受賞者インタビュー](https://www.ruby.or.jp/rubyprize2014/interview/win_shibata_01.html)
 
 ## 講演・発表(国際カンファレンス)
 
