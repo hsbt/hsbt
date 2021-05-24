@@ -116,6 +116,7 @@ brew "openstackclient"
 brew "awscli"
 tap "aws/tap"
 brew "aws-sam-cli"
+brew "copilot-cli"
 
 tap "fujiwara/tap"
 brew "aswrap"
