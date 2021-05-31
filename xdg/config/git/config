@@ -23,9 +23,21 @@
 	helper = osxkeychain
 
 [pager]
-	log = diff-highlight | less
-	show = diff-highlight | less
-	diff = diff-highlight | less
+    diff = delta
+    log = delta
+    reflog = delta
+    show = delta
+
+[delta]
+    plus-style = "syntax #012800"
+    minus-style = "syntax #340001"
+    syntax-theme = Monokai Extended
+    line-numbers = true
+    navigate = true
+    side-by-side = true
+
+[interactive]
+    diffFilter = delta --color-only
 
 [color]
 	ui = auto
