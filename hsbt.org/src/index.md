@@ -71,6 +71,11 @@ Ruby コミッタ、ruby, rubygems, bundler, rake, rdoc, rbenv, ruby-build, psyc
 * 2017年10月 [800万DLアプリ『minne』でおなじみ！ GMOペパボが全社員でGitHubを使うワケ](https://careerhack.en-japan.com/report/detail/863)
 * 2014年11月 [RubyPrize2014 受賞者インタビュー](https://www.ruby.or.jp/rubyprize2014/interview/win_shibata_01.html)
 
+## Podcast
+
+* 2021年05月 [136\. hsbtさんとゲームとマンガの話 \| Ossan\.fm](https://ossan.fm/episode/136)
+* 2021年05月 [135\. hsbtさんと100分de名著の話 \| Ossan\.fm](https://ossan.fm/episode/135)
+
 ## 講演・発表(国際カンファレンス)
 
 * 2020年09月 RubyKaigi takeout 2020 [Dependency Resolution with Standard Libraries](https://www.slideshare.net/hsbt/dependency-resolution-with-standard-libraries)
