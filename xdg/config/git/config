@@ -40,6 +40,8 @@
     file-style = bold yellow ul
     file-decoration-style = none
 
+[url "git@github.com:"]
+	insteadOf = https://github.com/
 
 [color]
 	ui = auto
