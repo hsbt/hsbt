@@ -4,12 +4,13 @@ require "parallel"
 Dir.chdir(`ghq root`.chomp) do
   Parallel.map(`ghq list`.split.shuffle) do |dir|
     next unless File.directory?(dir + "/.git")
-    next if /github\.com\/ruby/.match?(dir)
 
     puts dir
 
     Dir.chdir(dir) do
-      system('git fetch --all --prune')
+      system('git fetch --multiple origin ruby-core --prune --no-tags')
+      system('git stash')
+      system("git remote show origin | grep 'HEAD branch' | awk '{print $NF}' | xargs git switch")
       system('git pull --rebase --prune')
       system('git submodule update --init --recursive')
       system('git gc --prune')
