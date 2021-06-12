@@ -146,6 +146,7 @@ cask "aerial"
 cask "microsoft-teams"
 cask "krisp"
 cask "zoom"
+cask "messenger"
 mas "Microsoft Remote Desktop", id: 1295203466
 mas "Pixelmator", id: 407963104
 mas "Slack", id: 803453959
