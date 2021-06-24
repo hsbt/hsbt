@@ -116,6 +116,7 @@
 	co = checkout
 	d  = diff
 	ds = diff --staged
+	dn = diff --name-only
 	ga = gc --aggressive
 	up = !git pull --rebase --prune $@ && git submodule update --init --recursive
 	s  = status -sb
