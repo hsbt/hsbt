@@ -12,27 +12,26 @@ system "rbenv shell --unset && rbenv global system"
 defs = `rbenv install --list`.split.select { |v| v =~ /[0-9]/ }
 
 %w[
-  2.5.9
-  2.6.7
+  2.6.8
 ].each {|v| system "rbenv uninstall -f #{v} && CFLAGS='-Wno-error=implicit-function-declaration' rbenv install -f #{v}" }
 
 dev_versions = %w[
-  3.1
-  3.0
   2.7
+  3.0
+  3.1
 ]
 
 dev_versions.each do |v|
   system "rbenv uninstall -f #{v}.0-dev && rbenv install -f #{v}.0-dev"
   Dir.chdir(ENV["RBENV_ROOT"] + "/versions") do
-    FileUtils.rm_rf(v) if File.exist?(v)
+    File.unlink v
     File.symlink(v + ".0-dev", v)
     d = defs.find { |d| d =~ /^#{v}.\d+$/ }  
     if d
       latest = d.match(/\d+$/).to_s.to_i
       0.upto(latest) do |i|
         stable = "#{v}.#{i}"
-        File.unlink stable if File.exist?(stable)
+        File.unlink stable
         File.symlink(v + ".0-dev", stable)
       end
     end
@@ -47,7 +46,7 @@ platforms.each do |pf|
 end
 system "rbenv global #{dev_versions.first}.0-dev"
 
-FileUtils.rm_rf Pathname.join(ENV["XDG_DATA_HOME"], "npm").to_s
+FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("npm").to_s
 system "npm install -g npm"
 %w[
   typescript
@@ -56,19 +55,29 @@ system "npm install -g npm"
   yarn
 ].each {|pkg| system "npm install -g #{pkg}" }
 
-FileUtils.rm_rf Pathname.join(ENV["XDG_DATA_HOME"], "cargo").to_s
+FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("cargo").to_s
 %w[
   install-update
 ].each {|pkg| system "cargo install #{pkg}" }
 
-FileUtils.rm_rf Pathname.join(ENV["XDG_DATA_HOME"], "go").to_s
+FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("go").to_s
 %w[
   github.com/motemen/github-list-starred
   github.com/client9/misspell/cmd/misspell
   github.com/google/codesearch/cmd/...
+  github.com/uudashr/gopkgs/v2/cmd/gopkgs
+  github.com/ramya-rao-a/go-outline
+  github.com/cweill/gotests/gotests
+  github.com/fatih/gomodifytags
+  github.com/josharian/impl
+  github.com/haya14busa/goplay/cmd/goplay
+  github.com/go-delve/delve/cmd/dlv
+  github.com/go-delve/delve/cmd/dlv@master
+  honnef.co/go/tools/cmd/staticcheck
+  golang.org/x/tools/gopls
 ].each {|pkg| system "go get -u #{pkg}" }
 
-FileUtils.rm_rf Pathname.join(ENV["XDG_DATA_HOME"], "heroku").to_s
+FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("heroku").to_s
 %w[
   heroku-accounts
   heroku-pg-extras
