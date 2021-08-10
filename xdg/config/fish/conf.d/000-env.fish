@@ -39,6 +39,7 @@ set -x PKG_CONFIG_PATH /usr/local/opt/imagemagick@6/lib/pkgconfig:/usr/lib/pkgco
 set -x _ZO_DATA_DIR $XDG_DATA_HOME/zoxide
 set -x TEALDEER_CACHE_DIR $XDG_CACHE_HOME/tldr
 set -x CLOUDSDK_PYTHON /usr/local/opt/python@3.8/libexec/bin/python
+set -x CARGO_NET_GIT_FETCH_WITH_CLI true
 
 set -x PATH $GOBIN $CARGO_HOME/bin $RBENV_ROOT/bin $KREW_ROOT/bin $PATH
 set -x PATH /usr/local/sbin $PATH
