@@ -138,7 +138,10 @@ cask "font-ricty-diminished"
 cask "font-hack-nerd-font"
 cask "font-source-han-code-jp"
 
-cask "docker"
+cask "virtualbox"
+brew "docker"
+brew "docker-machine"
+
 cask "discord"
 cask "1password"
 cask "clipy"
