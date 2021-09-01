@@ -41,4 +41,3 @@ source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.fish.in
 
 zoxide init fish --cmd j | source
 eval (direnv hook fish)
-eval (docker-machine env default)
