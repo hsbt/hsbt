@@ -141,6 +141,7 @@ cask "font-source-han-code-jp"
 cask "virtualbox"
 brew "docker"
 brew "docker-machine"
+brew "docker-compose"
 
 cask "discord"
 cask "1password"
