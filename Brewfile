@@ -138,9 +138,8 @@ cask "font-ricty-diminished"
 cask "font-hack-nerd-font"
 cask "font-source-han-code-jp"
 
-cask "virtualbox"
 brew "docker"
-brew "docker-machine"
+brew "podman"
 brew "docker-compose"
 
 cask "discord"
