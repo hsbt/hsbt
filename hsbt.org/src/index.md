@@ -65,6 +65,7 @@ Ruby コミッタ、ruby, rubygems, bundler, rake, rdoc, rbenv, ruby-build, psyc
 
 ## 執筆・寄稿・インタビュー(Web 媒体)
 
+* 2021年07月 [「候補者体験をもっとライトに」。興味通知機能を入口に候補者との軽やかなファーストタッチを実現するGMOペパボの採用戦略とは](https://hr-tech-lab.lapras.com/lapras-scout-cases/pepabo/)
 * 2020年10月 [「楽しい・おもしろい」を選び続けた先に今があった GMOペパボ VPofE 兼 技術部長とOSSとの20年間](https://engineer-lab.findy-code.io/enjoy-oss)
 * 2020年07月 [GMO3社の開発トップが教える今後の“採用”と“テレワーク”の在り方](https://logmi.jp/tech/articles/323177)
 * 2019年10月 [GMOペパボ柴田博志が教える。経営者も理解しておくべき「技術的負債」](https://flxy.jp/article/7533)
@@ -78,6 +79,7 @@ Ruby コミッタ、ruby, rubygems, bundler, rake, rdoc, rbenv, ruby-build, psyc
 
 ## 講演・発表(国際カンファレンス)
 
+* 2021年09月 RubyKaigi takeout 2021 [How to develop the Standard Libraries of Ruby?](https://www.slideshare.net/hsbt/how-to-develop-the-standard-libraries-of-ruby)
 * 2020年09月 RubyKaigi takeout 2020 [Dependency Resolution with Standard Libraries](https://www.slideshare.net/hsbt/dependency-resolution-with-standard-libraries)
 * 2019年08月 builderscon 2019 [OSS Security the hard way](https://www.slideshare.net/hsbt/oss-security-the-hard-way)
 * 2019年07月 Rubyconf Taiwan 2019 [The Future of library dependency manageement of Ruby](https://www.slideshare.net/hsbt/the-future-of-library-dependency-manageement-of-ruby)
@@ -110,7 +112,7 @@ Ruby コミッタ、ruby, rubygems, bundler, rake, rdoc, rbenv, ruby-build, psyc
 * 2012年11月 RubyConf 2012 [tDiary in a nutshell(rubyconf lightning tallks versions)](https://speakerdeck.com/hsbt/tdiary-in-a-nutshell-rubyconf-lightning-tallks-versions)
 
 ## 講演・発表
-
+* 2021年09月 CI/CD Conference 2021 [The details of CI/CD environment for Ruby](https://www.slideshare.net/hsbt/the-details-of-cicd-environment-for-ruby)
 * 2020年04月 Ruby3さみっと [Roadmap for RubyGems 4 and Bundler 3](https://www.slideshare.net/hsbt/roadmap-for-rubygems-4-and-bundler-3)
 * 2020年01月 Ginza Rails #10 [The Future of library dependency management of Ruby](https://www.slideshare.net/hsbt/the-future-of-library-dependency-management-of-ruby)
 * 2019年09月 OsakaRubyKaigi02 [Ruby Security the Hard Way](https://www.slideshare.net/hsbt/ruby-security-the-hard-way)
