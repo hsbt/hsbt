@@ -4,17 +4,9 @@ require 'shellwords'
 require 'fileutils'
 require 'pathname'
 
-system "brew uninstall bison"
-system "brew uninstall autoconf --ignore-dependencies"
-system "brew install shopify/shopify/autoconf@2.69"
+system "rbenv global system && rbenv rehash && rbenv shell --unset"
 
-system "rbenv shell --unset && rbenv global system"
 defs = `rbenv install --list`.split.select { |v| v =~ /[0-9]/ }
-
-%w[
-  2.6.8
-].each {|v| system "rbenv uninstall -f #{v} && CFLAGS='-Wno-error=implicit-function-declaration' rbenv install -f #{v}" }
-
 dev_versions = %w[
   2.7
   3.0
@@ -24,26 +16,26 @@ dev_versions = %w[
 dev_versions.each do |v|
   system "rbenv uninstall -f #{v}.0-dev && rbenv install -f #{v}.0-dev"
   Dir.chdir(ENV["RBENV_ROOT"] + "/versions") do
-    File.unlink v
+    File.unlink(v) if File.symlink?(v)
     File.symlink(v + ".0-dev", v)
     d = defs.find { |d| d =~ /^#{v}.\d+$/ }  
     if d
       latest = d.match(/\d+$/).to_s.to_i
       0.upto(latest) do |i|
         stable = "#{v}.#{i}"
-        File.unlink stable
+        File.unlink(stable) if File.symlink?(stable)
         File.symlink(v + ".0-dev", stable)
       end
     end
   end
 end
-system "brew uninstall shopify/shopify/autoconf@2.69 --ignore-dependencies"
-system "brew install bison autoconf"
+
 platforms = %w[jruby truffleruby truffleruby+graalvm]
 platforms.each do |pf|
   d = defs.find { |d| d =~ Regexp.new(pf.shellescape) }
   system "rbenv uninstall -f #{d} && rbenv install #{d}"
 end
+
 system "rbenv global #{dev_versions.first}.0-dev"
 
 FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("npm").to_s
@@ -57,7 +49,7 @@ system "npm install -g npm"
 
 FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("cargo").to_s
 %w[
-  install-update
+  cargo-update
 ].each {|pkg| system "cargo install #{pkg}" }
 
 FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("go").to_s
@@ -82,5 +74,6 @@ FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("heroku").to_s
   heroku-accounts
   heroku-pg-extras
   heroku-repo
+  heroku-config
   apps-table
 ].each {|pkg| system "heroku plugins:install #{pkg}" }
