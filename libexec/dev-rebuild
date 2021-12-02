@@ -67,7 +67,7 @@ FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("go").to_s
   github.com/go-delve/delve/cmd/dlv@master
   honnef.co/go/tools/cmd/staticcheck
   golang.org/x/tools/gopls
-].each {|pkg| system "go get -u #{pkg}" }
+].each {|pkg| system "go install #{pkg}" }
 
 FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("heroku").to_s
 %w[
