@@ -153,7 +153,7 @@ cask "font-source-han-code-jp"
 
 cask "visual-studio-code-insiders"
 cask "discord"
-cask "1password"
+cask "1password-beta"
 cask "clipy"
 cask "krisp"
 cask "zoom"
