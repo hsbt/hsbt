@@ -11,9 +11,4 @@ rbenv global system
 rbenv uninstall -f 3.1.0-dev && rbenv install 3.1.0-dev
 rbenv global 3.1.0-dev
 
-rbenv shell 3.1 && dev all-pristine
-rbenv shell 3.0 && dev all-pristine
-rbenv shell 2.7 && dev all-pristine
-rbenv shell --unset
-
 dev gem-shebang-update
