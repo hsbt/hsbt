@@ -8,7 +8,7 @@ rbenv update
 eval "$(rbenv init -)"
 
 rbenv global system
-rbenv uninstall -f 3.1.0-dev && rbenv install 3.1.0-dev
-rbenv global 3.1.0-dev
+rbenv uninstall -f 3.2.0-dev && rbenv install 3.2.0-dev
+rbenv global 3.2.0-dev
 
 dev gem-shebang-update
