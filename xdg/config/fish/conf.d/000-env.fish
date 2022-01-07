@@ -50,4 +50,5 @@ set -x PATH /usr/local/opt/gnu-tar/libexec/gnubin $PATH
 set -x PATH /usr/local/opt/make/libexec/gnubin $PATH
 set -x PATH /usr/local/opt/grep/libexec/gnubin $PATH
 set -x PATH /usr/local/opt/bison/bin $PATH
+set -x PATH $HOME/Library/Python/3.9/bin $PATH
 set -x PATH $HOME/Documents/github.com/hsbt/hsbt/exe $PATH
