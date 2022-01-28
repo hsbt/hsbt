@@ -149,6 +149,7 @@ brew "act"
 tap "homebrew/cask-fonts"
 cask "font-ricty-diminished"
 cask "font-hack-nerd-font"
+tap "iandol/adobe-fonts"
 cask "font-source-han-code-jp"
 
 cask "visual-studio-code-insiders"
