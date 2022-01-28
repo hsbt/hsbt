@@ -35,10 +35,10 @@ set -x LESSHISTFILE -
 set -x GO111MODULE on
 set -x RUBY_CODESIGN hsbt
 set -x RUBY_CONFIGURE_OPTS --disable-install-doc
-set -x PKG_CONFIG_PATH /usr/local/opt/imagemagick@6/lib/pkgconfig:/usr/lib/pkgconfig
+set -x PKG_CONFIG_PATH /opt/homebrew/opt/imagemagick@6/lib/pkgconfig:/usr/lib/pkgconfig
 set -x _ZO_DATA_DIR $XDG_DATA_HOME/zoxide
 set -x TEALDEER_CACHE_DIR $XDG_CACHE_HOME/tldr
-set -x CLOUDSDK_PYTHON /usr/local/opt/python@3.8/libexec/bin/python
+set -x CLOUDSDK_PYTHON /opt/homebrew/opt/python@3.8/libexec/bin/python
 set -x CARGO_NET_GIT_FETCH_WITH_CLI true
 
 set -x PATH $GOBIN $CARGO_HOME/bin $RBENV_ROOT/bin $KREW_ROOT/bin $PATH
