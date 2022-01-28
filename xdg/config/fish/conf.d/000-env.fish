@@ -25,7 +25,6 @@ set -x HELM_HOME $XDG_DATA_HOME/helm
 set -x KREW_ROOT $XDG_DATA_HOME/krew
 set -x VIMINIT ":source $XDG_CONFIG_HOME"/vim/vimrc
 set -x NODE_REPL_HISTORY $XDG_DATA_HOME/node_repl_history
-set -x VSCODE_PORTABLE "$XDG_DATA_HOME"/vscode
 
 set -x LANG en_US.UTF-8
 set -x GPG_TTY (tty)
@@ -43,13 +42,13 @@ set -x CLOUDSDK_PYTHON /usr/local/opt/python@3.8/libexec/bin/python
 set -x CARGO_NET_GIT_FETCH_WITH_CLI true
 
 set -x PATH $GOBIN $CARGO_HOME/bin $RBENV_ROOT/bin $KREW_ROOT/bin $PATH
-set -x PATH /usr/local/sbin $PATH
-set -x PATH /usr/local/opt/coreutils/libexec/gnubin $PATH
-set -x PATH /usr/local/opt/findutils/libexec/gnubin $PATH
-set -x PATH /usr/local/opt/gnu-sed/libexec/gnubin $PATH
-set -x PATH /usr/local/opt/gnu-tar/libexec/gnubin $PATH
-set -x PATH /usr/local/opt/make/libexec/gnubin $PATH
-set -x PATH /usr/local/opt/grep/libexec/gnubin $PATH
-set -x PATH /usr/local/opt/bison/bin $PATH
+set -x PATH /opt/homebrew/bin /opt/homebrew/sbin $PATH
+set -x PATH /opt/homebrew/opt/coreutils/libexec/gnubin $PATH
+set -x PATH /opt/homebrew/opt/findutils/libexec/gnubin $PATH
+set -x PATH /opt/homebrew/opt/gnu-sed/libexec/gnubin $PATH
+set -x PATH /opt/homebrew/opt/gnu-tar/libexec/gnubin $PATH
+set -x PATH /opt/homebrew/opt/make/libexec/gnubin $PATH
+set -x PATH /opt/homebrew/opt/grep/libexec/gnubin $PATH
+set -x PATH /opt/homebrew/opt/bison/bin $PATH
 set -x PATH $HOME/Library/Python/3.9/bin $PATH
 set -x PATH $HOME/Documents/github.com/hsbt/hsbt/exe $PATH

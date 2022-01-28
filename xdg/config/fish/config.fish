@@ -37,7 +37,7 @@ function history-merge --on-event fish_preexec
   history --merge
 end
 
-source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.fish.inc
+source /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.fish.inc
 
 zoxide init fish --cmd j | source
 eval (direnv hook fish)
