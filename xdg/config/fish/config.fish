@@ -6,7 +6,10 @@ alias libtoolize glibtoolize
 alias l ls
 alias ll "ls -la"
 alias e "code-insiders -a ."
-alias bx "bundle exec"
+alias b bundle
+alias d docker
+alias n nerdctl
+alias k kubectl
 
 alias all-ruby "docker run --rm -t ghcr.io/ruby/all-ruby /all-ruby/all-ruby"
 alias s3cmd "s3cmd --config $HOME/.config/s3cmd"
