@@ -31,7 +31,7 @@ dev_versions.each do |v|
   end
 end
 
-platforms = %w[jruby truffleruby truffleruby+graalvm]
+platforms = %w[jruby] # truffleruby truffleruby+graalvm]
 platforms.each do |pf|
   d = defs.find { |d| d =~ Regexp.new(pf.shellescape) }
   system "rbenv uninstall -f #{d} && rbenv install #{d}"
