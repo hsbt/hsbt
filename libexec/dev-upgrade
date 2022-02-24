@@ -8,6 +8,7 @@ rbenv update
 eval "$(rbenv init -)"
 
 rbenv global system
+gem uninstall --force digest openssl zlib
 rbenv uninstall -f 3.2.0-dev && rbenv install 3.2.0-dev
 rbenv global 3.2.0-dev
 
