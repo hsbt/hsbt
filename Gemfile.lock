@@ -2,7 +2,6 @@ GEM
   remote: https://rubygems.org/
   specs:
     ast (2.4.2)
-    bcrypt_pbkdf (1.1.0)
     ed25519 (1.2.4)
     faraday (1.7.1)
       faraday-em_http (~> 1.0)
@@ -44,10 +43,6 @@ GEM
       ast (~> 2.4.1)
     rainbow (3.0.0)
     rake (13.0.6)
-    rbnacl (7.1.1)
-      ffi
-    rbnacl-libsodium (1.0.16)
-      rbnacl (>= 3.0.1)
     regexp_parser (2.1.1)
     rexml (3.2.5)
     rubocop (1.20.0)
@@ -83,11 +78,11 @@ GEM
     websocket-extensions (0.1.5)
 
 PLATFORMS
+  arm64-darwin-21
   x86_64-darwin-20
   x86_64-darwin-21
 
 DEPENDENCIES
-  bcrypt_pbkdf
   ed25519
   hikidoc
   kramdown
@@ -95,11 +90,9 @@ DEPENDENCIES
   net-scp
   parallel (~> 1.17)
   rake
-  rbnacl (< 8.0)
-  rbnacl-libsodium
   sassc
   slack-ruby-client (~> 0.16.0)
   standard
 
 BUNDLED WITH
-   2.3.0.dev
+   2.3.7

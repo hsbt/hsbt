@@ -12,9 +12,6 @@ gem 'kramdown'
 gem 'sassc'
 gem 'net-scp'
 gem 'ed25519'
-gem 'rbnacl-libsodium'
-gem 'rbnacl', '< 8.0'
-gem 'bcrypt_pbkdf'
 
 gem 'hikidoc'
 
