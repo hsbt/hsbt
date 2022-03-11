@@ -7,6 +7,8 @@ alias l ls
 alias ll "ls -la"
 alias e "code-insiders -a ."
 alias b bundle
+alias bx "bundle exec"
+alias bu "bundle update"
 alias d docker
 alias n nerdctl
 alias k kubectl
