@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require "bundler/inline"
-require "fileutilsg"
+require "fileutils"
 
 gemfile do
   source "https://rubygems.org"
