@@ -36,7 +36,7 @@ REPOSITORIES.each do |repo|
     system "git pull --rebase"
     system "git checkout -b add-dependabot"
     FileUtils.mkdir_p(".github")
-    FileUtils.cp("dependabot.yml", ".github")
+    FileUtils.cp(File.expand_path("../dependabot.yml", __FILE__), ".github")
     system "git commit -am 'Added dependabot'"
     system "git push"
   end
