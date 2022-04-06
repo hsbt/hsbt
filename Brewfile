@@ -115,6 +115,8 @@ brew "kompose"
 brew "docker"
 brew "podman"
 brew "docker-compose"
+cask "mutagen-io/mutagen"
+brew "mutagen"
 
 tap "homebrew/cask"
 cask "google-cloud-sdk"
