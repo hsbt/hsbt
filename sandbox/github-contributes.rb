@@ -51,7 +51,6 @@ users.each_slice(20) do |sliced_users|
     fragment UserFragment on User {
       login
       contributionsCollection(from: "#{year}-01-01T00:00:00" to:"#{year}-12-31T23:59:59") {
-        contributionYears
         totalCommitContributions
         totalIssueContributions
         totalPullRequestContributions
@@ -68,6 +67,6 @@ users.each_slice(20) do |sliced_users|
   sliced_users.map do |u|
     user = response.data.__send__(u.tr("-", "").downcase)
     cc = user.contributions_collection
-    puts "#{user.login},#{cc.total_commit_contributions},#{cc.total_issue_contributions},#{cc.total_pull_request_contributions},#{cc.total_pull_request_review_contributions},#{cc.contribution_calendar.total_contributions}"
+    puts "#{user.login},#{cc.total_commit_contributions},#{cc.total_pull_request_contributions},#{cc.total_issue_contributions},#{cc.total_pull_request_review_contributions},#{cc.contribution_calendar.total_contributions}"
   end
 end
