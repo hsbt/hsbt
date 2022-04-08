@@ -167,6 +167,4 @@ mas "Microsoft Remote Desktop", id: 1295203466
 mas "Pixelmator", id: 407963104
 mas "Slack", id: 803453959
 mas "iMovie", id: 408981434
-mas "Pages", id: 409201541
 mas "Keynote", id: 409183694
-mas "Numbers", id: 409203825
