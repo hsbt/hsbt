@@ -66,10 +66,12 @@ FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("go").to_s
   github.com/go-delve/delve/cmd/dlv@latest
   honnef.co/go/tools/cmd/staticcheck@latest
   golang.org/x/tools/gopls@latest
+  github.com/google/codesearch/cmd/csearch@latest
+  github.com/google/codesearch/cmd/cindex@latest
+  github.com/google/codesearch/cmd/cgrep@latest
 ].each {|pkg| system "go install #{pkg}" }
 
 %w[
-  github.com/google/codesearch/cmd/...
   github.com/hound-search/hound/cmds/...
 ].each {|pkg| system "go get #{pkg}" }
 
