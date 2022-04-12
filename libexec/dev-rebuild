@@ -69,11 +69,9 @@ FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("go").to_s
   github.com/google/codesearch/cmd/csearch@latest
   github.com/google/codesearch/cmd/cindex@latest
   github.com/google/codesearch/cmd/cgrep@latest
+  github.com/hound-search/hound/cmds/hound@latest
+  github.com/hound-search/hound/cmds/houndd@latest
 ].each {|pkg| system "go install #{pkg}" }
-
-%w[
-  github.com/hound-search/hound/cmds/...
-].each {|pkg| system "go get #{pkg}" }
 
 FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("heroku").to_s
 %w[
