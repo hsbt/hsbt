@@ -124,6 +124,7 @@ tap "github/gh"
 brew "gh"
 
 cask "alacritty"
+cask "warp"
 
 tap "heroku/brew"
 brew "heroku"
