@@ -81,4 +81,6 @@ FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("heroku").to_s
   heroku-repo
   heroku-config
   apps-table
+  buildpacks
+  buildpack-registry
 ].each {|pkg| system "heroku plugins:install #{pkg}" }
