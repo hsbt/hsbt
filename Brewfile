@@ -18,6 +18,11 @@ brew "lsd"
 brew "bat"
 brew "nkf"
 brew "ripgrep"
+brew "rga"
+brew "ffmpeg" # for rga
+brew "pandoc" # for rga
+brew "poppler" # for rga
+brew "tesseract" # for rga
 brew "fd"
 brew "fx"
 brew "jq"
@@ -52,7 +57,6 @@ brew "gawk"
 brew "bison"
 brew "rsync"
 brew "wget"
-brew "ffmpeg"
 brew "consul-template"
 brew "shared-mime-info"
 
