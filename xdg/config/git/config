@@ -40,7 +40,7 @@
 	file-style = bold yellow ul
 	file-decoration-style = none
 
-[url "git@github.com:"]
+[url "ssh://git@github.com/"]
 	insteadOf = https://github.com/
 
 [color]
