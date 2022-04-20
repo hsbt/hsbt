@@ -42,6 +42,7 @@ set -x RUBY_CODESIGN hsbt
 set -x RUBY_CONFIGURE_OPTS --disable-install-doc
 set -x PKG_CONFIG_PATH /opt/homebrew/opt/imagemagick@6/lib/pkgconfig:/usr/lib/pkgconfig
 set -x CLOUDSDK_PYTHON /opt/homebrew/opt/python@3.8/libexec/bin/python
+set -x CARGO_NET_GIT_FETCH_WITH_CLI true
 
 set -x PATH $GOBIN $CARGO_HOME/bin $RBENV_ROOT/bin $KREW_ROOT/bin $PATH
 set -x PATH /opt/homebrew/bin /opt/homebrew/sbin $PATH
