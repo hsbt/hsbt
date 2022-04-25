@@ -27,8 +27,14 @@ repos.each do |repo|
   next unless !!client.tree(repo, "HEAD")[:tree].find{|o| o[:path] == "Gemfile" }
   next if !!client.tree(repo, "HEAD")[:tree].find{|o| o[:path] == ".github/dependabot.yml" }
 
+  puts repo
+
   default_branch = client.repo(repo).default_branch
   client.create_ref(repo, "refs/heads/#{branch_name}", client.ref(repo, "heads/#{default_branch}").object.sha)
   client.create_contents(repo, ".github/dependabot.yml", "init dependabot.yml", content, :branch => branch_name)
   client.create_pull_request(repo, default_branch, branch_name, pr_title)
+
+  puts "done"
+rescue Octokit::Conflict
+  puts "#{repo} is failed to create a dependabot.yml"
 end
