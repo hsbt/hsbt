@@ -25,7 +25,9 @@ repos = client.organization_repositories(ARGV.shift).map{|r| r[:full_name] unles
 
 repos.each do |repo|
   next unless !!client.tree(repo, "HEAD")[:tree].find{|o| o[:path] == "Gemfile" }
-  next if !!client.tree(repo, "HEAD")[:tree].find{|o| o[:path] == ".github/dependabot.yml" }
+  if github_dir = client.tree(repo, "HEAD")[:tree].find{|o| o[:path] == ".github" }
+    next if !!client.tree(repo, github_dir.sha)[:tree].find{|o| o[:path] == "dependabot.yml" }
+  end
 
   puts repo
 
