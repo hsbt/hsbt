@@ -22,6 +22,7 @@ branch_name = "dependabot/init"
 content = File.read(File.expand_path("../dependabot.yml", __FILE__))
 pr_title = "Create a dependabot.yml"
 repos = client.organization_repositories(ARGV.shift).map{|r| r[:full_name] unless r.archived? }.compact
+opts = ARGV.shift
 
 puts "Use --no-dry-run option when you want to actually create the PRs"
 
@@ -33,7 +34,7 @@ repos.each do |repo|
 
   puts repo
 
-  if ARGV.shift == "--no-dry-run"
+  if opts == "--no-dry-run"
     default_branch = client.repo(repo).default_branch
     client.create_ref(repo, "refs/heads/#{branch_name}", client.ref(repo, "heads/#{default_branch}").object.sha)
     client.create_contents(repo, ".github/dependabot.yml", "init dependabot.yml", content, :branch => branch_name)
