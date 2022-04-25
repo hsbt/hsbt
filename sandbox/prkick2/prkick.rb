@@ -23,6 +23,8 @@ content = File.read(File.expand_path("../dependabot.yml", __FILE__))
 pr_title = "Create a dependabot.yml"
 repos = client.organization_repositories(ARGV.shift).map{|r| r[:full_name] unless r.archived? }.compact
 
+puts "Use --no-dry-run option when you want to actually create the PRs"
+
 repos.each do |repo|
   next unless !!client.tree(repo, "HEAD")[:tree].find{|o| o[:path] == "Gemfile" }
   if github_dir = client.tree(repo, "HEAD")[:tree].find{|o| o[:path] == ".github" }
@@ -31,12 +33,14 @@ repos.each do |repo|
 
   puts repo
 
-  default_branch = client.repo(repo).default_branch
-  client.create_ref(repo, "refs/heads/#{branch_name}", client.ref(repo, "heads/#{default_branch}").object.sha)
-  client.create_contents(repo, ".github/dependabot.yml", "init dependabot.yml", content, :branch => branch_name)
-  client.create_pull_request(repo, default_branch, branch_name, pr_title)
+  if ARGV.shift == "--no-dry-run"
+    default_branch = client.repo(repo).default_branch
+    client.create_ref(repo, "refs/heads/#{branch_name}", client.ref(repo, "heads/#{default_branch}").object.sha)
+    client.create_contents(repo, ".github/dependabot.yml", "init dependabot.yml", content, :branch => branch_name)
+    client.create_pull_request(repo, default_branch, branch_name, pr_title)
 
-  puts "done"
+    puts "done: dependabot.yml created"
+  end
 rescue Octokit::Conflict
   puts "#{repo} is failed to create a dependabot.yml"
 end
