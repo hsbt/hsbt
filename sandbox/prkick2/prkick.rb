@@ -21,7 +21,7 @@ client = Octokit::Client.new
 branch_name = "dependabot/init"
 content = File.read(File.expand_path("../dependabot.yml", __FILE__))
 pr_title = "Create a dependabot.yml"
-repos = client.organization_repositories(ARGV.shift).map(&:full_name)
+repos = client.organization_repositories(ARGV.shift).map{|r| r[:full_name] unless r.archived? }.compact
 
 repos.each do |repo|
   next unless !!client.tree(repo, "HEAD")[:tree].find{|o| o[:path] == "Gemfile" }
