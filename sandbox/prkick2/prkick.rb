@@ -24,6 +24,7 @@ REPOSITORIES = [
 client = Octokit::Client.new
 branch_name = "dependabot/init"
 content = File.read(File.expand_path("../dependabot.yml", __FILE__))
+pr_title = "Create a dependabot.yml"
 
 REPOSITORIES.each do |repo|
   next unless !!client.tree(repo, "HEAD")[:tree].find{|o| o[:path] == "Gemfile" }
@@ -32,5 +33,5 @@ REPOSITORIES.each do |repo|
   default_branch = client.repo(repo).default_branch
   client.create_ref(repo, "refs/heads/#{branch_name}", client.ref(repo, "heads/#{default_branch}").object.sha)
   client.create_contents(repo, ".github/dependabot.yml", "init dependabot", content, :branch => branch_name)
-  client.create_pull_request(repo, default_branch, branch_name, "Create a dependabot.yml")
+  client.create_pull_request(repo, default_branch, branch_name, pr_title)
 end
