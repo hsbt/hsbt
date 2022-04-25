@@ -17,16 +17,13 @@ Octokit.configure do |c|
   c.per_page = 100
 end
 
-REPOSITORIES = [
-  "hsbt/hsbt",
-]
-
 client = Octokit::Client.new
 branch_name = "dependabot/init"
 content = File.read(File.expand_path("../dependabot.yml", __FILE__))
 pr_title = "Create a dependabot.yml"
+repos = client.organization_repositories(ARGV.shift).map(&:full_name)
 
-REPOSITORIES.each do |repo|
+repos.each do |repo|
   next unless !!client.tree(repo, "HEAD")[:tree].find{|o| o[:path] == "Gemfile" }
   next unless !!client.tree(repo, "HEAD")[:tree].find{|o| o[:path] == ".github/dependabot.yml" }
 
