@@ -32,6 +32,6 @@ REPOSITORIES.each do |repo|
 
   default_branch = client.repo(repo).default_branch
   client.create_ref(repo, "refs/heads/#{branch_name}", client.ref(repo, "heads/#{default_branch}").object.sha)
-  client.create_contents(repo, ".github/dependabot.yml", "init dependabot", content, :branch => branch_name)
+  client.create_contents(repo, ".github/dependabot.yml", "init dependabot.yml", content, :branch => branch_name)
   client.create_pull_request(repo, default_branch, branch_name, pr_title)
 end
