@@ -26,9 +26,8 @@ branch_name = "dependabot/init"
 content = File.read(File.expand_path("../dependabot.yml", __FILE__))
 
 REPOSITORIES.each do |repo|
-  unless !!client.tree(repo, "HEAD")[:tree].find{|o| o[:path] == "Gemfile" }
-    next
-  end
+  next unless !!client.tree(repo, "HEAD")[:tree].find{|o| o[:path] == "Gemfile" }
+  next unless !!client.tree(repo, "HEAD")[:tree].find{|o| o[:path] == ".github/dependabot.yml" }
 
   default_branch = client.repo(repo).default_branch
   client.create_ref(repo, "refs/heads/#{branch_name}", client.ref(repo, "heads/#{default_branch}").object.sha)
