@@ -25,7 +25,7 @@ repos = client.organization_repositories(ARGV.shift).map(&:full_name)
 
 repos.each do |repo|
   next unless !!client.tree(repo, "HEAD")[:tree].find{|o| o[:path] == "Gemfile" }
-  next unless !!client.tree(repo, "HEAD")[:tree].find{|o| o[:path] == ".github/dependabot.yml" }
+  next if !!client.tree(repo, "HEAD")[:tree].find{|o| o[:path] == ".github/dependabot.yml" }
 
   default_branch = client.repo(repo).default_branch
   client.create_ref(repo, "refs/heads/#{branch_name}", client.ref(repo, "heads/#{default_branch}").object.sha)
