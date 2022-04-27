@@ -30,6 +30,9 @@ set -x NODE_REPL_HISTORY $XDG_DATA_HOME/node_repl_history
 set -x VSCODE_PORTABLE "$XDG_DATA_HOME"/vscode
 set -x _ZO_DATA_DIR $XDG_DATA_HOME/zoxide
 set -x TEALDEER_CACHE_DIR $XDG_CACHE_HOME/tldr
+set -x CSEARCHINDEX $XDG_CACHE_HOME/csearchindex
+set -x TERMINFO $XDG_DATA_HOME/terminfo
+set -x TERMINFO_DIRS $XDG_DATA_HOME/terminfo:/usr/share/terminfo
 
 set -x LANG en_US.UTF-8
 set -x GPG_TTY (tty)
