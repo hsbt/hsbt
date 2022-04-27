@@ -9,9 +9,10 @@ alias e "code-insiders -a ."
 alias b bundle
 alias bx "bundle exec"
 alias bu "bundle update"
-alias d docker
-alias n nerdctl
 alias k kubectl
+alias n nerdctl
+alias docker nerdctl
+alias d docker
 
 alias all-ruby "docker run --rm -t ghcr.io/ruby/all-ruby /all-ruby/all-ruby"
 alias s3cmd "s3cmd --config $HOME/.config/s3cmd"
