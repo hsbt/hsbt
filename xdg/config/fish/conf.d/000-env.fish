@@ -18,7 +18,6 @@ set -x NPM_CONFIG_USERCONFIG $XDG_CONFIG_HOME/npm/npmrc
 set -x GOPATH $XDG_DATA_HOME/go
 set -x GOBIN $HOME/.local/bin
 set -x AWS_SHARED_CREDENTIALS_FILE $XDG_CONFIG_HOME/aws/credentials
-set -x DOCKER_CONFIG $XDG_CONFIG_HOME/docker
 set -x AWS_CONFIG_FILE $XDG_CONFIG_HOME/aws/config
 set -x MAVEN_USER_HOME $XDG_CACHE_HOME/maven
 set -x MAVEN_CONFIG "-gs $XDG_CONFIG_HOME/maven/settings.xml"
@@ -37,7 +36,6 @@ set -x TERMINFO_DIRS $XDG_DATA_HOME/terminfo:/usr/share/terminfo
 set -x LANG en_US.UTF-8
 set -x GPG_TTY (tty)
 set -x EDITOR vim
-set -x DOCKER_BUILDKIT 1
 set -x GIT_MERGE_AUTOEDIT no
 set -x LESSHISTFILE -
 set -x GO111MODULE on
@@ -57,5 +55,4 @@ set -x PATH /opt/homebrew/opt/make/libexec/gnubin $PATH
 set -x PATH /opt/homebrew/opt/grep/libexec/gnubin $PATH
 set -x PATH /opt/homebrew/opt/bison/bin $PATH
 set -x PATH $HOME/Library/Python/3.9/bin $PATH
-set -x PATH $HOME/.docker/cli-plugins $PATH
 set -x PATH $HOME/Documents/github.com/hsbt/hsbt/exe $PATH
