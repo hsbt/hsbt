@@ -14,7 +14,7 @@ alias n nerdctl
 alias docker nerdctl
 alias d docker
 
-alias all-ruby "docker run --rm -t ghcr.io/ruby/all-ruby /all-ruby/all-ruby"
+alias all-ruby "nerdctl run --rm -it ghcr.io/ruby/all-ruby /all-ruby/all-ruby"
 alias s3cmd "s3cmd --config $HOME/.config/s3cmd"
 alias mvn "mvn -gs "$HOME"/.config/maven/settings.xml"
 alias wget "wget --hsts-file=$XDG_CACHE_HOME/wget-hsts"
