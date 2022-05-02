@@ -34,7 +34,9 @@ end
 platforms = %w[jruby] # truffleruby truffleruby+graalvm]
 platforms.each do |pf|
   d = defs.find { |d| d =~ Regexp.new(pf.shellescape) }
-  system "rbenv uninstall -f #{d} && rbenv install #{d}"
+  system "rbenv uninstall -f #{d}"
+  openssl_version = (d =~ /3\.2/) ? "" : "@1.1"
+  system "env RUBY_CONFIGURE_OPTS='--disable-install-doc --with-openssl-dir=$(brew --prefix openssl#{openssl_version})' rbenv install #{d}"
 end
 
 system "rbenv global #{dev_versions.last}.0-dev"
