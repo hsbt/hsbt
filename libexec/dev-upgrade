@@ -9,7 +9,8 @@ eval "$(rbenv init -)"
 
 rbenv global system
 gem uninstall --force digest openssl zlib
-rbenv uninstall -f 3.2.0-dev && rbenv install 3.2.0-dev
+rbenv uninstall -f 3.2.0-dev
+env RUBY_CONFIGURE_OPTS="--disable-install-doc --with-openssl-dir=$(brew --prefix openssl)" rbenv install 3.2.0-dev
 rbenv global 3.2.0-dev
 
 dev gem-shebang-update
