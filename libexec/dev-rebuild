@@ -15,7 +15,9 @@ dev_versions = %w[
 ]
 
 dev_versions.each do |v|
-  system "rbenv uninstall -f #{v}.0-dev && rbenv install -f #{v}.0-dev"
+  openssl_version = (v =~ /3\.2/) ? "3" : "1.1"
+  system "rbenv uninstall -f #{v}.0-dev"
+  system "env RUBY_CONFIGURE_OPTS=\"--disable-install-doc --with-openssl-dir=$(brew --prefix openssl@#{openssl_version})\" rbenv install -f #{v}.0-dev"
   Dir.chdir(ENV["RBENV_ROOT"] + "/versions") do
     File.unlink(v) if File.symlink?(v)
     File.symlink(v + ".0-dev", v)
@@ -34,9 +36,7 @@ end
 platforms = %w[jruby] # truffleruby truffleruby+graalvm]
 platforms.each do |pf|
   d = defs.find { |d| d =~ Regexp.new(pf.shellescape) }
-  system "rbenv uninstall -f #{d}"
-  openssl_version = (d =~ /3\.2/) ? "" : "@1.1"
-  system "env RUBY_CONFIGURE_OPTS='--disable-install-doc --with-openssl-dir=$(brew --prefix openssl#{openssl_version})' rbenv install #{d}"
+  system "rbenv uninstall -f #{d} && rbenv install #{d}"
 end
 
 system "rbenv global #{dev_versions.last}.0-dev"
@@ -77,12 +77,12 @@ FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("go").to_s
 
 FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("heroku").to_s
 %w[
-  heroku-accounts
   addons-admin
-  heroku-pg-extras
-  heroku-repo
-  heroku-config
   apps-table
   buildpacks
   buildpack-registry
+  heroku-accounts
+  heroku-config
+  heroku-pg-extras
+  heroku-repo
 ].each {|pkg| system "heroku plugins:install #{pkg}" }
