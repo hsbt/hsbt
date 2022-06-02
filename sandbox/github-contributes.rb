@@ -34,7 +34,7 @@ end
 users = begin
   File.read(ARGV[0]).split
 rescue Errno::ENOENT
-  ARGV
+  [ARGV[0]]
 end
 
 users.each_slice(20) do |sliced_users|
