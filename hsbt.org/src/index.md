@@ -112,6 +112,8 @@ Ruby コミッタ、ruby, rubygems, bundler, rake, rdoc, rbenv, ruby-build, psyc
 * 2012年11月 RubyConf 2012 [tDiary in a nutshell(rubyconf lightning tallks versions)](https://speakerdeck.com/hsbt/tdiary-in-a-nutshell-rubyconf-lightning-tallks-versions)
 
 ## 講演・発表
+
+* 2022年05月 K-Ruby#30 記念大会 [OSSことはじめ](https://speakerdeck.com/hsbt/oss-kotohazime)
 * 2021年09月 CI/CD Conference 2021 [The details of CI/CD environment for Ruby](https://www.slideshare.net/hsbt/the-details-of-cicd-environment-for-ruby)
 * 2020年04月 Ruby3さみっと [Roadmap for RubyGems 4 and Bundler 3](https://www.slideshare.net/hsbt/roadmap-for-rubygems-4-and-bundler-3)
 * 2020年01月 Ginza Rails #10 [The Future of library dependency management of Ruby](https://www.slideshare.net/hsbt/the-future-of-library-dependency-management-of-ruby)
