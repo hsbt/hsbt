@@ -42,6 +42,6 @@ repos.each do |repo|
 
     puts "done: dependabot.yml created"
   end
-rescue Octokit::Conflict
+rescue Octokit::Conflict, Octokit::NotFound
   puts "#{repo} is failed to create a dependabot.yml"
 end
