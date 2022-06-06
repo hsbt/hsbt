@@ -34,6 +34,7 @@ set -x TERMINFO $XDG_DATA_HOME/terminfo
 set -x TERMINFO_DIRS $XDG_DATA_HOME/terminfo:/usr/share/terminfo
 
 set -x LANG en_US.UTF-8
+set -x TERM xterm-256color
 set -x GPG_TTY (tty)
 set -x EDITOR vim
 set -x GIT_MERGE_AUTOEDIT no
