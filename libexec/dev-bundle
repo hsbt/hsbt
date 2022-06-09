@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-brew bundle --file=$(ghq root)/github.com/hsbt/hsbt/Brewfile
+brew bundle --file=$(ghq root)/github.com/hsbt/hsbt/toolbox/Brewfile
