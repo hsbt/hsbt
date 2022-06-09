@@ -1,0 +1,14 @@
+/.bundle
+/db/*.sqlite3
+/log/*.log
+/log/*.lck
+/tmp
+/config/*.yml
+/vendor/bundle
+/public/assets
+
+config/settings.local.yml
+config/settings/*.local.yml
+config/environments/*.local.yml
+
+coverage

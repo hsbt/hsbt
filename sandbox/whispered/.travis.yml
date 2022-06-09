@@ -1,0 +1,13 @@
+services:
+  - elasticsearch
+
+before_script:
+  - mysql -uroot -e 'create database whispered_test;'
+  - mysql -uroot -e "grant all on whispered_test.* to ''@localhost;"
+  - mysql -uroot whispered_test < db/structure.sql
+
+rvm:
+  - 1.9.3
+  - 2.0.0
+
+script: bundle exec rake test

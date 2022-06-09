@@ -1,0 +1,15 @@
+- @inquiries.each do |inquiry|
+  .row-fluid
+    .span12
+      .fieldset
+        .legend = link_to inquiry.send(inquiry.class.primary_key.to_sym), inquiry_path(inquiry, :class_name => inquiry.class)
+        table.table
+          - inquiry.class.text_columns.each do |c|
+            - next unless inquiry.class.display_columns.include? c
+            tr
+              td= c.to_s
+              td= truncate(inquiry.send(c.to_sym), length: 140)
+          - if inquiry.class.settings.created_at
+            tr
+              td= inquiry.class.settings.created_at.to_s
+              td= inquiry.send(inquiry.class.settings.created_at.to_sym)
