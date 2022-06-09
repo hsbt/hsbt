@@ -1,3 +1,0 @@
-[submodule "sandbox/whispered-puppet"]
-	path = sandbox/whispered-puppet
-	url = git@github.com:hsbt/whispered-puppet.git
