@@ -116,16 +116,10 @@ brew "mutagen"
 
 tap "homebrew/cask"
 cask "google-cloud-sdk"
-
 tap "github/gh"
 brew "gh"
-
-cask "alacritty"
-cask "warp"
-
 tap "heroku/brew"
 brew "heroku"
-
 brew "python@3.9"
 brew "pipenv"
 brew "poetry"
@@ -134,16 +128,8 @@ brew "awscli"
 tap "aws/tap"
 brew "aws-sam-cli"
 brew "copilot-cli"
-
-tap "fujiwara/tap"
-brew "aswrap"
-
 tap "buildpacks/tap"
 brew "pack"
-
-tap "shopify/shopify"
-brew "toxiproxy"
-
 tap "nektos/tap"
 brew "act"
 
@@ -153,6 +139,7 @@ cask "font-hack-nerd-font"
 tap "iandol/adobe-fonts"
 cask "font-source-han-code-jp"
 
+cask "alacritty"
 cask "visual-studio-code-insiders"
 cask "discord"
 cask "1password-beta"
@@ -162,6 +149,7 @@ cask "krisp"
 cask "zoom"
 cask "messenger"
 cask "obsidian"
+
 mas "Microsoft Remote Desktop", id: 1295203466
 mas "Pixelmator", id: 407963104
 mas "Slack", id: 803453959
