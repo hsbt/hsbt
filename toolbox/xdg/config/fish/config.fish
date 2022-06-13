@@ -1,19 +1,11 @@
 alias ls lsd
-alias cat bat
-alias libtool glibtool
-alias libtoolize glibtoolize
-
 alias l ls
 alias ll "ls -la"
-alias e "code-insiders -a ."
-alias b bundle
-alias bx "bundle exec"
-alias bu "bundle update"
-alias k kubectl
-alias n nerdctl
+alias cat bat
 alias docker nerdctl
-alias d docker
-
+alias libtool glibtool
+alias libtoolize glibtoolize
+alias e "code-insiders -a ."
 alias all-ruby "nerdctl run --rm -it ghcr.io/ruby/all-ruby /all-ruby/all-ruby"
 alias s3cmd "s3cmd --config $HOME/.config/s3cmd"
 alias mvn "mvn -gs "$HOME"/.config/maven/settings.xml"
