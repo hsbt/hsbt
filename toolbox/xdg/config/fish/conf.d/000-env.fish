@@ -56,4 +56,4 @@ set -x PATH /opt/homebrew/opt/make/libexec/gnubin $PATH
 set -x PATH /opt/homebrew/opt/grep/libexec/gnubin $PATH
 set -x PATH /opt/homebrew/opt/bison/bin $PATH
 set -x PATH $HOME/Library/Python/3.9/bin $PATH
-set -x PATH $HOME/Documents/github.com/hsbt/hsbt/exe $PATH
+set -x PATH $HOME/Documents/github.com/hsbt/hsbt/toolbox/exe $PATH

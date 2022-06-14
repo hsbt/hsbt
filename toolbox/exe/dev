@@ -3,6 +3,7 @@
 command="$1"
 case "$command" in
 * )
+  EXE_DIR=`dirname "$0"`
   shift 1
-  exec "$(ghq root)/github.com/hsbt/hsbt/libexec/dev-$command" "$@"
+  exec "$EXE_DIR/../libexec/dev-$command" "$@"
 esac
