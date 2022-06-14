@@ -86,3 +86,11 @@ FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("heroku").to_s
   heroku-pg-extras
   heroku-repo
 ].each {|pkg| system "heroku plugins:install #{pkg}" }
+
+system "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher"
+%w[
+  jethrokuan/fzf
+  decors/fish-ghq
+  evanlucas/fish-kubectl-completions
+  rbenv/fish-rbenv
+].each {|pkg| system "fisher install #{pkg}" }
