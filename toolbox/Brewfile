@@ -26,6 +26,7 @@ brew "tesseract" # for rga
 brew "fd"
 brew "fx"
 brew "jq"
+brew "gron"
 brew "yq"
 brew "zoxide"
 brew "tealdeer"
