@@ -1,8 +1,13 @@
 #!/usr/bin/env ruby
 require "parallel"
 
+IGNORE_REPOS = %w[
+  obsidian-vault
+]
+
 Dir.chdir(`ghq root`.chomp) do
   Parallel.map(`ghq list`.split.shuffle) do |dir|
+    next if IGNORE_REPOS.any? { |repo| dir.include?(repo) }
     next unless File.directory?(dir + "/.git")
 
     puts dir
