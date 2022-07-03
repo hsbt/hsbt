@@ -2,6 +2,8 @@
 
 brew upgrade
 brew upgrade --cask
+brew autoremove
+brew cleanup
 
 rbenv update
 
