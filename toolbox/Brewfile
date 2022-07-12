@@ -142,6 +142,7 @@ cask "font-source-han-code-jp"
 
 cask "alacritty"
 cask "visual-studio-code-insiders"
+cask "google-chrome-beta"
 cask "discord"
 cask "1password-beta"
 cask "1password-cli"
