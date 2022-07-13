@@ -131,8 +131,6 @@ brew "aws-sam-cli"
 brew "copilot-cli"
 tap "buildpacks/tap"
 brew "pack"
-tap "nektos/tap"
-brew "act"
 
 tap "homebrew/cask-fonts"
 cask "font-ricty-diminished"
