@@ -1,5 +1,5 @@
 [include]
-	path = ~/.config/git/config.local
+	path = /Users/hsbt/.config/git/config.local
 
 [init]
 	defaultBranch = master
@@ -70,6 +70,7 @@
 
 [push]
 	default = current
+	autoSetupRemote = true
 
 [fetch]
 	prune = true
@@ -126,3 +127,5 @@
 	lo = log --decorate --oneline
 	lp = log --decorate -p
 	lpf = log --decorate -p --follow
+[blame]
+	ignoreRevsFile = .git-blame-ignore-revs
