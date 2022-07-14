@@ -2,7 +2,6 @@
 require "parallel"
 
 IGNORE_REPOS = %w[
-  obsidian-vault
 ]
 
 Dir.chdir(`ghq root`.chomp) do
