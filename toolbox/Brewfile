@@ -107,7 +107,7 @@ brew "mas"
 brew "sshuttle"
 
 brew "snapcraft"
-cask "rancher"
+cask "docker"
 brew "kubectl"
 brew "helm"
 brew "krew"
