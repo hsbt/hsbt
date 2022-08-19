@@ -117,6 +117,7 @@ brew "mutagen"
 
 tap "homebrew/cask"
 cask "google-cloud-sdk"
+brew "azure-cli"
 tap "github/gh"
 brew "gh"
 tap "heroku/brew"
