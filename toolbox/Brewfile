@@ -106,6 +106,7 @@ brew "mackup"
 brew "mas"
 brew "sshuttle"
 
+
 brew "snapcraft"
 cask "docker"
 brew "kubectl"
@@ -122,6 +123,7 @@ tap "github/gh"
 brew "gh"
 tap "heroku/brew"
 brew "heroku"
+brew "flyctl"
 brew "python@3.9"
 brew "pipenv"
 brew "poetry"
@@ -150,6 +152,7 @@ cask "krisp"
 cask "zoom"
 cask "messenger"
 cask "obsidian"
+cask "vlc"
 
 brew "mas"
 mas "Microsoft Remote Desktop", id: 1295203466
