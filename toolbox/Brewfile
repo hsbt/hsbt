@@ -109,6 +109,7 @@ brew "sshuttle"
 
 brew "snapcraft"
 cask "docker"
+cask "rancher"
 brew "kubectl"
 brew "helm"
 brew "krew"
