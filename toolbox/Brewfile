@@ -106,7 +106,6 @@ brew "mackup"
 brew "mas"
 brew "sshuttle"
 
-
 brew "snapcraft"
 cask "docker"
 cask "rancher"
