@@ -65,6 +65,8 @@ Ruby コミッタ、ruby, rubygems, bundler, rake, rdoc, rbenv, ruby-build, psyc
 
 ## 執筆・寄稿・インタビュー(Web 媒体)
 
+* 2022年08月 [エンジニアの評価制度はどうあるべきか？-インタビュー編-](https://job-draft.jp/articles/570)
+* 2022年08月 [エンジニアの評価制度はどうあるべきか？ -事例紹介編-](https://job-draft.jp/articles/569)
 * 2021年07月 [「候補者体験をもっとライトに」。興味通知機能を入口に候補者との軽やかなファーストタッチを実現するGMOペパボの採用戦略とは](https://hr-tech-lab.lapras.com/lapras-scout-cases/pepabo/)
 * 2020年10月 [「楽しい・おもしろい」を選び続けた先に今があった GMOペパボ VPofE 兼 技術部長とOSSとの20年間](https://engineer-lab.findy-code.io/enjoy-oss)
 * 2020年07月 [GMO3社の開発トップが教える今後の“採用”と“テレワーク”の在り方](https://logmi.jp/tech/articles/323177)
