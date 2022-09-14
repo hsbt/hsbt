@@ -4,7 +4,7 @@ require 'mina/rbenv'
 require 'mina/bundler'
 
 set :domain, "www.hsbt.org"
-set :user, "hsbt"
+set :user, "ubuntu"
 set :deploy_to, "/home/#{fetch(:user)}/app/tdiary"
 set :repository, 'https://github.com/tdiary/tdiary-core.git'
 set :branch, 'master'
@@ -29,7 +29,7 @@ task :deploy do
       %w[tdiary-contrib hsbt].each do |dir|
         command "cd #{fetch(:shared_path)}/#{dir}; git pull --rebase"
       end
-      command "ln -s /home/hsbt/www/tdiary.conf #{fetch(:current_path)}/tdiary.conf"
+      command "ln -s /home/#{fetch(:user)}/www/tdiary.conf #{fetch(:current_path)}/tdiary.conf"
 
       in_path(fetch(:current_path)) do
         invoke :'bundle:install'
