@@ -25,6 +25,7 @@ brew "poppler" # for rga
 brew "tesseract" # for rga
 brew "fd"
 brew "fx"
+brew "dust"
 brew "jq"
 brew "gron"
 brew "yq"
