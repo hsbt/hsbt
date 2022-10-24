@@ -11,7 +11,7 @@ GEM
       hashie
     faraday-multipart (1.0.4)
       multipart-post (~> 2)
-    faraday-net_http (3.0.0)
+    faraday-net_http (3.0.1)
     ffi (1.15.5)
     gli (2.21.0)
     hashie (5.0.0)
@@ -53,7 +53,7 @@ GEM
     ruby2_keywords (0.0.5)
     sassc (2.4.0)
       ffi (~> 1.9)
-    slack-ruby-client (1.1.0)
+    slack-ruby-client (2.0.0)
       faraday (>= 2.0)
       faraday-mashify
       faraday-multipart
@@ -84,7 +84,7 @@ DEPENDENCIES
   parallel (~> 1.17)
   rake
   sassc
-  slack-ruby-client (~> 1.1.0)
+  slack-ruby-client (~> 2.0.0)
   standard
 
 BUNDLED WITH
