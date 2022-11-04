@@ -94,9 +94,6 @@
 [heroku]
 	account = hsbt
 
-[ghq]
-	root = /Users/hsbt/Documents
-
 [ghq "import"]
 	starred = github-list-starred
 
