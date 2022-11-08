@@ -18,6 +18,6 @@ end
 desc 'deploy index.html'
 task :deploy => [:generate] do
   require 'net/scp'
-  Net::SCP.upload!('www.hsbt.org', 'hsbt', "dist/index.html", "/var/www/hsbt.org/index.html")
-  Net::SCP.upload!('www.hsbt.org', 'hsbt', "dist/hsbt.css", "/var/www/hsbt.org/stylesheets/hsbt.css")
+  Net::SCP.upload!('www.hsbt.org', 'ubuntu', "dist/index.html", "/home/ubuntu/www/hsbt.org/index.html")
+  Net::SCP.upload!('www.hsbt.org', 'ubuntu', "dist/hsbt.css", "/home/ubuntu/www/hsbt.org/stylesheets/hsbt.css")
 end
