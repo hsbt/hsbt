@@ -27,7 +27,8 @@ Ruby コミッタ、ruby, rubygems, bundler, rake, rdoc, rbenv, ruby-build, psyc
 
 ## 学歴・職歴
 
-* 2019年03月 GMOペパボ株式会社 執行役員 VP of Engineering/技術部 部長 現職
+* 2022年11月 株式会社アンドパッド フェロー 現職
+* 2019年03月 GMOペパボ株式会社 執行役員 VP of Engineering/技術部 部長
 * 2018年03月 GMOペパボ株式会社 執行役員 CPO(Chief Productivity Officer)/業務プロセス革新室 室長 兼 技術部 部長
 * 2017年03月 GMOペパボ株式会社 執行役員 CPO(Chief Productivity Officer)/業務プロセス革新室 室長
 * 2014年08月 GMOペパボ株式会社 チーフエンジニア
@@ -81,6 +82,7 @@ Ruby コミッタ、ruby, rubygems, bundler, rake, rdoc, rbenv, ruby-build, psyc
 
 ## 講演・発表(国際カンファレンス)
 
+* 2022年09月 RubyKaigi 2022 [Why is building the Ruby environment hard? - Speaker Deck](https://speakerdeck.com/hsbt/why-is-building-the-ruby-environment-hard)
 * 2021年09月 RubyKaigi takeout 2021 [How to develop the Standard Libraries of Ruby?](https://www.slideshare.net/hsbt/how-to-develop-the-standard-libraries-of-ruby)
 * 2020年09月 RubyKaigi takeout 2020 [Dependency Resolution with Standard Libraries](https://www.slideshare.net/hsbt/dependency-resolution-with-standard-libraries)
 * 2019年08月 builderscon 2019 [OSS Security the hard way](https://www.slideshare.net/hsbt/oss-security-the-hard-way)
