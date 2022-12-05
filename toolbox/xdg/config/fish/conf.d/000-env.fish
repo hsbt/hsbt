@@ -33,7 +33,6 @@ set -x CSEARCHINDEX $XDG_CACHE_HOME/csearchindex
 set -x TERMINFO $XDG_DATA_HOME/terminfo
 set -x TERMINFO_DIRS $XDG_DATA_HOME/terminfo:/usr/share/terminfo
 set -x AZURE_CONFIG_DIR $XDG_CONFIG_HOME/azure
-set -x DOCKER_CONFIG $XDG_CONFIG_HOME/docker
 
 set -x LANG en_US.UTF-8
 set -x TERM xterm-256color
