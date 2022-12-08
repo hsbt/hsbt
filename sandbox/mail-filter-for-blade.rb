@@ -31,6 +31,21 @@ Dir.glob( base_dir.join("*") ).each do |file|
       f.puts "Subject: "
     end
     f.puts ""
-    f.puts mail.body.to_s.encode("UTF-8", "ISO-2022-JP", invalid: :replace, undef: :replace)
+    begin
+      f.puts mail.body.to_s.encode("UTF-8", "ISO-2022-JP")
+    rescue Encoding::CompatibilityError, Encoding::UndefinedConversionError, Encoding::InvalidByteSequenceError, ArgumentError
+      begin
+        puts "retry #{file}"
+        m = File.read(file)
+        require "nkf"
+        if NKF.guess(m) != Encoding::UTF_8
+          f.puts Mail.new(m.encode("UTF-8", "EUC-JP")).body.to_s
+        else
+          f.puts Mail.new(m).body.to_s
+        end
+      rescue Encoding::InvalidByteSequenceError, Encoding::UndefinedConversionError
+        f.puts mail.body.to_s.encode("UTF-8", "ISO-2022-JP", invalid: :replace, undef: :replace)
+      end
+    end
   end
 end
