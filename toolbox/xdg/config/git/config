@@ -126,3 +126,5 @@
 	lpf = log --decorate -p --follow
 [blame]
 	ignoreRevsFile = .git-blame-ignore-revs
+[advice]
+	detachedHead = false
