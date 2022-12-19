@@ -8,6 +8,7 @@ SHIBATA Hiroshi (aka hsbt）
 
 * [HsbtDiary](http://www.hsbt.org/diary/)
 * [GitHub](https://github.com/hsbt/)
+* <a rel="me" href="https://ruby.social/@hsbt">Mastodon</a>
 * [Twitter](https://twitter.com/hsbt/)
 * [facebook](https://www.facebook.com/shibata.hiroshi)
 * [pinboard](http://pinboard.in/u:hsbt)
