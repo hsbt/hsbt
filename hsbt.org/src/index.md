@@ -6,12 +6,12 @@ SHIBATA Hiroshi (aka hsbt）
 
 ## Activities
 
-* [HsbtDiary](http://www.hsbt.org/diary/)
+* [HsbtDiary](https://www.hsbt.org/diary/)
 * [GitHub](https://github.com/hsbt/)
 * <a rel="me" href="https://ruby.social/@hsbt">Mastodon</a>
 * [Twitter](https://twitter.com/hsbt/)
-* [facebook](https://www.facebook.com/shibata.hiroshi)
-* [pinboard](http://pinboard.in/u:hsbt)
+* [facebook](https://www.facebook.com/hiroshi.sbt/)
+* [pinboard](https://pinboard.in/u:hsbt)
 
 ## Contact address
 
@@ -19,8 +19,7 @@ SHIBATA Hiroshi (aka hsbt）
 
 ## Job Title
 
-* Executive Officer VP of Engineering
-* Director of Technical division
+* Fellow at [AndPad](https://andpad.co.jp/)
 
 ## Work
 
