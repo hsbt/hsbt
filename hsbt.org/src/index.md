@@ -19,7 +19,7 @@ SHIBATA Hiroshi (aka hsbt）
 
 ## Job Title
 
-* Fellow at [AndPad](https://andpad.co.jp/)
+* Fellow at [ANDPAD](https://andpad.co.jp/)
 
 ## Work
 
