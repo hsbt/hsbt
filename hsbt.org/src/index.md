@@ -23,7 +23,7 @@ SHIBATA Hiroshi (aka hsbt）
 
 ## Work
 
-Ruby コミッタ、ruby, rubygems, bundler, rake, rdoc, rbenv, ruby-build, psych, tDiary, Hiki など多数の OSS のメンテナ、ruby-lang.org の root としてプログラミング言語 Ruby の開発を支える基盤を統括している。
+OSS プログラマー、Ruby コミッタ、Ruby, RubyGems, Bundler, Rake, ruby-build など多数の OSS のメンテナ、ruby-lang.org の root 管理者としてプログラミング言語 Ruby の開発を支える基盤を統括している。株式会社アンドパッドの技術広報および Ruby の開発をフルタイムの業務として担当している。
 
 ## 学歴・職歴
 
