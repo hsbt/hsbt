@@ -12,10 +12,12 @@ dev_versions = %w[
   3.0
   3.1
   3.2
+  3.3
 ]
 
 dev_versions.each do |v|
-  openssl_version = (v =~ /3\.2/) ? "3" : "1.1"
+  openssl_version = (v =~ /3\.[321]/) ? "3" : "1.1"
+  puts "Installing #{v}"
   system "rbenv uninstall -f #{v}.0-dev"
   system "env RUBY_CONFIGURE_OPTS=\"--disable-install-doc --with-libyaml-dir=$(brew --prefix libyaml) --with-openssl-dir=$(brew --prefix openssl@#{openssl_version})\" rbenv install -f #{v}.0-dev"
   Dir.chdir(ENV["RBENV_ROOT"] + "/versions") do
@@ -85,6 +87,7 @@ FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("heroku").to_s
   heroku-config
   heroku-pg-extras
   heroku-repo
+  heroku-releases-retry
 ].each {|pkg| system "heroku plugins:install #{pkg}" }
 
 %w[
