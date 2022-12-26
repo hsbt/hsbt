@@ -7,11 +7,9 @@ gems = Gem::Specification.all.map { |spec|
 }.compact.uniq
 
 gems.each do |n, v|
-  begin
-    cmd = Gem::Commands::PristineCommand.new
-    cmd.options[:args] = [n]
-    cmd.options[:version] = v
-    cmd.execute
-  rescue Gem::Ext::BuildError
-  end
+  cmd = Gem::Commands::PristineCommand.new
+  cmd.options[:args] = [n]
+  cmd.options[:version] = v
+  cmd.execute
+rescue Gem::Ext::BuildError
 end
