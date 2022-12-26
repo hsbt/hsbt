@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 
-require 'shellwords'
-require 'fileutils'
-require 'pathname'
+require "shellwords"
+require "fileutils"
+require "pathname"
 
 system "rbenv global system && rbenv rehash && rbenv shell --unset"
 
@@ -23,7 +23,7 @@ dev_versions.each do |v|
   Dir.chdir(ENV["RBENV_ROOT"] + "/versions") do
     File.unlink(v) if File.symlink?(v)
     File.symlink(v + ".0-dev", v)
-    d = defs.find { |d| d =~ /^#{v}.\d+$/ }  
+    d = defs.find { |d| d =~ /^#{v}.\d+$/ }
     if d
       latest = d.match(/\d+$/).to_s.to_i
       0.upto(latest) do |i|
@@ -50,12 +50,12 @@ system "npm install -g npm"
   babel-cli
   eslint
   yarn
-].each {|pkg| system "npm install -g #{pkg}" }
+].each { |pkg| system "npm install -g #{pkg}" }
 
 FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("cargo").to_s
 %w[
   cargo-update
-].each {|pkg| system "cargo install #{pkg}" }
+].each { |pkg| system "cargo install #{pkg}" }
 
 FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("go").to_s
 %w[
@@ -75,7 +75,7 @@ FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("go").to_s
   github.com/google/codesearch/cmd/cgrep@latest
   github.com/hound-search/hound/cmds/hound@latest
   github.com/hound-search/hound/cmds/houndd@latest
-].each {|pkg| system "go install #{pkg}" }
+].each { |pkg| system "go install #{pkg}" }
 
 FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("heroku").to_s
 %w[
@@ -88,11 +88,11 @@ FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("heroku").to_s
   heroku-pg-extras
   heroku-repo
   heroku-releases-retry
-].each {|pkg| system "heroku plugins:install #{pkg}" }
+].each { |pkg| system "heroku plugins:install #{pkg}" }
 
 %w[
   jethrokuan/fzf
   decors/fish-ghq
   evanlucas/fish-kubectl-completions
   rbenv/fish-rbenv
-].each {|pkg| system "fisher install #{pkg}" }
+].each { |pkg| system "fisher install #{pkg}" }
