@@ -110,6 +110,7 @@ brew "sshuttle"
 
 brew "snapcraft"
 cask "rancher"
+brew "skopeo"
 brew "kubectl"
 brew "helm"
 brew "krew"
