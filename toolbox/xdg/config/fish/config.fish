@@ -25,10 +25,6 @@ function export
   set -gx $arr[1] $arr[2]
 end
 
-function cs
-  csearch $argv | sed 's/^\/Users\/hsbt\/Documents\///g';
-end
-
 function g --wraps git
   hub $argv;
 end
