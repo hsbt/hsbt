@@ -42,3 +42,4 @@ source /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.fish
 
 zoxide init fish --cmd j | source
 eval (direnv hook fish)
+source $HOME/.config/op/plugins.sh
