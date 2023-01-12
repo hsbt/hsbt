@@ -1,5 +1,7 @@
 # https://github.com/yamadashy/tech-blog-rss-feed/
+# https://github.com/yamadashy/tech-blog-rss-feed/blob/main/src/resources/feed-info-list.ts
 # https://hatena.blog/dev/companies
+# and `doc.css('ul > li > div > div').each{|i| f.puts "#{i.css('a > h4')[0].content},#{i.css('a')[0][:href]}" };nil`
 list = [
   ["株式会社サーバーワークス", "https://blog.serverworks.co.jp/feed"],
   ["GMOあおぞらネット銀行株式会社", "https://gmo-aozora.hatenablog.com/feed"],
@@ -853,6 +855,9 @@ list = [
   ['ＦＦＲＩセキュリティ', 'https://engineers.ffri.jp/feed'],
   ['note', 'https://engineerteam.note.jp/m/m70da42dac8cf/rss'],
 ]
+
+# uniq with feed url
+list = list.to_h {|i| [i[1], i[0]]}.to_a {|i| [i.value, i.key]}
 
 require 'bundler/inline'
 
