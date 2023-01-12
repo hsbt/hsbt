@@ -857,7 +857,7 @@ list = [
 ]
 
 # uniq with feed url
-list = list.to_h {|i| [i[1], i[0]]}.to_a {|i| [i.value, i.key]}
+list = list.to_h {|i| [i[1], i[0]]}.to_a
 
 require 'bundler/inline'
 
@@ -868,7 +868,7 @@ end
 
 include OpmlParser
 
-outlines = list.map{|item| OpmlParser::Outline.new({xmlUrl: item[1]}) }
+outlines = list.map{|item| OpmlParser::Outline.new({title: item[1], xmlUrl: item[0]}) }
 opml = OpmlParser.export(outlines, "企業テックブログOPML")
 
 File.open("output.xml", "w") do |f|
