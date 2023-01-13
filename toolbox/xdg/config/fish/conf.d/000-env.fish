@@ -44,12 +44,6 @@ set -x PKG_CONFIG_PATH /opt/homebrew/opt/imagemagick@6/lib/pkgconfig:/usr/lib/pk
 set -x CLOUDSDK_PYTHON /opt/homebrew/opt/python@3.9/libexec/bin/python
 set -x GHQ_ROOT $HOME/Documents
 
-# Move to the top of PATH again
-fish_add_path /opt/homebrew/sbin
-fish_add_path /opt/homebrew/bin
-fish_add_path $XDG_DATA_HOME/cargo/bin
-fish_add_path $XDG_DATA_HOME/go/bin
-
 fish_add_path /opt/homebrew/opt/coreutils/libexec/gnubin
 fish_add_path /opt/homebrew/opt/findutils/libexec/gnubin
 fish_add_path /opt/homebrew/opt/libtool/libexec/gnubin
@@ -58,7 +52,11 @@ fish_add_path /opt/homebrew/opt/gnu-tar/libexec/gnubin
 fish_add_path /opt/homebrew/opt/make/libexec/gnubin
 fish_add_path /opt/homebrew/opt/grep/libexec/gnubin
 fish_add_path /opt/homebrew/opt/bison/bin
+fish_add_path /opt/homebrew/sbin # Move to the top of PATH again
+fish_add_path /opt/homebrew/bin # Move to the top of PATH again
 fish_add_path $KREW_ROOT/bin
-fish_add_path $HOME/.local/bin
+fish_add_path $XDG_DATA_HOME/go/bin # Move to the top of PATH again
+fish_add_path $XDG_DATA_HOME/cargo/bin # Move to the top of PATH again
 fish_add_path $RBENV_ROOT/bin
+fish_add_path $HOME/.local/bin
 fish_add_path $HOME/Documents/github.com/hsbt/hsbt/toolbox/exe
