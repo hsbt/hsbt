@@ -52,6 +52,7 @@ fish_add_path $XDG_DATA_HOME/go/bin
 
 fish_add_path /opt/homebrew/opt/coreutils/libexec/gnubin
 fish_add_path /opt/homebrew/opt/findutils/libexec/gnubin
+fish_add_path /opt/homebrew/opt/libtool/libexec/gnubin
 fish_add_path /opt/homebrew/opt/gnu-sed/libexec/gnubin
 fish_add_path /opt/homebrew/opt/gnu-tar/libexec/gnubin
 fish_add_path /opt/homebrew/opt/make/libexec/gnubin
