@@ -59,8 +59,6 @@ FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("cargo").to_s
 
 FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("go").to_s
 %w[
-  github.com/motemen/github-list-starred@latest
-  github.com/client9/misspell/cmd/misspell@latest
   github.com/uudashr/gopkgs/v2/cmd/gopkgs@latest
   github.com/ramya-rao-a/go-outline@latest
   github.com/cweill/gotests/gotests@latest
@@ -70,11 +68,14 @@ FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("go").to_s
   github.com/go-delve/delve/cmd/dlv@latest
   honnef.co/go/tools/cmd/staticcheck@latest
   golang.org/x/tools/gopls@latest
+  github.com/motemen/github-list-starred@latest
+  github.com/client9/misspell/cmd/misspell@latest
+  github.com/rhysd/actionlint/cmd/actionlint@latest
   github.com/google/codesearch/cmd/csearch@latest
   github.com/google/codesearch/cmd/cindex@latest
   github.com/google/codesearch/cmd/cgrep@latest
-  github.com/hound-search/hound/cmds/hound@latest
-  github.com/hound-search/hound/cmds/houndd@latest
+  github.com/google/osv-scanner/cmd/osv-scanner@v1
+  github.com/google/yamlfmt/cmd/yamlfmt@latest
 ].each { |pkg| system "go install #{pkg}" }
 
 FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("heroku").to_s
