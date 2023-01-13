@@ -11,11 +11,9 @@ set -x BUNDLE_USER_CONFIG $XDG_CONFIG_HOME/bundle
 set -x BUNDLE_USER_CACHE $XDG_CACHE_HOME/bundle
 set -x BUNDLE_USER_PLUGIN $XDG_DATA_HOME/bundle
 set -x RBENV_ROOT $XDG_DATA_HOME/rbenv
-set -x CARGO_HOME $XDG_DATA_HOME/cargo
 set -x MIX_HOME $XDG_DATA_HOME/mix
 set -x GNUPGHOME $XDG_DATA_HOME/gnupg
 set -x NPM_CONFIG_USERCONFIG $XDG_CONFIG_HOME/npm/npmrc
-set -x GOPATH $XDG_DATA_HOME/go
 set -x AWS_SHARED_CREDENTIALS_FILE $XDG_CONFIG_HOME/aws/credentials
 set -x AWS_CONFIG_FILE $XDG_CONFIG_HOME/aws/config
 set -x MAVEN_USER_HOME $XDG_CACHE_HOME/maven
@@ -45,7 +43,6 @@ set -x RUBY_CONFIGURE_OPTS --disable-install-doc
 set -x PKG_CONFIG_PATH /opt/homebrew/opt/imagemagick@6/lib/pkgconfig:/usr/lib/pkgconfig
 set -x CLOUDSDK_PYTHON /opt/homebrew/opt/python@3.8/libexec/bin/python
 set -x GHQ_ROOT $HOME/Documents
-set -x CARGO_NET_GIT_FETCH_WITH_CLI true
 
 fish_add_path $HOME/.local/bin
 fish_add_path $CARGO_HOME/bin

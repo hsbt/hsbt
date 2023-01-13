@@ -33,8 +33,6 @@ task :push do
     to = f.gsub(/toolbox\/xdg\/config/, ENV['XDG_CONFIG_HOME'])
     FileUtils.cp from, to
   end
-
-  system "sudo cp toolbox/system/paths /etc/paths.d/paths"
 end
 
 task :pull do
@@ -43,6 +41,45 @@ task :pull do
     from = f.gsub(/toolbox\/xdg\/config/, ENV['XDG_CONFIG_HOME'])
     FileUtils.cp from, to
   end
+end
 
-  system "sudo cp /etc/paths.d/paths toolbox/system/paths"
+task :push_system_env do
+  system "sudo cp toolbox/system/paths /etc/paths.d/paths"
+
+  File.open("toolbox/system/env").each do |line|
+    k, v = line.split(",").map(&:chomp)
+    plist = <<~EOS
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+    <plist version="1.0">
+      <dict>
+        <key>Label</key>
+        <string>#{k}.SetEnv</string>
+        <key>ProgramArguments</key>
+        <array>
+          <string>/bin/launchctl</string>
+          <string>setenv</string>
+          <string>#{k}</string>
+          <string>#{v}</string>
+        </array>
+        <key>RunAtLoad</key>
+        <true/>
+      </dict>
+    </plist>
+    EOS
+    system "launchctl bootout gui/501 #{File.expand_path("~/Library/LaunchAgents/#{k}.SetEnv.plist")}"
+    File.open(File.expand_path("~/Library/LaunchAgents/#{k}.SetEnv.plist"), "w") do |f|
+      f.puts plist
+    end
+    system "launchctl bootstrap gui/501 #{File.expand_path("~/Library/LaunchAgents/#{k}.SetEnv.plist")}"
+  end
+end
+
+task :purge_system_env do
+  system "sudo rm /etc/paths.d/paths"
+  File.open("toolbox/system/env").each do |line|
+    k, v = line.split(",").map(&:chomp)
+    system "launchctl bootout gui/501 #{File.expand_path("~/Library/LaunchAgents/#{k}.SetEnv.plist")}"
+    FileUtils.rm File.expand_path("~/Library/LaunchAgents/#{k}.SetEnv.plist")
+  end
 end
