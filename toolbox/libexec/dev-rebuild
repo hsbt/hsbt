@@ -55,10 +55,23 @@ system "npm install -g npm"
 FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("cargo").to_s
 %w[
   cargo-update
-].each { |pkg| system "cargo install #{pkg}" }
+  lsd
+  bat
+  ripgrep
+  fd-find
+  grex
+  du-dust
+  zoxide
+  tealdeer
+  hexyl
+  procs
+  sd
+  ripgrep_all
+].each { |pkg| system "cargo install --locked #{pkg}" }
 
 FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("go").to_s
 %w[
+  github.com/Gelio/go-global-update@latest
   github.com/uudashr/gopkgs/v2/cmd/gopkgs@latest
   github.com/ramya-rao-a/go-outline@latest
   github.com/cweill/gotests/gotests@latest
@@ -76,6 +89,9 @@ FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("go").to_s
   github.com/google/codesearch/cmd/cgrep@latest
   github.com/google/osv-scanner/cmd/osv-scanner@v1
   github.com/google/yamlfmt/cmd/yamlfmt@latest
+  github.com/mikefarah/yq/v4@latest
+  github.com/antonmedv/fx@latest
+  github.com/tomnomnom/gron@latest
 ].each { |pkg| system "go install #{pkg}" }
 
 FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("heroku").to_s
