@@ -46,6 +46,7 @@ end
 task :push_system_env do
   system "sudo cp toolbox/system/paths /etc/paths.d/paths"
 
+  uid = `id -u`.chomp
   File.open("toolbox/system/env").each do |line|
     k, v = line.split(",").map(&:chomp)
     plist = <<~EOS
@@ -67,19 +68,20 @@ task :push_system_env do
       </dict>
     </plist>
     EOS
-    system "launchctl bootout gui/501 #{File.expand_path("~/Library/LaunchAgents/#{k}.SetEnv.plist")}"
+    system "launchctl bootout gui/#{uid} #{File.expand_path("~/Library/LaunchAgents/#{k}.SetEnv.plist")}"
     File.open(File.expand_path("~/Library/LaunchAgents/#{k}.SetEnv.plist"), "w") do |f|
       f.puts plist
     end
-    system "launchctl bootstrap gui/501 #{File.expand_path("~/Library/LaunchAgents/#{k}.SetEnv.plist")}"
+    system "launchctl bootstrap gui/#{uid} #{File.expand_path("~/Library/LaunchAgents/#{k}.SetEnv.plist")}"
   end
 end
 
 task :purge_system_env do
   system "sudo rm /etc/paths.d/paths"
+  uid = `id -u`.chomp
   File.open("toolbox/system/env").each do |line|
     k, v = line.split(",").map(&:chomp)
-    system "launchctl bootout gui/501 #{File.expand_path("~/Library/LaunchAgents/#{k}.SetEnv.plist")}"
+    system "launchctl bootout gui/#{uid} #{File.expand_path("~/Library/LaunchAgents/#{k}.SetEnv.plist")}"
     FileUtils.rm File.expand_path("~/Library/LaunchAgents/#{k}.SetEnv.plist")
   end
 end
