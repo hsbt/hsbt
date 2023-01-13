@@ -48,13 +48,15 @@ set -x CLOUDSDK_PYTHON /opt/homebrew/opt/python@3.8/libexec/bin/python
 set -x GHQ_ROOT $HOME/Documents
 set -x CARGO_NET_GIT_FETCH_WITH_CLI true
 
-set -x PATH $CARGO_HOME/bin $RBENV_ROOT/bin $KREW_ROOT/bin $PATH
-set -x PATH /opt/homebrew/opt/coreutils/libexec/gnubin $PATH
-set -x PATH /opt/homebrew/opt/findutils/libexec/gnubin $PATH
-set -x PATH /opt/homebrew/opt/gnu-sed/libexec/gnubin $PATH
-set -x PATH /opt/homebrew/opt/gnu-tar/libexec/gnubin $PATH
-set -x PATH /opt/homebrew/opt/make/libexec/gnubin $PATH
-set -x PATH /opt/homebrew/opt/grep/libexec/gnubin $PATH
-set -x PATH /opt/homebrew/opt/bison/bin $PATH
-set -x PATH $HOME/Library/Python/3.9/bin $PATH
-set -x PATH $HOME/Documents/github.com/hsbt/hsbt/toolbox/exe $PATH
+fish_add_path $CARGO_HOME/bin
+fish_add_path $RBENV_ROOT/bin
+fish_add_path $KREW_ROOT/bin
+fish_add_path /opt/homebrew/opt/coreutils/libexec/gnubin
+fish_add_path /opt/homebrew/opt/findutils/libexec/gnubin
+fish_add_path /opt/homebrew/opt/gnu-sed/libexec/gnubin
+fish_add_path /opt/homebrew/opt/gnu-tar/libexec/gnubin
+fish_add_path /opt/homebrew/opt/make/libexec/gnubin
+fish_add_path /opt/homebrew/opt/grep/libexec/gnubin
+fish_add_path /opt/homebrew/opt/bison/bin
+fish_add_path $HOME/Library/Python/3.9/bin
+fish_add_path $HOME/Documents/github.com/hsbt/hsbt/toolbox/exe
