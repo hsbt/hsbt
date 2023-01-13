@@ -48,8 +48,7 @@ set -x CLOUDSDK_PYTHON /opt/homebrew/opt/python@3.8/libexec/bin/python
 set -x GHQ_ROOT $HOME/Documents
 set -x CARGO_NET_GIT_FETCH_WITH_CLI true
 
-set -x PATH $GOBIN $CARGO_HOME/bin $RBENV_ROOT/bin $KREW_ROOT/bin $PATH
-set -x PATH /opt/homebrew/bin /opt/homebrew/sbin $PATH
+set -x PATH $CARGO_HOME/bin $RBENV_ROOT/bin $KREW_ROOT/bin $PATH
 set -x PATH /opt/homebrew/opt/coreutils/libexec/gnubin $PATH
 set -x PATH /opt/homebrew/opt/findutils/libexec/gnubin $PATH
 set -x PATH /opt/homebrew/opt/gnu-sed/libexec/gnubin $PATH
