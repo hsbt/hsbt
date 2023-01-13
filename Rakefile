@@ -33,6 +33,8 @@ task :push do
     to = f.gsub(/toolbox\/xdg\/config/, ENV['XDG_CONFIG_HOME'])
     FileUtils.cp from, to
   end
+
+  system "sudo cp toolbox/system/paths /etc/paths.d/paths"
 end
 
 task :pull do
@@ -41,4 +43,6 @@ task :pull do
     from = f.gsub(/toolbox\/xdg\/config/, ENV['XDG_CONFIG_HOME'])
     FileUtils.cp from, to
   end
+
+  system "sudo cp /etc/paths.d/paths toolbox/system/paths"
 end
