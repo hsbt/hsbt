@@ -1,8 +1,3 @@
-set -x XDG_CONFIG_HOME $HOME/.config
-set -x XDG_CACHE_HOME $HOME/.cache
-set -x XDG_DATA_HOME $HOME/.local/share
-set -x XDG_STATE_HOME $HOME/.local/state
-
 function fish_prompt
   set_color $fish_color_cwd
   echo -n (prompt_pwd)
