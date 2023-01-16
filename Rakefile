@@ -45,10 +45,12 @@ end
 
 task :push_system_env do
   system "sudo cp toolbox/system/paths /etc/paths.d/paths"
+  system "sudo sd 'HOME' #{ENV.fetch('HOME')} /etc/paths.d/paths"
 
   uid = `id -u`.chomp
   File.open("toolbox/system/env").each do |line|
     k, v = line.split(",").map(&:chomp)
+    v.gsub!("HOME", ENV.fetch('HOME'))
     plist = <<~EOS
     <?xml version="1.0" encoding="UTF-8"?>
     <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
