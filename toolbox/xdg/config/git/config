@@ -1,6 +1,3 @@
-[include]
-	path = /Users/hsbt/.config/git/config.local
-
 [init]
 	defaultBranch = master
 
