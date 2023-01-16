@@ -1,0 +1,3 @@
+#!/bin/sh
+# https://github.com/containers/podman/blob/main/docker
+exec podman "$@"
