@@ -1,4 +1,4 @@
 /opt/homebrew/bin
 /opt/homebrew/sbin
-/Users/hsbt/.local/share/cargo/bin
-/Users/hsbt/.local/share/go/bin
+HOME/.local/share/cargo/bin
+HOME/.local/share/go/bin
