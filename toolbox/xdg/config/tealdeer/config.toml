@@ -1,6 +1,2 @@
 [updates]
 auto_update = true
-
-[directories]
-cache_dir = "/Users/hsbt/.cache/tealdeer"
-
