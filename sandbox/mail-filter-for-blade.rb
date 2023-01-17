@@ -9,7 +9,7 @@ require "pathname"
 require "fileutils"
 
 base_dir = Pathname(ARGV[0])
-blade_dir = base_dir + "blade-version"
+blade_dir = base_dir + ".blade-version"
 
 FileUtils.mkdir(blade_dir) unless blade_dir.exist?
 
@@ -17,6 +17,7 @@ Dir.glob( base_dir.join("*") ).each do |file|
   next if File.directory?(file)
   mail = Mail.read( file )
   puts file
+  next if File.exist?( Pathname(blade_dir).join( File.basename(file) ).to_s )
   File.open( Pathname(blade_dir).join( File.basename(file) ), "w" ) do |f|
     from = begin
       mail.header["from"].to_s.gsub(/@[a-zA-Z.\-]+/, "@...")
@@ -33,7 +34,7 @@ Dir.glob( base_dir.join("*") ).each do |file|
     f.puts ""
     begin
       f.puts mail.body.to_s.encode("UTF-8", "ISO-2022-JP")
-    rescue Encoding::CompatibilityError, Encoding::UndefinedConversionError, Encoding::InvalidByteSequenceError, ArgumentError
+    rescue Encoding::CompatibilityError, Encoding::UndefinedConversionError, Encoding::InvalidByteSequenceError, Mail::UnknownEncodingType, ArgumentError
       begin
         puts "retry #{file}"
         m = File.read(file)
@@ -45,6 +46,8 @@ Dir.glob( base_dir.join("*") ).each do |file|
         end
       rescue Encoding::InvalidByteSequenceError, Encoding::UndefinedConversionError
         f.puts mail.body.to_s.encode("UTF-8", "ISO-2022-JP", invalid: :replace, undef: :replace)
+      rescue Mail::UnknownEncodingType, ArgumentError
+        f.puts "(This mail is unknown encoding, so it is not displayed. Please contact webmaster@ruby-lang.org)"
       end
     end
   end
