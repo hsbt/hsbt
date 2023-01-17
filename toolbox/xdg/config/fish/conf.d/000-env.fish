@@ -26,7 +26,7 @@ set -x VIMINIT ":source $XDG_CONFIG_HOME"/vim/vimrc
 set -x NODE_REPL_HISTORY $XDG_DATA_HOME/node_repl_history
 set -x VSCODE_PORTABLE "$XDG_DATA_HOME"/vscode
 set -x _ZO_DATA_DIR $XDG_DATA_HOME/zoxide
-set -x TEALDEER_CACHE_DIR $XDG_CACHE_HOME/tldr
+set -x TEALDEER_CONFIG_DIR $XDG_CONFIG_HOME/tealdeer
 set -x CSEARCHINDEX $XDG_CACHE_HOME/csearchindex
 set -x TERMINFO $XDG_DATA_HOME/terminfo
 set -x TERMINFO_DIRS $XDG_DATA_HOME/terminfo:/usr/share/terminfo
