@@ -16,8 +16,6 @@ set -x GNUPGHOME $XDG_DATA_HOME/gnupg
 set -x NPM_CONFIG_USERCONFIG $XDG_CONFIG_HOME/npm/npmrc
 set -x AWS_SHARED_CREDENTIALS_FILE $XDG_CONFIG_HOME/aws/credentials
 set -x AWS_CONFIG_FILE $XDG_CONFIG_HOME/aws/config
-set -x MAVEN_USER_HOME $XDG_CACHE_HOME/maven
-set -x MAVEN_CONFIG "-gs $XDG_CONFIG_HOME/maven/settings.xml"
 set -x PYLINTHOME $XDG_CACHE_HOME/pylint
 set -x MINIKUBE_HOME $XDG_DATA_HOME/minikube
 set -x HELM_HOME $XDG_DATA_HOME/helm
