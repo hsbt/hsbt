@@ -13,7 +13,6 @@ brew "direnv"
 brew "hub"
 brew "diff-so-fancy"
 brew "nkf"
-brew "rga"
 brew "jq"
 brew "ffmpeg" # for rga
 brew "pandoc" # for rga
