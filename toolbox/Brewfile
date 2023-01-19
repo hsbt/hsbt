@@ -14,10 +14,10 @@ brew "hub"
 brew "diff-so-fancy"
 brew "nkf"
 brew "jq"
-brew "ffmpeg" # for rga
-brew "pandoc" # for rga
-brew "poppler" # for rga
-brew "tesseract" # for rga
+brew "ffmpeg" # for ripgrep_all
+brew "pandoc" # for ripgrep_all
+brew "poppler" # for ripgrep_all
+brew "tesseract" # for ripgrep_all
 brew "codespell"
 brew "zopfli"
 brew "jpegoptim"
