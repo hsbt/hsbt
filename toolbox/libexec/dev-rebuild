@@ -67,6 +67,7 @@ FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("cargo").to_s
   procs
   sd
   ripgrep_all
+  git-delta
 ].each { |pkg| system "cargo install --locked #{pkg}" }
 
 FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("go").to_s
@@ -92,6 +93,8 @@ FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("go").to_s
   github.com/mikefarah/yq/v4@latest
   github.com/antonmedv/fx@latest
   github.com/tomnomnom/gron@latest
+  github.com/junegunn/fzf@latest
+  github.com/x-motemen/ghq@latest
 ].each { |pkg| system "go install #{pkg}" }
 
 FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("heroku").to_s
