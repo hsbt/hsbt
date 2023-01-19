@@ -97,8 +97,6 @@ brew "kubectl"
 brew "helm"
 brew "krew"
 brew "kompose"
-tap "mutagen-io/mutagen"
-brew "mutagen"
 
 tap "homebrew/cask"
 cask "google-cloud-sdk"
