@@ -1,0 +1,93 @@
+# https://evilmartians.com/chronicles/gemfile-of-dreams-libraries-we-use-to-build-rails-apps
+source 'https://rubygems.org'
+
+gem 'rails', '~> 7.0.4'
+gem 'pg'
+gem 'puma'
+gem 'sidekiq'
+gem 'sidekiq-grouping'
+gem 'sidekiq-limit_fetch'
+gem 'schked'
+gem 'faktory_worker_ruby'
+gem 'store_attribute'
+gem 'store_model'
+gem 'activerecord-postgres_enum'
+gem 'pg_search'
+gem 'postgresql_cursor'
+gem 'fx'
+gem 'scenic'
+gem 'discard'
+gem 'groupdate'
+gem 'sorcery'
+gem 'jwt_sessions'
+gem 'action_policy'
+gem 'view_component'
+gem 'view_component-contrib'
+gem 'lookbook', require: false
+gem 'turbo-rails'
+gem 'vite_rails'
+gem 'imgproxy'
+gem 'premailer-rails'
+gem 'panko_serializer'
+gem 'graphql', '~> 2.0.0'
+gem 'graphql-connections'
+gem 'graphql-fragment_cache'
+gem 'graphql-persisted_queries'
+gem 'action_policy-graphql', '~> 0.3'
+gem 'graphql-schema_comparator', group: :development
+gem 'ar_lazy_preload'
+
+group :production do
+  gem 'yabeda-sidekiq', require: false
+  gem 'yabeda-puma-plugin', require: false
+
+  gem 'lograge'
+end
+
+gem 'bootsnap', require: false
+gem 'database_validations'
+gem 'database_consistency'
+gem 'isolator'
+gem 'after_commit_everywhere'
+
+gem 'strong_migrations'
+gem 'rails-pg-extras'
+gem 'evil-seed'
+gem 'derailed_benchmarks'
+gem 'rack-mini-profiler'
+gem 'stackprof'
+gem 'bundler-audit', require: false
+gem 'brakeman', require: false
+gem 'danger', require: false
+
+gem 'next_rails'
+gem 'attractor'
+gem 'coverband'
+
+gem 'standard'
+gem 'rubocop-rspec'
+gem 'rubocop-rails'
+
+gem 'rspec-rails'
+gem 'factory_bot'
+gem 'cuprite'
+gem 'site_prism'
+gem 'with_model'
+gem 'n_plus_one_control'
+gem 'webmock'
+gem 'vcr'
+gem 'zonebie'
+gem 'rspec-instafail', require: false
+gem 'fuubar', require: false
+gem 'test-prof'
+
+gem 'grpc', '~> 1.46.2'
+gem 'anycable-rails'
+gem 'feature_toggles'
+gem 'redis-mutex'
+gem 'anyway_config'
+gem 'retriable'
+
+gem 'dry-initializer'
+gem 'dry-monads'
+gem 'dry-effects'
