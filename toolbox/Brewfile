@@ -43,6 +43,7 @@ brew "rsync"
 brew "wget"
 brew "shared-mime-info"
 
+brew "python"
 brew "go"
 brew "node"
 brew "deno"
