@@ -1,3 +1,7 @@
+tap "homebrew/core"
+tap "homebrew/bundle"
+tap "homebrew/services"
+tap "homebrew/cask"
 cask_args appdir: "/Applications"
 
 brew "tmux"
@@ -96,7 +100,6 @@ brew "helm"
 brew "krew"
 brew "kompose"
 
-tap "homebrew/cask"
 cask "google-cloud-sdk"
 brew "azure-cli"
 brew "gh"
