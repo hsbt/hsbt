@@ -84,7 +84,6 @@ brew "parallel"
 brew "guetzli"
 brew "lcov"
 brew "ansible"
-brew "mackup"
 brew "sshuttle"
 
 brew "snapcraft"
