@@ -40,7 +40,6 @@ set -x GO111MODULE on
 set -x RUBY_CODESIGN hsbt
 set -x RUBY_CONFIGURE_OPTS --disable-install-doc
 set -x PKG_CONFIG_PATH /opt/homebrew/opt/imagemagick@6/lib/pkgconfig:/usr/lib/pkgconfig
-set -x CLOUDSDK_PYTHON /opt/homebrew/opt/python@3.9/libexec/bin/python
 set -x GHQ_ROOT $HOME/Documents
 
 fish_add_path /opt/homebrew/opt/coreutils/libexec/gnubin
