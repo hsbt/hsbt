@@ -65,7 +65,7 @@ GEM
       racc (~> 1.4)
     polyglot (0.3.4)
     racc (1.6.0)
-    rack (1.5.2)
+    rack (1.5.5)
     rack-test (0.6.2)
       rack (>= 1.0)
     rails (4.1.0.rc1)
