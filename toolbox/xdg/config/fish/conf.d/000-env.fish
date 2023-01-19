@@ -42,7 +42,6 @@ set -x RUBY_CONFIGURE_OPTS --disable-install-doc
 set -x PKG_CONFIG_PATH /opt/homebrew/opt/imagemagick@6/lib/pkgconfig:/usr/lib/pkgconfig
 set -x GHQ_ROOT $HOME/Documents
 
-fish_add_path /opt/homebrew/opt/binutils/bin
 fish_add_path /opt/homebrew/opt/coreutils/libexec/gnubin
 fish_add_path /opt/homebrew/opt/findutils/libexec/gnubin
 fish_add_path /opt/homebrew/opt/libtool/libexec/gnubin
