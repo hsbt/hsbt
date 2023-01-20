@@ -136,6 +136,8 @@ cask "zoom"
 cask "messenger"
 cask "obsidian"
 cask "vlc"
+cask "kindle"
+cask "vpn-by-google-one"
 
 brew "mas"
 mas "Microsoft Remote Desktop", id: 1295203466
