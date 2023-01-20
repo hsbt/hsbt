@@ -119,10 +119,8 @@ brew "pack"
 
 tap "homebrew/cask-fonts"
 cask "font-mona-sans"
-cask "font-ricty-diminished"
-cask "font-hack-nerd-font"
-tap "iandol/adobe-fonts"
-cask "font-source-han-code-jp"
+cask "font-hackgen"
+cask "font-hackgen-nerd"
 
 tap "homebrew/cask-versions"
 cask "visual-studio-code-insiders"
