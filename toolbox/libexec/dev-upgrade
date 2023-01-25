@@ -9,8 +9,8 @@ rbenv update
 
 eval "$(rbenv init -)"
 
+rbenv each gem uninstall openssl psych racc zlib digest strscan stringio json date reline rdoc --force --executables
 rbenv global system
-gem uninstall --force digest openssl zlib
 rbenv uninstall -f 3.2.0-dev
 env RUBY_CONFIGURE_OPTS="--disable-install-doc --with-openssl-dir=$(brew --prefix openssl) --with-libyaml-dir=$(brew --prefix libyaml)" rbenv install 3.2.0-dev
 rbenv global 3.2.0-dev
