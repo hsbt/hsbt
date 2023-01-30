@@ -17,5 +17,5 @@ rbenv global 3.3.0-dev
 
 dev gem-shebang-update
 
-go-global-upgrade
+go-global-update
 cargo install-update -a
