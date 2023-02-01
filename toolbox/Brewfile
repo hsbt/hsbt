@@ -126,7 +126,7 @@ tap "homebrew/cask-versions"
 cask "visual-studio-code-insiders"
 cask "google-chrome-beta"
 cask "1password-beta"
-
+cask "abyssoft-teleport"
 cask "alacritty"
 cask "discord"
 cask "1password-cli"
