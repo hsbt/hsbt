@@ -1,22 +1,21 @@
 #/usr/bin/env ruby
 
+v = ARGV[0]
+
 configure_args = [
   "../../ruby.github/configure",
   "--with-yaml-dir=$(brew --prefix libyaml)",
-  "--disable-install-doc"
+  "--disable-install-doc",
+  "--prefix=$HOME/.local/share/rbenv/versions/ruby_#{v.gsub('.', '_')}"
 ]
 
-v = ARGV[0]
-
-if v == "3.0" || v == "2.7"
+if v.to_f < 3.1
   configure_args << '--with-gdbm-dir=$(brew --prefix gdbm)'
   configure_args << '--with-openssl-dir=$(brew --prefix openssl@1.1)'
 else
   configure_args << '--with-gmp-dir=$(brew --prefix gmp)'
   configure_args << '--with-openssl-dir=$(brew --prefix openssl)'
 end
-
-configure_args << "--prefix=$HOME/.local/share/rbenv/versions/ruby_#{v.gsub('.', '_')}"
 
 require "fileutils"
 
