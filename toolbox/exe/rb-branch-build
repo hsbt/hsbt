@@ -1,6 +1,9 @@
 #/usr/bin/env ruby
 
 v = ARGV[0]
+b = ARGV[1]
+
+t = b ? b : "ruby_#{v.gsub('.', '_')}"
 
 configure_args = [
   "../../ruby.github/configure",
@@ -19,18 +22,12 @@ end
 
 require "fileutils"
 
-FileUtils.rm_rf "ruby_#{v.gsub('.', '_')}"
-FileUtils.mkdir_p "ruby_#{v.gsub('.', '_')}"
-
-b = ARGV[1]
+FileUtils.rm_rf t
+FileUtils.mkdir_p t
 
 Dir.chdir("../ruby.github") do
   system("git clean -fdx")
-  if b
-    system("git checkout #{b}")
-  else
-    system("git checkout ruby_#{v.gsub('.', '_')}")
-  end
+  system("git checkout #{t}")
   if v.to_f < 3.0
     system("autoreconf -i")
   else
@@ -38,7 +35,8 @@ Dir.chdir("../ruby.github") do
   end
 end
 
-Dir.chdir("ruby_#{v.gsub('.', '_')}") do
+Dir.chdir(t) do
   system(configure_args.join(' '))
   system("make -j")
+  system("make check TESTS='-j12' MSPECOPT='-j'")
 end
