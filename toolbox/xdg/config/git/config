@@ -22,8 +22,6 @@
 [pager]
 	diff = delta
 	log = delta
-	reflog = delta
-	show = delta
 
 [interactive]
 	diffFilter = delta --color-only
