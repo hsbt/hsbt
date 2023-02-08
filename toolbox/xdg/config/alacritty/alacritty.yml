@@ -584,3 +584,5 @@ key_bindings:
   - { key: F11,      mods: Super,   chars: "\x1b[23;3~"                      }
   - { key: F12,      mods: Super,   chars: "\x1b[24;3~"                      }
   - { key: NumpadEnter,             chars: "\n"                              }
+  - { key: Yen,                     chars: "\x5C"                            }
+  - { key: Yen,      mods: Alt,     chars: "\xA5"                            }
