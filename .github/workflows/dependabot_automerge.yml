@@ -1,7 +1,8 @@
 # from https://github.com/gofiber/swagger/blob/main/.github/workflows/dependabot_automerge.yml
 name: Dependabot auto-merge
 on:
-  pull_request
+  pull_request:
+  status: {}
 
 permissions:
   contents: write
