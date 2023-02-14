@@ -9,13 +9,13 @@ jobs:
     if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
       - name: Dependabot metadata
-        id: metadata
         uses: dependabot/fetch-metadata@v1
+        id: metadata
       - name: Wait for status checks
-        id: wait_for_status
         uses: fountainhead/action-wait-for-check@v1.1.0
+        id: wait_for_status
         with:
-          token: foo
+          token: ${{ secrets.GH_TOKEN }}
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           checkName: "Analyze (ruby)"
       - name: Auto-merge for Dependabot PRs
