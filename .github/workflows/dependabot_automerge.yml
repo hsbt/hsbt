@@ -8,32 +8,25 @@ permissions:
   pull-requests: write
 
 jobs:
-  wait_for_checks:
+  automerge:
     runs-on: ubuntu-latest
     if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
-      - name: Wait for check is finished
-        uses: lewagon/wait-on-check-action@v1.2.0
-        id: wait_for_checks
+      - name: Wait for status checks
+        id: wait_for_status
+        uses: WyriHaximus/github-action-wait-for-status@v2
         with:
-          ref: ${{ github.event.pull_request.head.sha || github.sha }}
-          running-workflow-name: wait_for_checks
-          check-regexp: test
-          repo-token: ${{ secrets.GH_TOKEN }}
-          wait-interval: 10
-  dependabot:
-    needs: [wait_for_checks]
-    name: Dependabot auto-merge
-    runs-on: ubuntu-latest
-    if: ${{ github.actor == 'dependabot[bot]' }}
-    steps:
+          ignoreActions: "Automerge PRs"
+          checkInterval: 13
+        env:
+          GITHUB_TOKEN: "${{ secrets.GH_TOKEN }}"
       - name: Dependabot metadata
         id: metadata
         uses: dependabot/fetch-metadata@v1.3.6
         with:
           github-token: "${{ secrets.GH_TOKEN }}"
-      - name: Enable auto-merge for Dependabot PRs
-        if: ${{steps.metadata.outputs.update-type == 'version-update:semver-minor' || steps.metadata.outputs.update-type == 'version-update:semver-patch'}}
+      - name: Auto-merge for Dependabot PRs
+        if: ${{ steps.waitforstatuschecks.outputs.status == 'success' && (steps.metadata.outputs.update-type == 'version-update:semver-minor' || steps.metadata.outputs.update-type == 'version-update:semver-patch') }}
         run: |
             gh pr merge --auto --merge "$PR_URL"
         env:
