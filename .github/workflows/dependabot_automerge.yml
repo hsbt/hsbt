@@ -17,7 +17,7 @@ jobs:
         uses: WyriHaximus/github-action-wait-for-status@v1
         with:
           ignoreActions: "Automerge PRs"
-          checkInterval: 13
+          checkInterval: 60
         env:
           GITHUB_TOKEN: "${{ secrets.GH_TOKEN }}"
       - name: Dependabot metadata
@@ -26,7 +26,7 @@ jobs:
         with:
           github-token: "${{ secrets.GH_TOKEN }}"
       - name: Auto-merge for Dependabot PRs
-        if: ${{ steps.waitforstatuschecks.outputs.status == 'success' && (steps.metadata.outputs.update-type == 'version-update:semver-minor' || steps.metadata.outputs.update-type == 'version-update:semver-patch') }}
+        if: ${{ steps.wait_for_status.outputs.status == 'success' && (steps.metadata.outputs.update-type == 'version-update:semver-minor' || steps.metadata.outputs.update-type == 'version-update:semver-patch') }}
         run: |
             gh pr merge --auto --merge "$PR_URL"
         env:
