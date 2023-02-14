@@ -19,8 +19,8 @@ jobs:
         id: wait_for_status
         uses: WyriHaximus/github-action-wait-for-status@v1
         with:
-          ignoreActions: "Automerge PRs"
-          checkInterval: 60
+          ignoreActions: "Wait for status checks"
+          checkInterval: 30
         env:
           GITHUB_TOKEN: "${{ secrets.GH_TOKEN }}"
       - name: Auto-merge for Dependabot PRs
