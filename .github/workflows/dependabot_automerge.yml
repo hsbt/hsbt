@@ -13,7 +13,6 @@ jobs:
         id: metadata
       - name: Wait for status checks
         uses: lewagon/wait-on-check-action@v1.2.0
-        id: wait_for_status
         with:
           repo-token: ${{ secrets.GH_TOKEN }}
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
