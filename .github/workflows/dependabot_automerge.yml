@@ -14,9 +14,7 @@ jobs:
     steps:
       - name: Dependabot metadata
         id: metadata
-        uses: dependabot/fetch-metadata@v1.3.6
-        with:
-          github-token: "${{ secrets.GH_TOKEN }}"
+        uses: dependabot/fetch-metadata@v1
       - name: Wait for status checks
         id: wait_for_status
         uses: WyriHaximus/github-action-wait-for-status@v1
