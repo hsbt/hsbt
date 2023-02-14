@@ -12,6 +12,11 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
+      - name: Dependabot metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@v1.3.6
+        with:
+          github-token: "${{ secrets.GH_TOKEN }}"
       - name: Wait for status checks
         id: wait_for_status
         uses: WyriHaximus/github-action-wait-for-status@v1
@@ -20,15 +25,8 @@ jobs:
           checkInterval: 60
         env:
           GITHUB_TOKEN: "${{ secrets.GH_TOKEN }}"
-      - name: Dependabot metadata
-        id: metadata
-        uses: dependabot/fetch-metadata@v1.3.6
-        with:
-          github-token: "${{ secrets.GH_TOKEN }}"
       - name: Auto-merge for Dependabot PRs
+        uses: pascalgn/automerge-action@v0.4.0
         if: ${{ steps.wait_for_status.outputs.status == 'success' && (steps.metadata.outputs.update-type == 'version-update:semver-minor' || steps.metadata.outputs.update-type == 'version-update:semver-patch') }}
-        run: |
-            gh pr merge --auto --merge "$PR_URL"
         env:
-          PR_URL: ${{github.event.pull_request.html_url}}
           GITHUB_TOKEN: ${{secrets.GH_TOKEN}}
