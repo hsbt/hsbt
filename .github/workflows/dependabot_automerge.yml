@@ -18,12 +18,11 @@ jobs:
         uses: dependabot/fetch-metadata@v1
       - name: Wait for status checks
         id: wait_for_status
-        uses: WyriHaximus/github-action-wait-for-status@v1
+        uses: fountainhead/action-wait-for-check@v1.1.0
         with:
-          ignoreActions: "Wait for status checks"
-          checkInterval: 30
-        env:
-          GITHUB_TOKEN: "${{ secrets.GH_TOKEN }}"
+          token: ${{ secrets.GH_TOKEN }}
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          checkName: "Analyze (ruby)"
       - name: Auto-merge for Dependabot PRs
         uses: pascalgn/automerge-action@v0.4.0
         if: ${{ steps.wait_for_status.outputs.status == 'success' && (steps.metadata.outputs.update-type == 'version-update:semver-minor' || steps.metadata.outputs.update-type == 'version-update:semver-patch') }}
