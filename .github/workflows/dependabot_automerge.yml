@@ -15,7 +15,7 @@ jobs:
         id: wait_for_status
         uses: fountainhead/action-wait-for-check@v1.1.0
         with:
-          token: ${{ secrets.GH_TOKEN }}
+          token: foo
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           checkName: "Analyze (ruby)"
       - name: Auto-merge for Dependabot PRs
