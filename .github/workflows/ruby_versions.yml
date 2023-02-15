@@ -6,7 +6,6 @@ on:
       engine:
         description: "The type of Ruby engine"
         default: "all"
-        required: true
         type: string
     outputs:
       versions:
