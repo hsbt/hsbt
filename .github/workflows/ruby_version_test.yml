@@ -4,9 +4,9 @@ on: [push, pull_request]
 
 jobs:
   ruby-versions:
-    uses: hsbt/hsbt/.github/workflows/ruby_versions.yml@master
+    uses: hsbt/hsbt/.github/workflows/ruby_versions.yml@min-version
     with:
-      versions: "[2.5, 2.4]"
+      min_version: 2.4
 
   test:
     needs: ruby-versions
