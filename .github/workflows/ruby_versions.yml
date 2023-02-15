@@ -9,8 +9,9 @@ on:
         required: true
         type: string
     outputs:
-      description: "Stable Ruby versions"
-      versions: ${{ jobs.ruby_versions.outputs.versions }}
+      versions:
+        description: "Stable Ruby versions"
+        value: ${{ jobs.ruby_versions.outputs.versions }}
 
 jobs:
   ruby_versions:
