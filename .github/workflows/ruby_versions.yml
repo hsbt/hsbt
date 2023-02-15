@@ -13,7 +13,8 @@ on:
         type: string
       min_version:
         description: "Minimum Ruby version"
-        type: number
+        default: ""
+        type: string
     outputs:
       versions:
         description: "Ruby versions"
@@ -29,7 +30,7 @@ jobs:
       - id: versions
         run: |
           curl -s "https://cache.ruby-lang.org/pub/misc/ci_versions/$ENGINE.json" -o ci_versions.json
-          if [ -z "$MIN_VERSION" ]; then
+          if [ $MIN_VERSION == "" ]; then
             echo "[]" > versions
           else
             ruby -rjson -e "min = JSON.parse(File.read('ci_versions.json')).sort.first; \
