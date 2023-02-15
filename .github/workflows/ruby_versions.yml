@@ -21,7 +21,8 @@ jobs:
     steps:
       - id: versions
         run: |
-          versions=$(curl -s 'https://cache.ruby-lang.org/pub/misc/ci_versions/$ENGINE.json')
+          echo $ENGINE
+          versions=$(curl -s 'https://cache.ruby-lang.org/pub/misc/ci_versions/all.json')
           echo "value=${versions}" >> $GITHUB_OUTPUT
         env:
           ENGINE: ${{ inputs.engine }}
