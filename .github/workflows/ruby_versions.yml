@@ -29,7 +29,11 @@ jobs:
       - id: versions
         run: |
           curl -s "https://cache.ruby-lang.org/pub/misc/ci_versions/$ENGINE.json" -o ci_versions.json
-          ruby -rjson -e "min = JSON.parse(File.read('ci_versions.json')).sort.first; p $MIN_VERSION.step(by: 0.1, to: min.to_f).map{|v| v.round(1).to_s }[..-1]" > versions
+          if [ -z "$MIN_VERSION" ]; then
+            echo "[]" > versions
+          else
+            ruby -rjson -e "min = JSON.parse(File.read('ci_versions.json')).sort.first; p $MIN_VERSION.step(by: 0.1, to: min.to_f).map{|v| v.round(1).to_s }[..-1]" > versions
+          fi
           versions=$(cat ci_versions.json | jq -c ". + $VERSIONS" | jq -c ". + $(cat versions)" | jq -c "sort")
           echo "value=${versions}" >> $GITHUB_OUTPUT
         env:
