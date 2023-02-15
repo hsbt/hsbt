@@ -8,17 +8,9 @@ jobs:
 
   test:
     needs: ruby-versions
-    name: build (${{ matrix.ruby }} / ${{ matrix.os }})
-    strategy:
-      matrix:
-        ruby: ${{ fromJson(needs.ruby-versions.outputs.versions) }}
-        os: [ ubuntu-latest, macos-latest ]
-    runs-on: ${{ matrix.os }}
+    name: test
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: ${{ matrix.ruby }}
     - name: Run test
-      run: ruby -v
+      run: echo ${{ needs.ruby-versions.outputs.versions }}
