@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   ruby-versions:
-    uses: hsbt/hsbt/.github/workflows/ruby_versions.yml@master
+    uses: hsbt/hsbt/.github/workflows/ruby_versions.yml@test-ci
 
   test:
     needs: ruby-versions
