@@ -13,7 +13,7 @@ on:
         type: string
       min_version:
         description: "Minimum Ruby version"
-        type: number
+        type: string
     outputs:
       versions:
         description: "Ruby versions"
@@ -28,9 +28,9 @@ jobs:
     steps:
       - id: versions
         run: |
-          curl -s "https://cache.ruby-lang.org/pub/misc/ci_versions/$ENGINE.json" -o ruby_versions.json
-          ruby -rjson -e "min = JSON.parse(File.read('ruby_versions.json')).sort.first; p $MIN_VERSION.step(by: 0.1, to: min.to_f).map{|v| v.round(1).to_s }[..-1]" > min_versions
-          versions=$(cat ruby_versions.json | jq -c ". + $VERSIONS" | jq -c ". + $(cat min_versions)" | jq "sort")
+          curl -s "https://cache.ruby-lang.org/pub/misc/ci_versions/$ENGINE.json" -o ci_versions.json
+          ruby -rjson -e "min = JSON.parse(File.read('ci_versions.json')).sort.first; p $MIN_VERSION.step(by: 0.1, to: min.to_f).map{|v| v.round(1).to_s }[..-1]" > versions
+          versions=$(cat ci_versions.json | jq -c ". + $VERSIONS" | jq -c ". + $(cat versions)" | jq "sort")
           echo "value=${versions}" >> $GITHUB_OUTPUT
         env:
           ENGINE: ${{ inputs.engine }}
