@@ -6,7 +6,7 @@ jobs:
   ruby-versions:
     uses: hsbt/hsbt/.github/workflows/ruby_versions.yml@test-min-version
     with:
-      min_version: "2.5"
+      min_version: 2.5
 
   test:
     needs: ruby-versions
