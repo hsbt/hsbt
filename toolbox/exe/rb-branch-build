@@ -1,15 +1,15 @@
 #/usr/bin/env ruby
 
-v = ARGV[0]
-b = ARGV[1]
+m = ARGV[0]
+v = ARGV[1]
+b = ARGV[2]
 
 t = b ? b : "ruby_#{v.gsub('.', '_')}"
 
 configure_args = [
-  "../../ruby.github/configure",
   "--with-yaml-dir=$(brew --prefix libyaml)",
   "--disable-install-doc",
-  "--prefix=$HOME/.local/share/rbenv/versions/ruby_#{v.gsub('.', '_')}"
+  "--prefix=$HOME/.local/share/rbenv/versions/#{t}"
 ]
 
 if v.to_f < 3.1
@@ -22,9 +22,6 @@ end
 
 require "fileutils"
 
-FileUtils.rm_rf t
-FileUtils.mkdir_p t
-
 Dir.chdir("../ruby.github") do
   system("git clean -fdx")
   system("git checkout #{t}")
@@ -35,8 +32,21 @@ Dir.chdir("../ruby.github") do
   end
 end
 
-Dir.chdir(t) do
+if m == "in"
+  build_dir = "../ruby.github"
+  configure_args.unshift "./configure"
+elsif m == "out"
+  build_dir = t
+  FileUtils.rm_rf t
+  FileUtils.mkdir_p t
+  configure_args.unshift "../../ruby.github/configure"
+else
+  raise "invalid mode: in or out"
+end
+
+Dir.chdir(build_dir) do
   system(configure_args.join(' '))
   system("make -j")
-  system("make check TESTS='-j12' MSPECOPT='-j'")
+  # system("make check TESTS='-j12' MSPECOPT='-j'")
+  system("make install")
 end
