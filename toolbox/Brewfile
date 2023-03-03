@@ -119,6 +119,7 @@ cask "obsidian"
 cask "vlc"
 cask "kindle"
 cask "vpn-by-google-one"
+cask "google-japanese-ime"
 
 tap "heroku/brew"
 brew "heroku"
