@@ -2,16 +2,13 @@
 
 require "rubygems/commands/pristine_command"
 
-gems = Gem::Specification.select { |spec|
+Gem::Specification.select { |spec|
   spec.platform == RUBY_ENGINE && spec.missing_extensions?
-}.compact.uniq.map { |spec|
-  [spec.name, spec.version]
-}
-
-gems.each do |n, v|
+}.each do |s|
+  puts s.full_name
   cmd = Gem::Commands::PristineCommand.new
-  cmd.options[:args] = [n]
-  cmd.options[:version] = v
+  cmd.options[:args] = [s.name]
+  cmd.options[:version] = s.version
   cmd.execute
 rescue Gem::Ext::BuildError, Gem::Package::FormatError, Gem::InstallError, Zlib::BufError
 end
