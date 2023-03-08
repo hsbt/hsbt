@@ -13,5 +13,5 @@ gems.each do |n, v|
   cmd.options[:args] = [n]
   cmd.options[:version] = v
   cmd.execute
-rescue Gem::Ext::BuildError, Gem::Package::FormatError
+rescue Gem::Ext::BuildError, Gem::Package::FormatError, Gem::InstallError, Zlib::BufError
 end
