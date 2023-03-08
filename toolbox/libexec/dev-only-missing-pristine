@@ -2,9 +2,11 @@
 
 require "rubygems/commands/pristine_command"
 
-gems = Gem::Specification.all.map { |spec|
-  [spec.name, spec.version] if spec.platform == RUBY_ENGINE && spec.missing_extensions?
-}.compact.uniq
+gems = Gem::Specification.select { |spec|
+  spec.platform == RUBY_ENGINE && spec.missing_extensions?
+}.compact.uniq.map { |spec|
+  [spec.name, spec.version]
+}
 
 gems.each do |n, v|
   cmd = Gem::Commands::PristineCommand.new
