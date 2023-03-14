@@ -138,7 +138,7 @@ cask "font-hackgen-nerd"
 
 tap "homebrew/cask-versions"
 cask "visual-studio-code-insiders"
-cask "google-chrome-beta"
+cask "microsoft-edge-beta"
 cask "1password-beta"
 
 brew "mas"
