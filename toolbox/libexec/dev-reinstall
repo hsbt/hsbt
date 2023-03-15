@@ -63,8 +63,12 @@ FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("heroku").to_s
   heroku-accounts
   heroku-config
   heroku-pg-extras
+  heroku-builds
+  heroku-slugs
   heroku-repo
   heroku-releases-retry
+  @heroku-cli/plugin-free
+  @heroku-cli/plugin-api
 ].each { |pkg| system "heroku plugins:install #{pkg}" }
 
 %w[
