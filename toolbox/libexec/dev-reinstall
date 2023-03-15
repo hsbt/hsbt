@@ -51,7 +51,7 @@ FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("go").to_s
   github.com/junegunn/fzf@latest
   github.com/x-motemen/ghq@latest
   github.com/hashicorp/terraform@latest
-  github.com/DarthSim/overmind@v2
+  github.com/DarthSim/overmind/v2@latest
 ].each { |pkg| system "go install #{pkg}" }
 
 FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("heroku").to_s
