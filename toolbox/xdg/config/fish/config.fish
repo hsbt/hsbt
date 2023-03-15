@@ -1,7 +1,4 @@
 function fish_prompt
-  if set -q SSH_TTY
-    set -g fish_color_host brred
-  end
   set_color $fish_color_cwd
   echo -n (prompt_pwd)
   if set -q RBENV_VERSION
