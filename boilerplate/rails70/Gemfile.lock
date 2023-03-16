@@ -85,6 +85,8 @@ GEM
     crass (1.0.6)
     date (3.3.3)
     debug (1.7.1)
+      irb (>= 1.5.0)
+      reline (>= 0.3.1)
     erubi (1.12.0)
     globalid (1.1.0)
       activesupport (>= 5.0)
@@ -93,6 +95,9 @@ GEM
     importmap-rails (1.1.5)
       actionpack (>= 6.0.0)
       railties (>= 6.0.0)
+    io-console (0.6.0)
+    irb (1.6.3)
+      reline (>= 0.3.0)
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
@@ -122,11 +127,13 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.14.2-arm64-darwin)
       racc (~> 1.4)
+    nokogiri (1.14.2-x86_64-linux)
+      racc (~> 1.4)
     public_suffix (5.0.1)
     puma (5.6.5)
       nio4r (~> 2.0)
     racc (1.6.2)
-    rack (2.2.6.2)
+    rack (2.2.6.4)
     rack-test (2.0.2)
       rack (>= 1.3)
     rails (7.0.4.2)
@@ -157,6 +164,8 @@ GEM
       zeitwerk (~> 2.5)
     rake (13.0.6)
     regexp_parser (2.7.0)
+    reline (0.3.2)
+      io-console (~> 0.5)
     rexml (3.2.5)
     rubyzip (2.3.2)
     selenium-webdriver (4.8.1)
@@ -171,6 +180,7 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     sqlite3 (1.6.0-arm64-darwin)
+    sqlite3 (1.6.0-x86_64-linux)
     stimulus-rails (1.2.1)
       railties (>= 6.0.0)
     thor (1.2.1)
@@ -200,6 +210,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-22
+  x86_64-linux
 
 DEPENDENCIES
   bootsnap
