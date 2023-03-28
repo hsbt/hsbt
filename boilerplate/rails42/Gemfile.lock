@@ -57,7 +57,7 @@ GEM
     debug_inspector (0.0.2)
     debugger-linecache (1.2.0)
     erubis (2.7.0)
-    execjs (2.2.2)
+    execjs (2.8.1)
     globalid (0.3.0)
       activesupport (>= 4.1.0)
     hike (1.2.3)
@@ -142,7 +142,7 @@ GEM
       coffee-rails
     tzinfo (1.2.10)
       thread_safe (~> 0.1)
-    uglifier (2.7.0)
+    uglifier (2.7.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     web-console (2.0.0)
