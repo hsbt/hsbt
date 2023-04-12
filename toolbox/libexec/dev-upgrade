@@ -16,6 +16,7 @@ env RUBY_CONFIGURE_OPTS="--disable-install-doc --with-openssl-dir=$(brew --prefi
 rbenv global 3.3.0-dev
 
 gem update
+dev clean-lib-ext
 rbenv each dev only-missing-pristine
 dev clean-lib-ext
 dev gem-shebang-update

@@ -14,9 +14,10 @@ gems.each do |n, v|
   (s.full_require_paths - [s.extension_dir]).each do |path|
     Dir.glob(File.join(path, "**/*")).each do |file|
       if Pathname(file).extname == ".#{RbConfig::CONFIG["DLEXT"]}"
-        puts "Deleting #{file}"
         File.delete(file)
+        puts "Delete #{file}"
       end
     end
   end
+rescue Errno::EPERM
 end
