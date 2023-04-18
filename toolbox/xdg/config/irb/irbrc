@@ -2,6 +2,6 @@ IRB.conf.update(
   :SAVE_HISTORY => 10000,
   :HISTORY_FILE => File.join(ENV["XDG_DATA_HOME"], "irb", "history"),
   :PROMPT_MODE => :SIMPLE,
-  :LOAD_MODULES => ['irb/completion'],
+  :LOAD_MODULES => ['irb/completion', 'active_support/all'],
   :USE_MULTILINE => true,
 )
