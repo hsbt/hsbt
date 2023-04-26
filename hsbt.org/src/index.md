@@ -120,6 +120,9 @@ OSS プログラマー、Ruby コミッタ、Ruby, RubyGems, Bundler, Rake, ruby
 
 ## 講演・発表
 
+* 2023年02月 Fukuoka RubyistKaigi 03 [How to make faster release cycle of Ruby? - Speaker Deck](https://speakerdeck.com/hsbt/how-to-make-faster-release-cycle-of-ruby)
+* 2022年12月 RailsGirls Gathering Japan 2022 [RailsGirls から始める エンジニアリングはじめの一歩](https://www.slideshare.net/hsbt/railsgirls-254696400)
+* 2022年11月 RubyWorld Conference 2022 [Ruby の開発を支えるエコシステム - Speaker Deck](https://speakerdeck.com/hsbt/ruby-nokai-fa-wozhi-eruekosisutemu)
 * 2022年05月 K-Ruby#30 記念大会 [OSSことはじめ](https://speakerdeck.com/hsbt/oss-kotohazime)
 * 2021年09月 CI/CD Conference 2021 [The details of CI/CD environment for Ruby](https://www.slideshare.net/hsbt/the-details-of-cicd-environment-for-ruby)
 * 2020年04月 Ruby3さみっと [Roadmap for RubyGems 4 and Bundler 3](https://www.slideshare.net/hsbt/roadmap-for-rubygems-4-and-bundler-3)
