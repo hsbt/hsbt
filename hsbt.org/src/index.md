@@ -49,7 +49,7 @@ OSS プログラマー、Ruby コミッタ、Ruby, RubyGems, Bundler, Rake, ruby
 ## 表彰
 
 * 2015年04月 GMO グループアワード 2014 最優秀個人賞 エンジニア部門
-* 2014年11月 RubyPrize 2014 [Ruby win My Life](https://speakerdeck.com/hsbt/ruby-win-my-life)
+* 2014年11月 RubyPrize 2014 [Ruby with My Life](https://speakerdeck.com/hsbt/ruby-win-my-life)
 * 2013年11月 RubyPrize 2013 Final Nominees
 * 2013年05月 RubyKaja 2013 [Introduction of Asakusa.rb](https://speakerdeck.com/hsbt/introduction-of-asakusa-dot-rb)
 * 2002年03月 苫小牧工業高等専門学校 高専賞
