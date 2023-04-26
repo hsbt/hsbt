@@ -9,7 +9,7 @@ gem "standard"
 gem 'mina'
 gem 'rake'
 gem 'kramdown'
-gem 'sassc'
+gem 'sass-embedded'
 gem 'net-scp'
 gem 'ed25519'
 
