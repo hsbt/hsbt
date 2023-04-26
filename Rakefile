@@ -11,10 +11,9 @@ task :generate do
     [header, body, footer].each {|s| f.puts s}
   end
 
-  require 'sassc'
-  sass = File.read('hsbt.org/src/hsbt.scss')
+  require 'sass-embedded'
   File.open('hsbt.org/dist/hsbt.css', 'w') do |f|
-    f.puts SassC::Engine.new(sass, style: :compressed).render
+    f.puts Sass.compile('hsbt.org/src/hsbt.scss').css
   end
 end
 
