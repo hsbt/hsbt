@@ -66,6 +66,7 @@ OSS プログラマー、Ruby コミッタ、Ruby, RubyGems, Bundler, Rake, ruby
 
 ## 執筆・寄稿・インタビュー(Web 媒体)
 
+* 2023年06月 [あなたのキャリアに影響を与えた本は何ですか？ 著名エンジニアの方々に聞いてみた【第二弾】](https://findy-code.io/engineer-lab/influential-books-2)
 * 2022年08月 [エンジニアの評価制度はどうあるべきか？-インタビュー編-](https://job-draft.jp/articles/570)
 * 2022年08月 [エンジニアの評価制度はどうあるべきか？ -事例紹介編-](https://job-draft.jp/articles/569)
 * 2021年07月 [「候補者体験をもっとライトに」。興味通知機能を入口に候補者との軽やかなファーストタッチを実現するGMOペパボの採用戦略とは](https://hr-tech-lab.lapras.com/lapras-scout-cases/pepabo/)
@@ -85,6 +86,7 @@ OSS プログラマー、Ruby コミッタ、Ruby, RubyGems, Bundler, Rake, ruby
 
 ## 講演・発表(国際カンファレンス)
 
+* 2023年06月 RubyKaigi 2023 [How resolve Gem dependencies in your code?](https://www.slideshare.net/hsbt/how-resolve-gem-dependencies-in-your-code)
 * 2022年09月 RubyKaigi 2022 [Why is building the Ruby environment hard? - Speaker Deck](https://speakerdeck.com/hsbt/why-is-building-the-ruby-environment-hard)
 * 2021年09月 RubyKaigi takeout 2021 [How to develop the Standard Libraries of Ruby?](https://www.slideshare.net/hsbt/how-to-develop-the-standard-libraries-of-ruby)
 * 2020年09月 RubyKaigi takeout 2020 [Dependency Resolution with Standard Libraries](https://www.slideshare.net/hsbt/dependency-resolution-with-standard-libraries)
