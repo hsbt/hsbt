@@ -176,4 +176,4 @@ OSS プログラマー、Ruby コミッタ、Ruby, RubyGems, Bundler, Rake, ruby
 * 2009年12月 SapporoRubyKaigi02 [tDiary annual report 2009](https://speakerdeck.com/hsbt/tdiary-annual-report-2009)
 * 2009年07月 RubyKaigi 2009 [Our tDiary's policy and strategies to support Ruby 1.9 and our future plan](https://speakerdeck.com/hsbt/our-tdiarys-policy-and-strategies-to-support-ruby-19-and-our-future-plan)
 * 2008年10月 SapporoRubyKaigi01 [わたしとtDiary](https://speakerdeck.com/hsbt/tdiary)
-* 2006年04月 [tDiary Party 2.1](https://speakerdeck.com/hsbt/tdiary-party-21)
+* 2006年04月 tDiary Party 2.1 [自己紹介 tDiary のここがイイ!](https://speakerdeck.com/hsbt/tdiary-party-21)
