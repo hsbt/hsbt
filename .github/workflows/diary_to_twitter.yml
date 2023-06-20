@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: azu/rss-to-twitter@v1
         with:
-          RSS_URL: "https://www.hsbt.org/diary/no_comments.rdf"
+          RSS_URL: "https://www.hsbt.org/diary/index.rdf"
           TWEET_TEMPLATE: '日記: "%title%" %url%'
           UPDATE_WITHIN_MINUTES: 60
           TWITTER_APIKEY: ${{ secrets.TWITTER_APIKEY }}
