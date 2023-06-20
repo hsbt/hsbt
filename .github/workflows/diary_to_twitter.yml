@@ -1,4 +1,4 @@
-name: rss-to-twitter
+name: diary-to-twitter
 on:
   schedule:
     - cron: "0 * * * *"
