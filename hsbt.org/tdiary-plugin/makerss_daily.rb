@@ -19,16 +19,19 @@ class MakeRssFull
   end
 
   def rewrite(src)
-    data = {}
+    body = {}
+    date = {}
+
     src = RSS::Parser.parse(src, false)
     src.items.each do |item|
       item.link =~ /(\d{4})(\d{2})(\d{2})/
       k = "#{$1}-#{$2}-#{$3}"
-      if data[k]
-        data[k] << item.content_encoded
+      if body[k]
+        body[k] << item.content_encoded
       else
-        data[k] = [item.content_encoded]
+        body[k] = [item.content_encoded]
       end
+      date[k] = item.date
     end
 
     dist = RSS::Maker.make("1.0") do |maker|
@@ -39,11 +42,11 @@ class MakeRssFull
 
       maker.items.do_sort = true
 
-      data.each do |k, v|
+      body.each do |k, v|
         maker.items.new_item do |item|
           item.link = "#{maker.channel.link}#{k.split('-').join}.html"
           item.title = "#{k} の日記"
-          item.date = Time.parse(k)
+          item.date = date[k]
           item.content_encoded = v.join("\n")
         end
       end
