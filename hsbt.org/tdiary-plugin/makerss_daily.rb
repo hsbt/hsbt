@@ -22,7 +22,8 @@ class MakeRssFull
     data = {}
     src = RSS::Parser.parse(src, false)
     src.items.each do |item|
-      k = item.date.strftime("%Y-%m-%d")
+      item.link =~ /(\d{4})(\d{2})(\d{2})/
+      k = "#{$1}-#{$2}-#{$3}"
       if data[k]
         data[k] << item.content_encoded
       else
