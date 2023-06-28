@@ -20,6 +20,7 @@ class MakeRssFull
 
   def rewrite(src)
     data = {}
+    src = RSS::Parser.parse(src, false)
     src.items.each do |item|
       k = item.date.strftime("%Y-%m-%d")
       if data[k]
