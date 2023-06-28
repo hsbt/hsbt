@@ -25,7 +25,7 @@ task :deploy do
     invoke :"deploy:cleanup"
 
     on :launch do
-      command "echo \"gem 'tdiary-style-gfm', '>= 1.2.0'; gem 'holiday_japan'; gem 'oga'; gem 'rexml'\" > #{fetch(:current_path)}/Gemfile.local"
+      command "echo \"gem 'tdiary-style-gfm', '>= 1.2.0'; gem 'holiday_japan'; gem 'oga'; gem 'rexml'; gem 'rss'\" > #{fetch(:current_path)}/Gemfile.local"
       %w[tdiary-contrib hsbt].each do |dir|
         command "cd #{fetch(:shared_path)}/#{dir}; git pull --rebase"
       end
