@@ -55,10 +55,3 @@ class MakeRssFull
     dist.to_s
   end
 end
-
-class MakeRssNoComments < MakeRssFull
-  def write( encoder )
-    return unless @conf['makerss.no_comments']
-    super( encoder )
-  end
-end
