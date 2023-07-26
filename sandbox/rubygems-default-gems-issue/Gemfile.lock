@@ -1,13 +1,13 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    openssl (2.0.4)
+    openssl (3.0.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  openssl (= 2.0.4)
+  openssl (= 3.0.0)
 
 BUNDLED WITH
    1.15.4

@@ -1,4 +1,4 @@
 # frozen_string_literal: true
 source "https://rubygems.org"
 
-gem 'openssl', '2.0.4'
+gem 'openssl', '3.0.0'
