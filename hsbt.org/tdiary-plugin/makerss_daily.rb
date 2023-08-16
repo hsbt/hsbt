@@ -22,7 +22,7 @@ class MakeRssFull
     rss = {}
 
     src = RSS::Parser.parse(src, false)
-    src.items.reverse.each do |item|
+    src.items.each do |item|
       item.link =~ /(\d{4})(\d{2})(\d{2})/
       k = "#{$1}-#{$2}-#{$3}"
       if rss[k]
