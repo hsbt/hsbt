@@ -9,13 +9,9 @@ class MakeRssFull
   include ERB::Util
   include TDiary::ViewHelper
 
-  def write( encoder )
-    begin
-      File.open( file, 'w' ) do |f|
-        f.write( rewrite(encoder.call( xml )) )
-      end
-    rescue
-    end
+  def write(encoder)
+    File.write(file, rewrite(encoder.call(xml)))
+  rescue
   end
 
   def rewrite(src)
@@ -42,10 +38,10 @@ class MakeRssFull
 
       rss.each do |k, v|
         maker.items.new_item do |item|
-          item.link = "#{maker.channel.link}#{k.split('-').join}.html"
+          item.link = "#{maker.channel.link}#{k.split("-").join}.html"
           item.title = "#{k} の日記"
           item.date = v.last[:date]
-          item.content_encoded = v.map{|c| c[:content] }.join("\n")
+          item.content_encoded = v.map { |c| c[:content] }.join("\n")
         end
       end
     end
