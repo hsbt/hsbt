@@ -11,7 +11,7 @@ class MakeRssFull
 
   def write( encoder )
     begin
-      File::open( file, 'w' ) do |f|
+      File.open( file, 'w' ) do |f|
         f.write( rewrite(encoder.call( xml )) )
       end
     rescue
