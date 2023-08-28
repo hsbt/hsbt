@@ -70,7 +70,7 @@ GEM
       racc (~> 1.4)
     polyglot (0.3.5)
     racc (1.6.0)
-    rack (1.4.5)
+    rack (1.4.7)
     rack-cache (1.2)
       rack (>= 0.4)
     rack-protection (1.5.5)
