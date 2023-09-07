@@ -119,6 +119,9 @@ cask "kindle"
 cask "vpn-by-google-one"
 cask "google-japanese-ime"
 
+tap "dart-lang/dart"
+brew "dart"
+
 tap "heroku/brew"
 brew "heroku"
 
