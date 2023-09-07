@@ -43,7 +43,7 @@ set -x LESSHISTFILE -
 set -x GO111MODULE on
 set -x RUBY_CODESIGN hsbt
 set -x RUBY_CONFIGURE_OPTS --disable-install-doc
-set -x PKG_CONFIG_PATH /opt/homebrew/opt/imagemagick@6/lib/pkgconfig:/usr/lib/pkgconfig
+set -x PKG_CONFIG_PATH /opt/homebrew/opt/imagemagick/lib/pkgconfig:/usr/lib/pkgconfig
 set -x GHQ_ROOT $HOME/Documents
 
 # fish_add_path /opt/homebrew/opt/binutils/bin
