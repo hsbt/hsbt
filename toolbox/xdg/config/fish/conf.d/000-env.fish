@@ -32,6 +32,7 @@ set -x TERMINFO_DIRS $XDG_DATA_HOME/terminfo:/usr/share/terminfo
 set -x AZURE_CONFIG_DIR $XDG_CONFIG_HOME/azure
 set -x CONDARC $XDG_CONFIG_HOME/conda/condarc
 set -x PUB_CACHE $XDG_CACHE_HOME/pub-cache
+set -x KUBECONFIG $XDG_CONFIG_HOME/kube
 
 set -x LANG en_US.UTF-8
 set -x TERM xterm-256color
