@@ -14,7 +14,9 @@ GEM
       multipart-post (~> 2)
     faraday-net_http (3.0.2)
     gli (2.21.1)
-    google-protobuf (3.24.3)
+    google-protobuf (3.24.3-arm64-darwin)
+    google-protobuf (3.24.3-x86_64-darwin)
+    google-protobuf (3.24.3-x86_64-linux)
     hashie (5.0.0)
     hikidoc (0.1.0)
     json (2.6.3)
@@ -39,7 +41,7 @@ GEM
     rake (13.0.6)
     regexp_parser (2.8.1)
     rexml (3.2.6)
-    rubocop (1.56.2)
+    rubocop (1.56.3)
       base64 (~> 0.1.1)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
@@ -70,10 +72,10 @@ GEM
       faraday-multipart
       gli
       hashie
-    standard (1.31.0)
+    standard (1.31.1)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.0)
-      rubocop (~> 1.56.0)
+      rubocop (~> 1.56.2)
       standard-custom (~> 1.0.0)
       standard-performance (~> 1.2)
     standard-custom (1.0.2)
