@@ -81,7 +81,7 @@ task :purge_system_env do
   system "sudo rm /etc/paths.d/paths"
   uid = `id -u`.chomp
   File.open("toolbox/system/env").each do |line|
-    k, v = line.split(",").map(&:chomp)
+    k, _ = line.split(",").map(&:chomp)
     system "launchctl bootout gui/#{uid} #{File.expand_path("~/Library/LaunchAgents/#{k}.SetEnv.plist")}"
     FileUtils.rm File.expand_path("~/Library/LaunchAgents/#{k}.SetEnv.plist")
   end
