@@ -34,6 +34,7 @@ set -x CONDARC $XDG_CONFIG_HOME/conda/condarc
 set -x PUB_CACHE $XDG_CACHE_HOME/pub-cache
 set -x KUBECONFIG $XDG_CONFIG_HOME/kube/config
 set -x GOMODCACHE $XDG_CACHE_HOME/go-mod
+set -x GOBIN $XDG_DATA_HOME/bin
 
 set -x LANG en_US.UTF-8
 set -x TERM xterm-256color
@@ -59,7 +60,6 @@ fish_add_path /opt/homebrew/opt/bison/bin
 fish_add_path /opt/homebrew/sbin # Move to the top of PATH again
 fish_add_path /opt/homebrew/bin # Move to the top of PATH again
 fish_add_path $KREW_ROOT/bin
-fish_add_path $XDG_DATA_HOME/go/bin # Move to the top of PATH again
 fish_add_path $XDG_DATA_HOME/cargo/bin # Move to the top of PATH again
 fish_add_path $RBENV_ROOT/bin
 fish_add_path $HOME/.local/bin
