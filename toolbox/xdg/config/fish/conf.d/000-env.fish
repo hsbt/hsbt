@@ -40,7 +40,6 @@ set -x GPG_TTY (tty)
 set -x EDITOR vim
 set -x GIT_MERGE_AUTOEDIT no
 set -x LESSHISTFILE -
-set -x GO111MODULE on
 set -x RUBY_CODESIGN hsbt
 set -x RUBYOPT -w
 set -x RUBY_CONFIGURE_OPTS --disable-install-doc
