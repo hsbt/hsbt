@@ -2,4 +2,6 @@
 
 source "https://rubygems.org"
 
-# gem "rails"
+gem "bigdecimal"
+gem "activesupport"
+gem "mutex_m"

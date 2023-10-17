@@ -1,3 +1,3 @@
 #!/usr/bin/env ruby
 
-require "base64"
+require "active_support/all"
