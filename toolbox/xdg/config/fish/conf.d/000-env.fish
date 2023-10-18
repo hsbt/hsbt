@@ -44,6 +44,7 @@ set -x GIT_MERGE_AUTOEDIT no
 set -x LESSHISTFILE -
 set -x RUBY_CODESIGN hsbt
 set -x RUBYOPT -w
+set -x RUBY_MN_THREADS 1
 set -x RUBY_CONFIGURE_OPTS --disable-install-doc
 set -x PKG_CONFIG_PATH /opt/homebrew/opt/imagemagick/lib/pkgconfig:/usr/lib/pkgconfig
 set -x GHQ_ROOT $HOME/Documents
