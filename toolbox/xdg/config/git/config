@@ -104,7 +104,7 @@
 	b  = branch
 	ba = branch -a
 	bm = branch --merged
-	bc = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs git branch -d; }; f"
+	bc = !git branch --merged | egrep -v '\\*|main|master|development' | xargs git branch -d
 	c  = commit -S
 	ca = commit -S --amend
 	cm = !git add -A && git commit -S -m
