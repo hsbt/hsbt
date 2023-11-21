@@ -4,8 +4,6 @@ require "shellwords"
 require "fileutils"
 require "pathname"
 
-FileUtils.rm_rf "#{ENV["RBENV_ROOT"]}/plugins/rbenv-jit"
-
 system "rbenv global system"
 
 defs = `rbenv install --list`.split.select { |v| v =~ /[0-9]/ }
@@ -50,10 +48,10 @@ end
 
 (eol_versions << dev_versions.first).each do |v|
   gem_dir = Dir.glob("#{ENV['RBENV_ROOT']}/versions/#{v}/lib/ruby/gems/*").first
-  system "env GEM_HOME=#{gem_dir} #{ENV["RBENV_ROOT"]}/versions/#{v}/bin/gem update --system"
+  system "env RUBYOPT= GEM_HOME=#{gem_dir} #{ENV["RBENV_ROOT"]}/versions/#{v}/bin/gem update --system"
 end
 
-platforms = %w[jruby truffleruby truffleruby+graalvm]
+platforms = %w[jruby truffleruby graalvm]
 installed = `rbenv versions`.split("\n").map{ |v| v.split(" ")[0] }
 platforms.each do |pf|
   installed.each do |v|
@@ -62,10 +60,8 @@ platforms.each do |pf|
 end
 platforms.each do |pf|
   puts "Installing #{pf}"
-  d = defs.find { |d| d =~ Regexp.new(pf.shellescape) }
+  d = defs.find { |d| d =~ Regexp.new(pf) }
   system "rbenv install #{d}"
 end
 
 system "rbenv global #{dev_versions.last}.0-dev"
-
-FileUtils.ln_s "#{File.expand_path('~')}/Documents/github.com/hsbt/rbenv-jit", "#{ENV["RBENV_ROOT"]}/plugins/rbenv-jit"
