@@ -10,7 +10,6 @@ system "rbenv global system"
 
 defs = `rbenv install --list`.split.select { |v| v =~ /[0-9]/ }
 eol_versions = %w[
-  2.6.10
   2.7.8
 ]
 dev_versions = %w[
