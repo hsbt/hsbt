@@ -14,7 +14,6 @@ dev_versions = %w[
   3.0
   3.1
   3.2
-  3.3
 ]
 
 eol_versions.each do |v|
@@ -46,6 +45,9 @@ dev_versions.each do |v|
   end
 end
 
+system "rbenv uninstall -f ruby-dev"
+system "env RUBY_CONFIGURE_OPTS=\"--disable-install-doc --with-openssl-dir=$(brew --prefix openssl) --with-gmp-dir=$(brew --prefix gmp) --with-libyaml-dir=$(brew --prefix libyaml)\" rbenv install ruby-dev"
+
 (eol_versions << dev_versions.first).each do |v|
   gem_dir = Dir.glob("#{ENV['RBENV_ROOT']}/versions/#{v}/lib/ruby/gems/*").first
   system "env RUBYOPT= GEM_HOME=#{gem_dir} #{ENV["RBENV_ROOT"]}/versions/#{v}/bin/gem update --system"
@@ -64,4 +66,4 @@ platforms.each do |pf|
   system "rbenv install #{d}"
 end
 
-system "rbenv global #{dev_versions.last}.0-dev"
+system "rbenv global ruby-dev"
