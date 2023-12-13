@@ -11,9 +11,9 @@ eval "$(rbenv init -)"
 
 rbenv each gem uninstall openssl psych racc zlib digest strscan stringio pathname --force --executables
 rbenv global system
-rbenv uninstall -f 3.3.0-dev
-env RUBY_CONFIGURE_OPTS="--disable-install-doc --with-openssl-dir=$(brew --prefix openssl) --with-gmp-dir=$(brew --prefix gmp) --with-libyaml-dir=$(brew --prefix libyaml)" rbenv install 3.3.0-dev
-rbenv global 3.3.0-dev
+rbenv uninstall -f ruby-dev
+env RUBY_CONFIGURE_OPTS="--disable-install-doc --with-openssl-dir=$(brew --prefix openssl) --with-gmp-dir=$(brew --prefix gmp) --with-libyaml-dir=$(brew --prefix libyaml)" rbenv install ruby-dev
+rbenv global ruby-dev
 
 gem update
 dev clean-lib-ext
