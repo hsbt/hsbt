@@ -72,7 +72,7 @@ Rubyコミッター、Ruby, RubyGems, Bundler, Rake,  ruby-build, psychなど多
 * 2021年07月 [「候補者体験をもっとライトに」。興味通知機能を入口に候補者との軽やかなファーストタッチを実現するGMOペパボの採用戦略とは](https://hr-tech-lab.lapras.com/lapras-scout-cases/pepabo/)
 * 2020年10月 [「楽しい・おもしろい」を選び続けた先に今があった GMOペパボ VPofE 兼 技術部長とOSSとの20年間](https://engineer-lab.findy-code.io/enjoy-oss)
 * 2020年07月 [GMO3社の開発トップが教える今後の“採用”と“テレワーク”の在り方](https://logmi.jp/tech/articles/323177)
-* 2019年10月 [GMOペパボ柴田博志が教える。経営者も理解しておくべき「技術的負債」](https://flxy.jp/article/7533)
+* 2019年10月 [GMOペパボ柴田博志が教える。経営者も理解しておくべき「技術的負債」](https://web.archive.org/web/20211021073824/https://flxy.jp/article/7533)
 * 2017年10月 [800万DLアプリ『minne』でおなじみ！ GMOペパボが全社員でGitHubを使うワケ](https://careerhack.en-japan.com/report/detail/863)
 * 2014年11月 [RubyPrize2014 受賞者インタビュー](https://www.ruby.or.jp/rubyprize2014/interview/win_shibata_01.html)
 
