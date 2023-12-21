@@ -86,7 +86,9 @@ Rubyコミッター、Ruby, RubyGems, Bundler, Rake,  ruby-build, psychなど多
 
 ## 講演・発表(国際カンファレンス)
 
-* 2023年06月 RubyKaigi 2023 [How resolve Gem dependencies in your code?](https://www.slideshare.net/hsbt/how-resolve-gem-dependencies-in-your-code)
+* 2023年12月 RubyConf Taiwan 2023 [Deep dive into Ruby's require](https://www.slideshare.net/hsbt/deep-dive-into-rubys-require-rubyconf-taiwan-2023)
+* 2023年09月 Euruko 2023 [How resolve Gem dependencies in your code?](https://www.slideshare.net/hsbt/how-resolve-gem-dependencies-in-your-code-e131)
+* 2023年06月 RubyKaigi 2023 [How resolve Gem dependencies in your code?](https://www.slideshare.net/hsbt/how-resolve-gem-dependencies-in-your-code-b42d)
 * 2022年09月 RubyKaigi 2022 [Why is building the Ruby environment hard? - Speaker Deck](https://speakerdeck.com/hsbt/why-is-building-the-ruby-environment-hard)
 * 2021年09月 RubyKaigi takeout 2021 [How to develop the Standard Libraries of Ruby?](https://www.slideshare.net/hsbt/how-to-develop-the-standard-libraries-of-ruby)
 * 2020年09月 RubyKaigi takeout 2020 [Dependency Resolution with Standard Libraries](https://www.slideshare.net/hsbt/dependency-resolution-with-standard-libraries)
