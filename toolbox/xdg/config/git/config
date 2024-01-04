@@ -52,6 +52,7 @@
 [branch]
 	autosetupmerge = true
 	autosetuprebase = always
+	sort = -authordate
 
 [merge]
 	ff = false
