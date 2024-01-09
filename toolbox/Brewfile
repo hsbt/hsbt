@@ -62,6 +62,7 @@ brew "parallel"
 brew "jq"
 brew "xmlstarlet"
 brew "ffmpeg" # for ripgrep_all
+brew "ttyd"
 brew "pandoc" # for ripgrep_all
 brew "poppler" # for ripgrep_all
 brew "tesseract" # for ripgrep_all

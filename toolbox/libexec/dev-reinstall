@@ -23,6 +23,7 @@ FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("cargo").to_s
   sd
   ripgrep_all
   git-delta
+  xh
 ].each { |pkg| system "cargo install --locked #{pkg}" }
 
 FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("go").to_s
@@ -53,6 +54,7 @@ FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("go").to_s
   github.com/hashicorp/terraform@latest
   github.com/DarthSim/overmind/v2@latest
   github.com/dependabot/cli/cmd/dependabot@latest
+  github.com/charmbracelet/vhs@latest
 ].each { |pkg| system "go install #{pkg}" }
 
 FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("heroku").to_s
