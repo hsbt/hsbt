@@ -80,4 +80,5 @@ FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("heroku").to_s
   evanlucas/fish-kubectl-completions
   rbenv/fish-rbenv
   0rax/fish-bd
+  2m/fish-history-merge
 ].each { |pkg| system "fisher install #{pkg}" }
