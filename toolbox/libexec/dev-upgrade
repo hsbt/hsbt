@@ -16,9 +16,7 @@ env RUBY_CONFIGURE_OPTS="--with-baseruby=/opt/homebrew/Library/Homebrew/vendor/p
 rbenv global ruby-dev
 
 gem update
-dev clean-lib-ext
 rbenv each dev only-missing-pristine
-dev clean-lib-ext
 dev gem-shebang-update
 
 go-global-update
