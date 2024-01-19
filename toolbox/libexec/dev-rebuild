@@ -21,7 +21,7 @@ eol_versions.each do |v|
   puts "Installing #{v}"
   system "rbenv uninstall -f #{v}"
   openssl_flag = "--with-openssl-dir=$(brew --prefix openssl@1.1)" if v == "2.7.8"
-  system "env RUBY_CONFIGURE_OPTS=\"--disable-install-doc --with-libyaml-dir=$(brew --prefix libyaml) --with-gmp-dir=$(brew --prefix gmp) #{openssl_flag}\" rbenv install -f #{v}"
+  system "env RUBY_CONFIGURE_OPTS=\"--disable-install-doc --with-baseruby=/opt/homebrew/Library/Homebrew/vendor/portable-ruby/current/bin/ruby --with-libyaml-dir=$(brew --prefix libyaml) --with-gmp-dir=$(brew --prefix gmp) #{openssl_flag}\" rbenv install -f #{v}"
 end
 
 dev_versions.each do |v|
@@ -48,9 +48,10 @@ end
 system "rbenv uninstall -f ruby-dev"
 system "env RUBY_CONFIGURE_OPTS=\"--disable-install-doc --with-baseruby=/opt/homebrew/Library/Homebrew/vendor/portable-ruby/current/bin/ruby  --with-openssl-dir=$(brew --prefix openssl) --with-gmp-dir=$(brew --prefix gmp) --with-libyaml-dir=$(brew --prefix libyaml)\" rbenv install ruby-dev"
 
-(eol_versions << dev_versions.first).each do |v|
+%w[2.7.8 3.0].each do |v|
   gem_dir = Dir.glob("#{ENV['RBENV_ROOT']}/versions/#{v}/lib/ruby/gems/*").first
-  system "env RUBYOPT= GEM_HOME=#{gem_dir} #{ENV["RBENV_ROOT"]}/versions/#{v}/bin/gem update --system"
+  system "env RUBYOPT= GEM_HOME=#{gem_dir} #{ENV["RBENV_ROOT"]}/versions/#{v}/bin/gem install rubygems-update -v 3.4.22"
+  system "env RUBYOPT= GEM_HOME=#{gem_dir} #{ENV["RBENV_ROOT"]}/versions/#{v}/bin/update_rubygems"
 end
 
 platforms = %w[jruby truffleruby graalvm]
