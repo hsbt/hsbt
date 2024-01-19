@@ -20,16 +20,15 @@ dev_versions = %w[
 eol_versions.each do |v|
   puts "Installing #{v}"
   system "rbenv uninstall -f #{v}"
-  additional_cflags = "RUBY_CFLAGS=-Wno-error=implicit-function-declaration" if v == "2.6.10"
   openssl_flag = "--with-openssl-dir=$(brew --prefix openssl@1.1)" if v == "2.7.8"
-  system "env #{additional_cflags} RUBY_CONFIGURE_OPTS=\"--disable-install-doc --with-libyaml-dir=$(brew --prefix libyaml) --with-gmp-dir=$(brew --prefix gmp) #{openssl_flag}\" rbenv install -f #{v}"
+  system "env RUBY_CONFIGURE_OPTS=\"--disable-install-doc --with-libyaml-dir=$(brew --prefix libyaml) --with-gmp-dir=$(brew --prefix gmp) #{openssl_flag}\" rbenv install -f #{v}"
 end
 
 dev_versions.each do |v|
   openssl_version = (v.to_f > 3.0) ? "3" : "1.1"
   puts "Installing #{v}"
   system "rbenv uninstall -f #{v}.0-dev"
-  system "env RUBY_CONFIGURE_OPTS=\"--disable-install-doc --with-libyaml-dir=$(brew --prefix libyaml) --with-gmp-dir=$(brew --prefix gmp) --with-openssl-dir=$(brew --prefix openssl@#{openssl_version})\" rbenv install -f #{v}.0-dev"
+  system "env RUBY_CONFIGURE_OPTS=\"--disable-install-doc --with-baseruby=/opt/homebrew/Library/Homebrew/vendor/portable-ruby/current/bin/ruby --with-libyaml-dir=$(brew --prefix libyaml) --with-gmp-dir=$(brew --prefix gmp) --with-openssl-dir=$(brew --prefix openssl@#{openssl_version})\" rbenv install -f #{v}.0-dev"
 
   Dir.chdir(ENV["RBENV_ROOT"] + "/versions") do
     FileUtils.rm_rf v
@@ -47,7 +46,7 @@ dev_versions.each do |v|
 end
 
 system "rbenv uninstall -f ruby-dev"
-system "env RUBY_CONFIGURE_OPTS=\"--disable-install-doc --with-openssl-dir=$(brew --prefix openssl) --with-gmp-dir=$(brew --prefix gmp) --with-libyaml-dir=$(brew --prefix libyaml)\" rbenv install ruby-dev"
+system "env RUBY_CONFIGURE_OPTS=\"--disable-install-doc --with-baseruby=/opt/homebrew/Library/Homebrew/vendor/portable-ruby/current/bin/ruby  --with-openssl-dir=$(brew --prefix openssl) --with-gmp-dir=$(brew --prefix gmp) --with-libyaml-dir=$(brew --prefix libyaml)\" rbenv install ruby-dev"
 
 (eol_versions << dev_versions.first).each do |v|
   gem_dir = Dir.glob("#{ENV['RBENV_ROOT']}/versions/#{v}/lib/ruby/gems/*").first
