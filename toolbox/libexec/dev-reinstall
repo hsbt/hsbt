@@ -82,3 +82,10 @@ FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("heroku").to_s
   0rax/fish-bd
   2m/fish-history-merge
 ].each { |pkg| system "fisher install #{pkg}" }
+
+%w[
+  github/gh-copilot
+  advanced-security/gh-sbom
+  mislav/gh-cp
+  github/gh-actions-importer
+].each { |pkg| system "gh extension install #{pkg}" }
