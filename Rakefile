@@ -10,11 +10,6 @@ task :generate do
   File.open('hsbt.org/dist/index.html', 'w') do |f|
     [header, body, footer].each {|s| f.puts s}
   end
-
-  require 'sass-embedded'
-  File.open('hsbt.org/dist/hsbt.css', 'w') do |f|
-    f.puts Sass.compile('hsbt.org/src/hsbt.scss').css
-  end
 end
 
 desc 'deploy index.html'
