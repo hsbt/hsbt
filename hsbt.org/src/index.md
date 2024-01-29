@@ -66,6 +66,7 @@ Rubyコミッター、Ruby, RubyGems, Bundler, Rake,  ruby-build, psychなど多
 
 ## 執筆・寄稿・インタビュー(Web 媒体)
 
+* 2024年01月 [徹底解説！ default gemsとbundled gemsのすべて](https://gihyo.jp/article/2024/01/ruby3.3-bundled-gems)
 * 2023年06月 [あなたのキャリアに影響を与えた本は何ですか？ 著名エンジニアの方々に聞いてみた【第二弾】](https://findy-code.io/engineer-lab/influential-books-2)
 * 2022年08月 [エンジニアの評価制度はどうあるべきか？-インタビュー編-](https://job-draft.jp/articles/570)
 * 2022年08月 [エンジニアの評価制度はどうあるべきか？ -事例紹介編-](https://job-draft.jp/articles/569)
