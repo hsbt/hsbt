@@ -70,14 +70,15 @@ fish_add_path $GEM_HOME/bin
 fish_add_path $HOME/.local/bin
 fish_add_path $HOME/Documents/github.com/hsbt/hsbt/toolbox/exe
 
-alias l lsd
-alias ll "lsd -la"
-alias e "code-insiders -a ."
-alias all-ruby "podman run --rm -it ghcr.io/ruby/all-ruby /all-ruby/all-ruby"
-alias s3cmd "s3cmd --config $HOME/.config/s3cmd"
-alias wget "wget --hsts-file=$XDG_CACHE_HOME/wget-hsts"
-alias gpg "gpg --homedir "$XDG_DATA_HOME"/gnupg"
-alias yarn "yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config"
+abbr -a -U -- l lsd
+abbr -a -U -- ll "lsd -la"
+abbr -a -U -- e "code-insiders -a ."
+abbr -a -U -- all-ruby "podman run --rm -it ghcr.io/ruby/all-ruby /all-ruby/all-ruby"
+abbr -a -U -- s3cmd "s3cmd --config $HOME/.config/s3cmd"
+abbr -a -U -- wget "wget --hsts-file=$XDG_CACHE_HOME/wget-hsts"
+abbr -a -U -- gpg "gpg --homedir $XDG_DATA_HOME/gnupg"
+abbr -a -U -- yarn "yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config"
+abbr -a -U -- mvn "mvn -gs $XDG_CONFIG_HOME/maven/settings.xml"
 
 function fish_prompt
   set_color $fish_color_cwd
