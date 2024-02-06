@@ -16,4 +16,4 @@ gem 'hikidoc'
 
 gem "parallel", "~> 1.24"
 
-gem "slack-ruby-client", "~> 2.2.0"
+gem "slack-ruby-client", "~> 2.3.0"
