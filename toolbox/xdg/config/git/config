@@ -1,6 +1,3 @@
-[init]
-	defaultBranch = master
-
 [core]
 	whitespace = space-before-tab, trailing-space, cr-at-eol
 	editor = vim
@@ -12,6 +9,23 @@
 	name = Hiroshi SHIBATA
 	email = hsbt@ruby-lang.org
 	signingkey = F9CF13417264FAC2
+
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
+
+[init]
+	defaultBranch = master
+
+[blame]
+	ignoreRevsFile = .git-blame-ignore-revs
+
+[advice]
+	detachedHead = false
+
+[rebase]
+	autostash = true
+	abbreviateCommands = true
+	autosquash = true
 
 [commit]
 	gpgsign = true
@@ -36,9 +50,6 @@
 	commit-decoration-style = bold yellow box ul
 	file-style = bold yellow ul
 	file-decoration-style = none
-
-[url "ssh://git@github.com/"]
-	insteadOf = https://github.com/
 
 [color]
 	ui = auto
@@ -122,11 +133,3 @@
 	lo = log --decorate --oneline
 	lp = log --decorate -p
 	lpf = log --decorate -p --follow
-[blame]
-	ignoreRevsFile = .git-blame-ignore-revs
-[advice]
-	detachedHead = false
-[rebase]
-	autostash = true
-	abbreviateCommands = true
-	autosquash = true
