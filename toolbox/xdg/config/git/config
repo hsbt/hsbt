@@ -126,3 +126,7 @@
 	ignoreRevsFile = .git-blame-ignore-revs
 [advice]
 	detachedHead = false
+[rebase]
+	autostash = true
+	abbreviateCommands = true
+	autosquash = true
