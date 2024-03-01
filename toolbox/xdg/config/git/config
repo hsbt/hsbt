@@ -115,7 +115,6 @@
 	a  = add -A
 	b  = branch
 	ba = branch -a
-	bm = branch --merged
 	bc = !git branch --merged | grep -Ev '\\*|main|master|development' | xargs git branch -d
 	c  = commit -S
 	ca = commit -S --amend
@@ -127,9 +126,7 @@
 	ga = gc --aggressive
 	up = !git pull --rebase --prune $@ && git submodule update --init --recursive
 	s  = status -sb
-	t  = tag -s
 	rv = remote -v
 	l  = log --decorate
 	lo = log --decorate --oneline
 	lp = log --decorate -p
-	lpf = log --decorate -p --follow
