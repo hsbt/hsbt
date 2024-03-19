@@ -1,0 +1,14 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    stringio (3.1.0)
+
+PLATFORMS
+  arm64-darwin-23
+  ruby
+
+DEPENDENCIES
+  stringio (= 3.1.0)
+
+BUNDLED WITH
+   2.6.0.dev
