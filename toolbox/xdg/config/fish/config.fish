@@ -59,6 +59,7 @@ fish_add_path /opt/homebrew/opt/gnu-tar/libexec/gnubin
 fish_add_path /opt/homebrew/opt/make/libexec/gnubin
 fish_add_path /opt/homebrew/opt/grep/libexec/gnubin
 fish_add_path /opt/homebrew/opt/bison/bin
+fish_add_path /opt/homebrew/opt/m4/bin
 fish_add_path /opt/homebrew/sbin # Move to the top of PATH again
 fish_add_path /opt/homebrew/bin # Move to the top of PATH again
 fish_add_path $KREW_ROOT/bin
