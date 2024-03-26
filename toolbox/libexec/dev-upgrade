@@ -15,8 +15,10 @@ rbenv uninstall -f ruby-dev
 env RUBY_CONFIGURE_OPTS="--disable-install-doc --with-baseruby=/opt/homebrew/Library/Homebrew/vendor/portable-ruby/current/bin/ruby  --with-openssl-dir=$(brew --prefix openssl) --with-gmp-dir=$(brew --prefix gmp) --with-libyaml-dir=$(brew --prefix libyaml)" rbenv install ruby-dev
 rbenv global ruby-dev
 
-gem update
-rbenv each dev only-missing-pristine
+RBENV_VERSION=3.3 gem update
+for v in 2.7 3.0 3.1 3.2 3.3 ruby-dev; do
+  RBENV_VERSION=$v dev only-missing-pristine
+done
 dev gem-shebang-update
 
 go-global-update
