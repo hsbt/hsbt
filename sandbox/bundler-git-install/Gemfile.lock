@@ -1,0 +1,19 @@
+GIT
+  remote: https://github.com/ruby/bigdecimal
+  revision: af1214bee098557e4fe64924fb26885327910219
+  specs:
+    bigdecimal (3.1.7)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+
+PLATFORMS
+  arm64-darwin-23
+  ruby
+
+DEPENDENCIES
+  bigdecimal!
+
+BUNDLED WITH
+   2.6.0.dev
