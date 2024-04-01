@@ -112,3 +112,5 @@ source $HOME/.config/op/plugins.sh
 eval (direnv hook fish)
 zoxide init fish --cmd j | source
 rbenv init - | source
+
+fzf_configure_bindings --processes=\cp --directory=\cf --git_log=\co --git_status=\cs
