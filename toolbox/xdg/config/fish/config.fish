@@ -35,6 +35,8 @@ set -x KUBECONFIG $XDG_CONFIG_HOME/kube/config
 set -x GOMODCACHE $XDG_CACHE_HOME/go-mod
 set -x GOBIN $HOME/.local/bin
 set -x ANALYZER_STATE_LOCATION_OVERRIDE $XDG_CACHE_HOME/dart_server
+set -x CARGO_HOME $XDG_DATA_HOME/cargo
+set -x RUSTUP_HOME $XDG_DATA_HOME/rustup
 
 set -x LANG en_US.UTF-8
 set -x TERM xterm-256color
