@@ -15,19 +15,19 @@ GEM
     gli (2.21.1)
     hashie (5.0.0)
     hikidoc (0.1.0)
-    json (2.7.1)
+    json (2.7.2)
     kramdown (2.4.0)
       rexml
     language_server-protocol (3.17.0.3)
     lint_roller (1.1.0)
     mina (1.2.5)
       rake
-    multipart-post (2.3.0)
+    multipart-post (2.4.0)
     net-http (0.4.1)
       uri
     net-scp (4.0.0)
       net-ssh (>= 2.6.5, < 8.0.0)
-    net-ssh (7.2.1)
+    net-ssh (7.2.3)
     parallel (1.24.0)
     parser (3.3.0.5)
       ast (~> 2.4.1)
