@@ -47,12 +47,6 @@ end
 system "rbenv uninstall -f ruby-dev"
 system "env RUBY_CONFIGURE_OPTS=\"--disable-install-doc --with-baseruby=/opt/homebrew/Library/Homebrew/vendor/portable-ruby/current/bin/ruby  --with-openssl-dir=$(brew --prefix openssl) --with-gmp-dir=$(brew --prefix gmp) --with-libyaml-dir=$(brew --prefix libyaml)\" rbenv install ruby-dev"
 
-%w[2.7.8 3.0].each do |v|
-  gem_dir = Dir.glob("#{ENV['RBENV_ROOT']}/versions/#{v}/lib/ruby/gems/*").first
-  system "env RUBYOPT= GEM_HOME=#{gem_dir} #{ENV["RBENV_ROOT"]}/versions/#{v}/bin/gem install rubygems-update -v 3.4.22"
-  system "env RUBYOPT= GEM_HOME=#{gem_dir} #{ENV["RBENV_ROOT"]}/versions/#{v}/bin/update_rubygems"
-end
-
 platforms = %w[jruby truffleruby graalvm]
 installed = `rbenv versions`.split("\n").map{ |v| v.split(" ")[0] }
 platforms.each do |pf|
