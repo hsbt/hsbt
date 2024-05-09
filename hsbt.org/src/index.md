@@ -66,6 +66,8 @@ Rubyコミッター、Ruby, RubyGems, Bundler, Rake,  ruby-build, psychなど多
 
 ## 執筆・寄稿・インタビュー(Web 媒体)
 
+* 2024年04月 [RubyKaigi 2024 で登壇する hsbt と ydah に聞く Speaker になるまでの道のり](https://www.wantedly.com/companies/andpad/post_articles/900845)
+* 2024年01月 [レオのリファラル入社エピソード ～シニアエンジニアの転職の進め方](https://www.wantedly.com/companies/andpad/post_articles/879710)
 * 2024年01月 [徹底解説！ default gemsとbundled gemsのすべて](https://gihyo.jp/article/2024/01/ruby3.3-bundled-gems)
 * 2023年06月 [あなたのキャリアに影響を与えた本は何ですか？ 著名エンジニアの方々に聞いてみた【第二弾】](https://findy-code.io/engineer-lab/influential-books-2)
 * 2022年08月 [エンジニアの評価制度はどうあるべきか？-インタビュー編-](https://job-draft.jp/articles/570)
@@ -87,6 +89,7 @@ Rubyコミッター、Ruby, RubyGems, Bundler, Rake,  ruby-build, psychなど多
 
 ## 講演・発表(国際カンファレンス)
 
+* 2024年04月 RubyConf AU 2024 [Long journey of Ruby standard library at RubyConf AU 2024](https://www.slideshare.net/slideshow/long-journey-of-ruby-standard-library-at-rubyconf-au-2024/267204330)
 * 2023年12月 RubyConf Taiwan 2023 [Deep dive into Ruby's require](https://www.slideshare.net/hsbt/deep-dive-into-rubys-require-rubyconf-taiwan-2023)
 * 2023年09月 Euruko 2023 [How resolve Gem dependencies in your code?](https://www.slideshare.net/hsbt/how-resolve-gem-dependencies-in-your-code-e131)
 * 2023年06月 RubyKaigi 2023 [How resolve Gem dependencies in your code?](https://www.slideshare.net/hsbt/how-resolve-gem-dependencies-in-your-code-b42d)
