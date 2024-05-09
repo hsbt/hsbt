@@ -22,4 +22,5 @@ done
 dev gem-shebang-update
 
 go-global-update
+rustup update
 cargo install-update -a
