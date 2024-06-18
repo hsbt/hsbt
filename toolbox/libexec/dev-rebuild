@@ -27,7 +27,11 @@ dev_versions.each do |v|
   openssl_version = (v.to_f > 3.0) ? "3" : "1.1"
   puts "Installing #{v}"
   system "rbenv uninstall -f #{v}-dev"
-  system "env RUBY_CONFIGURE_OPTS=\"--disable-install-doc --with-baseruby=/opt/homebrew/Library/Homebrew/vendor/portable-ruby/current/bin/ruby --with-libyaml-dir=$(brew --prefix libyaml) --with-gmp-dir=$(brew --prefix gmp) --with-openssl-dir=$(brew --prefix openssl@#{openssl_version})\" rbenv install -f #{v}-dev"
+  if v == "3.2"
+    system "env RUBY_CONFIGURE_OPTS=\"--disable-install-doc --with-baseruby=/opt/homebrew/Library/Homebrew/vendor/portable-ruby/current/bin/ruby --with-libyaml-dir=$(brew --prefix libyaml) --with-openssl-dir=$(brew --prefix openssl@#{openssl_version})\" rbenv install -f #{v}-dev"
+  else
+    system "env RUBY_CONFIGURE_OPTS=\"--disable-install-doc --with-baseruby=/opt/homebrew/Library/Homebrew/vendor/portable-ruby/current/bin/ruby --with-libyaml-dir=$(brew --prefix libyaml) --with-gmp-dir=$(brew --prefix gmp) --with-openssl-dir=$(brew --prefix openssl@#{openssl_version})\" rbenv install -f #{v}-dev"
+  end
 
   Dir.chdir(ENV["RBENV_ROOT"] + "/versions") do
     FileUtils.rm_rf v
