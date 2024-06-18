@@ -26,7 +26,7 @@ end
 dev_versions.each do |v|
   puts "Installing #{v}"
   system "rbenv uninstall -f #{v}-dev"
-  system "brew uninstall gmp" if v == "3.2"
+  system "brew uninstall --ignore-dependencies gmp" if v == "3.2"
   system "env RUBY_CONFIGURE_OPTS=\"--disable-install-doc --with-baseruby=/opt/homebrew/Library/Homebrew/vendor/portable-ruby/current/bin/ruby --with-libyaml-dir=$(brew --prefix libyaml) --with-openssl-dir=$(brew --prefix openssl@3)\" rbenv install -f #{v}-dev"
   system "brew install gmp" if v == "3.2"
 
