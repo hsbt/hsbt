@@ -1,5 +1,8 @@
 #!/usr/bin/env ruby
 
 Dir.glob(ENV["GEM_HOME"] + "/bin/*") do |exe|
-  system('gsed -i "s/\/Users\/hsbt\/.local\/share\/rbenv\/versions\/[23].[0-9].0-dev\/bin\/ruby/\/usr\/bin\/env\ ruby/" ' + exe)
+  %w[hsbt hiroshi.shibata].each do |u|
+    system('gsed -i "s/\/Users\/#{u}\/.local\/share\/rbenv\/versions\/[23].[0-9](.0)?-dev\/bin\/ruby/\/usr\/bin\/env\ ruby/" ' + exe)
+    system('gsed -i "s/\/Users\/#{u}\/.local\/share\/rbenv\/versions\/ruby-dev\/bin\/ruby/\/usr\/bin\/env\ ruby/" ' + exe)
+  end
 end
