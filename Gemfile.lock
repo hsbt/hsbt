@@ -3,8 +3,9 @@ GEM
   specs:
     ast (2.4.2)
     ed25519 (1.3.0)
-    faraday (2.9.1)
+    faraday (2.10.0)
       faraday-net_http (>= 2.0, < 3.2)
+      logger
     faraday-mashify (0.1.1)
       faraday (~> 2.0)
       hashie
@@ -20,6 +21,7 @@ GEM
       rexml
     language_server-protocol (3.17.0.3)
     lint_roller (1.1.0)
+    logger (1.6.0)
     mina (1.2.5)
       rake
     multipart-post (2.4.1)
@@ -55,7 +57,7 @@ GEM
       rubocop (>= 1.48.1, < 2.0)
       rubocop-ast (>= 1.31.1, < 2.0)
     ruby-progressbar (1.13.0)
-    slack-ruby-client (2.3.0)
+    slack-ruby-client (2.4.0)
       faraday (>= 2.0)
       faraday-mashify
       faraday-multipart
@@ -93,7 +95,7 @@ DEPENDENCIES
   net-scp
   parallel (~> 1.25)
   rake
-  slack-ruby-client (~> 2.3.0)
+  slack-ruby-client (~> 2.4.0)
   standard
 
 BUNDLED WITH
