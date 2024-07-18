@@ -120,6 +120,12 @@ cask "messenger"
 cask "obsidian"
 cask "vlc"
 cask "google-japanese-ime"
+cask "font-mona-sans"
+cask "font-hackgen"
+cask "font-hackgen-nerd"
+cask "visual-studio-code-insiders"
+cask "microsoft-edge-beta"
+cask "1password-beta"
 
 tap "dart-lang/dart"
 brew "dart"
@@ -133,16 +139,6 @@ brew "copilot-cli"
 
 tap "buildpacks/tap"
 brew "pack"
-
-tap "homebrew/cask-fonts"
-cask "font-mona-sans"
-cask "font-hackgen"
-cask "font-hackgen-nerd"
-
-tap "homebrew/cask-versions"
-cask "visual-studio-code-insiders"
-cask "microsoft-edge-beta"
-cask "1password-beta"
 
 brew "mas"
 mas "Microsoft Remote Desktop", id: 1295203466
