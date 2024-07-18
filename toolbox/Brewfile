@@ -140,6 +140,9 @@ brew "copilot-cli"
 tap "buildpacks/tap"
 brew "pack"
 
+tap "rbenv/tap"
+brew "openssl@1.0"
+
 brew "mas"
 mas "Microsoft Remote Desktop", id: 1295203466
 mas "Slack", id: 803453959
