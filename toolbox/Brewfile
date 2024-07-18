@@ -119,7 +119,6 @@ cask "zoom"
 cask "messenger"
 cask "obsidian"
 cask "vlc"
-cask "kindle"
 cask "google-japanese-ime"
 
 tap "dart-lang/dart"
@@ -154,3 +153,4 @@ mas "1Password for Safari", id: 1569813296
 mas "Microsoft Powerpoint", id: 462062816
 mas "Microsoft Excel", id: 462058435
 mas "Microsoft Word", id: 462054704
+mas "Amazon Kindle", id: 302584613
