@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-
-command="$1"
-case "$command" in
-* )
-  EXE_DIR=`dirname "$0"`
-  shift 1
-  exec "$EXE_DIR/../libexec/dev-$command" "$@"
-esac
