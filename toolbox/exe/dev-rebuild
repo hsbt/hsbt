@@ -19,14 +19,13 @@ defs = `rbenv install --list`.split.select { |v| v =~ /[0-9]/ }
 eol_versions.each do |v|
   puts "Installing #{v}"
   system "rbenv uninstall -f #{v}"
-  openssl_flag = "--with-openssl-dir=$(brew --prefix openssl@1.1)" if v == "3.0.7"
-  system "env RUBY_CONFIGURE_OPTS=\"--disable-install-doc --with-baseruby=/opt/homebrew/Library/Homebrew/vendor/portable-ruby/current/bin/ruby #{openssl_flag}\" rbenv install -f #{v}"
+  system "env RUBY_CONFIGURE_OPTS=\"--disable-install-doc --with-baseruby=/opt/homebrew/Library/Homebrew/vendor/portable-ruby/current/bin/ruby\" rbenv install -f #{v}"
 end
 
 dev_versions.each do |v|
   puts "Installing #{v}"
   system "rbenv uninstall -f #{v}-dev"
-  system "env RUBY_CONFIGURE_OPTS=\"--disable-install-doc --with-baseruby=/opt/homebrew/Library/Homebrew/vendor/portable-ruby/current/bin/ruby --with-openssl-dir=$(brew --prefix openssl@3)\" rbenv install -f #{v}-dev"
+  system "env RUBY_CONFIGURE_OPTS=\"--disable-install-doc --with-baseruby=/opt/homebrew/Library/Homebrew/vendor/portable-ruby/current/bin/ruby\" rbenv install -f #{v}-dev"
 
   Dir.chdir(ENV["RBENV_ROOT"] + "/versions") do
     FileUtils.rm_rf v
@@ -44,7 +43,7 @@ dev_versions.each do |v|
 end
 
 system "rbenv uninstall -f ruby-dev"
-system "env RUBY_CONFIGURE_OPTS=\"--disable-install-doc --with-baseruby=/opt/homebrew/Library/Homebrew/vendor/portable-ruby/current/bin/ruby  --with-openssl-dir=$(brew --prefix openssl)\" rbenv install ruby-dev"
+system "env RUBY_CONFIGURE_OPTS=\"--disable-install-doc --with-baseruby=/opt/homebrew/Library/Homebrew/vendor/portable-ruby/current/bin/ruby\" rbenv install ruby-dev"
 
 platforms = %w[jruby truffleruby graalvm]
 installed = `rbenv versions`.split("\n").map{ |v| v.split(" ")[0] }
