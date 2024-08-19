@@ -30,7 +30,7 @@ GEM
     net-scp (4.0.0)
       net-ssh (>= 2.6.5, < 8.0.0)
     net-ssh (7.2.3)
-    parallel (1.25.1)
+    parallel (1.26.3)
     parser (3.3.4.0)
       ast (~> 2.4.1)
       racc
@@ -93,7 +93,7 @@ DEPENDENCIES
   kramdown
   mina
   net-scp
-  parallel (~> 1.25)
+  parallel (~> 1.26)
   rake
   slack-ruby-client (~> 2.4.0)
   standard
