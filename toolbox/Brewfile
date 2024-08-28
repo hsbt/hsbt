@@ -1,3 +1,7 @@
+def stable?
+  !(/15/ =~ `sw_vers -productVersion`)
+end
+
 cask_args appdir: "/Applications"
 
 tap "homebrew/bundle"
@@ -44,8 +48,11 @@ cask "anaconda"
 brew "pipenv"
 brew "poetry"
 brew "go"
-brew "node"
-# brew "node@20"
+if stable?
+  brew "node@20"
+else
+  brew "node"
+end
 brew "deno"
 brew "just"
 brew "elixir"
@@ -79,9 +86,14 @@ brew "s3cmd"
 brew "xdelta"
 brew "fdupes"
 brew "postgresql@14"
-brew "mysql"
-# brew "mysql@8.0"
+if stable?
+  brew "mysql@8.0"
+else
+  brew "mysql"
+end
 brew "redis"
+tap "elastic/tap"
+brew "elastic/tap/elasticsearch-full"
 brew "imagemagick"
 brew "consul-template"
 brew "graphviz"
