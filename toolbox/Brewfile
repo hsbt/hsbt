@@ -140,6 +140,7 @@ cask "font-hackgen"
 cask "font-hackgen-nerd"
 cask "visual-studio-code@insiders"
 cask "microsoft-edge@beta"
+cask "google-chrome"
 cask "1password@beta"
 
 tap "dart-lang/dart"
