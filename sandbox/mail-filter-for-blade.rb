@@ -3,22 +3,30 @@ require "bundler/inline"
 gemfile do
   gem "mail"
   gem "net-smtp"
+  gem "nkf"
 end
 
 require "pathname"
 require "fileutils"
 
 base_dir = Pathname(ARGV[0])
-blade_dir = base_dir + ".blade-version"
+blade_dir = base_dir.parent.join(base_dir.basename.to_s + ".blade-version")
 
 FileUtils.mkdir(blade_dir) unless blade_dir.exist?
 
 Dir.glob( base_dir.join("*") ).each do |file|
   next if File.directory?(file)
-  mail = Mail.read( file )
   puts file
-  next if File.exist?( Pathname(blade_dir).join( File.basename(file) ).to_s )
-  File.open( Pathname(blade_dir).join( File.basename(file) ), "w" ) do |f|
+
+  mail = Mail.read( file )
+
+  list_name = mail.header['List-Id'].to_s.match(/\<(.*)\.ruby\-lang\.org\>/)
+  list_name = list_name && list_name[1]
+  post_id = mail.header["Subject"].to_s.match(/\[#{list_name}:(\d+)\].*/)
+  post_id = post_id && post_id[1]
+
+  next if File.exist?( Pathname(blade_dir).join( post_id ).to_s )
+  File.open( Pathname(blade_dir).join( post_id ), "w" ) do |f|
     from = begin
       mail.header["from"].to_s.gsub(/@[a-zA-Z.\-]+/, "@...")
     rescue
