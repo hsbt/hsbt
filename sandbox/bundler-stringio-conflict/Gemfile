@@ -1,0 +1,4 @@
+source "https://rubygems.org"
+
+gem "psych", "5.2.0.beta1"
+gem "minitest"
