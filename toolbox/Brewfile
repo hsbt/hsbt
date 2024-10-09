@@ -91,7 +91,7 @@ if stable?
 else
   brew "mysql"
 end
-brew "redis"
+brew "valkey"
 tap "elastic/tap"
 brew "elastic/tap/elasticsearch-full"
 brew "imagemagick"
@@ -107,6 +107,7 @@ brew "protobuf"
 brew "ragel"
 brew "guetzli"
 brew "lcov"
+brew "opentofu"
 brew "ansible"
 brew "sshuttle"
 brew "snapcraft"
