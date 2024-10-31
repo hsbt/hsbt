@@ -8,7 +8,7 @@ A member of the Ruby core team. I maintain the following software and toolchains
 * [RubyGems/Bundler](https://github.com/rubygems/rubygems)
 * [Rake](https://github.com/ruby/rake)
 * [Psych](https://github.com/ruby/psych)
-* [JSON](https://github.com/flori/json)
+* [JSON](https://github.com/ruby/json)
 * [ruby-build](https://github.com/rbenv/ruby-build)
 
 and etc.
