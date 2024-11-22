@@ -1,15 +1,22 @@
 #!/usr/bin/env ruby
 
+if RUBY_VERSION < "2.7"
+  gem "parallel", "1.2.4"
+end
+require "parallel"
+
 require "rubygems/commands/pristine_command"
 
-Gem::Specification.select { |spec|
+target_specs = Gem::Specification.select { |spec|
   spec.platform == RUBY_ENGINE && spec.missing_extensions?
-}.each do |s|
+}.map{|s| [s.full_name, s.name, s.version] }.shuffle
+
+Parallel.map(target_specs, :in_threads => 4) do |full_name, name, version|
   begin
-    puts s.full_name
+    puts full_name
     cmd = Gem::Commands::PristineCommand.new
-    cmd.options[:args] = [s.name]
-    cmd.options[:version] = s.version
+    cmd.options[:args] = [name]
+    cmd.options[:version] = version
     cmd.execute
   rescue Gem::Ext::BuildError, Gem::Package::FormatError, Gem::InstallError, Zlib::BufError
   end
