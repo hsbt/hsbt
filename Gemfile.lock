@@ -61,7 +61,7 @@ GEM
       faraday-multipart
       gli
       hashie
-    standard (1.42.0)
+    standard (1.42.1)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.0)
       rubocop (~> 1.68.0)
