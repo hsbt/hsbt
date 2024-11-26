@@ -18,6 +18,6 @@ Parallel.map(target_specs, :in_threads => 4) do |full_name, name, version|
     cmd.options[:args] = [name]
     cmd.options[:version] = version
     cmd.execute
-  rescue Gem::Ext::BuildError, Gem::Package::FormatError, Gem::InstallError, Zlib::BufError
+  rescue Gem::Ext::BuildError, Gem::Package::FormatError, Gem::InstallError, Zlib::BufError, NameError
   end
 end
