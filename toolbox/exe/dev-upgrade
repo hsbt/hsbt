@@ -11,8 +11,8 @@ rbenv update
 
 eval "$(rbenv init -)"
 
-for v in 3.1 3.2 3.3 ruby-dev; do
-  RBENV_VERSION=$v gem uninstall openssl psych racc zlib digest strscan stringio pathname --force --executables
+for v in ruby-dev 3.3 3.2 3.1; do
+  RBENV_VERSION=$v gem uninstall openssl psych zlib digest strscan stringio pathname --force --executables
 done
 
 rbenv global system
@@ -21,6 +21,11 @@ env RUBY_CONFIGURE_OPTS="--disable-install-doc --with-baseruby=/opt/homebrew/Lib
 rbenv global ruby-dev
 
 RBENV_VERSION=3.3 gem update
+
+for v in ruby-dev 3.3 3.2 3.1; do
+  RBENV_VERSION=$v gem uninstall openssl psych zlib digest strscan stringio pathname --force --executables
+done
+
 for v in 3.1 3.2 3.3 ruby-dev; do
   RBENV_VERSION=$v dev-only-missing-pristine
 done
