@@ -161,7 +161,7 @@ tap "rbenv/tap"
 brew "openssl@1.0"
 
 brew "mas"
-mas "Microsoft Remote Desktop", id: 1295203466
+mas "Windows App", id: 1295203466
 mas "Slack", id: 803453959
 mas "iMovie", id: 408981434
 mas "Keynote", id: 409183694
