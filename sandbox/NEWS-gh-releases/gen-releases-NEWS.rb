@@ -38,11 +38,11 @@ versions_to.each do |name, version|
   Octokit.releases("#{org}/#{name}").each do |release|
     releases << release.tag_name
   end
-  releases.sort{|a, b| Gem::Version.new(a.sub(/^v/, "")) <=> Gem::Version.new(b.sub(/^v/, ""))}
+  releases.select{|v| v =~ /^v/ || v =~ /^¥d/ }.sort{|a, b| Gem::Version.new(a.sub(/^v/, "")) <=> Gem::Version.new(b.sub(/^v/, ""))}
   releases.reverse!
 
-  start_index = releases.index("v#{versions_from[name]}")
-  end_index = releases.index("v#{versions_to[name]}")
+  start_index = releases.index("v#{versions_from[name]}") || releases.index(versions_from[name])
+  end_index = releases.index("v#{versions_to[name]}") || releases.index(versions_to[name])
   release_range = releases[start_index+1..end_index] if start_index && end_index
 
   next unless release_range
