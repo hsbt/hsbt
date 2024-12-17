@@ -46,6 +46,10 @@ versions_to.each do |name, version|
 
   next unless release_range
 
+  release_range = release_range.drop(1)
+
+  next if release_range.empty?
+
   puts "* #{name} #{version}"
   puts "  * #{release_range.map{|rel| "[#{rel}][#{name}-#{rel}]"}.join(", ")}"
   release_range.each do |rel|
