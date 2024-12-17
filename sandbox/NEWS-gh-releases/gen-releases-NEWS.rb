@@ -34,7 +34,7 @@ versions_to.each do |name, version|
   when "test-unit"
     org = "test-unit"
   end
-  
+
   Octokit.releases("#{org}/#{name}").each do |release|
     releases << release.tag_name
   end
@@ -42,12 +42,9 @@ versions_to.each do |name, version|
 
   start_index = releases.index("v#{versions_from[name]}")
   end_index = releases.index("v#{versions_to[name]}")
-  release_range = releases[start_index..end_index] if start_index && end_index
+  release_range = releases[start_index+1..end_index] if start_index && end_index
 
   next unless release_range
-
-  release_range = release_range.drop(1)
-
   next if release_range.empty?
 
   puts "* #{name} #{version}"
