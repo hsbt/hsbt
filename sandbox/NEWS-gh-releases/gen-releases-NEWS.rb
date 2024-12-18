@@ -20,38 +20,48 @@ footnote_link = []
 
 versions_to.each do |name, version|
   releases = []
-  org = "ruby"
 
   case name
   when "RubyGems"
-    name = name.downcase
+    repo = name.downcase
     org = "rubygems"
   when "bundler"
-    name = "rubygems"
+    repo = "rubygems"
     org = "rubygems"
   when "minitest"
+    repo = name
     org = "minitest"
   when "test-unit"
+    repo = name
     org = "test-unit"
+  else
+    repo = name
+    org = "ruby"
   end
 
-  Octokit.releases("#{org}/#{name}").each do |release|
+  Octokit.releases("#{org}/#{repo}").each do |release|
     releases << release.tag_name
   end
   releases.select{|v| v =~ /^v/ || v =~ /^¥d/ }.sort{|a, b| Gem::Version.new(a.sub(/^v/, "")) <=> Gem::Version.new(b.sub(/^v/, ""))}
   releases.reverse!
 
-  start_index = releases.index("v#{versions_from[name]}") || releases.index(versions_from[name])
-  end_index = releases.index("v#{versions_to[name]}") || releases.index(versions_to[name])
+  start_index = releases.index("v#{versions_from[name]}") || releases.index(versions_from[name]) || releases.index("bundler-v#{versions_from[name]}")
+  end_index = releases.index("v#{versions_to[name]}") || releases.index(versions_to[name]) || releases.index("bundler-v#{versions_to[name]}")
   release_range = releases[start_index+1..end_index] if start_index && end_index
+  
+  if name == "bundler"
+    release_range = release_range.select{|v| v =~ /^bundler-/}
+  elsif name == "RubyGems"
+    release_range = release_range.select{|v| v =~ /^v/}
+  end
 
   next unless release_range
   next if release_range.empty?
 
   puts "* #{name} #{version}"
-  puts "  * #{release_range.map{|rel| "[#{rel}][#{name}-#{rel}]"}.join(", ")}"
+  puts "  * #{versions_from[name]} to #{release_range.map{|rel| "[#{rel.sub(/^bundler-/, '')}][#{name}-#{rel.sub(/^bundler-/, '')}]"}.join(", ")}"
   release_range.each do |rel|
-    footnote_link << "[#{name}-#{rel}]: https://github.com/#{org}/#{name}/releases/tag/#{rel}"
+    footnote_link << "[#{name}-#{rel.sub(/^bundler-/, '')}]: https://github.com/#{org}/#{repo}/releases/tag/#{rel}"
   end
 end
 

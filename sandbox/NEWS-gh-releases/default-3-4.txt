@@ -1,7 +1,7 @@
 win32-registry 0.1.0
-RubyGems 3.6.0
+RubyGems 3.6.1
 benchmark 0.4.0
-bundler 2.6.0
+bundler 2.6.1
 date 3.4.1
 delegate 0.4.0
 did_you_mean 2.0.0
@@ -26,7 +26,7 @@ pathname 0.4.0
 pp 0.6.2
 prism 1.2.0
 pstore 0.1.4
-psych 5.2.1
+psych 5.2.2
 rdoc 6.9.1
 reline 0.6.0
 resolv 0.6.0
@@ -42,6 +42,6 @@ time 0.4.1
 timeout 0.4.3
 tmpdir 0.3.1
 uri 1.0.2
-win32ole 1.9.0
+win32ole 1.9.1
 yaml 0.4.0
 zlib 3.2.1
