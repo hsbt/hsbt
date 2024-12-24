@@ -65,6 +65,7 @@
 	algorithm = patience
 	noprefix = true
 	compactionHeuristic = true
+	wsErrorHighlight = all
 
 [push]
 	default = current
