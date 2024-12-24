@@ -82,6 +82,7 @@ alias wget "wget --hsts-file=$XDG_CACHE_HOME/wget-hsts"
 alias gpg "gpg --homedir $XDG_DATA_HOME/gnupg"
 alias yarn "yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config"
 alias mvn "mvn -gs $XDG_CONFIG_HOME/maven/settings.xml"
+alias make "make --no-print-directory --quiet"
 
 abbr -a -- e "code-insiders -a ."
 
