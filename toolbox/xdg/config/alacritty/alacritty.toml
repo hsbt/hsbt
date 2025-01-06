@@ -1,91 +1,26 @@
 [general]
 live_config_reload = true
+import = [
+    "~/Documents/github.com/alacritty/alacritty-theme/themes/github_dark_default.toml"
+]
 
-[bell]
-animation = "EaseOutExpo"
-color = "0xffffff"
-duration = 0
+[window]
+blur = true
+opacity = 0.8
+padding ={ x = 4, y = 2 }
+dimensions = { columns = 180, lines = 80 }
 
-[colors]
-draw_bold_text_with_bright_colors = true
-indexed_colors = []
-
-[colors.bright]
-black = "0x666666"
-blue = "0x7aa6da"
-cyan = "0x54ced6"
-green = "0x9ec400"
-magenta = "0xb77ee0"
-red = "0xff3334"
-white = "0xffffff"
-yellow = "0xe7c547"
-
-[colors.normal]
-black = "0x000000"
-blue = "0x7aa6da"
-cyan = "0x70c0ba"
-green = "0xb9ca4a"
-magenta = "0xc397d8"
-red = "0xd54e53"
-white = "0xeaeaea"
-yellow = "0xe6c547"
-
-[colors.primary]
-background = "0x000000"
-foreground = "0xeaeaea"
-
-[cursor]
-unfocused_hollow = true
+[scrolling]
+history = 100000
+multiplier = 5
 
 [font]
 size = 14.0
+offset = { x = 0, y = 2 }
+normal = { family = "HackGen Console NF", style = "Regular" }
+bold = { family = "HackGen Console NF", style = "Bold" }
+italic = { family = "HackGen Console NF", style = "Italic" }
+bold_italic = { family = "HackGen Console NF", style = "Bold Italic" }
 
-[font.bold]
-family = "HackGen Console NF"
-
-[font.glyph_offset]
-x = 0
-y = 0
-
-[font.italic]
-family = "HackGen Console NF"
-
-[font.normal]
-family = "HackGen Console NF"
-
-[font.offset]
-x = 0
-y = 0
-
-[mouse]
-hide_when_typing = false
-
-[[mouse.bindings]]
-action = "PasteSelection"
-mouse = "Middle"
-
-[scrolling]
-history = 10000
-multiplier = 3
-
-[selection]
-save_to_clipboard = false
-semantic_escape_chars = ",│`|:\"' ()[]{}<>"
-
-[terminal.shell]
-args = ["-u"]
-program = "/opt/homebrew/bin/tmux"
-
-[window]
-decorations = "full"
-dynamic_padding = false
-dynamic_title = true
-opacity = 0.9
-
-[window.dimensions]
-columns = 180
-lines = 80
-
-[window.padding]
-x = 2
-y = 2
+[terminal]
+shell = { program = "/bin/zsh", args = ["-l", "-c", "tmux a -t 0 || tmux -u"] }
