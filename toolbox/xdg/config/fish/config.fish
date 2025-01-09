@@ -39,6 +39,11 @@ set -x CARGO_HOME $XDG_DATA_HOME/cargo
 set -x RUSTUP_HOME $XDG_DATA_HOME/rustup
 set -x VCPKG_DEFAULT_BINARY_CACHE $XDG_CACHE_HOME/vcpkg/archives
 set -x VCPKG_DOWNLOADS $XDG_CACHE_HOME/vcpkg/downloads
+alias s3cmd "s3cmd --config $XDG_CONFIG_HOME/s3cmd"
+alias wget "wget --hsts-file=$XDG_CACHE_HOME/wget-hsts"
+alias gpg "gpg --homedir $XDG_DATA_HOME/gnupg"
+alias yarn "yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config"
+alias mvn "mvn -gs $XDG_CONFIG_HOME/maven/settings.xml"
 
 set -x LANG en_US.UTF-8
 set -x TERM xterm-256color
@@ -77,13 +82,7 @@ fish_add_path $HOME/Documents/github.com/hsbt/hsbt/toolbox/exe
 alias l lsd
 alias ll "lsd -la"
 alias all-ruby "podman run --rm -it ghcr.io/ruby/all-ruby /all-ruby/all-ruby"
-alias s3cmd "s3cmd --config $HOME/.config/s3cmd"
-alias wget "wget --hsts-file=$XDG_CACHE_HOME/wget-hsts"
-alias gpg "gpg --homedir $XDG_DATA_HOME/gnupg"
-alias yarn "yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config"
-alias mvn "mvn -gs $XDG_CONFIG_HOME/maven/settings.xml"
 alias make "make --no-print-directory --quiet"
-
 abbr -a -- e "code-insiders -a ."
 
 function export
@@ -106,5 +105,4 @@ eval (direnv hook fish)
 zoxide init fish --cmd j | source
 rbenv init - | source
 starship init fish | source
-
 fzf_configure_bindings --processes=\cp --directory=\cf --git_log=\co --git_status=\cs
