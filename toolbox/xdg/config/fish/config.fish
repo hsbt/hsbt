@@ -86,19 +86,6 @@ alias make "make --no-print-directory --quiet"
 
 abbr -a -- e "code-insiders -a ."
 
-function fish_prompt
-  set_color $fish_color_cwd
-  echo -n (prompt_pwd)
-  if set -q RBENV_VERSION
-    echo -n ' '
-    set_color red
-    echo -n $RBENV_VERSION
-  end
-  set_color normal
-  echo -e (__fish_git_prompt)
-  echo -n '$ '
-end
-
 function export
   set arr (echo $argv|tr = \n)
   set -gx $arr[1] $arr[2]
@@ -118,5 +105,6 @@ source $HOME/.config/op/plugins.sh
 eval (direnv hook fish)
 zoxide init fish --cmd j | source
 rbenv init - | source
+starship init fish | source
 
 fzf_configure_bindings --processes=\cp --directory=\cf --git_log=\co --git_status=\cs
