@@ -51,6 +51,8 @@ set -x GPG_TTY (tty)
 set -x EDITOR vim
 set -x GIT_MERGE_AUTOEDIT no
 set -x LESSHISTFILE -
+set -x CC sccache clang
+set -x RUSTC_WRAPPER $CARGO_HOME/bin/sccache
 set -x RUBY_CODESIGN hsbt
 set -x RUBYOPT -w
 set -x RUBY_MN_THREADS 1
