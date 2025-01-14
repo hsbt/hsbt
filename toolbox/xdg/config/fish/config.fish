@@ -59,7 +59,9 @@ set -x RUBY_MN_THREADS 1
 set -x RUBY_CONFIGURE_OPTS --disable-install-doc
 set -x PKG_CONFIG_PATH /opt/homebrew/opt/imagemagick/lib/pkgconfig:/usr/lib/pkgconfig
 set -x GHQ_ROOT $HOME/Documents
-set -x FZF_DEFAULT_COMMAND 'rg --files --hidden --follow --glob "!.git/*"'
+set -x GHQ_SELECTOR sk
+set -x SKIM_DEFAULT_COMMAND 'rg --files --hidden --follow --glob "!.git/*"'
+skim_key_bindings
 
 # fish_add_path /opt/homebrew/opt/binutils/bin
 # fish_add_path /opt/homebrew/opt/libtool/libexec/gnubin
@@ -107,4 +109,3 @@ eval (direnv hook fish)
 zoxide init fish --cmd j | source
 rbenv init - | source
 starship init fish | source
-fzf_configure_bindings --processes=\cp --directory=\cf --git_log=\co --git_status=\cs

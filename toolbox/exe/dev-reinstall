@@ -25,6 +25,7 @@ FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("cargo").to_s
   git-delta
   xh
   spacer
+  skim
   sccache
 ].each { |pkg| system "cargo install --locked #{pkg}" }
 
@@ -51,7 +52,6 @@ FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("go").to_s
   github.com/mikefarah/yq/v4@latest
   github.com/antonmedv/fx@latest
   github.com/tomnomnom/gron@latest
-  github.com/junegunn/fzf@latest
   github.com/x-motemen/ghq@latest
   github.com/hashicorp/terraform@latest
   github.com/DarthSim/overmind/v2@latest
@@ -77,7 +77,6 @@ FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("heroku").to_s
 ].each { |pkg| system "heroku plugins:install #{pkg}" }
 
 %w[
-  PatrickF1/fzf.fish
   decors/fish-ghq
   evanlucas/fish-kubectl-completions
   0rax/fish-bd
