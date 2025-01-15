@@ -27,6 +27,8 @@ FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("cargo").to_s
   spacer
   skim
   sccache
+  coreutils
+  findutils
 ].each { |pkg| system "cargo install --locked #{pkg}" }
 
 FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("go").to_s
