@@ -84,6 +84,7 @@ FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("heroku").to_s
   0rax/fish-bd
   2m/fish-history-merge
 ].each { |pkg| system "fisher install #{pkg}" }
+system "curl -L https://raw.github.com/skim-rs/skim/master/shell/key-bindings.fish --create-dirs -o ~/.config/fish/conf.d/sk_key_bindings.fish"
 
 %w[
   github/gh-copilot
