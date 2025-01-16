@@ -41,6 +41,7 @@ class MakeRssFull
           item.link = "#{maker.channel.link}#{k.split("-").join}.html"
           item.title = "#{k} の日記"
           item.date = v.last[:date]
+          item.pubDate = v.last[:date]
           item.content_encoded = v.map { |c| c[:content] }.join("\n")
         end
       end
