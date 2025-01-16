@@ -80,12 +80,9 @@ GEM
     uri (1.0.2)
 
 PLATFORMS
-  arm64-darwin-21
-  arm64-darwin-22
-  arm64-darwin-23
-  arm64-darwin-24
-  x86_64-darwin-20
-  x86_64-darwin-21
+  arm64-darwin
+  ruby
+  x86_64-darwin
   x86_64-linux
 
 DEPENDENCIES
@@ -100,4 +97,4 @@ DEPENDENCIES
   standard
 
 BUNDLED WITH
-   2.5.18
+   2.6.2
