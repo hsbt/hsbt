@@ -20,6 +20,12 @@ rbenv uninstall -f ruby-dev
 env RUBY_CONFIGURE_OPTS="--disable-install-doc --with-baseruby=/opt/homebrew/Library/Homebrew/vendor/portable-ruby/current/bin/ruby  --with-openssl-dir=$(brew --prefix openssl) --with-gmp-dir=$(brew --prefix gmp) --with-libyaml-dir=$(brew --prefix libyaml)" rbenv install ruby-dev
 rbenv global ruby-dev
 
+export GEM_HOME=
+gem list --no-versions | xargs gem uninstall --force
+export GEM_HOME=~/.local/share/gem
+
+curl -s https://stdgems.org/bundled_gems.json | jq -r '.gems[].gem' | xargs -n1 gem install
+
 RBENV_VERSION=3.3 gem update
 
 for v in ruby-dev 3.3 3.2 3.1; do
