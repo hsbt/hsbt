@@ -31,6 +31,7 @@ FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("cargo").to_s
   findutils
   hyperfine
   tokei
+  mise
 ].each { |pkg| system "cargo install --locked #{pkg}" }
 
 FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("go").to_s
