@@ -109,3 +109,4 @@ zoxide init fish --cmd j | source
 rbenv init - | source
 starship init fish | source
 mise activate fish | source
+source (mise where gcloud)/path.fish.inc
