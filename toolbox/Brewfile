@@ -1,7 +1,3 @@
-def stable?
-  !(/15/ =~ `sw_vers -productVersion`)
-end
-
 cask_args appdir: "/Applications"
 
 tap "homebrew/bundle"
@@ -47,12 +43,6 @@ brew "python"
 cask "anaconda"
 brew "pipenv"
 brew "poetry"
-brew "go"
-if stable?
-  brew "node@20"
-else
-  brew "node"
-end
 brew "deno"
 brew "just"
 brew "elixir"
@@ -85,12 +75,7 @@ brew "watchman"
 brew "s3cmd"
 brew "xdelta"
 brew "fdupes"
-brew "postgresql@14"
-if stable?
-  brew "mysql@8.0"
-else
-  brew "mysql"
-end
+brew "postgresql@17"
 brew "valkey"
 tap "elastic/tap"
 brew "elastic/tap/elasticsearch-full"
@@ -120,11 +105,9 @@ brew "kubectl"
 brew "helm"
 brew "krew"
 brew "kompose"
-cask "google-cloud-sdk"
 brew "azure-cli"
 brew "gh"
 brew "flyctl"
-brew "awscli"
 cask "abyssoft-teleport"
 tap "deskflow/tap"
 cask "deskflow"
