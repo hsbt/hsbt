@@ -130,9 +130,6 @@ cask "microsoft-edge@beta"
 cask "google-chrome"
 cask "1password@beta"
 
-tap "dart-lang/dart"
-brew "dart"
-
 tap "heroku/brew"
 brew "heroku"
 
