@@ -1,0 +1,6 @@
+[tools]
+aws-cli = "latest"
+gcloud = "latest"
+go = "latest"
+mysql = "latest"
+node = "latest"
