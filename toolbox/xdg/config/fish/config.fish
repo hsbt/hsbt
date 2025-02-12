@@ -103,7 +103,6 @@ function history-merge --on-event fish_preexec
   history --merge
 end
 
-source (brew --prefix)/share/google-cloud-sdk/path.fish.inc
 source $HOME/.config/op/plugins.sh
 eval (direnv hook fish)
 zoxide init fish --cmd j | source
