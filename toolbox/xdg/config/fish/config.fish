@@ -75,6 +75,9 @@ fish_add_path /opt/homebrew/opt/bison/bin
 fish_add_path /opt/homebrew/opt/m4/bin
 fish_add_path /opt/homebrew/sbin # Move to the top of PATH again
 fish_add_path /opt/homebrew/bin # Move to the top of PATH again
+
+mise activate fish | source
+
 fish_add_path $KREW_ROOT/bin
 fish_add_path $XDG_DATA_HOME/cargo/bin # Move to the top of PATH again
 fish_add_path $XDG_DATA_HOME/npm/bin
@@ -104,9 +107,8 @@ function history-merge --on-event fish_preexec
 end
 
 source $HOME/.config/op/plugins.sh
-eval (direnv hook fish)
-zoxide init fish --cmd j | source
-rbenv init - | source
-starship init fish | source
-mise activate fish | source
 source (mise where gcloud)/path.fish.inc
+direnv hook fish | source
+zoxide init fish --cmd j | source
+starship init fish | source
+rbenv init - | source
