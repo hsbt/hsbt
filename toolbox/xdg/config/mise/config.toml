@@ -1,5 +1,6 @@
 [tools]
 aws-cli = "latest"
+bun = "latest"
 dart = "latest"
 deno = "latest"
 elasticsearch = "latest"
