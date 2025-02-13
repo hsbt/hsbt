@@ -105,5 +105,5 @@ source (mise where gcloud)/path.fish.inc
 direnv hook fish | source
 zoxide init fish --cmd j | source
 starship init fish | source
-rbenv init - | source
 mise activate fish | source
+rbenv init - | source
