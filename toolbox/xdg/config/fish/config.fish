@@ -63,6 +63,10 @@ set -x GHQ_SELECTOR sk
 set -x SKIM_DEFAULT_COMMAND 'rg --files --hidden --follow --glob "!.git/*"'
 skim_key_bindings
 
+# prepend cargo and go paths from system paths
+fish_add_path $XDG_DATA_HOME/go/bin
+fish_add_path $XDG_DATA_HOME/cargo/bin
+
 # fish_add_path /opt/homebrew/opt/binutils/bin
 # fish_add_path /opt/homebrew/opt/libtool/libexec/gnubin
 fish_add_path /opt/homebrew/opt/coreutils/libexec/gnubin
@@ -75,16 +79,6 @@ fish_add_path /opt/homebrew/opt/bison/bin
 fish_add_path /opt/homebrew/opt/m4/bin
 fish_add_path /opt/homebrew/sbin # Move to the top of PATH again
 fish_add_path /opt/homebrew/bin # Move to the top of PATH again
-
-mise activate fish | source
-
-fish_add_path $KREW_ROOT/bin
-fish_add_path $XDG_DATA_HOME/cargo/bin # Move to the top of PATH again
-fish_add_path $XDG_DATA_HOME/npm/bin
-fish_add_path $RBENV_ROOT/bin
-fish_add_path $GEM_HOME/bin
-fish_add_path $HOME/.local/bin
-fish_add_path $HOME/Documents/github.com/hsbt/hsbt/toolbox/exe
 
 alias l lsd
 alias ll "lsd -la"
@@ -112,3 +106,4 @@ direnv hook fish | source
 zoxide init fish --cmd j | source
 starship init fish | source
 rbenv init - | source
+mise activate fish | source
