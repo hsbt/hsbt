@@ -33,7 +33,7 @@ set -x CONDARC $XDG_CONFIG_HOME/conda/condarc
 set -x PUB_CACHE $XDG_CACHE_HOME/pub-cache
 set -x KUBECONFIG $XDG_CONFIG_HOME/kube/config
 set -x GOMODCACHE $XDG_CACHE_HOME/go-mod
-set -x GOBIN $HOME/.local/bin
+set -x GOBIN $HOMXDG_DATA_HOME/go/bin
 set -x ANALYZER_STATE_LOCATION_OVERRIDE $XDG_CACHE_HOME/dart_server
 set -x CARGO_HOME $XDG_DATA_HOME/cargo
 set -x RUSTUP_HOME $XDG_DATA_HOME/rustup
