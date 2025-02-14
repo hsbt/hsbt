@@ -17,7 +17,7 @@ dev_versions.each do |v|
   system "mise uninstall ruby@#{v}-dev"
   system "mise i ruby@#{v}-dev"
 
-  Dir.chdir(ENV["HOME"] + ".local/share/mise/installs/ruby") do
+  Dir.chdir(ENV["HOME"] + "/.local/share/mise/installs/ruby") do
     FileUtils.rm_rf v
     File.symlink(v + "-dev", v)
     d = defs.select { |d| d =~ /^#{v}.\d+$/ }.last
