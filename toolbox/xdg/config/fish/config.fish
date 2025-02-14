@@ -56,7 +56,7 @@ set -x RUBYOPT -w
 set -x RUBY_MN_THREADS 1
 set -x RUBY_YJIT_ENABLE 1
 set -x RUBY_CONFIGURE_OPTS --disable-install-doc
-set -x MAKE_OPTS -j$(sysctl -n hw.logicalcpu)
+set -x MAKEFLAGS -j$(sysctl -n hw.logicalcpu)
 set -x PKG_CONFIG_PATH /opt/homebrew/opt/imagemagick/lib/pkgconfig:/usr/lib/pkgconfig
 set -x GHQ_ROOT $HOME/Documents
 set -x GHQ_SELECTOR sk
