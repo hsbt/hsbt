@@ -1,36 +1,26 @@
 #!/usr/bin/env ruby
 
-eol_versions = %w[
-]
 dev_versions = %w[
   3.1
   3.2
   3.3
+  3.4
 ]
 
 require "shellwords"
 require "fileutils"
-require "pathname"
+require "json"
 
-system "rbenv global system"
-
-defs = `rbenv install --list`.split.select { |v| v =~ /[0-9]/ }
-
-eol_versions.each do |v|
-  puts "Installing #{v}"
-  system "rbenv uninstall -f #{v}"
-  system "env RUBY_CONFIGURE_OPTS=\"--disable-install-doc --with-baseruby=/opt/homebrew/Library/Homebrew/vendor/portable-ruby/current/bin/ruby\" rbenv install -f #{v}"
-end
+defs = `mise ls-remote ruby`.split
 
 dev_versions.each do |v|
-  puts "Installing #{v}"
-  system "rbenv uninstall -f #{v}-dev"
-  system "env RUBY_CONFIGURE_OPTS=\"--disable-install-doc --with-baseruby=/opt/homebrew/Library/Homebrew/vendor/portable-ruby/current/bin/ruby\" rbenv install -f #{v}-dev"
+  system "mise uninstall ruby@#{v}-dev"
+  system "mise i ruby@#{v}-dev"
 
   Dir.chdir(ENV["RBENV_ROOT"] + "/versions") do
     FileUtils.rm_rf v
     File.symlink(v + "-dev", v)
-    d = defs.find { |d| d =~ /^#{v}.\d+$/ }
+    d = defs.select { |d| d =~ /^#{v}.\d+$/ }.last
     if d
       latest = d.match(/\d+$/).to_s.to_i
       0.upto(latest) do |i|
@@ -42,20 +32,15 @@ dev_versions.each do |v|
   end
 end
 
-system "rbenv uninstall -f ruby-dev"
-system "env RUBY_CONFIGURE_OPTS=\"--disable-install-doc --with-baseruby=/opt/homebrew/Library/Homebrew/vendor/portable-ruby/current/bin/ruby\" rbenv install ruby-dev"
+system "mise uninstall ruby@ruby-dev"
+system "mise i ruby@ruby-dev"
 
-platforms = %w[jruby truffleruby graalvm]
-installed = `rbenv versions`.split("\n").map{ |v| v.split(" ")[0] }
+platforms = %w[jruby truffleruby.graalvm truffleruby-]
+installed = JSON.parse(`mise ls ruby -J`).map{|r| r["version"] }
 platforms.each do |pf|
   installed.each do |v|
-    system "rbenv uninstall -f #{v}" if v =~ Regexp.new(pf.shellescape)
+    system "mise uninstall ruby@#{v}" if v =~ Regexp.new(pf)
   end
+  d = defs.select { |d| d =~ Regexp.new("^#{pf}") }
+  system "mise i ruby@#{d}"
 end
-platforms.each do |pf|
-  puts "Installing #{pf}"
-  d = defs.find { |d| d =~ Regexp.new(pf) }
-  system "rbenv install #{d}"
-end
-
-system "rbenv global ruby-dev"
