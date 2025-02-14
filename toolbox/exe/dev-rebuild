@@ -33,7 +33,7 @@ dev_versions.each do |v|
 end
 
 system "mise uninstall ruby@ruby-dev"
-system "mise i ruby@ruby-dev"
+system "MISE_RUBY_VERSION=3.4-dev mise i ruby@ruby-dev"
 
 platforms = %w[jruby truffleruby.graalvm truffleruby-]
 installed = JSON.parse(`mise ls ruby -J`).map{|r| r["version"] }
