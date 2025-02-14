@@ -15,7 +15,7 @@ terraform = "latest"
 
 [env]
 _.path = [
-  "{{env.GEM_HOME}}/bin",
+  "{{env.XDG_DATA_HOME}}/gem/bin",
   "{{env.XDG_DATA_HOME}}/npm/bin",
   "{{env.KREW_ROOT}}/bin",
   "{{env.HOME}}/.local/bin"
