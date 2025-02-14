@@ -10,11 +10,11 @@ go = "latest"
 java = "latest"
 mysql = "latest"
 node = "latest"
+ruby = "ruby-dev"
 terraform = "latest"
 
 [env]
 _.path = [
-  "{{env.RBENV_ROOT}}/bin",
   "{{env.GEM_HOME}}/bin",
   "{{env.XDG_DATA_HOME}}/npm/bin",
   "{{env.KREW_ROOT}}/bin",
