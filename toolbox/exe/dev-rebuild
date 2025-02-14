@@ -41,6 +41,6 @@ platforms.each do |pf|
   installed.each do |v|
     system "mise uninstall ruby@#{v}" if v =~ Regexp.new(pf)
   end
-  d = defs.select { |d| d =~ Regexp.new("^#{pf}") }
+  d = defs.select { |d| d =~ Regexp.new("^#{pf}") }.last
   system "mise i ruby@#{d}"
 end
