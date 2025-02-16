@@ -14,7 +14,7 @@ for v in ruby-dev 3.4 3.3 3.2 3.1; do
 done
 
 mise uninstall ruby@ruby-dev
-mise install ruby@ruby-dev
+MISE_RUBY_VERSION=3.4 mise install ruby@ruby-dev
 
 export MISE_RUBY_VERSION=ruby-dev
 unset GEM_HOME
