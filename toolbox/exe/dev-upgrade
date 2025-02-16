@@ -13,8 +13,10 @@ for v in ruby-dev 3.4 3.3 3.2 3.1; do
   MISE_RUBY_VERSION=$v gem uninstall openssl psych zlib digest strscan stringio pathname --force --executables
 done
 
+mise use ruby@3.4-dev
 mise uninstall ruby@ruby-dev
-MISE_RUBY_VERSION=3.4 mise install ruby@ruby-dev
+mise install ruby@ruby-dev
+mise use ruby@ruby-dev
 
 export MISE_RUBY_VERSION=ruby-dev
 unset GEM_HOME
