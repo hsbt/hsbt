@@ -63,25 +63,25 @@ set -x GHQ_SELECTOR sk
 set -x SKIM_DEFAULT_COMMAND 'rg --files --hidden --follow --glob "!.git/*"'
 skim_key_bindings
 
+# Use portable Ruby instead of System Ruby by macOS
+fish_add_path /opt/homebrew/Library/Homebrew/vendor/portable-ruby/current/bin
+
+fish_add_path /opt/homebrew/bin # Move to the top of PATH again
+fish_add_path /opt/homebrew/sbin # Move to the top of PATH again
+fish_add_path /opt/homebrew/opt/m4/bin
+fish_add_path /opt/homebrew/opt/bison/bin
+# fish_add_path /opt/homebrew/opt/binutils/bin
+fish_add_path /opt/homebrew/opt/grep/libexec/gnubin
+fish_add_path /opt/homebrew/opt/gnu-tar/libexec/gnubin
+fish_add_path /opt/homebrew/opt/gnu-sed/libexec/gnubin
+fish_add_path /opt/homebrew/opt/make/libexec/gnubin
+fish_add_path /opt/homebrew/opt/findutils/libexec/gnubin
+fish_add_path /opt/homebrew/opt/coreutils/libexec/gnubin
+# fish_add_path /opt/homebrew/opt/libtool/libexec/gnubin
+
 # prepend cargo and go paths from system paths
 fish_add_path $XDG_DATA_HOME/go/bin
 fish_add_path $XDG_DATA_HOME/cargo/bin
-
-# fish_add_path /opt/homebrew/opt/binutils/bin
-# fish_add_path /opt/homebrew/opt/libtool/libexec/gnubin
-fish_add_path /opt/homebrew/opt/coreutils/libexec/gnubin
-fish_add_path /opt/homebrew/opt/findutils/libexec/gnubin
-fish_add_path /opt/homebrew/opt/gnu-sed/libexec/gnubin
-fish_add_path /opt/homebrew/opt/gnu-tar/libexec/gnubin
-fish_add_path /opt/homebrew/opt/make/libexec/gnubin
-fish_add_path /opt/homebrew/opt/grep/libexec/gnubin
-fish_add_path /opt/homebrew/opt/bison/bin
-fish_add_path /opt/homebrew/opt/m4/bin
-fish_add_path /opt/homebrew/sbin # Move to the top of PATH again
-fish_add_path /opt/homebrew/bin # Move to the top of PATH again
-
-# Use portable Ruby instead of System Ruby by macOS
-fish_add_path /opt/homebrew/Library/Homebrew/vendor/portable-ruby/current/bin
 
 alias l lsd
 alias ll "lsd -la"
