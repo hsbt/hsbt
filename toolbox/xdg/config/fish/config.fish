@@ -105,7 +105,6 @@ end
 
 source $HOME/.config/op/plugins.sh
 source (mise where gcloud)/path.fish.inc
-direnv hook fish | source
 zoxide init fish --cmd j | source
 starship init fish | source
 mise activate fish | source
