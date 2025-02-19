@@ -20,4 +20,3 @@ _.path = [
   "{{env.KREW_ROOT}}/bin",
   "{{env.HOME}}/.local/bin"
 ]
-_.file = [".env", ".envrc"]

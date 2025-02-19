@@ -48,6 +48,7 @@ set -x TERM xterm-256color
 set -x GPG_TTY (tty)
 set -x EDITOR vim
 set -x GIT_MERGE_AUTOEDIT no
+set -x MISE_ENV_FILE .envrc
 set -x LESSHISTFILE -
 set -x CC sccache clang
 set -x RUSTC_WRAPPER $CARGO_HOME/bin/sccache
