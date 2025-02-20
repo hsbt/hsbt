@@ -63,6 +63,8 @@ FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("go").to_s
   github.com/charmbracelet/vhs@latest
   golang.org/x/vuln/cmd/govulncheck@latest
   github.com/traefik/yaegi/cmd/yaegi@latest
+  github.com/mindersec/minder/cmd/cli@latest
+  github.com/bomctl/bomctl@latest
 ].each { |pkg| system "go install #{pkg}" }
 
 FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("heroku").to_s
