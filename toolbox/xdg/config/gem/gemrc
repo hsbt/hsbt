@@ -1,3 +1,2 @@
 gem: "--no-document --env-shebang"
 :install_extension_in_lib: false
-gemsrc_use_ghq: true
