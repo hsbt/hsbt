@@ -68,6 +68,7 @@ FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("go").to_s
   github.com/bomctl/bomctl@latest
   github.com/ossf/scorecard@latest
   github.com/openvex/vexctl@latest
+  github.com/google/go-containerregistry/cmd/crane@latest
 ].each { |pkg| system "go install #{pkg}" }
 
 FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("heroku").to_s
