@@ -5,6 +5,8 @@ system "npm install -g npm"
   babel-cli
   eslint
   yarn
+  @cyclonedx/cdxgen
+  heroku@10.1.0
 ].each { |pkg| system "npm install -g #{pkg}" }
 
 FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("cargo").to_s
@@ -69,6 +71,9 @@ FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("go").to_s
   github.com/ossf/scorecard@latest
   github.com/openvex/vexctl@latest
   github.com/google/go-containerregistry/cmd/crane@latest
+  github.com/devops-kung-fu/bomber@latest
+  github.com/aquasecurity/trivy/cmd/trivy@latest
+  github.com/anchore/syft/cmd/syft@latest
 ].each { |pkg| system "go install #{pkg}" }
 
 FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("heroku").to_s
