@@ -16,5 +16,3 @@ mise use -g ruby@ruby-dev
 unset GEM_HOME
 gem list --no-versions | xargs gem uninstall --force
 export GEM_HOME=~/.local/share/gem
-
-curl -s https://stdgems.org/bundled_gems.json | jq -r '.gems[].gem' | xargs -n1 gem install
