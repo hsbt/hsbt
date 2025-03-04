@@ -1,13 +1,14 @@
-name: WSL
+name: Ubuntu on WSL
 
 on:
   pull_request:
 
 jobs:
-  test:
+  wsl:
     runs-on: windows-latest
     steps:
-      - uses: Cyberboss/install-winget@v1
+      - name: Install winget
+        uses: Cyberboss/install-winget@v1
 
       - name: Install or update WSL
         uses: Ubuntu/WSL/.github/actions/wsl-install@main
@@ -17,9 +18,9 @@ jobs:
       - name: Check out the repository
         uses: Ubuntu/WSL/.github/actions/wsl-checkout@main
         with:
-         distro: Ubuntu-24.04
-         working-dir: /tmp/github/
-         submodules: true
+          distro: Ubuntu-24.04
+          working-dir: /tmp/github/
+          submodules: true
 
       - name: Install dependencies
         uses: Ubuntu/WSL/.github/actions/wsl-bash@main
@@ -27,6 +28,18 @@ jobs:
          distro: Ubuntu-24.04
          working-dir: /tmp/github/
          exec: |
-             DEBIAN_FRONTEND=noninteractive sudo apt update
-             DEBIAN_FRONTEND=noninteractive sudo apt install -y build-essential
-             uname -a
+            DEBIAN_FRONTEND=noninteractive sudo apt update
+            DEBIAN_FRONTEND=noninteractive sudo apt install -y ruby autoconf patch build-essential rustc libssl-dev libyaml-dev zlib1g-dev libgmp-dev
+
+      - name: Install dependencies
+        uses: Ubuntu/WSL/.github/actions/wsl-bash@main
+        with:
+         distro: Ubuntu-24.04
+         working-dir: /tmp/github/
+         exec: |
+            ./autogen.sh
+            ./configure --disable-install-doc
+            make ruby -j4
+            make extract-gems
+            make -j4
+            make check TESTS="-j4" MSPECOPT="-j"
