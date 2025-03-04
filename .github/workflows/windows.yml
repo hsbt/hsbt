@@ -44,4 +44,12 @@ jobs:
             make ruby -j4
             make extract-gems
             make -j4
+
+      - name: Test
+        uses: Ubuntu/WSL/.github/actions/wsl-bash@main
+        with:
+         distro: Ubuntu-24.04
+         working-dir: /tmp/github/
+         exec: |
+            cd ruby
             make check TESTS="-j4" MSPECOPT="-j"
