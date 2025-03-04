@@ -7,6 +7,8 @@ jobs:
   test:
     runs-on: windows-latest
     steps:
+      - uses: Cyberboss/install-winget@v1
+
       - name: Install or update WSL
         uses: Ubuntu/WSL/.github/actions/wsl-install@main
         with:
