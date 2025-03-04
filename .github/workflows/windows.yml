@@ -15,6 +15,15 @@ jobs:
         with:
           distro: Ubuntu-24.04
 
+      - name: Install dependencies
+        uses: Ubuntu/WSL/.github/actions/wsl-bash@main
+        with:
+         distro: Ubuntu-24.04
+         working-dir: /tmp/github/
+         exec: |
+            DEBIAN_FRONTEND=noninteractive sudo apt update
+            DEBIAN_FRONTEND=noninteractive sudo apt install -y ruby autoconf patch build-essential rustc libssl-dev libyaml-dev zlib1g-dev libgmp-dev
+
       - name: Check out the repository
         uses: Ubuntu/WSL/.github/actions/wsl-checkout@main
         with:
@@ -28,15 +37,8 @@ jobs:
          distro: Ubuntu-24.04
          working-dir: /tmp/github/
          exec: |
-            DEBIAN_FRONTEND=noninteractive sudo apt update
-            DEBIAN_FRONTEND=noninteractive sudo apt install -y ruby autoconf patch build-essential rustc libssl-dev libyaml-dev zlib1g-dev libgmp-dev
-
-      - name: Install dependencies
-        uses: Ubuntu/WSL/.github/actions/wsl-bash@main
-        with:
-         distro: Ubuntu-24.04
-         working-dir: /tmp/github/
-         exec: |
+            git clone https://github.com/ruby/ruby
+            cd ruby
             ./autogen.sh
             ./configure --disable-install-doc
             make ruby -j4
