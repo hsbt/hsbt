@@ -1,6 +1,7 @@
 require "bundler"
 require "json"
 require "securerandom"
+require "rubygems"
 
 lockfile = Bundler::LockfileParser.new(File.read("Gemfile.lock"))
 
@@ -22,14 +23,36 @@ sbom = {
 }
 
 lockfile.specs.each do |spec|
+  begin
+    gemspec = Gem::Specification.find_by_name(spec.name, spec.version)
+    
+    # 複数ライセンスに対応
+    licenses = []
+    if gemspec
+      if gemspec.license && !gemspec.license.empty?
+        licenses << gemspec.license
+      end
+      
+      if gemspec.licenses && !gemspec.licenses.empty?
+        licenses.concat(gemspec.licenses)
+      end
+      
+      licenses.uniq!
+    end
+    
+    license_string = licenses.empty? ? "NOASSERTION" : licenses.join(", ")
+  rescue Gem::LoadError
+    license_string = "NOASSERTION"
+  end
+
   package = {
     "SPDXID" => "SPDXRef-Package-#{spec.name}",
     "name" => spec.name,
     "versionInfo" => spec.version.to_s,
     "downloadLocation" => "NOASSERTION",
     "filesAnalyzed" => false,
-    "licenseConcluded" => "NOASSERTION",
-    "licenseDeclared" => "NOASSERTION",
+    "licenseConcluded" => license_string,
+    "licenseDeclared" => license_string,
     "supplier" => "NOASSERTION",
     "externalRefs" => [
       {
