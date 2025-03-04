@@ -6,6 +6,12 @@ on:
 jobs:
   wsl:
     runs-on: windows-latest
+    strategy:
+      matrix:
+        distro:
+          - Ubuntu-22.04
+          - Ubuntu-24.04
+
     steps:
       - name: Install winget
         uses: Cyberboss/install-winget@v1
@@ -13,12 +19,12 @@ jobs:
       - name: Install or update WSL
         uses: Ubuntu/WSL/.github/actions/wsl-install@main
         with:
-          distro: Ubuntu-24.04
+          distro: ${{ matrix.distro }}
 
       - name: Install dependencies
         uses: Ubuntu/WSL/.github/actions/wsl-bash@main
         with:
-         distro: Ubuntu-24.04
+         distro: ${{ matrix.distro }}
          working-dir: /tmp/github/
          exec: |
             DEBIAN_FRONTEND=noninteractive sudo apt update
@@ -27,14 +33,14 @@ jobs:
       - name: Check out the repository
         uses: Ubuntu/WSL/.github/actions/wsl-checkout@main
         with:
-          distro: Ubuntu-24.04
+          distro: ${{ matrix.distro }}
           working-dir: /tmp/github/
           submodules: true
 
       - name: Build
         uses: Ubuntu/WSL/.github/actions/wsl-bash@main
         with:
-         distro: Ubuntu-24.04
+         distro: ${{ matrix.distro }}
          working-dir: /tmp/github/
          exec: |
             git clone https://github.com/ruby/ruby
@@ -48,7 +54,7 @@ jobs:
       - name: Test
         uses: Ubuntu/WSL/.github/actions/wsl-bash@main
         with:
-         distro: Ubuntu-24.04
+         distro: ${{ matrix.distro }}
          working-dir: /tmp/github/
          exec: |
             cd ruby
