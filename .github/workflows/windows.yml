@@ -52,5 +52,4 @@ jobs:
          working-dir: /tmp/github/
          exec: |
             cd ruby
-            # make check TESTS="-j4"
-            make test-spec MSPECOPT="-j"
+            make check MSPECOPT="-j"
