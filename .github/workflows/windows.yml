@@ -22,7 +22,7 @@ jobs:
          working-dir: /tmp/github/
          exec: |
             DEBIAN_FRONTEND=noninteractive sudo apt update
-            DEBIAN_FRONTEND=noninteractive sudo apt install -y ruby autoconf patch build-essential libssl-dev libyaml-dev zlib1g-dev libgmp-dev
+            DEBIAN_FRONTEND=noninteractive sudo apt install -y ruby build-essential autoconf libssl-dev libyaml-dev zlib1g-dev libgmp-dev
 
       - name: Check out the repository
         uses: Ubuntu/WSL/.github/actions/wsl-checkout@main
