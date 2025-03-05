@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+Gem::Specification.all.map{|s| [s.homepage, s.metadata["source_code_uri"]] }.flatten.uniq.
+select{|u| u unless (u&.empty? || !u&.match?(/github\.com|gitlab\.org/) || u&.match?(/\/tree/)) }.sort.
+each{|u| system("ghq get #{u}") };nil
