@@ -19,12 +19,16 @@ class MakeRssFull
 
     src = RSS::Parser.parse(src, false)
     src.items.each do |item|
+      next if item.link.include?('#c')
+
       item.link =~ /(\d{4})(\d{2})(\d{2})/
       k = "#{$1}-#{$2}-#{$3}"
+      content = item.content_encoded.to_s
+
       if rss[k]
-        rss[k] << {content: item.content_encoded, date: item.date}
+        rss[k] << {content: content, date: item.date}
       else
-        rss[k] = [{content: item.content_encoded, date: item.date}]
+        rss[k] = [{content: content, date: item.date}]
       end
     end
 
