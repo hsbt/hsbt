@@ -41,18 +41,23 @@ class GitHubActionsUpdater
     if @verbose && token.nil?
       puts "Warning: No GitHub token provided. API requests may be rate limited."
     end
+
+    # If no workflow files specified, use all files in the default directory
+    if @workflow_files.empty?
+      @workflow_files = find_all_workflow_files
+    end
   end
 
   def run
     if @workflow_files.empty?
-      puts "No workflow files specified. Use -f/--file option to specify files to update."
+      puts "No workflow files found in #{DEFAULT_WORKFLOW_DIR} directory."
       exit 1
     end
 
     # Validate all specified files exist
     validate_workflow_files
 
-    puts "Checking GitHub Actions in #{@workflow_files.size} specified workflow file(s)..."
+    puts "Checking GitHub Actions in #{@workflow_files.size} workflow file(s)..."
 
     # Find all actions with hash-based versions in specified workflow files
     hash_based_actions = find_hash_based_actions
@@ -84,6 +89,16 @@ class GitHubActionsUpdater
 
     # Update the workflow files
     update_workflow_files(hash_based_actions)
+  end
+
+  def find_all_workflow_files
+    workflow_dir = File.join(Dir.pwd, DEFAULT_WORKFLOW_DIR)
+    unless Dir.exist?(workflow_dir)
+      puts "Workflow directory not found at #{workflow_dir}"
+      return []
+    end
+
+    Dir.glob(File.join(workflow_dir, "*.{yml,yaml}")).sort
   end
 
   def validate_workflow_files
@@ -247,7 +262,7 @@ end
 
 options = {}
 OptionParser.new do |opts|
-  opts.banner = "Usage: update-github-actions.rb [options] -f workflow_file [workflow_file...]"
+  opts.banner = "Usage: update-github-actions.rb [options] [-f workflow_file ...]"
 
   opts.on("-f", "--file FILE", "Specify workflow file(s) to update (can be used multiple times, relative or absolute path)") do |file|
     options[:workflow_files] ||= []
