@@ -18,12 +18,13 @@ require "pathname"
 class GitHubActionsUpdater
   DEFAULT_WORKFLOW_DIR = ".github/workflows"
 
-  attr_reader :dry_run, :verbose, :workflow_files
+  attr_reader :dry_run, :verbose, :workflow_files, :target_actions
 
   def initialize(options = {})
     @dry_run = options[:dry_run]
     @verbose = options[:verbose]
     @workflow_files = options[:workflow_files] || []
+    @target_actions = options[:target_actions] || []
     @latest_versions_cache = {}
 
     # Initialize the GitHub client with token if provided
@@ -122,6 +123,9 @@ class GitHubActionsUpdater
         action = match[0]
         version = match[1]
         comment = match[2]
+
+        # Skip if target actions are specified and this action is not included
+        next if @target_actions.any? && !@target_actions.include?(action)
 
         # Check if it's a SHA hash (40 hex characters)
         if version&.match?(sha_pattern)
@@ -258,17 +262,62 @@ class GitHubActionsUpdater
 
     files
   end
+  
+  def list_actions_in_workflows
+    actions = {}
+    
+    @workflow_files.each do |file|
+      content = File.read(file)
+      
+      content.scan(/uses:\s+([^@\s]+)@([^\s#]+)(?:\s+#\s+(.+))?/) do |match|
+        action = match[0]
+        version = match[1]
+        comment = match[2]
+        
+        actions[action] ||= Set.new
+        actions[action] << version
+      end
+    rescue => e
+      puts "Error processing #{file}: #{e.message}" if verbose
+    end
+    
+    if defined?(Terminal::Table)
+      rows = actions.map { |action, versions| [action, versions.to_a.join(", ")] }
+      table = Terminal::Table.new(
+        title: "GitHub Actions in Workflow Files",
+        headings: ["Action", "Versions"],
+        rows: rows
+      )
+      puts table
+    else
+      puts "GitHub Actions in workflow files:"
+      actions.each do |action, versions|
+        puts "  - #{action}: #{versions.to_a.join(", ")}"
+      end
+    end
+    
+    actions.keys
+  end
 end
 
 options = {}
 OptionParser.new do |opts|
-  opts.banner = "Usage: update-github-actions.rb [options] [-f workflow_file ...]"
+  opts.banner = "Usage: update-github-actions.rb [options] [-f workflow_file ...] [-a action ...]"
 
   opts.on("-f", "--file FILE", "Specify workflow file(s) to update (can be used multiple times, relative or absolute path)") do |file|
     options[:workflow_files] ||= []
     # Convert to absolute path if it's relative
     file_path = File.expand_path(file, Dir.pwd)
     options[:workflow_files] << file_path
+  end
+
+  opts.on("-a", "--action ACTION", "Target specific action(s) to update (can be used multiple times, e.g. 'actions/checkout')") do |action|
+    options[:target_actions] ||= []
+    options[:target_actions] << action
+  end
+  
+  opts.on("--list-actions", "List all actions used in workflow files") do
+    options[:list_actions] = true
   end
 
   opts.on("-l", "--list", "List available workflow files") do
@@ -297,6 +346,8 @@ updater = GitHubActionsUpdater.new(options)
 
 if options[:list_files]
   updater.list_workflow_files
+elsif options[:list_actions]
+  updater.list_actions_in_workflows
 else
   updater.run
 end
