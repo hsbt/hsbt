@@ -106,12 +106,6 @@ async function main() {
     const outputFile = 'hatena-tech-blogs.opml';
     fs.writeFileSync(outputFile, opml);
     console.log(`OPML file saved to ${outputFile}`);
-
-    // Also output the raw blog information for reference
-    const blogsOutput = blogs.map(([title, url]) => `["${title}", "${url}"]`).join(',\n  ');
-    const arrayOutput = `[\n  ${blogsOutput}\n]`;
-    fs.writeFileSync('tech-blogs-list.ts', `export const techBlogs = ${arrayOutput};\n`);
-    console.log('Blog list saved to tech-blogs-list.ts');
     
   } catch (error) {
     console.error('Error:', error);
