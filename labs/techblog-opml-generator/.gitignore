@@ -42,3 +42,5 @@ logs
 .npm
 .eslintcache
 .cache
+
+.opml
