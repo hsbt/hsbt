@@ -53,8 +53,6 @@ function extractBlogInfo(): [string, string][] {
 interface FeedInfo {
   sourceName: string;
   feedUrl: string;
-  sourceUrl: string;
-  [key: string]: any;
 }
 
 /**
@@ -74,8 +72,7 @@ async function fetchGitHubFeedInfo(): Promise<FeedInfo[]> {
     while ((match = regex.exec(content)) !== null) {
       const feedInfo: FeedInfo = {
         sourceName: match[1],
-        feedUrl: match[2],
-        sourceUrl: match[2].replace('/feed', '') // feedUrl から /feed を除去してソースURLとする
+        feedUrl: match[2]
       };
       feedEntries.push(feedInfo);
     }
@@ -95,13 +92,35 @@ async function fetchGitHubFeedInfo(): Promise<FeedInfo[]> {
  * @returns OPML XML string
  */
 function generateOPML(blogs: [string, string][], githubFeeds: FeedInfo[] = []): string {
-  const hatenaOutlines = blogs.map(([title, url]) => 
+  // URLの重複を管理するためのSet
+  const uniqueUrls = new Set<string>();
+  const duplicateUrls = new Set<string>();
+  
+  // Hatenaブログの重複チェックと追加
+  const hatenaOutlines = blogs.filter(([_, url]) => {
+    if (uniqueUrls.has(url)) {
+      duplicateUrls.add(url);
+      return false;
+    }
+    uniqueUrls.add(url);
+    return true;
+  }).map(([title, url]) => 
     `    <outline text="${escapeXml(title)}" title="${escapeXml(title)}" type="rss" xmlUrl="${escapeXml(url)}"/>`
   );
   
-  const githubOutlines = githubFeeds.map(feed => 
+  // GitHubフィードの重複チェックと追加
+  const githubOutlines = githubFeeds.filter(feed => {
+    if (uniqueUrls.has(feed.feedUrl)) {
+      duplicateUrls.add(feed.feedUrl);
+      return false;
+    }
+    uniqueUrls.add(feed.feedUrl);
+    return true;
+  }).map(feed => 
     `    <outline text="${escapeXml(feed.sourceName)}" title="${escapeXml(feed.sourceName)}" type="rss" xmlUrl="${escapeXml(feed.feedUrl)}"/>`
   );
+  
+  console.log(`Removed ${duplicateUrls.size} duplicate URLs`);
   
   const allOutlines = [...hatenaOutlines, ...githubOutlines].join('\n');
   
@@ -174,7 +193,7 @@ async function scrapeWithPuppeteer() {
               results.push([title, feedUrl]);
             }
           }
-        } catch (error) {
+        } catch (error: unknown) {
           console.error('Error processing element:', error);
         }
       });
