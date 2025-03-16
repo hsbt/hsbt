@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 require "parallel"
+require "pathname"
 
 IGNORE_REPOS = %w[]
 
@@ -19,4 +20,8 @@ Dir.chdir(`ghq root`.chomp) do
       system("git gc --prune")
     end
   end
+end
+
+Dir.chdir(Pathname(`ghq root`.chomp).join("github.com/ruby/ruby")) do
+  system("ruby tool/sync_default_gems.rb up")
 end
