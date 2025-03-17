@@ -18,6 +18,29 @@ GITHUB_TOKEN = ENV['GITHUB_TOKEN'] # Set your GitHub token as an environment var
 TEAM_SLUG = 'ruby-committers'
 ORG_NAME = 'ruby'
 REPO_URL = 'https://github.com/ruby/git.ruby-lang.org.git'
+ACCOUNT_TABLE = {
+  unak: "usa",
+  ioquatix: "samuel",
+  "k-tsj": "ktsj",
+  junaruga: "jaruga",
+  mmasaki: "glass",
+  yuki24: "yuki",
+  BurdetteLamar: "burdettelamar",
+  jemmaissroff: "jemma",
+  peterzhu2118: "peter.zhu",
+  KJTsanaktsidis: "kjtsanaktsidis",
+  XrXr: "alanwu",
+  amatsuda: "a_matsuda",
+  jeremyevans: "jeremy",
+  kateinoigakukun: "katei",
+  nurse: "naruse",
+  rhenium: "rhe",
+  znz: "kazu"
+}
+
+def convert_username(github_username)
+  ACCOUNT_TABLE[github_username.to_sym] || github_username
+end
 
 # Clone the repository and set paths relative to the cloned repo
 def setup_repository
@@ -82,12 +105,10 @@ end
 def fetch_user_keys(username)
   require 'open-uri'
   
-  begin
-    URI.open("https://github.com/#{username}.keys").read.lines.map(&:strip)
-  rescue OpenURI::HTTPError => e
-    puts "Error fetching keys for #{username}: #{e.message}"
-    []
-  end
+  URI.open("https://github.com/#{username}.keys").read.lines.map(&:strip)
+rescue OpenURI::HTTPError => e
+  puts "Error fetching keys for #{username}: #{e.message}"
+  nil
 end
 
 def read_authorized_keys(path)
@@ -168,8 +189,15 @@ def main
       puts "Checking keys for #{username}..."
       user_keys = fetch_user_keys(username)
       
+      if user_keys.nil?
+        missing_keys_users << username
+        puts "  Failed to fetch keys for #{username}, marking as missing"
+        next
+      end
+      
       if user_keys.empty?
         puts "  No keys found for #{username}"
+        missing_keys_users << username
         next
       end
       
@@ -197,7 +225,8 @@ def main
       puts "\nChecking users missing from authorized_keys against email.yml..."
       email_config = read_email_config(email_config_path)
       users_missing_from_email_yml = missing_keys_users.select do |username|
-        !email_config.key?(username)
+        converted_username = convert_username(username)
+        !email_config.key?(converted_username)
       end
   
       if users_missing_from_email_yml.empty?
@@ -205,7 +234,8 @@ def main
       else
         puts "Users missing from both authorized_keys and email.yml:"
         users_missing_from_email_yml.each do |username|
-          puts "  - #{username}"
+          converted_username = convert_username(username)
+          puts "  - #{username} (as #{converted_username})"
         end
       end
     end
