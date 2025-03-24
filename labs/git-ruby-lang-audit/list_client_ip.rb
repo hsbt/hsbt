@@ -19,6 +19,7 @@ USER = "admin"
 REMOTE_LOG_DIR = "/var/log/apache2"
 LOCAL_LOG_DIR = File.join(__dir__, "logs")
 OUTPUT_FILE = File.join(__dir__, "list.txt")
+ACCESS_THRESHOLD = 10080 # 閾値を定数として定義
 
 # 既存のlogsフォルダを削除
 FileUtils.rm_rf(LOCAL_LOG_DIR)
@@ -89,6 +90,24 @@ begin
   
   # アクセス数の多い順に並べる
   sorted_ips = ip_counts.sort_by { |_ip, count| -count }
+  
+  # 閾値以上のアクセス数を持つIPを抽出
+  high_access_ips = sorted_ips.select { |_ip, count| count >= ACCESS_THRESHOLD }
+  
+  puts "\n# Apache deny configuration for IPs with #{ACCESS_THRESHOLD}+ accesses"
+  puts "# Generated on: #{Time.now}"
+  puts "# Total IPs exceeding threshold: #{high_access_ips.size}"
+  puts ""
+  
+  # "Deny from XX.XX.XX.XX" 形式で出力
+  high_access_ips.each do |ip, count|
+    puts "Deny from #{ip}  # #{count} accesses"
+  end
+  
+  puts "\nSummary:"
+  puts "- Total unique IPs analyzed: #{ip_counts.size}"
+  puts "- IPs with #{ACCESS_THRESHOLD}+ accesses: #{high_access_ips.size}"
+  puts "- Top access count: #{sorted_ips.first[1]} (IP: #{sorted_ips.first[0]})"
   
   # 結果をlist.txtに出力
   File.open(OUTPUT_FILE, "w") do |file|
