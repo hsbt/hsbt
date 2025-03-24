@@ -74,6 +74,7 @@ FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("go").to_s
   github.com/devops-kung-fu/bomber@latest
   github.com/aquasecurity/trivy/cmd/trivy@latest
   github.com/anchore/syft/cmd/syft@latest
+  github.com/sinclairtarget/git-who@latest
 ].each { |pkg| system "go install #{pkg}" }
 
 FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("heroku").to_s
