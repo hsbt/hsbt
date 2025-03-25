@@ -19,32 +19,70 @@ USER = "admin"
 REMOTE_LOG_DIR = "/var/log/apache2"
 LOCAL_LOG_DIR = File.join(__dir__, "logs")
 OUTPUT_FILE = File.join(__dir__, "list.txt")
-ACCESS_THRESHOLD = 10080 # 閾値を定数として定義
+
+# コマンドライン引数の処理
+arg = ARGV[0]&.to_i || 0
+# 引数が1の場合は2日間、2の場合は3日間など
+days = arg + 1 
+# 基本パターンは 60min * 24h * days
+ACCESS_THRESHOLD = 60 * 24 * days
+LOG_FILE_PATTERN = "other_vhosts_access.log*" # 処理対象のログファイルパターン
 
 # 既存のlogsフォルダを削除
 FileUtils.rm_rf(LOCAL_LOG_DIR)
 FileUtils.mkdir_p(LOCAL_LOG_DIR)
 
+puts "Running analysis for #{days} days (threshold: #{ACCESS_THRESHOLD} accesses)"
+
 begin
   Net::SSH.start(HOST, USER) do |ssh|
     puts "Connected to #{HOST}"
     
-    # リモートのログファイル一覧を取得
-    files = ssh.exec!("ls -1 #{REMOTE_LOG_DIR}").split("\n")
-    puts "Found #{files.size} log files"
+    # リモートのログファイル一覧を取得 (other_vhosts_access.log とそのrotateファイルのみ)
+    all_files = ssh.exec!("ls -1 #{REMOTE_LOG_DIR}/#{LOG_FILE_PATTERN}").split("\n")
+    puts "Found #{all_files.size} log files in total"
+    
+    # 日数に基づいてファイルをフィルタリング
+    # Apacheのログローテーションでは通常:
+    # .log - 現在のログ
+    # .log.1 - 昨日のログ
+    # .log.2.gz - 2日前のログ (圧縮済み)
+    # というパターンになる
+    files_to_download = all_files.select do |file|
+      filename = File.basename(file)
+      
+      # 現在のログファイル (other_vhosts_access.log) は常に含める
+      if filename == "other_vhosts_access.log"
+        true
+      # .log.1 は1日前のログファイル（2日以上のときに含める）
+      elsif filename == "other_vhosts_access.log.1" && days >= 2
+        true
+      # 数字+.gzで終わるものは、その数字が「日付-1」を表す
+      # 例: .log.2.gz は2日前のログなので3日以上指定されたら含める
+      elsif filename =~ /other_vhosts_access\.log\.(\d+)\.gz/
+        day_index = $1.to_i
+        day_index <= days  # 指定日数以下の日付のログだけを含める
+      else
+        false
+      end
+    end
+    
+    puts "Downloading #{files_to_download.size} log files for #{days} days period..."
     
     # ファイルをダウンロード
-    files.each do |file|
-      remote_path = File.join(REMOTE_LOG_DIR, file)
-      local_path = File.join(LOCAL_LOG_DIR, file)
+    files_to_download.each do |file|
+      # ファイル名だけを取得 (パスは含まない)
+      filename = File.basename(file)
+      remote_path = File.join(REMOTE_LOG_DIR, filename)
+      local_path = File.join(LOCAL_LOG_DIR, filename)
       
-      puts "Downloading #{file}..."
+      puts "Downloading #{filename}..."
       ssh.scp.download!(remote_path, local_path)
-      puts "✓ Downloaded #{file}"
+      puts "✓ Downloaded #{filename}"
     end
   end
   
-  puts "\nAll log files have been downloaded to #{LOCAL_LOG_DIR}"
+  puts "\nSelected log files have been downloaded to #{LOCAL_LOG_DIR}"
 
   # クライアントのIPアドレスを解析してカウントする
   puts "\nAnalyzing log files to extract client IPs..."
@@ -54,6 +92,8 @@ begin
   # ダウンロードしたログファイルを処理
   Dir.glob(File.join(LOCAL_LOG_DIR, "*")).each do |log_file|
     next unless File.file?(log_file)
+    # other_vhosts_access.log に関連するファイルのみを処理
+    next unless File.basename(log_file).start_with?("other_vhosts_access.log")
     
     puts "Processing #{File.basename(log_file)}..."
     
@@ -94,19 +134,19 @@ begin
   # 閾値以上のアクセス数を持つIPを抽出
   high_access_ips = sorted_ips.select { |_ip, count| count >= ACCESS_THRESHOLD }
   
-  puts "\n# Apache deny configuration for IPs with #{ACCESS_THRESHOLD}+ accesses"
+  puts "\n# Apache deny configuration for IPs with #{ACCESS_THRESHOLD}+ accesses (#{days} days)"
   puts "# Generated on: #{Time.now}"
   puts "# Total IPs exceeding threshold: #{high_access_ips.size}"
   puts ""
   
   # "Deny from XX.XX.XX.XX" 形式で出力
   high_access_ips.each do |ip, count|
-    puts "Deny from #{ip}  # #{count} accesses"
+    puts "Deny from #{ip}"
   end
   
   puts "\nSummary:"
   puts "- Total unique IPs analyzed: #{ip_counts.size}"
-  puts "- IPs with #{ACCESS_THRESHOLD}+ accesses: #{high_access_ips.size}"
+  puts "- IPs with #{ACCESS_THRESHOLD}+ accesses (#{days} days): #{high_access_ips.size}"
   puts "- Top access count: #{sorted_ips.first[1]} (IP: #{sorted_ips.first[0]})"
   
   # 結果をlist.txtに出力
@@ -114,6 +154,7 @@ begin
     file.puts "# Remote IP addresses sorted by access count"
     file.puts "# Format: IP_ADDRESS ACCESS_COUNT"
     file.puts "# Generated on: #{Time.now}"
+    file.puts "# Analysis period: #{days} days (threshold: #{ACCESS_THRESHOLD})"
     file.puts "# Total unique IP addresses: #{ip_counts.size}"
     file.puts "#"
     
