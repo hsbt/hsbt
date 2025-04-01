@@ -1,6 +1,7 @@
 [tools]
 aws-cli = "latest"
 bun = "latest"
+cmake = "latest"
 dart = "latest"
 deno = "latest"
 dotnet = "latest"
