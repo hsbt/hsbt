@@ -48,6 +48,12 @@ ruby_versions.each do |version|
     system("git checkout #{base_branch}") || abort("Failed to switch to #{base_branch} branch")
     system("git pull --ff-only origin #{base_branch}") || abort("Failed to update #{base_branch} branch")
     
+    # Check if the branch already exists and delete it if it does
+    if system("git show-ref --verify --quiet refs/heads/#{new_branch}")
+      puts "Branch #{new_branch} already exists. Deleting it..."
+      system("git branch -D #{new_branch}") || abort("Failed to delete existing branch #{new_branch}")
+    end
+    
     puts "Creating new branch (#{new_branch})..."
     system("git checkout -b #{new_branch}") || abort("Failed to create new branch")
     
@@ -56,9 +62,15 @@ ruby_versions.each do |version|
     
     if cherry_pick_result
       puts "Successfully cherry-picked commit #{commit_hash}"
-      puts "If needed, resolve conflicts and execute the following commands:"
-      puts "  git cherry-pick --continue"
-      puts "  git push fork #{new_branch}"
+      puts "Pushing branch #{new_branch} to fork..."
+      push_result = system("git push fork #{new_branch}")
+      
+      if push_result
+        puts "Successfully pushed to fork/#{new_branch}"
+      else
+        puts "Failed to push to fork. You can manually push with:"
+        puts "  git push fork #{new_branch}"
+      end
     else
       puts "Failed to cherry-pick commit #{commit_hash}"
       puts "If cherry-pick conflicts occurred, resolve the conflicts and then run:"
