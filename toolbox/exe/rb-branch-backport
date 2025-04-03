@@ -44,6 +44,10 @@ ruby_versions.each do |version|
     # Save current branch
     current_branch = `git branch --show-current`.strip
     
+    puts "First returning to master branch and resetting all changes..."
+    system("git checkout master") || abort("Failed to switch to master branch")
+    system("git reset --hard HEAD") || abort("Failed to reset changes")
+    
     puts "Updating base branch (#{base_branch}) to latest state..."
     system("git checkout #{base_branch}") || abort("Failed to switch to #{base_branch} branch")
     system("git pull --ff-only origin #{base_branch}") || abort("Failed to update #{base_branch} branch")
