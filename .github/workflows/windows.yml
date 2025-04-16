@@ -9,6 +9,7 @@ jobs:
     steps:
       - name: Run tests
         run: |
+          dir "C:\msys64"
           dir "C:\Program Files\"
           dir "C:\Program Files\Microsoft Visual Studio\"
           dir "C:\Program Files\Microsoft Visual Studio\2022"
