@@ -192,10 +192,10 @@ img.flickr, img.google {
   border: #BCD 1px dashed;
   display: block;
   float: none;
-  max-width: 800px;
-  width: 80%;
+  max-width: 640px;
+  width: 90%;
   height: auto;
-  margin: 0px auto;
+  margin: 10px auto;
   margin-bottom: 10px;
 }
 img.amazon {
