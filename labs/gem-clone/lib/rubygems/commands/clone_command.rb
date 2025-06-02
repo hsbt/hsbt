@@ -33,23 +33,23 @@ Examples:
     gem_name = get_one_gem_name
 
     say "Fetching gem metadata for '#{gem_name}'..." if options[:verbose]
-    
+
     gem_info = fetch_gem_info(gem_name)
-    
+
     if gem_info.nil?
       alert_error "Could not find gem '#{gem_name}'"
       terminate_interaction 1
     end
 
     repository_url = extract_repository_url(gem_info)
-    
+
     if repository_url.nil?
       alert_error "Could not find repository URL for gem '#{gem_name}'"
       terminate_interaction 1
     end
 
     say "Found repository URL: #{repository_url}" if options[:verbose]
-    
+
     clone_repository(repository_url)
   end
 
@@ -57,10 +57,10 @@ Examples:
 
   def fetch_gem_info(gem_name)
     uri = URI("https://rubygems.org/api/v1/gems/#{gem_name}.json")
-    
+
     begin
       response = Net::HTTP.get_response(uri)
-      
+
       if response.code == '200'
         JSON.parse(response.body)
       else
@@ -98,7 +98,7 @@ Examples:
 
   def is_repository_url?(url)
     return false if url.nil? || url.empty?
-    
+
     # Check if URL looks like a repository URL
     url.match?(/github\.com|gitlab\.com|bitbucket\.org|codeberg\.org|sourcehut\.org/)
   end
@@ -106,9 +106,9 @@ Examples:
   def clone_repository(url)
     command = "ghq get #{url}"
     say "Executing: #{command}" if options[:verbose]
-    
+
     system(command)
-    
+
     if $?.success?
       say "Successfully cloned repository: #{url}"
     else
