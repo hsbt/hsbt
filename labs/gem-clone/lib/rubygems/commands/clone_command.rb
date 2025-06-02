@@ -73,24 +73,12 @@ Examples:
   end
 
   def extract_repository_url(gem_info)
-    # Try source_code_uri first
     if gem_info['source_code_uri'] && !gem_info['source_code_uri'].empty?
       return gem_info['source_code_uri']
     end
 
-    # Try metadata source_code_uri
-    if gem_info['metadata'] && gem_info['metadata']['source_code_uri']
-      return gem_info['metadata']['source_code_uri']
-    end
-
-    # Try homepage as fallback
     if gem_info['homepage_uri'] && is_repository_url?(gem_info['homepage_uri'])
       return gem_info['homepage_uri']
-    end
-
-    # Try project_uri
-    if gem_info['project_uri'] && is_repository_url?(gem_info['project_uri'])
-      return gem_info['project_uri']
     end
 
     nil
@@ -99,7 +87,6 @@ Examples:
   def is_repository_url?(url)
     return false if url.nil? || url.empty?
 
-    # Check if URL looks like a repository URL
     url.match?(/github\.com|gitlab\.com|bitbucket\.org|codeberg\.org|sourcehut\.org/)
   end
 
