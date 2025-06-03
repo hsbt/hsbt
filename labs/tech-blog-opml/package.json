@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "axios": "^1.8.2",
-    "puppeteer": "^20.9.0"
+    "puppeteer": "^24.10.0"
   },
   "devDependencies": {
     "@types/node": "^18.0.0",
