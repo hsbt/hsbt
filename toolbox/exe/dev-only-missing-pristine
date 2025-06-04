@@ -7,11 +7,20 @@ require "parallel"
 
 require "rubygems/commands/pristine_command"
 
-target_specs = Gem::Specification.select { |spec|
+specs = Gem::Specification.select do |spec|
   spec.platform == RUBY_ENGINE && spec.missing_extensions?
-}.map{|s| [s.full_name, s.name, s.version] }.shuffle
+end
 
-Parallel.map(target_specs, :in_threads => 4) do |full_name, name, version|
+specs = specs.group_by { |s| [s.name, s.version] }.map do |_, gems|
+  non_default_specs = gems.select { |s| !s.default_gem? }
+  if non_default_specs.empty?
+    gems
+  else
+    non_default_specs
+  end.map{|s| [s.full_name, s.name, s.version] }
+end.flatten.shuffle
+
+Parallel.map(specs, :in_threads => 4) do |full_name, name, version|
   begin
     puts full_name
     cmd = Gem::Commands::PristineCommand.new
