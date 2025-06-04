@@ -1,0 +1,94 @@
+require 'rubygems/command'
+require 'rubygems/installer'
+require 'thread'
+
+class Gem::Commands::RebuildCommand < Gem::Command
+  def initialize
+    super 'rebuild', 'Rebuilds gems with missing extensions by reinstalling them'
+    # Add options here if needed in the future
+  end
+
+  def arguments # :nodoc:
+    ""
+  end
+
+  def description # :nodoc:
+    <<-EOF
+The rebuild command finds all installed gems that are missing their compiled
+extensions and attempts to reinstall them. This can be useful after upgrading
+Ruby or changing system libraries.
+    EOF
+  end
+
+  def usage # :nodoc:
+    "#{program_name}"
+  end
+
+  def execute
+    say "Searching for gems with missing extensions..."
+
+    specs = Gem::Specification.select do |spec|
+      spec.platform == RUBY_ENGINE && spec.respond_to?(:missing_extensions?) && spec.missing_extensions?
+    end
+
+    specs = specs.group_by { |s| [s.name, s.version] }.map do |_, gems|
+      non_default_specs = gems.select { |s| !s.default_gem? }
+      if non_default_specs.empty?
+        gems
+      else
+        non_default_specs
+      end
+    end.flatten(1).shuffle
+
+    if specs.empty?
+      say "No gems found with missing extensions."
+      return
+    end
+
+    say "Found #{specs.count} gem(s) to rebuild: #{specs.map(&:full_name).join(', ')}"
+
+    queue = Queue.new
+    specs.each { |spec| queue << spec }
+
+    threads = []
+    # Consider making the number of threads configurable
+    # For now, using a fixed number like 4, or Gem.configuration.concurrent_downloads
+    num_threads = Gem.configuration.respond_to?(:concurrent_downloads) ? Gem.configuration.concurrent_downloads : 4
+    
+    say "Rebuilding gems using #{num_threads} parallel threads..."
+
+    num_threads.times do
+      threads << Thread.new do
+        while !queue.empty? && (spec = queue.pop(true) rescue nil)
+          begin
+            say "Rebuilding #{spec.full_name}..."
+            # Ensure spec.base_dir is correct and writable
+            # The installer might need specific options, ensure they are correctly set up
+            installer_options = {
+              wrappers: true,
+              force: true, # Reinstall even if it appears installed
+              install_dir: spec.base_dir, # Install into the same location
+              env_shebang: true,
+              build_args: spec.build_args,
+              # Add other options as needed, e.g., :user_install => false if installing to system gems
+              # ignore_dependencies: true # Usually good for a restore/pristine operation
+            }
+            
+            # Use spec.cache_file if available and valid, otherwise the installer might re-download
+            # Forcing a specific installer might be needed if default behavior isn't right
+            installer = Gem::Installer.at(spec.cache_file, installer_options)
+            installer.install
+            say "Successfully rebuilt #{spec.full_name} to #{spec.base_dir}"
+          rescue Gem::Ext::BuildError, Gem::Package::FormatError, Gem::InstallError, Zlib::BufError, NameError => e
+            alert_error "Failed to rebuild #{spec.full_name}: #{e.message}\n  Backtrace: #{e.backtrace.join("\n             ")}"
+          rescue => e
+            alert_error "An unexpected error occurred while rebuilding #{spec.full_name}: #{e.message}\n  Backtrace: #{e.backtrace.join("\n             ")}"
+          end
+        end
+      end
+    end
+
+    threads.each(&:join)
+    say "Gem rebuild process complete."
+  end
+end
