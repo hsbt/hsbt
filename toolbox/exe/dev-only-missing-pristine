@@ -1,10 +1,5 @@
 #!/usr/bin/env ruby
 
-if RUBY_VERSION < "2.7"
-  gem "parallel", "1.2.4"
-end
-require "parallel"
-
 require "rubygems/installer"
 
 specs = Gem::Specification.select do |spec|
@@ -20,19 +15,30 @@ specs = specs.group_by { |s| [s.name, s.version] }.map do |_, gems|
   end
 end.flatten(1).shuffle
 
-Parallel.map(specs, :in_threads => 4) do |spec|
-  begin
-    puts spec.full_name
-    installer_options = {
-      wrappers: true,
-      force: true,
-      install_dir: spec.base_dir,
-      env_shebang: true,
-      build_args: spec.build_args,
-    }
-    installer = Gem::Installer.at(spec.cache_file, installer_options)
-    installer.install
-    puts "Installed #{spec.full_name} to #{spec.base_dir}"
-  rescue Gem::Ext::BuildError, Gem::Package::FormatError, Gem::InstallError, Zlib::BufError, NameError
+queue = Queue.new
+specs.each { |spec| queue << spec }
+
+threads = []
+4.times do
+  threads << Thread.new do
+    while !queue.empty? && (spec = queue.pop(true) rescue nil)
+      begin
+        puts spec.full_name
+        installer_options = {
+          wrappers: true,
+          force: true,
+          install_dir: spec.base_dir,
+          env_shebang: true,
+          build_args: spec.build_args,
+        }
+        installer = Gem::Installer.at(spec.cache_file, installer_options)
+        installer.install
+        puts "Installed #{spec.full_name} to #{spec.base_dir}"
+      rescue Gem::Ext::BuildError, Gem::Package::FormatError, Gem::InstallError, Zlib::BufError, NameError => e
+        warn "Failed to process #{spec.full_name}: #{e.message}"
+      end
+    end
   end
 end
+
+threads.each(&:join)
