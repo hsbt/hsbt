@@ -5,7 +5,11 @@ require 'thread'
 class Gem::Commands::RebuildCommand < Gem::Command
   def initialize
     super 'rebuild', 'Rebuilds gems with missing extensions by reinstalling them'
-    # Add options here if needed in the future
+    
+    add_option('-j', '--jobs JOBS', Integer,
+               'Number of parallel threads to use (default: 4)') do |value, options|
+      options[:jobs] = value
+    end
   end
 
   def arguments # :nodoc:
@@ -17,11 +21,13 @@ class Gem::Commands::RebuildCommand < Gem::Command
 The rebuild command finds all installed gems that are missing their compiled
 extensions and attempts to reinstall them. This can be useful after upgrading
 Ruby or changing system libraries.
+
+Use -j to specify the number of parallel threads (default: 4).
     EOF
   end
 
   def usage # :nodoc:
-    "#{program_name}"
+    "#{program_name} [options]"
   end
 
   def execute
@@ -51,9 +57,8 @@ Ruby or changing system libraries.
     specs.each { |spec| queue << spec }
 
     threads = []
-    # Consider making the number of threads configurable
-    # For now, using a fixed number like 4, or Gem.configuration.concurrent_downloads
-    num_threads = Gem.configuration.respond_to?(:concurrent_downloads) ? Gem.configuration.concurrent_downloads : 4
+    # Get number of threads from -j option, default to 4
+    num_threads = options[:jobs] || 4
     
     say "Rebuilding gems using #{num_threads} parallel threads..."
 

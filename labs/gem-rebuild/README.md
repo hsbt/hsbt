@@ -25,6 +25,13 @@ After installation, the `gem rebuild` command will be available:
 gem rebuild
 ```
 
+You can also specify the number of parallel threads to use:
+
+```sh
+gem rebuild -j 8  # Use 8 threads
+gem rebuild --jobs 2  # Use 2 threads
+```
+
 This command will:
 1. Find all installed gems that are missing their compiled C extensions.
 2. Attempt to reinstall these gems using multiple threads.
