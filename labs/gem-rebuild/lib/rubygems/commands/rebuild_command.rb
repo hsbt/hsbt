@@ -1,11 +1,11 @@
 require 'rubygems/command'
 require 'rubygems/installer'
-require 'thread'
+
 
 class Gem::Commands::RebuildCommand < Gem::Command
   def initialize
     super 'rebuild', 'Rebuilds gems with missing extensions by reinstalling them'
-    
+
     add_option('-j', '--jobs JOBS', Integer,
                'Number of parallel threads to use (default: 4)') do |value, options|
       options[:jobs] = value
@@ -59,7 +59,7 @@ Use -j to specify the number of parallel threads (default: 4).
     threads = []
     # Get number of threads from -j option, default to 4
     num_threads = options[:jobs] || 4
-    
+
     say "Rebuilding gems using #{num_threads} parallel threads..."
 
     num_threads.times do
@@ -78,7 +78,7 @@ Use -j to specify the number of parallel threads (default: 4).
               # Add other options as needed, e.g., :user_install => false if installing to system gems
               # ignore_dependencies: true # Usually good for a restore/pristine operation
             }
-            
+
             # Use spec.cache_file if available and valid, otherwise the installer might re-download
             # Forcing a specific installer might be needed if default behavior isn't right
             installer = Gem::Installer.at(spec.cache_file, installer_options)
