@@ -6,11 +6,11 @@ gem uninstall openssl psych zlib digest strscan stringio pathname etc date --for
 
 for v in 3.2 3.3 3.4 ruby; do
     mise use -g ruby@$v-dev
-    dev-only-missing-pristine
+    gem repair
 done
 
 mise use -g ruby@ruby-dev
 
 curl -s https://stdgems.org/bundled_gems.json | jq -r '.gems[].gem' | xargs -n1 gem install
 
-gem-ext-cleaner
+gem sweep
