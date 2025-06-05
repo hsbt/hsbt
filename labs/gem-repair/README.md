@@ -1,35 +1,35 @@
-# gem-rebuild
+# gem-repair
 
-A RubyGems plugin to rebuild gems with missing extensions.
+A RubyGems plugin to repair gems with missing extensions.
 
 ## Installation
 
 Build and install the gem locally:
 
 ```sh
-gem build gem-rebuild.gemspec
-gem install ./gem-rebuild-0.1.0.gem
+gem build gem-repair.gemspec
+gem install ./gem-repair-0.1.0.gem
 ```
 
 Or, if you are managing it within a Bundler context, add it to your Gemfile:
 
 ```ruby
-gem 'gem-rebuild', path: './labs/gem-rebuild' # Adjust path as necessary
+gem 'gem-repair', path: './labs/gem-repair' # Adjust path as necessary
 ```
 
 ## Usage
 
-After installation, the `gem rebuild` command will be available:
+After installation, the `gem repair` command will be available:
 
 ```sh
-gem rebuild
+gem repair
 ```
 
 You can also specify the number of parallel threads to use:
 
 ```sh
-gem rebuild -j 8  # Use 8 threads
-gem rebuild --jobs 2  # Use 2 threads
+gem repair -j 8  # Use 8 threads
+gem repair --jobs 2  # Use 2 threads
 ```
 
 This command will:
@@ -40,7 +40,7 @@ This command will:
 
 After checking out the repo, run `bundle install` to install dependencies. Then, you can run `rake test` to run the tests (though no tests are set up in this initial version).
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `gem-rebuild.gemspec`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [a configured gem server](https://rubygems.org).
+To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `gem-repair.gemspec`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [a configured gem server](https://rubygems.org).
 
 ## Contributing
 

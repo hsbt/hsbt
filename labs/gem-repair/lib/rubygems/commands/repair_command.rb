@@ -2,9 +2,9 @@ require 'rubygems/command'
 require 'rubygems/installer'
 
 
-class Gem::Commands::RebuildCommand < Gem::Command
+class Gem::Commands::RepairCommand < Gem::Command
   def initialize
-    super 'rebuild', 'Rebuilds gems with missing extensions by reinstalling them'
+    super 'repair', 'Repairs gems with missing extensions by reinstalling them'
 
     add_option('-j', '--jobs JOBS', Integer,
                'Number of parallel threads to use (default: 4)') do |value, options|
@@ -18,7 +18,7 @@ class Gem::Commands::RebuildCommand < Gem::Command
 
   def description # :nodoc:
     <<-EOF
-The rebuild command finds all installed gems that are missing their compiled
+The repair command finds all installed gems that are missing their compiled
 extensions and attempts to reinstall them. This can be useful after upgrading
 Ruby or changing system libraries.
 
@@ -51,7 +51,7 @@ Use -j to specify the number of parallel threads (default: 4).
       return
     end
 
-    say "Found #{specs.count} gem(s) to rebuild: #{specs.map(&:full_name).join(', ')}"
+    say "Found #{specs.count} gem(s) to repair: #{specs.map(&:full_name).join(', ')}"
 
     queue = Queue.new
     specs.each { |spec| queue << spec }
@@ -60,13 +60,13 @@ Use -j to specify the number of parallel threads (default: 4).
     # Get number of threads from -j option, default to 4
     num_threads = options[:jobs] || 4
 
-    say "Rebuilding gems using #{num_threads} parallel threads..."
+    say "Repairing gems using #{num_threads} parallel threads..."
 
     num_threads.times do
       threads << Thread.new do
         while !queue.empty? && (spec = queue.pop(true) rescue nil)
           begin
-            say "Rebuilding #{spec.full_name}..."
+            say "Repairing #{spec.full_name}..."
             # Ensure spec.base_dir is correct and writable
             # The installer might need specific options, ensure they are correctly set up
             installer_options = {
@@ -83,17 +83,17 @@ Use -j to specify the number of parallel threads (default: 4).
             # Forcing a specific installer might be needed if default behavior isn't right
             installer = Gem::Installer.at(spec.cache_file, installer_options)
             installer.install
-            say "Successfully rebuilt #{spec.full_name} to #{spec.base_dir}"
+            say "Successfully repaired #{spec.full_name} to #{spec.base_dir}"
           rescue Gem::Ext::BuildError, Gem::Package::FormatError, Gem::InstallError, Zlib::BufError, NameError => e
-            alert_error "Failed to rebuild #{spec.full_name}: #{e.message}\n  Backtrace: #{e.backtrace.join("\n             ")}"
+            alert_error "Failed to repair #{spec.full_name}: #{e.message}\n  Backtrace: #{e.backtrace.join("\n             ")}"
           rescue => e
-            alert_error "An unexpected error occurred while rebuilding #{spec.full_name}: #{e.message}\n  Backtrace: #{e.backtrace.join("\n             ")}"
+            alert_error "An unexpected error occurred while repairing #{spec.full_name}: #{e.message}\n  Backtrace: #{e.backtrace.join("\n             ")}"
           end
         end
       end
     end
 
     threads.each(&:join)
-    say "Gem rebuild process complete."
+    say "Gem repair process complete."
   end
 end
