@@ -86,7 +86,6 @@ fish_add_path $XDG_DATA_HOME/cargo/bin
 
 alias l lsd
 alias ll "lsd -la"
-alias all-ruby "podman run --rm -it ghcr.io/ruby/all-ruby /all-ruby/all-ruby"
 alias make "make --no-print-directory --quiet"
 abbr -a -- e "code-insiders ."
 abbr -a -- ea "code-insiders -a ."
