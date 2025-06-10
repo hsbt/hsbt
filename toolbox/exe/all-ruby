@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if command -v container &> /dev/null; then
+    CONTAINER_CMD="container"
+else
+    CONTAINER_CMD="podman"
+fi
+
+exec $CONTAINER_CMD run --rm -it --arch amd64 ghcr.io/ruby/all-ruby:latest /all-ruby/all-ruby "$@"
