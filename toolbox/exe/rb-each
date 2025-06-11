@@ -1,0 +1,57 @@
+#!/bin/bash
+
+# rb-each - Execute a command across all installed Ruby versions managed by mise
+
+set -e
+
+usage() {
+    echo "Usage: $0 <command> [args...]"
+    echo "Example: $0 ruby --version"
+    echo "         $0 gem --version"
+    echo "         $0 ruby -e 'puts RUBY_VERSION'"
+    exit 1
+}
+
+# Check if at least one argument is provided
+if [ $# -lt 1 ]; then
+    usage
+fi
+
+# Get Ruby versions from mise and parse JSON
+if ! ruby_versions_json=$(mise ls ruby -J 2>/dev/null); then
+    echo "Error: Failed to run 'mise ls ruby -J'" >&2
+    echo "Make sure mise is installed and Ruby versions are configured." >&2
+    exit 1
+fi
+
+# Extract installed Ruby versions using jq
+if ! command -v jq >/dev/null 2>&1; then
+    echo "Error: jq is required but not installed." >&2
+    echo "Please install jq to parse JSON output." >&2
+    exit 1
+fi
+
+# Get only installed versions, excluding symlinked ones
+installed_versions=$(echo "$ruby_versions_json" | jq -r '.[] | select(.installed == true and .symlinked_to == null) | .version')
+
+if [ -z "$installed_versions" ]; then
+    echo "No Ruby versions are installed" >&2
+    exit 1
+fi
+
+# Count installed versions
+version_count=$(echo "$installed_versions" | wc -l | tr -d ' ')
+
+echo "Running command for $version_count Ruby version(s):"
+
+# Execute command for each Ruby version
+while IFS= read -r version; do
+    echo "==> Running with Ruby $version"
+    
+    # Use mise exec to run the command with the specific Ruby version
+    if ! mise exec "ruby@$version" -- "$@"; then
+        echo "Command failed for Ruby $version" >&2
+    fi
+    
+    echo
+done <<< "$installed_versions"
