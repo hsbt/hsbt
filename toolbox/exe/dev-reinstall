@@ -81,6 +81,7 @@ FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("go").to_s
   github.com/aquasecurity/trivy/cmd/trivy@latest
   github.com/anchore/syft/cmd/syft@latest
   github.com/sinclairtarget/git-who@latest
+  github.com/peak/s5cmd/v2@master
 ].each { |pkg| system "go install #{pkg}" }
 
 FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("heroku").to_s
