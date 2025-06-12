@@ -1,3 +1,8 @@
+#!/usr/bin/env ruby
+
+require "fileutils"
+require "pathname"
+
 FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("npm").to_s
 system "npm install -g npm"
 %w[
