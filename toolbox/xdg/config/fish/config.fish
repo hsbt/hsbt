@@ -59,8 +59,7 @@ set -x RUBY_YJIT_ENABLE 1
 set -x RUBY_CONFIGURE_OPTS --disable-install-doc
 set -x MAKEFLAGS -j$(sysctl -n hw.logicalcpu)
 set -x PKG_CONFIG_PATH /opt/homebrew/opt/imagemagick/lib/pkgconfig:/usr/lib/pkgconfig
-set -x GHQ_ROOT $HOME/Documents
-set -x GHQ_SELECTOR sk
+set -x GIT_GOGET_ROOT $HOME/Documents
 set -x SKIM_DEFAULT_COMMAND 'rg --files --hidden --follow --glob "!.git/*"'
 skim_key_bindings
 
