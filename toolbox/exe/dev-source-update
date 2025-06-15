@@ -4,8 +4,8 @@ require "pathname"
 
 IGNORE_REPOS = %w[]
 
-Dir.chdir(`ghq root`.chomp) do
-  Parallel.map(`ghq list`.split.shuffle) do |dir|
+Dir.chdir(File.expand_path('~/Documents')) do
+  Parallel.map(Dir.glob("*/*/*")) do |dir|
     next if IGNORE_REPOS.any? { |repo| dir.include?(repo) }
     next unless File.directory?(dir + "/.git")
 
