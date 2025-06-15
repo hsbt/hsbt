@@ -22,6 +22,6 @@ Dir.chdir(File.expand_path(ENV['GIT_GOGET_ROOT'])) do
   end
 end
 
-Dir.chdir(File.expand_path(ENV['GIT_GOGET_ROOT']).join("github.com/ruby/ruby")) do
+Dir.chdir(File.expand_path(ENV['GIT_GOGET_ROOT']) + "/github.com/ruby/ruby") do
   system("ruby tool/sync_default_gems.rb up")
 end
