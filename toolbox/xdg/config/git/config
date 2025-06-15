@@ -78,9 +78,6 @@
 [submodule]
 	fetchJobs = 8
 
-[svn]
-	rmdir = true
-
 [checkout]
 	defaultRemote = origin
 
@@ -92,9 +89,6 @@
 
 [heroku]
 	account = hsbt
-
-[ghq "import"]
-	starred = github-list-starred
 
 [filter "lfs"]
 	clean = git lfs clean %f
