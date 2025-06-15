@@ -104,6 +104,13 @@ function history-merge --on-event fish_preexec
   history --merge
 end
 
+function __cd_repository
+  set repo_path (fd . ~/Documents -t d --max-depth 3 | sk)
+  cd $repo_path
+  commandline -f repaint
+end
+bind \cg '__cd_repository'
+
 source $HOME/.config/op/plugins.sh
 source (mise where gcloud)/path.fish.inc
 zoxide init fish --cmd j | source

@@ -102,7 +102,6 @@ FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("heroku").to_s
 ].each { |pkg| system "heroku plugins:install #{pkg}" }
 
 %w[
-  decors/fish-ghq
   evanlucas/fish-kubectl-completions
   0rax/fish-bd
   2m/fish-history-merge
