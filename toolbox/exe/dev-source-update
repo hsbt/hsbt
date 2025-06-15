@@ -4,7 +4,7 @@ require "pathname"
 
 IGNORE_REPOS = %w[]
 
-Dir.chdir(File.expand_path('~/Documents')) do
+Dir.chdir(File.expand_path(ENV['GIT_GOGET_ROOT'])) do
   Parallel.map(Dir.glob("*/*/*")) do |dir|
     next if IGNORE_REPOS.any? { |repo| dir.include?(repo) }
     next unless File.directory?(dir + "/.git")
@@ -22,6 +22,6 @@ Dir.chdir(File.expand_path('~/Documents')) do
   end
 end
 
-Dir.chdir(Pathname(`ghq root`.chomp).join("github.com/ruby/ruby")) do
+Dir.chdir(File.expand_path(ENV['GIT_GOGET_ROOT']).join("github.com/ruby/ruby")) do
   system("ruby tool/sync_default_gems.rb up")
 end
