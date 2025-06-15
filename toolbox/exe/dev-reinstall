@@ -55,7 +55,6 @@ FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("go").to_s
   github.com/go-delve/delve/cmd/dlv@latest
   honnef.co/go/tools/cmd/staticcheck@latest
   golang.org/x/tools/gopls@latest
-  github.com/motemen/github-list-starred@latest
   github.com/client9/misspell/cmd/misspell@latest
   github.com/rhysd/actionlint/cmd/actionlint@latest
   github.com/google/codesearch/cmd/csearch@latest
@@ -66,7 +65,6 @@ FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("go").to_s
   github.com/mikefarah/yq/v4@latest
   github.com/antonmedv/fx@latest
   github.com/tomnomnom/gron@latest
-  github.com/x-motemen/ghq@latest
   github.com/DarthSim/overmind/v2@latest
   github.com/dependabot/cli/cmd/dependabot@latest
   github.com/charmbracelet/vhs@latest
