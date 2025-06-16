@@ -16,3 +16,6 @@ mise use -g ruby@ruby-dev
 unset GEM_HOME
 gem list --no-versions | xargs gem uninstall --force
 export GEM_HOME=~/.local/share/gem
+
+cd "$GIT_GOGET_ROOT/github.com/ruby/ruby"
+ruby tool/sync_default_gems.rb up
