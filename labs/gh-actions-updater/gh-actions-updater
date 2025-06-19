@@ -28,7 +28,7 @@ class GitHubActionsUpdater
     @latest_versions_cache = {}
 
     # Initialize the GitHub client with token if provided
-    token = options[:token] || ENV["GITHUB_TOKEN"]
+    token = options[:token] || ENV["GITHUB_TOKEN"] || ENV["GH_TOKEN"]
     @client = if token
       Octokit::Client.new(access_token: token)
     else
@@ -272,7 +272,6 @@ class GitHubActionsUpdater
       content.scan(/uses:\s+([^@\s]+)@([^\s#]+)(?:\s+#\s+(.+))?/) do |match|
         action = match[0]
         version = match[1]
-        comment = match[2]
         
         actions[action] ||= Set.new
         actions[action] << version
@@ -302,7 +301,7 @@ end
 
 options = {}
 OptionParser.new do |opts|
-  opts.banner = "Usage: update-github-actions.rb [options] [-f workflow_file ...] [-a action ...]"
+  opts.banner = "Usage: gh actions-updater [options] [-f workflow_file ...] [-a action ...]"
 
   opts.on("-f", "--file FILE", "Specify workflow file(s) to update (can be used multiple times, relative or absolute path)") do |file|
     options[:workflow_files] ||= []
