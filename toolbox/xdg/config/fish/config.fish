@@ -104,7 +104,7 @@ function history-merge --on-event fish_preexec
 end
 
 function __cd_repository
-  set repo_path (fd . ~/Documents -t d --max-depth 3 | sk)
+  set repo_path (fd . $GIT_GOGET_ROOT -t d --max-depth 3 | sk)
   cd $repo_path
   commandline -f repaint
 end
