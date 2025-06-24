@@ -15,6 +15,7 @@ mysql = "latest"
 node = "latest"
 ruby = "ruby-dev"
 terraform = "latest"
+uv = "latest"
 
 [env]
 _.path = [
