@@ -3,11 +3,13 @@
 
 require "bundler/setup"
 require_relative "../lib/redmine_mcp/server"
-require "mcp/server/transports/stdio_transport"
+require "mcp/server/transports/streamable_http_transport"
+require "rack"
 
 # Check required environment variables
 redmine_url = ENV["REDMINE_URL"]
 redmine_api_key = ENV["REDMINE_API_KEY"]
+port = ENV["PORT"] || 9292
 
 unless redmine_url && redmine_api_key
   STDERR.puts "Error: Required environment variables are missing."
@@ -26,13 +28,36 @@ begin
     redmine_api_key: redmine_api_key
   )
 
-  STDERR.puts "Starting Redmine MCP server..."
-  STDERR.puts "Redmine URL: #{redmine_url}"
-  STDERR.puts "Server ready for JSON-RPC requests on stdin/stdout"
+  # Create the Streamable HTTP transport
+  transport = MCP::Server::Transports::StreamableHTTPTransport.new(server)
+  server.transport = transport
 
-  # Create and start the stdio transport
-  transport = MCP::Server::Transports::StdioTransport.new(server)
-  transport.open
+  # Create a Rack application
+  app = proc do |env|
+    request = Rack::Request.new(env)
+    response = transport.handle_request(env)
+    response
+  end
+
+  # Wrap the app with Rack middleware
+  rack_app = Rack::Builder.new do
+    use(Rack::CommonLogger, Logger.new($stdout))
+    use(Rack::ShowExceptions)
+    run(app)
+  end
+
+  puts "Starting Redmine MCP HTTP server on http://localhost:#{port}"
+  puts "Redmine URL: #{redmine_url}"
+  puts ""
+  puts "Available Tools:"
+  puts "1. list_issues - List issues with optional filtering"
+  puts "2. get_issue - Get detailed information about a specific issue"
+  puts ""
+  puts "Use POST requests to send JSON-RPC commands."
+  puts "Press Ctrl+C to stop the server"
+
+  # Run the server
+  Rack::Handler::WEBrick.run(rack_app, Port: port.to_i, Host: '0.0.0.0')
 rescue RedmineClient::AuthenticationError => e
   STDERR.puts "Authentication Error: #{e.message}"
   STDERR.puts "Please check your REDMINE_API_KEY."

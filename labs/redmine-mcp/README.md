@@ -22,17 +22,11 @@ export REDMINE_API_KEY=your_api_key_here
 
 ## Usage
 
-### Stdio Transport
-
 ```bash
 ruby bin/redmine_mcp_server.rb
 ```
 
-### HTTP Transport
-
-```bash
-ruby bin/redmine_mcp_http_server.rb
-```
+The server will start on port 9292 by default. You can specify a different port using the `PORT` environment variable.
 
 ## Configuration
 
@@ -40,6 +34,7 @@ The server requires the following environment variables:
 
 - `REDMINE_URL`: Your Redmine instance URL
 - `REDMINE_API_KEY`: Your Redmine API key
+- `PORT`: Port number (optional, default: 9292)
 
 ## Tools
 
@@ -50,11 +45,6 @@ List issues with optional filtering by project, status, assigned user, etc.
 Get detailed information about a specific issue.
 
 ## Development
-
-Run tests:
-```bash
-bundle exec rspec
-```
 
 Debug mode:
 ```bash
