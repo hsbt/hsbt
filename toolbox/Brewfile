@@ -61,7 +61,6 @@ brew "tesseract" # for ripgrep_all
 brew "codespell"
 brew "zopfli"
 brew "jpegoptim"
-brew "dog"
 brew "aspell"
 brew "circleci"
 brew "m-cli"
