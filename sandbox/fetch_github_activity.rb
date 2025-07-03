@@ -6,6 +6,7 @@
 require 'json'
 require 'date'
 require 'fileutils'
+require 'set'
 
 class GitHubActivityFetcher
   def initialize(output_dir = nil, username = nil, year_month = nil, start_year = nil)
@@ -434,6 +435,22 @@ class GitHubActivityFetcher
       end
     end
     
+    # Remove issues that are also pull requests to avoid duplicates
+    pr_urls = Set.new
+    pull_requests.each do |pr_line|
+      if url_match = pr_line.match(/https:\/\/github\.com\/[^)]+/)
+        pr_urls.add(url_match[0])
+      end
+    end
+
+    issues.reject! do |issue_line|
+      if url_match = issue_line.match(/https:\/\/github\.com\/[^)]+/)
+        pr_urls.include?(url_match[0])
+      else
+        false
+      end
+    end
+
     # Format output
     output = []
     
