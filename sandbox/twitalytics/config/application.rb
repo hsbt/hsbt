@@ -1,28 +1,28 @@
 #---
 # Excerpted from "Deploying with JRuby",
 # published by The Pragmatic Bookshelf.
-# Copyrights apply to this code. It may not be used to create training material, 
+# Copyrights apply to this code. It may not be used to create training material,
 # courses, books, articles, and the like. Contact us if you are in doubt.
-# We make no guarantees that this code is fit for any purpose. 
+# We make no guarantees that this code is fit for any purpose.
 # Visit http://www.pragmaticprogrammer.com/titles/jkdepj for more book information.
 #---
 begin
-  require 'fcntl'
+  require "fcntl"
 rescue LoadError
   # This traps an error brought on by some combination of TorqueBox and the
   # twitter Gem on Mac OS X.  The bug is difficult to reproduce consistently
   # and is recorded here: http://jira.codehaus.org/browse/JRUBY-5753
   # By trapping the error early on like this, it allows the second load of the
-  # 'fcntl' lib, which happens inside the twitter Gem, to be successful. 
+  # 'fcntl' lib, which happens inside the twitter Gem, to be successful.
 end
 
-require File.expand_path('../boot', __FILE__)
+require File.expand_path("../boot", __FILE__)
 
-require 'rails/all'
+require "rails/all"
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
-  Bundler.require *Rails.groups(:assets => %w(development test))
+  Bundler.require *Rails.groups(assets: %w(development test))
   # If you want your assets lazily compiled in production, use this line
   # Bundler.require(:default, :assets, Rails.env)
 end
@@ -30,9 +30,9 @@ end
 module Twitalytics
   class Application < Rails::Application
       # Use TorqueBox::Infinispan::Cache for the Rails cache store
-  if defined? TorqueBox::Infinispan::Cache
-    config.cache_store = :torque_box_store
-  end
+    if defined? TorqueBox::Infinispan::Cache
+      config.cache_store = :torque_box_store
+    end
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -71,10 +71,10 @@ module Twitalytics
     config.assets.initialize_on_precompile = false
 
     # Version of your assets, change this if you want to expire all your assets
-    config.assets.version = '1.0'
-        
+    config.assets.version = "1.0"
+
     config.generators do |g|
-      g.test_framework :rspec, :views => false
+      g.test_framework :rspec, views: false
     end
   end
 end

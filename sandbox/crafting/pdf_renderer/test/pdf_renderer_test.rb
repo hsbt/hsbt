@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class PdfRendererTest < ActiveSupport::TestCase
   test "truth" do

@@ -1,5 +1,5 @@
-# $ID$ 
-require 'monitor'
+# $ID$
+require "monitor"
 
 class Logger
   VERSION = "1.2.7"
@@ -59,7 +59,7 @@ class Logger
     @formatter = nil
     @logdev = nil
     if logdev
-      @logdev = LogDevice.new(logdev, :shift_age => shift_age, :shift_size => shift_size)
+      @logdev = LogDevice.new(logdev, shift_age: shift_age, shift_size: shift_size)
     end
   end
 
@@ -123,7 +123,7 @@ class Logger
   SEV_LABEL = %w(DEBUG INFO WARN ERROR FATAL ANY)
 
   def format_severity(severity)
-    SEV_LABEL[severity] || 'ANY'
+    SEV_LABEL[severity] || "ANY"
   end
 
   def format_message(severity, datetime, progname, msg)

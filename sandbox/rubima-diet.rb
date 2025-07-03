@@ -1,5 +1,3 @@
-require 'sequel'
+require "sequel"
 
-db = Sequel.mysql2('hikifarm', user: 'root', password: '', host: 'localhost')
-
-
+db = Sequel.mysql2("hikifarm", user: "root", password: "", host: "localhost")

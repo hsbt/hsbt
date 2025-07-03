@@ -28,10 +28,10 @@ class SqlTemplatesController < ApplicationController
 
     respond_to do |format|
       if @sql_template.save
-        format.html { redirect_to @sql_template, notice: 'Sql template was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @sql_template }
+        format.html { redirect_to @sql_template, notice: "Sql template was successfully created." }
+        format.json { render action: "show", status: :created, location: @sql_template }
       else
-        format.html { render action: 'new' }
+        format.html { render action: "new" }
         format.json { render json: @sql_template.errors, status: :unprocessable_entity }
       end
     end
@@ -42,10 +42,10 @@ class SqlTemplatesController < ApplicationController
   def update
     respond_to do |format|
       if @sql_template.update(sql_template_params)
-        format.html { redirect_to @sql_template, notice: 'Sql template was successfully updated.' }
-        format.json { render action: 'show', status: :ok, location: @sql_template }
+        format.html { redirect_to @sql_template, notice: "Sql template was successfully updated." }
+        format.json { render action: "show", status: :ok, location: @sql_template }
       else
-        format.html { render action: 'edit' }
+        format.html { render action: "edit" }
         format.json { render json: @sql_template.errors, status: :unprocessable_entity }
       end
     end
@@ -63,12 +63,12 @@ class SqlTemplatesController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_sql_template
-      @sql_template = SqlTemplate.find(params[:id])
-    end
+  def set_sql_template
+    @sql_template = SqlTemplate.find(params[:id])
+  end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def sql_template_params
-      params.require(:sql_template).permit(:body, :path, :format, :locale, :handler, :partial)
-    end
+  def sql_template_params
+    params.require(:sql_template).permit(:body, :path, :format, :locale, :handler, :partial)
+  end
 end

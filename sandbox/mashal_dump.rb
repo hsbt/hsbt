@@ -1,5 +1,5 @@
 class TR
-  def initialize calls = []
+  def initialize(calls = [])
     @calls = calls
   end
 

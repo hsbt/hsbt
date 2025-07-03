@@ -54,7 +54,7 @@ end
 
 c = calendar_client
 
-require 'active_support/all'
+require "active_support/all"
 
 target = Time.now
 intermediate = {}
@@ -65,7 +65,7 @@ ARGV[0].to_i.upto(ARGV[1].to_i) do |i|
   finish = i.month.ago.end_of_month.iso8601
   p [start, finish]
   events += ROOM_EMAILS.map do |k,v|
-    {k => calendar_client.list_events(v, time_min: start, time_max: finish)}
+    { k => calendar_client.list_events(v, time_min: start, time_max: finish) }
   end
 end
 
@@ -88,9 +88,11 @@ events.each do |v|
 
     attendees = a.attendees.select do |attendee|
       !(attendee.email =~ /resource.calendar.google.com/)
-    end.map{|attendee| attendee.email }
+    end.map { |attendee| attendee.email }
 
-    intermediate[v.keys[0]][a.id] = {time: time.round(2), summary: a.summary, attendees: attendees, start_time: a.start.date_time.to_time, end_time: a.end.date_time.to_time}
+    intermediate[v.keys[0]][a.id] =
+{ time: time.round(2), summary: a.summary, attendees: attendees, start_time: a.start.date_time.to_time,
+end_time: a.end.date_time.to_time }
 
     dedup << a.id
   end
@@ -100,16 +102,16 @@ results = {}
 
 intermediate.each do |room, events|
   results[room] = {
-    time: events.values.inject(0){|s,a| s + a[:time]},
+    time: events.values.inject(0) { |s,a| s + a[:time] },
     events: events.count,
-    human_time: events.values.inject(0){|s,a| s + a[:time] * a[:attendees].count},
-    attendees: events.values.inject(0){|s,a| s + a[:attendees].count},
+    human_time: events.values.inject(0) { |s,a| s + a[:time] * a[:attendees].count },
+    attendees: events.values.inject(0) { |s,a| s + a[:attendees].count },
   }
   results[room][:avg_time] = results[room][:time].to_f/results[room][:events]
   results[room][:avg_attendees] = results[room][:attendees].to_f/results[room][:events]
 end
 
-File.open('mtg.csv', "w") do |f|
+File.open("mtg.csv", "w") do |f|
   f.puts ",time,events,human_time,attendees,avg_time,avg_attendees"
   results.each do |k, v|
     f.puts "#{k},#{v[:time]},#{v[:events]},#{v[:human_time]},#{v[:attendees]},#{v[:avg_time]},#{v[:avg_attendees]}"
@@ -139,7 +141,7 @@ events.each do |_, v|
   end
 end
 
-top_human.sort_by {|_, v| v }.reverse.each do |k, v|
+top_human.sort_by { |_, v| v }.reverse.each do |k, v|
   p [k, v.round(2)]
 end
 

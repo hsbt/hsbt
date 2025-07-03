@@ -5,7 +5,7 @@ gemfile do
   gem "rack", "< 3"
 end
 
-require 'rack'
+require "rack"
 
 counter = 0
 
@@ -18,10 +18,10 @@ Thread.new do
 end
 
 app = Proc.new do |env|
-  [200, {'Content-Type' => 'text/plain; charset=utf-8'}, [counter]]
+  [200, { "Content-Type" => "text/plain; charset=utf-8" }, [counter]]
 end
 
 Rack::Handler::WEBrick.run [app, {
-  :Host => '127.0.0.1',
-  :Port => 8080,
+  Host: "127.0.0.1",
+  Port: 8080,
 }];

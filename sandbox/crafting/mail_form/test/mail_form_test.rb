@@ -5,7 +5,7 @@ class MailFormTest < ActiveSupport::TestCase
   setup do
     ActionMailer::Base.deliveries.clear
   end
-  
+
   test "sample mail has name and email as attributes" do
     sample = SampleMail.new
     sample.name = "User"
@@ -18,7 +18,7 @@ class MailFormTest < ActiveSupport::TestCase
     assert_nil sample.name
     assert_nil sample.email
   end
-  
+
   test "sample mail can ask if an attribute is present or not" do
     sample = SampleMail.new
     assert !sample.name?
@@ -35,7 +35,7 @@ class MailFormTest < ActiveSupport::TestCase
     # Simulate data from the form
     sample.email = "user@example.com"
     sample.deliver
-    
+
     assert_equal 1, ActionMailer::Base.deliveries.size
 
     mail = ActionMailer::Base.deliveries.last

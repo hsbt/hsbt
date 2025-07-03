@@ -1,27 +1,27 @@
-require 'sinatra'
+require "sinatra"
 
-get '/' do
+get "/" do
   "Triggered via GET"
 end
 
-post '/' do
+post "/" do
   "Triggered via POST"
 end
 
-put '/' do
+put "/" do
   "Triggered via PUT"
 end
 
-delete '/' do
+delete "/" do
   "Triggered via DELETE"
 end
 
-patch '/' do
+patch "/" do
   "Triggered via PATCH"
 end
 
-options '/' do
+options "/" do
   "Triggered via OPTIONS"
 end
 
-set :public_folder, File.dirname(__FILE__) + '/your_custom_location'
+set :public_folder, File.dirname(__FILE__) + "/your_custom_location"

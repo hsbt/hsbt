@@ -7,7 +7,7 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "http://puppet-vagrant-boxes.puppetlabs.com/centos-64-x64-vbox4210.box"
   config.vm.provision :itamae do |config|
-    config.recipes = ['./recipe.rb']
-    config.json = './node.json'
+    config.recipes = ["./recipe.rb"]
+    config.json = "./node.json"
   end
 end

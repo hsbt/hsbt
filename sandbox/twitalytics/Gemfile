@@ -1,27 +1,27 @@
 source :rubygems
 
-gem 'rails'
-gem 'therubyrhino'
-gem 'jquery-rails'
+gem "rails"
+gem "therubyrhino"
+gem "jquery-rails"
 
-gem 'get_back'
-gem 'resque'
-gem 'twitter', '~> 2.0.2'
+gem "get_back"
+gem "resque"
+gem "twitter", "~> 2.0.2"
 
-gem 'capistrano'
-gem 'trinidad'
-gem 'trinidad_diagnostics_extension'
-gem 'trinidad_scheduler_extension'
-gem 'trinidad_worker_extension'
+gem "capistrano"
+gem "trinidad"
+gem "trinidad_diagnostics_extension"
+gem "trinidad_scheduler_extension"
+gem "trinidad_worker_extension"
 
 gem "torquebox"
-gem 'torquebox-stomp'
-gem 'torquebox-remote-deployer'
+gem "torquebox-stomp"
+gem "torquebox-remote-deployer"
 
 group :assets do
-  gem 'sass-rails'
-  gem 'coffee-rails'
-  gem 'uglifier'
+  gem "sass-rails"
+  gem "coffee-rails"
+  gem "uglifier"
 end
 
 group :deploy do
@@ -31,11 +31,11 @@ group :deploy do
 end
 
 group :development, :test do
-  gem 'activerecord-jdbcsqlite3-adapter'
-  gem 'rspec-rails'
-  gem 'torquebox-no-op'
+  gem "activerecord-jdbcsqlite3-adapter"
+  gem "rspec-rails"
+  gem "torquebox-no-op"
 end
 
 group :production do
-  gem 'activerecord-jdbcpostgresql-adapter'
+  gem "activerecord-jdbcpostgresql-adapter"
 end

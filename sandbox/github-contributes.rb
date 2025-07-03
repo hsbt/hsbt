@@ -1,8 +1,8 @@
 require "bundler/inline"
 
 gemfile do
-  source 'https://rubygems.org'
-  gem 'graphql-client'
+  source "https://rubygems.org"
+  gem "graphql-client"
 end
 
 require "graphql/client"
@@ -15,7 +15,7 @@ module GitHub
         def headers(context)
           {
             "Authorization" => "Bearer #{ENV['GITHUB_ACCESS_TOKEN']}",
-            "User-Agent" => 'Ruby'
+            "User-Agent" => "Ruby"
           }
         end
       end

@@ -1,5 +1,5 @@
-require 'bundler/capistrano'
-require 'capistrano_colors'
+require "bundler/capistrano"
+require "capistrano_colors"
 
 server "localhost", :app, :db, primary: true
 ssh_options[:port] = 2222
@@ -21,14 +21,14 @@ set :bundle_flags, "--system --quiet"
 
 before "deploy:setup", "deploy:install_bundler"
 namespace :deploy do
-  task :install_bundler, :roles => :app do
+  task :install_bundler, roles: :app do
     run "sudo gem install bundler --pre"
   end
-  task :start, :roles => :app do
+  task :start, roles: :app do
     run "/etc/init.d/trinidad start"
   end
-  task :stop, :roles => :app do ; end
-  task :restart, :roles => :app, :except => { :no_release => true } do
+  task :stop, roles: :app do ; end
+  task :restart, roles: :app, except: { no_release: true } do
     run "touch #{current_release}/tmp/restart.txt"
   end
 end

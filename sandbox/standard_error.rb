@@ -1,4 +1,4 @@
-require 'timeout'
+require "timeout"
 begin
   p :foo
   raise Timeout::Error

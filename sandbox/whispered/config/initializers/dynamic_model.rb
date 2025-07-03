@@ -10,7 +10,8 @@ Settings.inquiries_tables.each do |table|
     klass.send(:include, Tire::Model::Callbacks)
 
     def klass.text_columns
-      columns.select{|c| [:string, :text].include?(c.type) && c.name != settings.created_at }.map{|c| c.name.to_sym}
+      columns.select { |c|
+ [:string, :text].include?(c.type) && c.name != settings.created_at }.map { |c| c.name.to_sym }
     end
 
     def klass.display_columns
@@ -18,7 +19,7 @@ Settings.inquiries_tables.each do |table|
     end
 
     def klass.settings
-      Settings.inquiries_tables.detect{|table| table.name == self.table_name}
+      Settings.inquiries_tables.detect { |table| table.name == self.table_name }
     end
 
     def created_at
@@ -29,9 +30,9 @@ Settings.inquiries_tables.each do |table|
 
     mapping do
       text_columns.each do |attr|
-        indexes attr.to_sym, :type => 'string', :index => :not_analyzed
+        indexes attr.to_sym, type: "string", index: :not_analyzed
       end
-      indexes :created_at, :type => 'date', :index => :not_analyzed if settings.created_at
+      indexes :created_at, type: "date", index: :not_analyzed if settings.created_at
     end
   end
 end if Settings.inquiries_tables.present?

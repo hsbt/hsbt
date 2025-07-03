@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-require 'sinatra/base'
+require "sinatra/base"
 
 class ApplicationController < Sinatra::Base
   def self.inherited(subclass)
@@ -12,12 +12,12 @@ class ApplicationController < Sinatra::Base
 end
 
 class ExampleController < ApplicationController
-  get('/example') { "Example!" }
+  get("/example") { "Example!" }
 end
 
 # 動的に生成されるアプリケーションとも連携する
 Sinatra.new ApplicationController do
-  get '/' do
+  get "/" do
     "See the <a href='/example'>example</a>."
   end
 end

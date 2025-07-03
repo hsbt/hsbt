@@ -7,4 +7,4 @@ gemfile(true) do
   gem "rack-test"
 end
 
-require "rack/test" 
+require "rack/test"

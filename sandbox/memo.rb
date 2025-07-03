@@ -20,7 +20,6 @@ class User
   end
 end
 
-
 u = User.new
 p u.product_count
 

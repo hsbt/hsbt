@@ -1,5 +1,5 @@
-require 'mongoid'
-require 'jquery-rails'
+require "mongoid"
+require "jquery-rails"
 require "mongo_metrics/engine"
 require "mongo_metrics/csv_streamer"
 require "active_support/notifications"

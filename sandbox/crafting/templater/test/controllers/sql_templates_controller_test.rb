@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class SqlTemplatesControllerTest < ActionController::TestCase
   setup do
@@ -17,8 +17,10 @@ class SqlTemplatesControllerTest < ActionController::TestCase
   end
 
   test "should create sql_template" do
-    assert_difference('SqlTemplate.count') do
-      post :create, sql_template: { body: @sql_template.body, format: @sql_template.format, handler: @sql_template.handler, locale: @sql_template.locale, partial: @sql_template.partial, path: @sql_template.path }
+    assert_difference("SqlTemplate.count") do
+      post :create,
+sql_template: { body: @sql_template.body, format: @sql_template.format, handler: @sql_template.handler,
+locale: @sql_template.locale, partial: @sql_template.partial, path: @sql_template.path }
     end
 
     assert_redirected_to sql_template_path(assigns(:sql_template))
@@ -35,12 +37,13 @@ class SqlTemplatesControllerTest < ActionController::TestCase
   end
 
   test "should update sql_template" do
-    patch :update, id: @sql_template, sql_template: { body: @sql_template.body, format: @sql_template.format, handler: @sql_template.handler, locale: @sql_template.locale, partial: @sql_template.partial, path: @sql_template.path }
+    patch :update, id: @sql_template,
+sql_template: { body: @sql_template.body, format: @sql_template.format, handler: @sql_template.handler, locale: @sql_template.locale, partial: @sql_template.partial, path: @sql_template.path }
     assert_redirected_to sql_template_path(assigns(:sql_template))
   end
 
   test "should destroy sql_template" do
-    assert_difference('SqlTemplate.count', -1) do
+    assert_difference("SqlTemplate.count", -1) do
       delete :destroy, id: @sql_template
     end
 

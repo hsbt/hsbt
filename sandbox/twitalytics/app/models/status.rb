@@ -3,19 +3,19 @@ class Status < ActiveRecord::Base
   always_background :retweet
 
   def self.topic
-    @@topic ||= inject('/topics/statuses')
+    @@topic ||= inject("/topics/statuses")
   end
 
   def self.find_or_create_from(tweets)
     r = tweets.map do |tweet|
-      existing = Status.where(:remote_id => tweet.id.to_s).first
+      existing = Status.where(remote_id: tweet.id.to_s).first
       begin
         existing.nil? ?
             Status.create(
-              :created_at => tweet.created_at,
-              :status_text => tweet.text,
-              :creator => tweet.from_user,
-              :remote_id => tweet.id.to_s
+              created_at: tweet.created_at,
+              status_text: tweet.text,
+              creator: tweet.from_user,
+              remote_id: tweet.id.to_s
             ) :
             existing
       rescue => e
@@ -36,7 +36,7 @@ class Status < ActiveRecord::Base
     # Twitter.update("RT @#{creator}: {status_text}")
     puts "Retweeting Status{id=#{id}}"
   end
-  
+
   def preprocess!
     set_positivity_score!
     set_followers_count!

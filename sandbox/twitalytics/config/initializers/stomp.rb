@@ -1,4 +1,4 @@
 begin
-  require 'torquebox-stomp'
+  require "torquebox-stomp"
 rescue NameError
 end

@@ -4,14 +4,14 @@ end
 
 class Committer
   attr_reader :name, :email, :github_user, :commits
-  
+
   def initialize(name:, email:, github_user:)
     @name = name
     @email = email
     @github_user = github_user
     @commits = []
   end
-  
+
   def each_commit(&block)
     if block
       commits.each(&block)

@@ -2,7 +2,7 @@ class A
   attr_accessor :x
 end
 
-require 'thread'
+require "thread"
 
 read, write = IO.pipe
 

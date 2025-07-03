@@ -1,5 +1,5 @@
-Dir.chdir('tdiary-core') do
-  tags = `git tag`.split.reject{|t| t =~ /^v/}
+Dir.chdir("tdiary-core") do
+  tags = `git tag`.split.reject { |t| t =~ /^v/ }
   tags.each do |t|
     `git checkout #{t}`
     `git tag v#{t}`

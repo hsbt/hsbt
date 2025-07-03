@@ -9,7 +9,7 @@ gemfile do
 end
 
 Octokit.configure do |c|
-  c.access_token = ENV['GITHUB_TOKEN']
+  c.access_token = ENV["GITHUB_TOKEN"]
   c.auto_paginate = true
   c.per_page = 100
 end
@@ -42,24 +42,25 @@ versions_to.each do |name, version|
   Octokit.releases("#{org}/#{repo}").each do |release|
     releases << release.tag_name
   end
-  releases.select{|v| v =~ /^v/ || v =~ /^¥d/ }.sort{|a, b| Gem::Version.new(a.sub(/^v/, "")) <=> Gem::Version.new(b.sub(/^v/, ""))}
+  releases.select { |v| v =~ /^v/ || v =~ /^¥d/ }.sort { |a, b| Gem::Version.new(a.sub(/^v/, "")) <=> Gem::Version.new(b.sub(/^v/, "")) }
   releases.reverse!
 
   start_index = releases.index("v#{versions_from[name]}") || releases.index(versions_from[name]) || releases.index("bundler-v#{versions_from[name]}")
   end_index = releases.index("v#{versions_to[name]}") || releases.index(versions_to[name]) || releases.index("bundler-v#{versions_to[name]}")
   release_range = releases[start_index+1..end_index] if start_index && end_index
-  
+
   if name == "bundler"
-    release_range = release_range.select{|v| v =~ /^bundler-/}
+    release_range = release_range.select { |v| v =~ /^bundler-/ }
   elsif name == "RubyGems"
-    release_range = release_range.select{|v| v =~ /^v/}
+    release_range = release_range.select { |v| v =~ /^v/ }
   end
 
   next unless release_range
   next if release_range.empty?
 
   puts "* #{name} #{version}"
-  puts "  * #{versions_from[name]} to #{release_range.map{|rel| "[#{rel.sub(/^bundler-/, '')}][#{name}-#{rel.sub(/^bundler-/, '')}]"}.join(", ")}"
+  puts "  * #{versions_from[name]} to #{release_range.map { |rel|
+ "[#{rel.sub(/^bundler-/, '')}][#{name}-#{rel.sub(/^bundler-/, '')}]"}.join(", ")}"
   release_range.each do |rel|
     footnote_link << "[#{name}-#{rel.sub(/^bundler-/, '')}]: https://github.com/#{org}/#{repo}/releases/tag/#{rel}"
   end

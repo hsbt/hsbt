@@ -16,5 +16,5 @@ DEF
       r << l
     end
   end
-  File.open(f, 'w') {|io| io.write r}
+  File.open(f, "w") { |io| io.write r }
 end

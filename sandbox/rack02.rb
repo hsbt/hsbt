@@ -1,11 +1,11 @@
-require 'sinatra'
-require 'pp'
+require "sinatra"
+require "pp"
 
-get '/example' do
-  'go to /inspect/example'
+get "/example" do
+  "go to /inspect/example"
 end
 
-get '/inspect/*' do
+get "/inspect/*" do
   route  = "/" + params[:splat].first
   data   = call env.merge("PATH_INFO" => route)
   result = "Status: #{data[0]}\n"

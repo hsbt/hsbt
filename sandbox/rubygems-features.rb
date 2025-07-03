@@ -1,4 +1,4 @@
-require 'bundler/inline'
+require "bundler/inline"
 
 gemfile do
   source "https://rubygems.org"

@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class InquiriesControllerTest < ActionController::TestCase
   setup do
@@ -12,13 +12,13 @@ class InquiriesControllerTest < ActionController::TestCase
   end
 
   test "should not get search without login" do
-    get :search, :q => "example"
+    get :search, q: "example"
     assert_response :redirect
     assert_redirected_to root_path
   end
 
   test "should not get show inquiry without login" do
-    get :show, :id => @inquiry
+    get :show, id: @inquiry
     assert_response :redirect
     assert_redirected_to root_path
   end

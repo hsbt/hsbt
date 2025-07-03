@@ -1,7 +1,7 @@
 source :rubygems
 
-gem 'guard-bundler'
-gem 'guard-livereload'
-gem 'guard-coffeescript'
-gem 'rb-fsevent', require: false
-gem 'growl_notify', require: false
+gem "guard-bundler"
+gem "guard-livereload"
+gem "guard-coffeescript"
+gem "rb-fsevent", require: false
+gem "growl_notify", require: false

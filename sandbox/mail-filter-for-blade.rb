@@ -20,7 +20,7 @@ Dir.glob( base_dir.join("*") ).each do |file|
 
   mail = Mail.read( file )
 
-  list_name = mail.header['List-Id'].to_s.match(/\<(.*)\.ruby\-lang\.org\>/)
+  list_name = mail.header["List-Id"].to_s.match(/\<(.*)\.ruby\-lang\.org\>/)
   list_name = list_name && list_name[1]
   post_id = mail.header["Subject"].to_s.match(/\[#{list_name}:(\d+)\].*/)
   post_id = post_id && post_id[1]
@@ -30,7 +30,7 @@ Dir.glob( base_dir.join("*") ).each do |file|
     from = begin
       mail.header["from"].to_s.gsub(/@[a-zA-Z.\-]+/, "@...")
     rescue
-      mail.header['from']
+      mail.header["from"]
     end
     f.puts "From: #{from}"
     f.puts "Date: #{mail.date}"
@@ -42,7 +42,8 @@ Dir.glob( base_dir.join("*") ).each do |file|
     f.puts ""
     begin
       f.puts mail.body.to_s.encode("UTF-8", "ISO-2022-JP")
-    rescue Encoding::CompatibilityError, Encoding::UndefinedConversionError, Encoding::InvalidByteSequenceError, Mail::UnknownEncodingType, ArgumentError
+    rescue Encoding::CompatibilityError, Encoding::UndefinedConversionError, Encoding::InvalidByteSequenceError,
+Mail::UnknownEncodingType, ArgumentError
       begin
         puts "retry #{file}"
         m = File.read(file)

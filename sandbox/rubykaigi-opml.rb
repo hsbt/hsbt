@@ -1,4 +1,4 @@
-require 'bundler/inline'
+require "bundler/inline"
 
 gemfile do
   source "https://rubygems.org"
@@ -19,14 +19,14 @@ list = []
     feeds = Feedbag.find(item.about)
     next if feeds.empty?
     next if feeds.first.include?("b.hatena.ne.jp")
-    list << feeds.first 
+    list << feeds.first
   end
 end
 
 include OpmlParser
 
 outlines = list.flatten.uniq.map do |item|
-  OpmlParser::Outline.new({xmlUrl: item})
+  OpmlParser::Outline.new({ xmlUrl: item })
 end
 opml = OpmlParser.export(outlines, "RubyKaigi blogs")
 

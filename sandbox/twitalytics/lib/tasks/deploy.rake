@@ -1,16 +1,16 @@
-require 'bundler'
+require "bundler"
 Bundler.require(:deploy)
 
 SSH_KEY = "~/.vagrant.d/insecure_private_key"
 
 def with_ssh
-  Net::SSH.start("localhost", "vagrant", {port: 2222, keys: [SSH_KEY]}) do |ssh|
+  Net::SSH.start("localhost", "vagrant", { port: 2222, keys: [SSH_KEY] }) do |ssh|
     yield ssh
   end
 end
 
 def scp_upload(local_file, remote_file)
-  Net::SCP.start("localhost", "vagrant", {port: 2222, keys: [SSH_KEY]}) do |ssh|
+  Net::SCP.start("localhost", "vagrant", { port: 2222, keys: [SSH_KEY] }) do |ssh|
     ssh.upload!(local_file, remote_file) do |ch, name, sent, total|
       print "\rCopying #{name}: #{sent}/#{total}"
     end

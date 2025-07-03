@@ -1,6 +1,6 @@
-require 'open-uri'
-require 'fileutils'
-require 'date'
+require "open-uri"
+require "fileutils"
+require "date"
 
 BASE_URL = "https://www.r.minpaku.ac.jp/gekkan_minpaku/pdf/"
 # Save PDFs in a subdirectory relative to the script's location
@@ -20,8 +20,8 @@ while current_date <= end_date
 
   # YY (year % 100) and MM (month) should be two digits with leading zeros if necessary
   # YY (年 % 100) と MM (月) は、必要に応じて先頭にゼロを付けて2桁にする必要があります
-  yy = format('%02d', year % 100)
-  mm = format('%02d', month)
+  yy = format("%02d", year % 100)
+  mm = format("%02d", month)
 
   filename = "MP#{yy}#{mm}.pdf"
   url = "#{BASE_URL}#{filename}"
@@ -42,13 +42,13 @@ while current_date <= end_date
     # Ruby 3.0以降、open-uriのopenメソッドはURI.openに名前が変更されました
     if URI.respond_to?(:open)
       URI.open(url) do |file|
-        File.open(output_path, 'wb') do |output_file|
+        File.open(output_path, "wb") do |output_file|
           output_file.write(file.read)
         end
       end
     else # older Rubies
       open(url) do |file| # rubocop:disable Security/Open
-        File.open(output_path, 'wb') do |output_file|
+        File.open(output_path, "wb") do |output_file|
           output_file.write(file.read)
         end
       end

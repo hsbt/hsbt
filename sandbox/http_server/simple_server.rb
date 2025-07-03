@@ -1,4 +1,4 @@
-require 'socket'
+require "socket"
 
 server = TCPServer.new 2000
 loop do

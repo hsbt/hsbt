@@ -4,15 +4,15 @@ class InquiriesController < ApplicationController
   respond_to :html
 
   def index
-    @inquiries = DynamicModel.all.map{|model| model.limit(5)}.flatten
+    @inquiries = DynamicModel.all.map { |model| model.limit(5) }.flatten
   end
 
   def search
     query_string = params[:q]
-    @inquiries = DynamicModel.all.map {|model|
+    @inquiries = DynamicModel.all.map { |model|
       model.search do
         query { string query_string }
-        sort { by :created_at, 'desc' } if model.settings.created_at
+        sort { by :created_at, "desc" } if model.settings.created_at
         size 50 # per_page * 5
       end.results
     }.flatten

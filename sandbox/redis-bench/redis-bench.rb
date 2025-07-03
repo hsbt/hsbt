@@ -1,6 +1,6 @@
-require 'benchmark'
+require "benchmark"
 
-require 'redis'
+require "redis"
 
 n = 1_00_000
 Benchmark.bm do |x|
@@ -12,8 +12,8 @@ Benchmark.bm do |x|
     }
   }
   x.report {
-    require 'hiredis'
-    require 'redis/connection/hiredis'
+    require "hiredis"
+    require "redis/connection/hiredis"
     redis = Redis.new
     n.times {
       redis.set("mykey", "hello world")

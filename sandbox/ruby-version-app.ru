@@ -5,10 +5,10 @@ gemfile do
   gem "sinatra"
 end
 
-require 'sinatra/base'
+require "sinatra/base"
 
 class RubyVersionApp < Sinatra::Base
-  get '/' do
+  get "/" do
     "Hello, Ruby!: #{RUBY_VERSION} #{RUBY_PATCHLEVEL}"
   end
 end

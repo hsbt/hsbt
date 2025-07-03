@@ -1,11 +1,11 @@
-guard 'bundler' do
+guard "bundler" do
   watch(%r{^Gemfile$})
 end
 
-guard 'livereload' do
+guard "livereload" do
   watch(%r{^.+\.(css|js|html)})
 end
 
-guard 'coffeescript', :output => 'js' do
+guard "coffeescript", output: "js" do
   watch(%r{^.+\.coffee})
 end

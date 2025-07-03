@@ -4,14 +4,14 @@
 # Bluesky Posts Backup Script
 # This script backs up all posts from your Bluesky account using AT Protocol APIs
 
-require 'net/http'
-require 'json'
-require 'uri'
-require 'fileutils'
-require 'time'
+require "net/http"
+require "json"
+require "uri"
+require "fileutils"
+require "time"
 
 class BlueskyBackup
-  API_BASE = 'https://bsky.social'
+  API_BASE = "https://bsky.social"
   BATCH_SIZE = 100
 
   def initialize(identifier, password)
@@ -23,15 +23,15 @@ class BlueskyBackup
     @handle = nil
   end
 
-  def backup_all_posts(output_dir = 'bluesky_backup')
+  def backup_all_posts(output_dir = "bluesky_backup")
     puts "Starting Bluesky backup for #{@identifier}..."
-    
+
     # Create session
     authenticate
-    
+
     # Create output directory
     FileUtils.mkdir_p(output_dir)
-    
+
     # Check for existing backup and get last post time
     last_post_time = get_last_post_time(output_dir)
     if last_post_time
@@ -40,18 +40,18 @@ class BlueskyBackup
     else
       puts "No existing backup found. Fetching all posts..."
     end
-    
+
     # Get posts (all or only new ones)
     posts = fetch_posts_since(last_post_time)
-    
+
     if posts.empty?
       puts "No new posts to backup."
       return
     end
-    
+
     # Save posts
     save_posts(posts, output_dir, last_post_time.nil?)
-    
+
     # Save profile
     save_profile(output_dir)
     puts "Backup completed! #{posts.size} posts saved to #{output_dir}/"
@@ -61,22 +61,22 @@ class BlueskyBackup
 
   def authenticate
     puts "Authenticating with Bluesky..."
-    
+
     uri = URI("#{API_BASE}/xrpc/com.atproto.server.createSession")
-    
+
     request_body = {
       identifier: @identifier,
       password: @password
     }
-    
-    response = make_request(uri, 'POST', request_body)
-    
-    if response.code == '200'
+
+    response = make_request(uri, "POST", request_body)
+
+    if response.code == "200"
       data = JSON.parse(response.body)
-      @access_token = data['accessJwt']
-      @refresh_token = data['refreshJwt']
-      @did = data['did']
-      @handle = data['handle']
+      @access_token = data["accessJwt"]
+      @refresh_token = data["refreshJwt"]
+      @did = data["did"]
+      @handle = data["handle"]
       puts "Successfully authenticated as #{@handle} (#{@did})"
     else
       error_data = JSON.parse(response.body) rescue {}
@@ -85,16 +85,16 @@ class BlueskyBackup
   end
 
   def get_last_post_time(output_dir)
-    posts_file = File.join(output_dir, 'all_posts.json')
+    posts_file = File.join(output_dir, "all_posts.json")
     return nil unless File.exist?(posts_file)
-    
+
     begin
       all_posts = JSON.parse(File.read(posts_file))
       return nil if all_posts.empty?
-      
+
       # Find the most recent post
-      latest_post = all_posts.max_by { |post| Time.parse(post['record']['createdAt']) }
-      return Time.parse(latest_post['record']['createdAt'])
+      latest_post = all_posts.max_by { |post| Time.parse(post["record"]["createdAt"]) }
+      return Time.parse(latest_post["record"]["createdAt"])
     rescue StandardError => e
       puts "Warning: Failed to read existing posts: #{e.message}"
       return nil
@@ -103,47 +103,47 @@ class BlueskyBackup
 
   def fetch_posts_since(since_time = nil)
     puts since_time ? "Fetching posts since #{since_time}..." : "Fetching all posts..."
-    
+
     all_posts = []
     cursor = nil
     page = 1
-    
+
     loop do
       puts "Fetching page #{page}..."
-      
+
       # Build query parameters
       params = {
         actor: @did,
         limit: BATCH_SIZE
       }
       params[:cursor] = cursor if cursor
-      
-      query_string = params.map { |k, v| "#{k}=#{URI.encode_www_form_component(v)}" }.join('&')
+
+      query_string = params.map { |k, v| "#{k}=#{URI.encode_www_form_component(v)}" }.join("&")
       uri = URI("#{API_BASE}/xrpc/app.bsky.feed.getAuthorFeed?#{query_string}")
-      
-      response = make_authenticated_request(uri, 'GET')
-      
-      if response.code == '200'
+
+      response = make_authenticated_request(uri, "GET")
+
+      if response.code == "200"
         data = JSON.parse(response.body)
-        feed = data['feed'] || []
-        
+        feed = data["feed"] || []
+
         # Extract posts from feed items
-        posts = feed.map { |item| item['post'] }.compact
-        
+        posts = feed.map { |item| item["post"] }.compact
+
         # Filter posts by time if since_time is specified
         if since_time
           new_posts = posts.select do |post|
             begin
-              post_time = Time.parse(post['record']['createdAt'])
+              post_time = Time.parse(post["record"]["createdAt"])
               post_time > since_time
             rescue StandardError
               true # Include posts with invalid timestamps to be safe
             end
           end
-          
+
           all_posts.concat(new_posts)
           puts "  Found #{new_posts.size} new posts on this page (#{posts.size} total posts)"
-          
+
           # If we found posts older than since_time, we can stop
           if new_posts.size < posts.size
             puts "Reached posts older than last backup. Stopping here."
@@ -153,13 +153,13 @@ class BlueskyBackup
           all_posts.concat(posts)
           puts "  Found #{posts.size} posts on this page"
         end
-        
+
         # Check if there are more pages
-        cursor = data['cursor']
+        cursor = data["cursor"]
         break if cursor.nil? || cursor.empty? || posts.empty?
-        
+
         page += 1
-        
+
         # Rate limiting
         sleep(0.5)
       else
@@ -168,7 +168,7 @@ class BlueskyBackup
         break
       end
     end
-    
+
     puts "Total posts fetched: #{all_posts.size}"
     all_posts
   end
@@ -180,10 +180,10 @@ class BlueskyBackup
 
   def save_posts(posts, output_dir, is_full_backup = true)
     puts "Saving posts to files..."
-    
+
     # Handle all_posts.json file
-    posts_file = File.join(output_dir, 'all_posts.json')
-    
+    posts_file = File.join(output_dir, "all_posts.json")
+
     if is_full_backup
       # For full backup, overwrite the file
       File.write(posts_file, JSON.pretty_generate(posts))
@@ -199,63 +199,63 @@ class BlueskyBackup
           existing_posts = []
         end
       end
-      
+
       # Merge posts (avoid duplicates by URI)
-      existing_uris = existing_posts.map { |p| p['uri'] }.to_set
-      new_posts = posts.reject { |p| existing_uris.include?(p['uri']) }
-      
+      existing_uris = existing_posts.map { |p| p["uri"] }.to_set
+      new_posts = posts.reject { |p| existing_uris.include?(p["uri"]) }
+
       if new_posts.any?
-        merged_posts = (new_posts + existing_posts).sort_by { |p| p['record']['createdAt'] }.reverse
+        merged_posts = (new_posts + existing_posts).sort_by { |p| p["record"]["createdAt"] }.reverse
         File.write(posts_file, JSON.pretty_generate(merged_posts))
         puts "Added #{new_posts.size} new posts to #{posts_file}"
       else
         puts "No new posts to add to #{posts_file}"
       end
     end
-    
+
     # Create individual post files organized by date
     posts_by_date = {}
-    
+
     posts.each do |post|
       begin
-        created_at = Time.parse(post['record']['createdAt'])
-        date_key = created_at.strftime('%Y-%m-%d')
-        
+        created_at = Time.parse(post["record"]["createdAt"])
+        date_key = created_at.strftime("%Y-%m-%d")
+
         posts_by_date[date_key] ||= []
         posts_by_date[date_key] << {
-          uri: post['uri'],
-          cid: post['cid'],
-          created_at: post['record']['createdAt'],
-          text: post['record']['text'],
-          reply_count: post['replyCount'] || 0,
-          repost_count: post['repostCount'] || 0,
-          like_count: post['likeCount'] || 0,
-          embed: post['record']['embed'],
-          facets: post['record']['facets'],
-          langs: post['record']['langs'],
-          labels: post['labels']
+          uri: post["uri"],
+          cid: post["cid"],
+          created_at: post["record"]["createdAt"],
+          text: post["record"]["text"],
+          reply_count: post["replyCount"] || 0,
+          repost_count: post["repostCount"] || 0,
+          like_count: post["likeCount"] || 0,
+          embed: post["record"]["embed"],
+          facets: post["record"]["facets"],
+          langs: post["record"]["langs"],
+          labels: post["labels"]
         }
       rescue StandardError => e
         puts "Warning: Failed to process post #{post['uri']}: #{e.message}"
       end
     end
-    
+
     # Save posts by date (merge with existing if not full backup)
     posts_by_date.each do |date, day_posts|
-      date_dir = File.join(output_dir, 'posts_by_date')
+      date_dir = File.join(output_dir, "posts_by_date")
       FileUtils.mkdir_p(date_dir)
-      
+
       date_file = File.join(date_dir, "#{date}.json")
-      
+
       if !is_full_backup && File.exist?(date_file)
         # Merge with existing posts for this date
         begin
           existing_day_posts = JSON.parse(File.read(date_file))
-          existing_uris = existing_day_posts.map { |p| p['uri'] }.to_set
-          new_day_posts = day_posts.reject { |p| existing_uris.include?(p['uri']) }
-          
+          existing_uris = existing_day_posts.map { |p| p["uri"] }.to_set
+          new_day_posts = day_posts.reject { |p| existing_uris.include?(p["uri"]) }
+
           if new_day_posts.any?
-            merged_day_posts = (new_day_posts + existing_day_posts).sort_by { |p| p['created_at'] }.reverse
+            merged_day_posts = (new_day_posts + existing_day_posts).sort_by { |p| p["created_at"] }.reverse
             File.write(date_file, JSON.pretty_generate(merged_day_posts))
             puts "Added #{new_day_posts.size} new posts to #{date_file}"
           end
@@ -267,21 +267,21 @@ class BlueskyBackup
         File.write(date_file, JSON.pretty_generate(day_posts))
       end
     end
-    
+
     if posts_by_date.any?
       puts "Posts organized by date saved to #{File.join(output_dir, 'posts_by_date')}/"
     end
-    
+
     # Create a CSV summary (always regenerate for simplicity)
     create_csv_summary_from_file(output_dir)
   end
 
   def create_csv_summary_from_file(output_dir)
-    require 'csv'
-    
-    posts_file = File.join(output_dir, 'all_posts.json')
+    require "csv"
+
+    posts_file = File.join(output_dir, "all_posts.json")
     return unless File.exist?(posts_file)
-    
+
     begin
       all_posts = JSON.parse(File.read(posts_file))
       create_csv_summary(all_posts, output_dir)
@@ -291,43 +291,43 @@ class BlueskyBackup
   end
 
   def create_csv_summary(posts, output_dir)
-    require 'csv'
-    
-    csv_file = File.join(output_dir, 'posts_summary.csv')
-    
-    CSV.open(csv_file, 'w') do |csv|
-      csv << ['Date', 'Time', 'Text', 'Reply Count', 'Repost Count', 'Like Count', 'URI']
-      
+    require "csv"
+
+    csv_file = File.join(output_dir, "posts_summary.csv")
+
+    CSV.open(csv_file, "w") do |csv|
+      csv << ["Date", "Time", "Text", "Reply Count", "Repost Count", "Like Count", "URI"]
+
       posts.each do |post|
         begin
-          created_at = Time.parse(post['record']['createdAt'])
+          created_at = Time.parse(post["record"]["createdAt"])
           csv << [
-            created_at.strftime('%Y-%m-%d'),
-            created_at.strftime('%H:%M:%S'),
-            post['record']['text'] || '',
-            post['replyCount'] || 0,
-            post['repostCount'] || 0,
-            post['likeCount'] || 0,
-            post['uri']
+            created_at.strftime("%Y-%m-%d"),
+            created_at.strftime("%H:%M:%S"),
+            post["record"]["text"] || "",
+            post["replyCount"] || 0,
+            post["repostCount"] || 0,
+            post["likeCount"] || 0,
+            post["uri"]
           ]
         rescue StandardError => e
           puts "Warning: Failed to process post for CSV: #{e.message}"
         end
       end
     end
-    
+
     puts "CSV summary saved to #{csv_file}"
   end
 
   def save_profile(output_dir)
     puts "Saving profile information..."
-    
+
     uri = URI("#{API_BASE}/xrpc/app.bsky.actor.getProfile?actor=#{@did}")
-    response = make_authenticated_request(uri, 'GET')
-    
-    if response.code == '200'
+    response = make_authenticated_request(uri, "GET")
+
+    if response.code == "200"
       profile_data = JSON.parse(response.body)
-      profile_file = File.join(output_dir, 'profile.json')
+      profile_file = File.join(output_dir, "profile.json")
       File.write(profile_file, JSON.pretty_generate(profile_data))
       puts "Profile saved to #{profile_file}"
     else
@@ -338,34 +338,34 @@ class BlueskyBackup
   def make_request(uri, method, body = nil)
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
-    
+
     case method
-    when 'POST'
+    when "POST"
       request = Net::HTTP::Post.new(uri)
-      request['Content-Type'] = 'application/json'
+      request["Content-Type"] = "application/json"
       request.body = body.to_json if body
-    when 'GET'
+    when "GET"
       request = Net::HTTP::Get.new(uri)
     end
-    
-    request['User-Agent'] = 'BlueskyBackupScript/1.0'
-    
+
+    request["User-Agent"] = "BlueskyBackupScript/1.0"
+
     http.request(request)
   end
 
   def make_authenticated_request(uri, method, body = nil)
     request = case method
-              when 'GET'
+              when "GET"
                 Net::HTTP::Get.new(uri)
-              when 'POST'
+              when "POST"
                 Net::HTTP::Post.new(uri)
-              end
-    
-    request['Authorization'] = "Bearer #{@access_token}"
-    request['Content-Type'] = 'application/json' if method == 'POST'
-    request['User-Agent'] = 'BlueskyBackupScript/1.0'
-    request.body = body.to_json if body && method == 'POST'
-    
+    end
+
+    request["Authorization"] = "Bearer #{@access_token}"
+    request["Content-Type"] = "application/json" if method == "POST"
+    request["User-Agent"] = "BlueskyBackupScript/1.0"
+    request.body = body.to_json if body && method == "POST"
+
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
     http.request(request)
@@ -393,7 +393,7 @@ if __FILE__ == $0
 
   identifier = ARGV[0]
   password = ARGV[1]
-  output_dir = ARGV[2] || 'bluesky_backup'
+  output_dir = ARGV[2] || "bluesky_backup"
 
   begin
     backup = BlueskyBackup.new(identifier, password)

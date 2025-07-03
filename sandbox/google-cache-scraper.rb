@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require 'open-uri'
+require "open-uri"
 
 sites = File.read(ARGV[0]).split("\n")
 

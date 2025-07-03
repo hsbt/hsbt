@@ -10,7 +10,7 @@ Dir.glob(ARGV) do |file|
   io.gsub!(/"\/images\/(.*\.gif)"/) do |match|
     "\"<%= asset_path('#{$1}') %>\""
   end
-  File.open(file, 'w') do |f|
+  File.open(file, "w") do |f|
     f.write io
   end
 end

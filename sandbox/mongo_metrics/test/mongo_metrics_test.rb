@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class MongoMetricsTest < ActiveSupport::TestCase
   setup { MongoMetrics::Metric.delete_all }
@@ -21,7 +21,7 @@ class MongoMetricsTest < ActiveSupport::TestCase
     assert metric.created_at
   end
 
-  test 'can ignore notifications when specified' do
+  test "can ignore notifications when specified" do
     MongoMetrics.mute! do
       assert MongoMetrics.mute?
       event = "process_action.action_controller"
@@ -33,7 +33,7 @@ class MongoMetricsTest < ActiveSupport::TestCase
     assert_equal 0, MongoMetrics::Metric.count
   end
 
-  test 'does not leak mute state on failures' do
+  test "does not leak mute state on failures" do
     MongoMetrics.mute! do
       assert MongoMetrics.mute?
       raise "oops"

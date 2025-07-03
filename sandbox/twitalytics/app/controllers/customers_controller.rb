@@ -1,6 +1,6 @@
 class CustomersController < ApplicationController
   def index
-    @statuses = Status.find(:all, :order => "created_at desc", :limit => 20)
+    @statuses = Status.find(:all, order: "created_at desc", limit: 20)
   end
 
   def retweet

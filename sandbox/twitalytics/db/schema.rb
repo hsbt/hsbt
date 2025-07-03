@@ -11,23 +11,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111230203038) do
+ActiveRecord::Schema.define(version: 20111230203038) do
 
-  create_table "analytics", :force => true do |t|
+  create_table "analytics", force: true do |t|
     t.decimal  "positivity_followers_r"
     t.decimal  "positivity_stdv"
-    t.datetime "created_at",             :null => false
-    t.datetime "updated_at",             :null => false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
-  create_table "statuses", :force => true do |t|
+  create_table "statuses", force: true do |t|
     t.string   "status_text"
     t.string   "creator"
     t.string   "remote_id"
     t.integer  "followers_count"
     t.integer  "positivity_score"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
 end

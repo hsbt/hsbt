@@ -5,7 +5,7 @@ gemfile do
   gem "bootsnap", require: false
 end
 
-require 'bootsnap'
-Bootsnap.setup(cache_dir: 'tmp/cache')
+require "bootsnap"
+Bootsnap.setup(cache_dir: "tmp/cache")
 
-require 'csv'
+require "csv"

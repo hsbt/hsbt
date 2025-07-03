@@ -1,5 +1,5 @@
-require 'sinatra/base'
-require 'date'
+require "sinatra/base"
+require "date"
 
 module MyHelpers
   def time
@@ -16,8 +16,8 @@ class MyApplication < Sinatra::Base
     end
   end
 
-  get('/') { "it's #{time}\n" }
-  get('/today') { "today is #{date}\n" }
+  get("/") { "it's #{time}\n" }
+  get("/today") { "today is #{date}\n" }
 end
 
 run MyApplication

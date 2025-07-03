@@ -1,8 +1,8 @@
-require 'sinatra'
+require "sinatra"
 
-['/one', '/two', '/three'].each do |route|
+["/one", "/two", "/three"].each do |route|
   get route do
-	  "Triggered #{route} via GET"
+    "Triggered #{route} via GET"
   end
 
   post route do

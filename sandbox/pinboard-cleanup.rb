@@ -14,6 +14,4 @@ client = Pinboard::Client.new(token: ENV["PINBOARD_TOKEN"])
 # Get all bookmarks
 bookmarks = client.posts
 
-
-
 binding.irb

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-require 'test_helper'
+require "test_helper"
 
 class SqlTemplateTest < ActiveSupport::TestCase
   test "resolver returns a template with the saved body" do

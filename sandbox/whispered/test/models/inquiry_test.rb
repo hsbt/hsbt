@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class InquiryTest < ActiveSupport::TestCase
   test "self.text_columns" do

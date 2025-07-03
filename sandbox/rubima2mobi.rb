@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # -*- coding: utf-8 -*-
 
-require 'hikidoc'
+require "hikidoc"
 
 class Rubima2Mobi
   def initialize
@@ -9,7 +9,7 @@ class Rubima2Mobi
   end
 
   def to_html
-    open(@filename + '.html', 'w') do |f|
+    open(@filename + ".html", "w") do |f|
       f.puts html_header ARGV.shift
       f.puts html_body
       f.puts html_footer
@@ -17,8 +17,8 @@ class Rubima2Mobi
   end
 
   def to_mobi
-    require 'kindlegen'
-    Kindlegen.run(@filename + '.html', "-o", @filename + '.mobi')
+    require "kindlegen"
+    Kindlegen.run(@filename + ".html", "-o", @filename + ".mobi")
   end
 
   def html_header( title )
@@ -71,7 +71,7 @@ HTML
 
   def html_body
     html = HikiDoc.to_html(File.open(@filename).read)
-    html.gsub!(/{{.*}}/, '') # TODO remove hiki plugin syntax
+    html.gsub!(/{{.*}}/, "") # TODO remove hiki plugin syntax
     html
   end
 end

@@ -1,6 +1,6 @@
-require 'timeout'
+require "timeout"
 
-a = ''
+a = ""
 begin
   timeout(1) do
     a = :bar

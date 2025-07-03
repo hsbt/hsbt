@@ -9,8 +9,8 @@ module MailForm
     class_attribute :attribute_names
     self.attribute_names = []
 
-    attribute_method_prefix 'clear_'
-    attribute_method_suffix '?'
+    attribute_method_prefix "clear_"
+    attribute_method_suffix "?"
 
     def initialize(attributes = {})
       attributes.each do |attr, value|

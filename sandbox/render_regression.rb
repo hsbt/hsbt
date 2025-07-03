@@ -3,7 +3,7 @@ def render(one = nil, two = nil)
 end
 
 def bar
-  return render => 'foo', :layout => false
+  return render => "foo", :layout => false
 end
 
 p bar

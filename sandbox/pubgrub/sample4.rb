@@ -1,14 +1,14 @@
 source = PubGrub::StaticPackageSource.new do |s|
-  s.add 'foo', '3.0.0', deps: { 'bar' => '> 1.0.0' }
-  s.add 'foo', '2.0.0', deps: { 'bar' => '1.0.0' }
-  s.add 'foo', '1.0.0'
-  
-  s.add 'bar', '1.0.0', deps: { 'foo' => '1.0.0' }
-  s.add 'bar', '2.0.0'
+  s.add "foo", "3.0.0", deps: { "bar" => "> 1.0.0" }
+  s.add "foo", "2.0.0", deps: { "bar" => "1.0.0" }
+  s.add "foo", "1.0.0"
 
-  s.add 'buzz', '1.0.0', deps: { 'foo' => '> 1.0.0' }
-  
-  s.root deps: { 'buzz' => '1.0.0' }
+  s.add "bar", "1.0.0", deps: { "foo" => "1.0.0" }
+  s.add "bar", "2.0.0"
+
+  s.add "buzz", "1.0.0", deps: { "foo" => "> 1.0.0" }
+
+  s.root deps: { "buzz" => "1.0.0" }
 end
 
 solver = PubGrub::VersionSolver.new(source: source)

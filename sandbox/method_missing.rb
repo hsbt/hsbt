@@ -1,8 +1,8 @@
-require 'benchmark/ips'
+require "benchmark/ips"
 
 class Foo
   def initialize
-    @attributes = {foo: :x, bar: :y}
+    @attributes = { foo: :x, bar: :y }
   end
 
   def foo
@@ -17,6 +17,6 @@ class Foo
 end
 
 Benchmark.ips do |x|
-  x.report('method') { Foo.new.foo }
-  x.report('method_missing') { Foo.new.bar }
+  x.report("method") { Foo.new.foo }
+  x.report("method_missing") { Foo.new.bar }
 end

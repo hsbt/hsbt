@@ -1,9 +1,9 @@
 #---
 # Excerpted from "Deploying with JRuby",
 # published by The Pragmatic Bookshelf.
-# Copyrights apply to this code. It may not be used to create training material, 
+# Copyrights apply to this code. It may not be used to create training material,
 # courses, books, articles, and the like. Contact us if you are in doubt.
-# We make no guarantees that this code is fit for any purpose. 
+# We make no guarantees that this code is fit for any purpose.
 # Visit http://www.pragmaticprogrammer.com/titles/jkdepj for more book information.
 #---
 class CompanyController < ApplicationController
@@ -13,8 +13,8 @@ class CompanyController < ApplicationController
   def index
     with_twitter_account do |username|
       @username = username
-      @statuses = (Twitter.user_timeline(username, :count => 20)).map do |status|
-        {:created_at => status.created_at, :status_text => status.text}
+      @statuses = (Twitter.user_timeline(username, count: 20)).map do |status|
+        { created_at: status.created_at, status_text: status.text }
       end
     end
   end

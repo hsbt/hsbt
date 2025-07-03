@@ -1,25 +1,25 @@
-require 'formula'
+require "formula"
 
 class Mysql41 < Formula
-  homepage 'http://download.softagency.net/MySQL/Downloads/MySQL-4.1/'
-  url 'http://download.softagency.net/MySQL/Downloads/MySQL-4.1/mysql-4.1.22.tar.gz'
-  version '4.1.22'
+  homepage "http://download.softagency.net/MySQL/Downloads/MySQL-4.1/"
+  url "http://download.softagency.net/MySQL/Downloads/MySQL-4.1/mysql-4.1.22.tar.gz"
+  version "4.1.22"
 
-  md5 '37b4479951fa0cf052269d27c41ca200'
+  md5 "37b4479951fa0cf052269d27c41ca200"
 
-  depends_on 'readline'
+  depends_on "readline"
 
-  conflicts_with 'mysql',
-    :because => "install the same binaries."
+  conflicts_with "mysql",
+    because: "install the same binaries."
 
-  conflicts_with 'mariadb',
-    :because => "mysql and mariadb install the same binaries."
+  conflicts_with "mariadb",
+    because: "mysql and mariadb install the same binaries."
 
-  conflicts_with 'percona-server',
-    :because => "mysql and percona-server install the same binaries."
+  conflicts_with "percona-server",
+    because: "mysql and percona-server install the same binaries."
 
-  conflicts_with 'mysql-cluster',
-    :because => "mysql and mysql-cluster install the same binaries."
+  conflicts_with "mysql-cluster",
+    because: "mysql and mysql-cluster install the same binaries."
 
   fails_with :clang do
     build 425
@@ -72,7 +72,7 @@ int   accept(int, struct sockaddr * __restrict, socklen_t * __restrict)
     EOS
   end
 
-  plist_options :manual => "mysql.server start"
+  plist_options manual: "mysql.server start"
 
   def plist; <<-EOS.undent
     <?xml version="1.0" encoding="UTF-8"?>

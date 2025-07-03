@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 require "thread"
 
 class LiveAssets::SubscriberTest < ActiveSupport::TestCase

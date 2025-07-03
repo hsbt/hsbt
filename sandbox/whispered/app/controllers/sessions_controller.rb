@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   def create
-    if Settings.members.include? request.env['omniauth.auth'][:info][:nickname]
-      self.current_user = request.env['omniauth.auth'][:info]
+    if Settings.members.include? request.env["omniauth.auth"][:info][:nickname]
+      self.current_user = request.env["omniauth.auth"][:info]
     else
       flash[:error] = "Access denied, You can't have permissions."
     end
@@ -10,6 +10,6 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:current_user] = nil
-    redirect_to '/', :notice => "Signed out"
+    redirect_to "/", notice: "Signed out"
   end
 end

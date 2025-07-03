@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class CmsTest < ActiveSupport::IntegrationCase
   test "can access any page in SqlTemplate" do

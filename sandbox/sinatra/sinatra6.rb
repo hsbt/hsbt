@@ -1,4 +1,4 @@
-require 'sinatra'
+require "sinatra"
 
 before do
   content_type :txt
@@ -9,6 +9,6 @@ get %r{/(sp|gr)eedy} do
   "You got caught in the greedy route!"
 end
 
-get '/speedy' do
+get "/speedy" do
   "You must have passed to me!"
 end

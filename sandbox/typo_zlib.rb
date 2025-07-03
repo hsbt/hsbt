@@ -1,4 +1,4 @@
 begin
-  require 'foo'
+  require "foo"
 rescue Loaderroe
 end

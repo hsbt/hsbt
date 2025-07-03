@@ -1,4 +1,4 @@
-require 'sass/css'
+require "sass/css"
 module Css2sass
   class Convert
     def initialize(css)
@@ -15,7 +15,7 @@ module Css2sass
   end
 end
 
-Dir.glob('**/*.css') do |css|
+Dir.glob("**/*.css") do |css|
   scss = Css2sass::Convert.new(css).to_scss
   File.open("#{css}.scss", "w+") do |f|
     f.write scss

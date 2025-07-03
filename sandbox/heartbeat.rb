@@ -1,6 +1,6 @@
 # encoding: BINARY
-require 'socket'
-require 'timeout'
+require "socket"
+require "timeout"
 
 CLIENT_HELLO = -> {
   data = <<-EOS
@@ -12,11 +12,11 @@ CLIENT_HELLO = -> {
 00 35 01 00 00 05 00 0f 00 01
 01
 EOS
-  [data.split(/\s/).join("")].pack('H*')
+  [data.split(/\s/).join("")].pack("H*")
 }.call
 
 PAYLOAD = "\x18\x03\x01\x00\x03\x01\x40\x00" #  0x4000 = 16384 = 2^14, max value to be returned
-  
+
 SERVER_HELLO_DONE = "\x0e\x00\x00\x00"
 
 module ContentType
@@ -40,7 +40,7 @@ def read_record(sock)
   Timeout.timeout(3) do
     type = sock.read(1)
     version = sock.read(2)
-    length = sock.read(2).unpack('n')[0]
+    length = sock.read(2).unpack("n")[0]
     value = length > 0 ? sock.read(length) : nil
     TLSRecord.new(type, version, value)
   end
@@ -86,7 +86,7 @@ begin
     puts "Server sent an alert instead of a heartbeat response. This is OK."
   else
     raise "Server sent an unexpected ContentType: #{heartbeat.type.inspect}"
-  end   
+  end
 rescue Timeout::Error
   puts "Received a timeout when waiting for heartbeat response. This is OK."
 end

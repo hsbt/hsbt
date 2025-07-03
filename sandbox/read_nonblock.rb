@@ -1,4 +1,4 @@
-require 'socket'
+require "socket"
 
 Socket.tcp_server_loop(4481) do |connection|
   loop do

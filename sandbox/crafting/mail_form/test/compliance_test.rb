@@ -1,5 +1,5 @@
-require 'test_helper'
-require 'fixtures/sample_mail'
+require "test_helper"
+require "fixtures/sample_mail"
 
 class ComplianceTest < ActiveSupport::TestCase
   include ActiveModel::Lint::Tests
@@ -20,5 +20,5 @@ class ComplianceTest < ActiveSupport::TestCase
     ensure
       I18n.reload!
     end
-  end  
+  end
 end

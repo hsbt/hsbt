@@ -4,7 +4,7 @@ dead_processes = 0
 # We fork 3 child processes.
 child_processes.times do
   fork do
-    # They sleep for 3 seconds. 
+    # They sleep for 3 seconds.
     sleep 3
   end
 end

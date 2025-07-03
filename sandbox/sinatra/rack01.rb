@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-require 'sinatra'
+require "sinatra"
 #require 'rack'
 
 # Rackに搭載されている便利なミドルウェア
 # X-Runtimeヘッダを設定する
 use Rack::Runtime
 
-get('/') { 'Hello world!'}
+get("/") { "Hello world!" }

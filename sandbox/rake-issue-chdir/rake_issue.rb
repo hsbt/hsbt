@@ -4,13 +4,13 @@ def sh(*cmd)
   p [res, status]
 end
 
-RUBY = ENV['RUBY'] || File.join(
-    RbConfig::CONFIG['bindir'],
-    RbConfig::CONFIG['ruby_install_name'] + RbConfig::CONFIG['EXEEXT'])
+RUBY = ENV["RUBY"] || File.join(
+    RbConfig::CONFIG["bindir"],
+    RbConfig::CONFIG["ruby_install_name"] + RbConfig::CONFIG["EXEEXT"])
 
-ENV['RAKE_TEST_SH'] = 'someval'
+ENV["RAKE_TEST_SH"] = "someval"
 
-sh RUBY, 'check_no_expansion.rb', '$RAKE_TEST_SH', 'someval'
+sh RUBY, "check_no_expansion.rb", "$RAKE_TEST_SH", "someval"
 
-Dir.chdir 'test'
-sh RUBY, 'check_no_expansion.rb', '$RAKE_TEST_SH', 'someval'
+Dir.chdir "test"
+sh RUBY, "check_no_expansion.rb", "$RAKE_TEST_SH", "someval"

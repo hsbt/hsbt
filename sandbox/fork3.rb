@@ -1,4 +1,4 @@
-require 'socket'
+require "socket"
 
 child, parent = Socket.pair(:UNIX, :DGRAM, 0)
 maxlen = 1000

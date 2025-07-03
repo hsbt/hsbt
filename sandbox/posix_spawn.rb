@@ -1,12 +1,12 @@
-require 'benchmark'
-require 'posix-spawn'
+require "benchmark"
+require "posix-spawn"
 
 Benchmark.bm do |x|
   x.report ("normal") {
-    spawn('true')
+    spawn("true")
   }
 
   x.report ("posix-spawn") {
-    POSIX::Spawn.pspawn('true')
+    POSIX::Spawn.pspawn("true")
   }
 end

@@ -26,9 +26,9 @@ module AnalyticsUtil
     if vals.empty?
       0
     else
-      avg = (vals.inject(0) {|sum, s| sum + s}) / vals.size
-      diffs = vals.map {|s| (s-avg)**2}
-      Math.sqrt((diffs.inject(0) {|sum, s| sum + s}) / vals.size)
+      avg = (vals.inject(0) { |sum, s| sum + s }) / vals.size
+      diffs = vals.map { |s| (s-avg)**2 }
+      Math.sqrt((diffs.inject(0) { |sum, s| sum + s }) / vals.size)
     end
   end
 end
