@@ -35,9 +35,6 @@ class MastodonBackup
     # Save posts
     save_posts(posts, output_dir)
 
-    # Save profile
-    save_profile(output_dir)
-
     puts "Backup completed! #{posts.size} posts saved to #{output_dir}/"
   end
 
@@ -114,11 +111,6 @@ class MastodonBackup
   def save_posts(posts, output_dir)
     puts "Saving posts to files..."
 
-    # Save all posts as JSON
-    posts_file = File.join(output_dir, "all_posts.json")
-    File.write(posts_file, JSON.pretty_generate(posts))
-    puts "All posts saved to #{posts_file}"
-
     # Create individual post files organized by date
     posts_by_date = {}
 
@@ -179,67 +171,12 @@ class MastodonBackup
 
     # Save posts by date
     posts_by_date.each do |date, day_posts|
-      date_dir = File.join(output_dir, "posts_by_date")
-      FileUtils.mkdir_p(date_dir)
-
-      date_file = File.join(date_dir, "#{date}.json")
+      date_file = File.join(output_dir, "#{date}.json")
       File.write(date_file, JSON.pretty_generate(day_posts))
     end
 
-    puts "Posts organized by date saved to #{File.join(output_dir, 'posts_by_date')}/"
-
-    # Create a CSV summary
-    create_csv_summary(posts, output_dir)
-  end
-
-  def create_csv_summary(posts, output_dir)
-    require "csv"
-
-    csv_file = File.join(output_dir, "posts_summary.csv")
-
-    CSV.open(csv_file, "w") do |csv|
-      csv << ["Date", "Time", "Text", "Visibility", "Replies Count", "Reblogs Count", "Favourites Count", "URL",
-"Is Reblog"]
-
-      posts.each do |post|
-        begin
-          created_at = Time.parse(post["created_at"])
-          text_content = strip_html(post["content"])
-          is_reblog = !post["reblog"].nil?
-
-          csv << [
-            created_at.strftime("%Y-%m-%d"),
-            created_at.strftime("%H:%M:%S"),
-            text_content,
-            post["visibility"],
-            post["replies_count"] || 0,
-            post["reblogs_count"] || 0,
-            post["favourites_count"] || 0,
-            post["url"],
-            is_reblog
-          ]
-        rescue StandardError => e
-          puts "Warning: Failed to process post for CSV: #{e.message}"
-        end
-      end
-    end
-
-    puts "CSV summary saved to #{csv_file}"
-  end
-
-  def save_profile(output_dir)
-    puts "Saving profile information..."
-
-    uri = URI("#{@instance_url}/api/v1/accounts/#{@account_id}")
-    response = make_authenticated_request(uri, "GET")
-
-    if response.code == "200"
-      profile_data = JSON.parse(response.body)
-      profile_file = File.join(output_dir, "profile.json")
-      File.write(profile_file, JSON.pretty_generate(profile_data))
-      puts "Profile saved to #{profile_file}"
-    else
-      puts "Warning: Failed to fetch profile: #{response.code}"
+    if posts_by_date.any?
+      puts "Posts organized by date saved to #{output_dir}/"
     end
   end
 

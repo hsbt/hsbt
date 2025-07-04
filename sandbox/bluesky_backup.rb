@@ -52,8 +52,6 @@ class BlueskyBackup
     # Save posts
     save_posts(posts, output_dir, last_post_time.nil?)
 
-    # Save profile
-    save_profile(output_dir)
     puts "Backup completed! #{posts.size} posts saved to #{output_dir}/"
   end
 
@@ -85,18 +83,18 @@ class BlueskyBackup
   end
 
   def get_last_post_time(output_dir)
-    posts_file = File.join(output_dir, "all_posts.json")
-    return nil unless File.exist?(posts_file)
+    json_files = Dir.glob(File.join(output_dir, "*.json")).sort.reverse
+    return nil if json_files.empty?
 
+    latest_file = json_files.first
     begin
-      all_posts = JSON.parse(File.read(posts_file))
-      return nil if all_posts.empty?
+      posts = JSON.parse(File.read(latest_file))
+      return nil if posts.empty?
 
-      # Find the most recent post
-      latest_post = all_posts.max_by { |post| Time.parse(post["record"]["createdAt"]) }
-      return Time.parse(latest_post["record"]["createdAt"])
+      latest_post = posts.max_by { |post| Time.parse(post["created_at"]) }
+      return Time.parse(latest_post["created_at"])
     rescue StandardError => e
-      puts "Warning: Failed to read existing posts: #{e.message}"
+      puts "Warning: Failed to read existing posts from #{latest_file}: #{e.message}"
       return nil
     end
   end
@@ -181,38 +179,6 @@ class BlueskyBackup
   def save_posts(posts, output_dir, is_full_backup = true)
     puts "Saving posts to files..."
 
-    # Handle all_posts.json file
-    posts_file = File.join(output_dir, "all_posts.json")
-
-    if is_full_backup
-      # For full backup, overwrite the file
-      File.write(posts_file, JSON.pretty_generate(posts))
-      puts "All posts saved to #{posts_file}"
-    else
-      # For incremental backup, merge with existing posts
-      existing_posts = []
-      if File.exist?(posts_file)
-        begin
-          existing_posts = JSON.parse(File.read(posts_file))
-        rescue StandardError => e
-          puts "Warning: Failed to read existing posts file: #{e.message}"
-          existing_posts = []
-        end
-      end
-
-      # Merge posts (avoid duplicates by URI)
-      existing_uris = existing_posts.map { |p| p["uri"] }.to_set
-      new_posts = posts.reject { |p| existing_uris.include?(p["uri"]) }
-
-      if new_posts.any?
-        merged_posts = (new_posts + existing_posts).sort_by { |p| p["record"]["createdAt"] }.reverse
-        File.write(posts_file, JSON.pretty_generate(merged_posts))
-        puts "Added #{new_posts.size} new posts to #{posts_file}"
-      else
-        puts "No new posts to add to #{posts_file}"
-      end
-    end
-
     # Create individual post files organized by date
     posts_by_date = {}
 
@@ -242,10 +208,7 @@ class BlueskyBackup
 
     # Save posts by date (merge with existing if not full backup)
     posts_by_date.each do |date, day_posts|
-      date_dir = File.join(output_dir, "posts_by_date")
-      FileUtils.mkdir_p(date_dir)
-
-      date_file = File.join(date_dir, "#{date}.json")
+      date_file = File.join(output_dir, "#{date}.json")
 
       if !is_full_backup && File.exist?(date_file)
         # Merge with existing posts for this date
@@ -269,69 +232,7 @@ class BlueskyBackup
     end
 
     if posts_by_date.any?
-      puts "Posts organized by date saved to #{File.join(output_dir, 'posts_by_date')}/"
-    end
-
-    # Create a CSV summary (always regenerate for simplicity)
-    create_csv_summary_from_file(output_dir)
-  end
-
-  def create_csv_summary_from_file(output_dir)
-    require "csv"
-
-    posts_file = File.join(output_dir, "all_posts.json")
-    return unless File.exist?(posts_file)
-
-    begin
-      all_posts = JSON.parse(File.read(posts_file))
-      create_csv_summary(all_posts, output_dir)
-    rescue StandardError => e
-      puts "Warning: Failed to create CSV summary: #{e.message}"
-    end
-  end
-
-  def create_csv_summary(posts, output_dir)
-    require "csv"
-
-    csv_file = File.join(output_dir, "posts_summary.csv")
-
-    CSV.open(csv_file, "w") do |csv|
-      csv << ["Date", "Time", "Text", "Reply Count", "Repost Count", "Like Count", "URI"]
-
-      posts.each do |post|
-        begin
-          created_at = Time.parse(post["record"]["createdAt"])
-          csv << [
-            created_at.strftime("%Y-%m-%d"),
-            created_at.strftime("%H:%M:%S"),
-            post["record"]["text"] || "",
-            post["replyCount"] || 0,
-            post["repostCount"] || 0,
-            post["likeCount"] || 0,
-            post["uri"]
-          ]
-        rescue StandardError => e
-          puts "Warning: Failed to process post for CSV: #{e.message}"
-        end
-      end
-    end
-
-    puts "CSV summary saved to #{csv_file}"
-  end
-
-  def save_profile(output_dir)
-    puts "Saving profile information..."
-
-    uri = URI("#{API_BASE}/xrpc/app.bsky.actor.getProfile?actor=#{@did}")
-    response = make_authenticated_request(uri, "GET")
-
-    if response.code == "200"
-      profile_data = JSON.parse(response.body)
-      profile_file = File.join(output_dir, "profile.json")
-      File.write(profile_file, JSON.pretty_generate(profile_data))
-      puts "Profile saved to #{profile_file}"
-    else
-      puts "Warning: Failed to fetch profile: #{response.code}"
+      puts "Posts organized by date saved to #{output_dir}/"
     end
   end
 
