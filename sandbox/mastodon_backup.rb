@@ -29,13 +29,27 @@ class MastodonBackup
     # Create output directory
     FileUtils.mkdir_p(output_dir)
 
-    # Get all posts
-    posts = fetch_all_posts
+    # Check for existing backup and get last post ID
+    last_post_id = get_last_post_id(output_dir)
+    if last_post_id
+      puts "Found existing backup. Last post ID: #{last_post_id}"
+      puts "Only fetching posts newer than this ID..."
+    else
+      puts "No existing backup found. Fetching all posts..."
+    end
+
+    # Get posts (all or only new ones)
+    posts = fetch_posts(last_post_id)
+
+    if posts.empty?
+      puts "No new posts to backup."
+      return
+    end
 
     # Save posts
-    save_posts(posts, output_dir)
+    save_posts(posts, output_dir, last_post_id.nil?)
 
-    puts "Backup completed! #{posts.size} posts saved to #{output_dir}/"
+    puts "Backup completed! #{posts.size} new posts saved to #{output_dir}/"
   end
 
   private
@@ -57,15 +71,39 @@ class MastodonBackup
     end
   end
 
-  def fetch_all_posts
-    puts "Fetching all posts..."
+  def get_last_post_id(output_dir)
+    json_files = Dir.glob(File.join(output_dir, "*.json")).sort.reverse
+    return nil if json_files.empty?
+
+    max_id = nil
+
+    # Find the highest post ID from all existing JSON files
+    json_files.each do |file|
+      begin
+        posts = JSON.parse(File.read(file))
+        next if posts.empty?
+
+        current_max_id = posts.map { |p| p["id"].to_i }.max
+        if max_id.nil? || current_max_id > max_id
+          max_id = current_max_id
+        end
+      rescue StandardError => e
+        puts "Warning: Failed to read existing posts from #{file}: #{e.message}"
+      end
+    end
+
+    max_id.to_s if max_id
+  end
+
+  def fetch_posts(since_id = nil)
+    puts since_id ? "Fetching posts since ID #{since_id}..." : "Fetching all posts..."
 
     all_posts = []
     max_id = nil
     page = 1
 
     loop do
-      puts "Fetching page #{page}..."
+      puts "Fetching page #{page} (since_id: #{since_id}, max_id: #{max_id})"
 
       # Build query parameters
       params = {
@@ -73,7 +111,8 @@ class MastodonBackup
         exclude_replies: "false",
         exclude_reblogs: "false"
       }
-      params[:max_id] = max_id if max_id
+      params[:since_id] = since_id if since_id
+      params[:max_id] = max_id if max_id && !since_id
 
       query_string = params.map { |k, v| "#{k}=#{URI.encode_www_form_component(v)}" }.join("&")
       uri = URI("#{@instance_url}/api/v1/accounts/#{@account_id}/statuses?#{query_string}")
@@ -91,11 +130,16 @@ class MastodonBackup
         all_posts.concat(posts)
         puts "  Found #{posts.size} posts on this page"
 
-        # Get the ID of the last post for pagination
-        max_id = posts.last["id"]
+        # For full backups, we paginate backwards using max_id.
+        # For incremental backups, the API gives us all newer posts.
+        # The loop will naturally stop when an empty page is returned.
+        if !since_id
+          max_id = posts.last["id"]
+        end
+
         page += 1
 
-        # Rate limiting - Mastodon allows 300 requests per 5 minutes
+        # Rate limiting
         sleep(1)
       else
         error_data = JSON.parse(response.body) rescue {}
@@ -108,7 +152,7 @@ class MastodonBackup
     all_posts
   end
 
-  def save_posts(posts, output_dir)
+  def save_posts(posts, output_dir, is_full_backup = true)
     puts "Saving posts to files..."
 
     # Create individual post files organized by date
@@ -172,7 +216,28 @@ class MastodonBackup
     # Save posts by date
     posts_by_date.each do |date, day_posts|
       date_file = File.join(output_dir, "#{date}.json")
-      File.write(date_file, JSON.pretty_generate(day_posts))
+
+      if !is_full_backup && File.exist?(date_file)
+        # Merge with existing posts for this date
+        begin
+          existing_day_posts = JSON.parse(File.read(date_file))
+          existing_ids = existing_day_posts.map { |p| p["id"] }.to_set
+          new_day_posts = day_posts.reject { |p| existing_ids.include?(p["id"]) }
+
+          if new_day_posts.any?
+            merged_day_posts = (new_day_posts + existing_day_posts).sort_by { |p| p["created_at"] }.reverse
+            File.write(date_file, JSON.pretty_generate(merged_day_posts))
+            puts "Added #{new_day_posts.size} new posts to #{date_file}"
+          end
+        rescue StandardError => e
+          puts "Warning: Failed to merge posts for #{date}: #{e.message}"
+          # Overwrite if merging fails to avoid data loss
+          File.write(date_file, JSON.pretty_generate(day_posts))
+        end
+      else
+        # Create a new file for the date
+        File.write(date_file, JSON.pretty_generate(day_posts))
+      end
     end
 
     if posts_by_date.any?
