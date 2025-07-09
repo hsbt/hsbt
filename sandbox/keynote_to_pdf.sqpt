@@ -1,0 +1,23 @@
+on run argv
+    set inputPath to item 1 of argv
+    set inputFile to POSIX file inputPath
+
+    tell application "System Events"
+        set fileName to name of file inputPath
+    end tell
+
+    set text item delimiters to "."
+    set baseName to text 1 thru text item -2 of fileName
+    set text item delimiters to ""
+
+    set outputName to baseName & ".pdf"
+    set currentDir to do shell script "pwd"
+    set outputPath to currentDir & "/" & outputName
+    set outputFile to POSIX file outputPath
+
+    tell application "Keynote"
+        open inputFile
+        export front document to outputFile as PDF
+        close front document saving no
+    end tell
+end run
