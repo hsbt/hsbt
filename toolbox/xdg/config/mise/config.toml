@@ -24,3 +24,6 @@ _.path = [
   "{{env.KREW_ROOT}}/bin",
   "{{env.HOME}}/.local/bin"
 ]
+
+[settings]
+idiomatic_version_file_enable_tools = []
