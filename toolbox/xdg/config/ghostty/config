@@ -1,1 +1,8 @@
-command = /opt/homebrew/bin/tmux
+command = "/bin/zsh -l -c 'tmux a -t 0 || tmux -u'"
+theme = GitHub-Dark-Default
+window-height = 90
+window-width = 160
+font-family = "HackGen Console NF"
+font-size = 14
+background-opacity = 0.8
+background-blur = true
