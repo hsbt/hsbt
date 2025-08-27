@@ -115,6 +115,7 @@ cask "font-hackgen-nerd"
 cask "visual-studio-code@insiders"
 cask "microsoft-edge@beta"
 cask "google-chrome"
+cask "firefox"
 cask "1password@beta"
 cask "karabiner-elements"
 
