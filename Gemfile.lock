@@ -17,7 +17,7 @@ GEM
     gli (2.22.2)
       ostruct
     hashie (5.0.0)
-    hikidoc (0.1.0)
+    hikidoc (0.1.1)
     json (2.13.2)
     kramdown (2.5.1)
       rexml (>= 3.3.9)
