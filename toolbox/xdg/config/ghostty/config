@@ -1,5 +1,5 @@
 command = "/bin/zsh -l -c 'tmux a -t 0 || tmux -u'"
-theme = GitHub-Dark-Default
+theme = "GitHub Dark Default"
 window-height = 90
 window-width = 160
 font-family = "HackGen Console NF"
