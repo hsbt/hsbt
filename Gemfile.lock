@@ -40,7 +40,7 @@ GEM
     prism (1.5.1)
     racc (1.8.1)
     rainbow (3.1.1)
-    rake (13.3.0)
+    rake (13.3.1)
     regexp_parser (2.11.3)
     rexml (3.4.2)
     rubocop (1.80.2)
