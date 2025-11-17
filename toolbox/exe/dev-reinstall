@@ -41,6 +41,7 @@ FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("cargo").to_s
   mise
   hk
   wrkflw
+  starship
 ].each { |pkg| system "cargo install --locked #{pkg}" }
 
 FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("go").to_s
@@ -76,7 +77,6 @@ FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("go").to_s
   github.com/openvex/vexctl@latest
   github.com/google/go-containerregistry/cmd/crane@latest
   github.com/devops-kung-fu/bomber@latest
-  github.com/aquasecurity/trivy/cmd/trivy@latest
   github.com/anchore/syft/cmd/syft@latest
   github.com/sinclairtarget/git-who@latest
   github.com/peak/s5cmd/v2@master
