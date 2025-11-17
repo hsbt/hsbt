@@ -3,7 +3,7 @@ GEM
   specs:
     ast (2.4.3)
     ed25519 (1.4.0)
-    faraday (2.13.4)
+    faraday (2.14.0)
       faraday-net_http (>= 2.0, < 3.5)
       json
       logger
@@ -12,13 +12,13 @@ GEM
       hashie
     faraday-multipart (1.1.1)
       multipart-post (~> 2.0)
-    faraday-net_http (3.4.1)
-      net-http (>= 0.5.0)
+    faraday-net_http (3.4.2)
+      net-http (~> 0.5)
     gli (2.22.2)
       ostruct
     hashie (5.0.0)
     hikidoc (0.1.1)
-    json (2.15.0)
+    json (2.16.0)
     kramdown (2.5.1)
       rexml (>= 3.3.9)
     language_server-protocol (3.17.0.5)
@@ -27,8 +27,8 @@ GEM
     mina (1.2.5)
       rake
     multipart-post (2.4.1)
-    net-http (0.6.0)
-      uri
+    net-http (0.8.0)
+      uri (>= 0.11.1)
     net-scp (4.1.0)
       net-ssh (>= 2.6.5, < 8.0.0)
     net-ssh (7.3.0)
@@ -62,7 +62,7 @@ GEM
       rubocop (>= 1.75.0, < 2.0)
       rubocop-ast (>= 1.38.0, < 2.0)
     ruby-progressbar (1.13.0)
-    slack-ruby-client (3.0.0)
+    slack-ruby-client (3.1.0)
       faraday (>= 2.0.1)
       faraday-mashify
       faraday-multipart
@@ -84,7 +84,7 @@ GEM
     unicode-display_width (3.2.0)
       unicode-emoji (~> 4.1)
     unicode-emoji (4.1.0)
-    uri (1.0.3)
+    uri (1.1.1)
 
 PLATFORMS
   arm64-darwin
@@ -100,7 +100,7 @@ DEPENDENCIES
   net-scp
   parallel (~> 1.27)
   rake
-  slack-ruby-client (~> 3.0.0)
+  slack-ruby-client (~> 3.1.0)
   standard
 
 BUNDLED WITH
