@@ -99,11 +99,10 @@
 	a  = add -A
 	b  = branch
 	ba = branch -a
-	bm = branch --merged
 	bc = !git branch --merged | grep -Ev '\\*|main|master|development' | xargs git branch -d
 	c  = commit -S
+	ac = "!f() { COMMITMSG=$(copilot -p 'Generate ONLY a one-line Git commit message in English, using imperative mood, summarizing what was changed and why, based strictly on the contents of `git diff --cached`. Do not add explanation or a body. Output only the commit summary line.'); git commit -S -m \"$COMMITMSG\" -e; }; f"
 	ca = commit -S --amend
-	cm = !git add -A && git commit -S -m
 	co = checkout
 	d  = diff
 	ds = diff --staged
@@ -117,6 +116,7 @@
 	lo = log --decorate --oneline
 	lp = log --decorate -p
 	lpf = log --decorate -p --follow
+
 [blame]
 	ignoreRevsFile = .git-blame-ignore-revs
 [advice]
