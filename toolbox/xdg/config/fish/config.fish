@@ -101,7 +101,7 @@ end
 function git-aipr
   set -l target (git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | string replace 'refs/remotes/origin/' '')
 
-  set -l title (copilot --model gpt-5-mini -p "Generate ONLY a concise English PR title (imperative mood) based on \`git diff origin/$target...HEAD\`. Output only the title line." -s 2>/dev/null)
+  set -l title (copilot --model gpt-5-mini -p "Generate ONLY a concise English PR title (imperative mood) based on \`git diff origin/$target...HEAD\`. Output only the title line." -s 2>/dev/null | sed '/^$/d' | tail -n 1)
 
   set -l body (copilot --model gpt-5-mini -p "Generate a detailed English PR description in Markdown format, explaining 'What' and 'Why', based on \`git diff origin/$target...HEAD\`. Do not include the title." -s 2>/dev/null | string collect)
 
