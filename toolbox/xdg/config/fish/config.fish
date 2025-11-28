@@ -98,12 +98,12 @@ function g --wraps git
   hub $argv;
 end
 
-function gpr
+function git-aipr
   set -l target (git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | string replace 'refs/remotes/origin/' '')
 
-  set -l title (copilot -p "Generate ONLY a concise English PR title (imperative mood) based on \`git diff origin/$target...HEAD\`. Output only the title line." 2>/dev/null | sed '/^$/d' | tail -n 1)
+  set -l title (copilot -p -s "Generate ONLY a concise English PR title (imperative mood) based on \`git diff origin/$target...HEAD\`. Output only the title line.")
 
-  set -l body (copilot -p "Generate a detailed English PR description in Markdown format, explaining 'What' and 'Why', based on \`git diff origin/$target...HEAD\`. Do not include the title." 2>/dev/null | string collect)
+  set -l body (copilot -p -s "Generate a detailed English PR description in Markdown format, explaining 'What' and 'Why', based on \`git diff origin/$target...HEAD\`. Do not include the title." | string collect)
 
   gh pr create --web --title "$title" --body "$body"
 end
