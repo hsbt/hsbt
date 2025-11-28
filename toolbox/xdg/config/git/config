@@ -101,7 +101,7 @@
 	ba = branch -a
 	bc = !git branch --merged | grep -Ev '\\*|main|master|development' | xargs git branch -d
 	c  = commit -S
-	aic = "!f() { COMMITMSG=$(copilot --model gpt-5-mini -p 'Generate ONLY a one-line Git commit message in English, using imperative mood, summarizing what was changed and why, based strictly on the contents of `git diff --cached`. Do not add explanation or a body. Output only the commit summary line.' -s); git commit -S -m \"$COMMITMSG\" -e; }; f"
+	aic = "!f() { COMMITMSG=$(copilot --model gpt-5-mini -p 'Generate ONLY a one-line Git commit message in English, using imperative mood, summarizing what was changed and why, based strictly on the contents of `git diff --cached`. Do not add explanation or a body. Output only the commit summary line.' -s 2>/dev/null); git commit -S -m \"$COMMITMSG\" -e; }; f"
 	ca = commit -S --amend
 	co = checkout
 	d  = diff
