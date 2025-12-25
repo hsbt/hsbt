@@ -13,7 +13,7 @@ set :rbenv_path, "/home/#{fetch(:user)}/.rbenv"
 
 set :bundle_bin, "#{fetch(:rbenv_path)}/shims/bundle"
 set :bundle_withouts, "development test server"
-set :bundle_options, -> { %(--without #{fetch(:bundle_withouts)}) }
+set :bundle_options, -> { }
 
 task :environment do
   invoke :"rbenv:load"
@@ -32,6 +32,7 @@ task :deploy do
       command "ln -s /home/#{fetch(:user)}/www/tdiary.conf #{fetch(:current_path)}/tdiary.conf"
 
       in_path(fetch(:current_path)) do
+        command "#{fetch(:bundle_bin)} config set without '#{fetch(:bundle_withouts)}'"
         invoke :"bundle:install"
         command "chmod 666 Gemfile.lock"
         command "sudo systemctl restart h2o"
