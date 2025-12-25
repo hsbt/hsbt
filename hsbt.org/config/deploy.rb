@@ -32,7 +32,6 @@ task :deploy do
       command "ln -s /home/#{fetch(:user)}/www/tdiary.conf #{fetch(:current_path)}/tdiary.conf"
 
       in_path(fetch(:current_path)) do
-        command "bundle config set without 'development test server'"
         invoke :"bundle:install"
         command "chmod 666 Gemfile.lock"
         command "sudo systemctl restart h2o"
