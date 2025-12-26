@@ -156,15 +156,20 @@ class GitHubActivityFetcher
 
   def api_request(endpoint)
     result = `gh api "#{endpoint}" 2>/dev/null`
+    status = $?.exitstatus
 
-    if $?.success?
+    if status == 0
       JSON.parse(result)
     else
+      # Gracefully handle pagination past the last page of user events
+      return [] if endpoint =~ %r{\Ausers/[^/]+/events}
+
       # For some endpoints, return empty result instead of exiting
       if endpoint.include?("search/") || endpoint.include?("/repos/")
         return endpoint.include?("search/") ? { "items" => [] } : []
       end
-      print_error "API request failed for endpoint: #{endpoint}"
+
+      print_error "API request failed for endpoint: #{endpoint} (status: #{status})"
       exit 1
     end
   end
