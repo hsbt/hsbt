@@ -155,21 +155,31 @@ class GitHubActivityFetcher
   end
 
   def api_request(endpoint)
-    result = `gh api "#{endpoint}" 2>/dev/null`
+    result = `gh api "#{endpoint}" 2>&1`
     status = $?.exitstatus
 
     if status == 0
       JSON.parse(result)
     else
-      # Gracefully handle pagination past the last page of user events
-      return [] if endpoint =~ %r{\Ausers/[^/]+/events}
+      # Check for pagination limit error (422)
+      if result.include?("422") && result.include?("pagination is limited")
+        print_warning "Pagination limit reached for endpoint: #{endpoint}"
+        return [] if endpoint =~ %r{\Ausers/[^/]+/events}
+      end
+
+      # Check if it's a pagination beyond last page (typically contains "Not Found" or status 404)
+      if result.include?("Not Found") && endpoint =~ %r{\Ausers/[^/]+/events}
+        # Gracefully handle pagination past the last page of user events
+        return []
+      end
 
       # For some endpoints, return empty result instead of exiting
       if endpoint.include?("search/") || endpoint.include?("/repos/")
         return endpoint.include?("search/") ? { "items" => [] } : []
       end
 
-      print_error "API request failed for endpoint: #{endpoint} (status: #{status})"
+      print_error "API request failed for endpoint: #{endpoint}"
+      print_error "Response: #{result.lines.first(3).join}"
       exit 1
     end
   end
@@ -217,8 +227,9 @@ class GitHubActivityFetcher
       break if api_events.length < per_page
       page += 1
 
-      # Limit to avoid too many API calls
-      break if page > 10
+      # GitHub API limits pagination for user events to first few pages
+      # Limit to 3 pages to respect API limits
+      break if page > 3
     end
 
     events
