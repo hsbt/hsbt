@@ -1,0 +1,336 @@
+2017-01-10 /srv/gems/abaci-0.3.0/vendor/bundle/gems/pry-0.10.4/lib/pry/method.rb:      source_location.nil? ? nil : source_location.last
+2017-01-10 /srv/gems/abaci-0.3.0/vendor/bundle/gems/pry-0.10.4/lib/pry/module_candidate.rb:        end_method_line = last_method_source_location.last
+2016-05-18 /srv/gems/able-neo4j-1.0.0/vendor/bundle/jruby/1.9/gems/pry-0.10.2-java/lib/pry/method.rb:      source_location.nil? ? nil : source_location.last
+2016-05-18 /srv/gems/able-neo4j-1.0.0/vendor/bundle/jruby/1.9/gems/pry-0.10.2-java/lib/pry/module_candidate.rb:        end_method_line = last_method_source_location.last
+2025-08-06 /srv/gems/affixapi-1.1.113/vendor/bundle/ruby/3.3.0/gems/pry-0.14.2/lib/pry/method/weird_method_locator.rb:          target.source_location.last
+2025-08-06 /srv/gems/affixapi-1.1.113/vendor/bundle/ruby/3.3.0/gems/pry-0.14.2/lib/pry/method/weird_method_locator.rb:          [File.expand_path(source_location.first), source_location.last]
+2025-08-06 /srv/gems/affixapi-1.1.113/vendor/bundle/ruby/3.3.0/gems/pry-0.14.2/lib/pry/method.rb:      source_location.nil? ? nil : source_location.last
+2025-08-06 /srv/gems/affixapi-1.1.113/vendor/bundle/ruby/3.3.0/gems/pry-0.14.2/lib/pry/wrapped_module/candidate.rb:        end_method_line = last_method_source_location.last
+2025-08-06 /srv/gems/affixapi-1.1.113/vendor/bundle/ruby/3.3.0/gems/rspec-expectations-3.13.0/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+1980-01-02 /srv/gems/alchemy_cms-8.0.2/vendor/bundle/ruby/3.4.0/gems/bindex-0.8.1/test/skiptrace/exception_test.rb:      assert_equal 4, exc.bindings.first.source_location.last
+1980-01-02 /srv/gems/alchemy_cms-8.0.2/vendor/bundle/ruby/3.4.0/gems/bindex-0.8.1/test/skiptrace/exception_test.rb:      assert_equal 6, exc.bindings.first.source_location.last
+1980-01-02 /srv/gems/alchemy_cms-8.0.2/vendor/bundle/ruby/3.4.0/gems/bindex-0.8.1/test/skiptrace/exception_test.rb:      assert_equal 14, exc.bindings.first.source_location.last
+1980-01-02 /srv/gems/alchemy_cms-8.0.2/vendor/bundle/ruby/3.4.0/gems/bindex-0.8.1/test/skiptrace/exception_test.rb:      assert_equal 14, exc.bindings.first.source_location.last
+1980-01-02 /srv/gems/alchemy_cms-8.0.2/vendor/bundle/ruby/3.4.0/gems/bindex-0.8.1/test/skiptrace/exception_test.rb:      assert_equal 6, exc.bindings.first.source_location.last
+1980-01-02 /srv/gems/alchemy_cms-8.0.2/vendor/bundle/ruby/3.4.0/gems/rspec-expectations-3.13.5/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+1980-01-02 /srv/gems/alchemy_cms-8.0.2/vendor/bundle/ruby/3.4.0/gems/web-console-4.2.1/lib/web_console/source_location.rb:      def lineno() @binding.source_location.last end
+1980-01-02 /srv/gems/alchemy_i18n-5.0.1/vendor/bundle/ruby/4.0.0/gems/alchemy_cms-8.0.2/vendor/bundle/ruby/3.4.0/gems/bindex-0.8.1/test/skiptrace/exception_test.rb:      assert_equal 4, exc.bindings.first.source_location.last
+1980-01-02 /srv/gems/alchemy_i18n-5.0.1/vendor/bundle/ruby/4.0.0/gems/alchemy_cms-8.0.2/vendor/bundle/ruby/3.4.0/gems/bindex-0.8.1/test/skiptrace/exception_test.rb:      assert_equal 6, exc.bindings.first.source_location.last
+1980-01-02 /srv/gems/alchemy_i18n-5.0.1/vendor/bundle/ruby/4.0.0/gems/alchemy_cms-8.0.2/vendor/bundle/ruby/3.4.0/gems/bindex-0.8.1/test/skiptrace/exception_test.rb:      assert_equal 14, exc.bindings.first.source_location.last
+1980-01-02 /srv/gems/alchemy_i18n-5.0.1/vendor/bundle/ruby/4.0.0/gems/alchemy_cms-8.0.2/vendor/bundle/ruby/3.4.0/gems/bindex-0.8.1/test/skiptrace/exception_test.rb:      assert_equal 14, exc.bindings.first.source_location.last
+1980-01-02 /srv/gems/alchemy_i18n-5.0.1/vendor/bundle/ruby/4.0.0/gems/alchemy_cms-8.0.2/vendor/bundle/ruby/3.4.0/gems/bindex-0.8.1/test/skiptrace/exception_test.rb:      assert_equal 6, exc.bindings.first.source_location.last
+1980-01-02 /srv/gems/alchemy_i18n-5.0.1/vendor/bundle/ruby/4.0.0/gems/alchemy_cms-8.0.2/vendor/bundle/ruby/3.4.0/gems/rspec-expectations-3.13.5/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+1980-01-02 /srv/gems/alchemy_i18n-5.0.1/vendor/bundle/ruby/4.0.0/gems/alchemy_cms-8.0.2/vendor/bundle/ruby/3.4.0/gems/web-console-4.2.1/lib/web_console/source_location.rb:      def lineno() @binding.source_location.last end
+2023-12-18 /srv/gems/ali-cli-0.0.2/lib/ali/template.rb:    Rouge.highlight "\n#{"".ljust(indent, " ")}# #{task_path}:#{source_location.last}\n#{source}", lexer, formatter
+2019-01-10 /srv/gems/alimentos-alu0100945645-1.0.0/vendor/bundle/ruby/2.3.0/gems/pry-0.12.2/lib/pry/method.rb:      source_location.nil? ? nil : source_location.last
+2019-01-10 /srv/gems/alimentos-alu0100945645-1.0.0/vendor/bundle/ruby/2.3.0/gems/pry-0.12.2/lib/pry/wrapped_module/candidate.rb:        end_method_line = last_method_source_location.last
+2019-01-10 /srv/gems/alimentos-alu0100945645-1.0.0/vendor/bundle/ruby/2.3.0/gems/rspec-expectations-3.8.2/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2022-06-14 /srv/gems/alloy_sdk-0.1.0/vendor/bundle/ruby/2.6.0/gems/rspec-expectations-3.11.0/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2022-06-14 /srv/gems/alloy_sdk-0.1.0/vendor/bundle/ruby/3.0.0/gems/rspec-expectations-3.11.0/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2022-03-18 /srv/gems/andyw8-seeing_is_believing-4.2.1/spec/event_stream_spec.rb:        return raises_exception.source_location.last
+2020-03-09 /srv/gems/argon-1.3.1/vendor/bundle/ruby/2.7.0/gems/pry-0.12.2/lib/pry/method.rb:      source_location.nil? ? nil : source_location.last
+2020-03-09 /srv/gems/argon-1.3.1/vendor/bundle/ruby/2.7.0/gems/pry-0.12.2/lib/pry/wrapped_module/candidate.rb:        end_method_line = last_method_source_location.last
+2020-03-09 /srv/gems/argon-1.3.1/vendor/bundle/ruby/2.7.0/gems/rspec-expectations-3.9.0/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2025-06-25 /srv/gems/asktive_record-0.1.7/vendor/bundle/ruby/3.3.0/gems/rspec-expectations-3.13.4/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2018-05-07 /srv/gems/attestify-0.1.1/lib/attestify/test_list.rb:          return result if source_location.last > line
+2025-11-21 /srv/gems/avalara_sdk-25.11.2/vendor/bundle/ruby/3.3.0/gems/pry-0.13.1/lib/pry/method/weird_method_locator.rb:          target.source_location.last
+2025-11-21 /srv/gems/avalara_sdk-25.11.2/vendor/bundle/ruby/3.3.0/gems/pry-0.13.1/lib/pry/method/weird_method_locator.rb:          [File.expand_path(source_location.first), source_location.last]
+2025-11-21 /srv/gems/avalara_sdk-25.11.2/vendor/bundle/ruby/3.3.0/gems/pry-0.13.1/lib/pry/method.rb:      source_location.nil? ? nil : source_location.last
+2025-11-21 /srv/gems/avalara_sdk-25.11.2/vendor/bundle/ruby/3.3.0/gems/pry-0.13.1/lib/pry/wrapped_module/candidate.rb:        end_method_line = last_method_source_location.last
+2025-11-21 /srv/gems/avalara_sdk-25.11.2/vendor/bundle/ruby/3.3.0/gems/rspec-expectations-3.11.0/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2015-02-02 /srv/gems/billygoat-0.0.7.2/lib/billygoat/documentation.rb:      @line_number ||= self.method.source_location.last
+2019-07-10 /srv/gems/bindex-0.8.1/test/skiptrace/exception_test.rb:      assert_equal 4, exc.bindings.first.source_location.last
+2019-07-10 /srv/gems/bindex-0.8.1/test/skiptrace/exception_test.rb:      assert_equal 6, exc.bindings.first.source_location.last
+2019-07-10 /srv/gems/bindex-0.8.1/test/skiptrace/exception_test.rb:      assert_equal 14, exc.bindings.first.source_location.last
+2019-07-10 /srv/gems/bindex-0.8.1/test/skiptrace/exception_test.rb:      assert_equal 14, exc.bindings.first.source_location.last
+2019-07-10 /srv/gems/bindex-0.8.1/test/skiptrace/exception_test.rb:      assert_equal 6, exc.bindings.first.source_location.last
+2023-03-04 /srv/gems/blinka-reporter-0.8.0/lib/blinka_reporter/minitest_adapter.rb:      @line ||= source_location.last
+2022-05-02 /srv/gems/boothby-0.1.1/lib/boothby/seeds.rb:      methods.sort_by { |method| seed_class.method(method).source_location.last }
+2022-05-02 /srv/gems/boothby-0.1.1/lib/boothby/seeds.rb:    methods.sort_by { |method| seed_class.method(method).source_location.last }
+2018-09-11 /srv/gems/bsielski_control_flow-1.0.0/vendor/bundle/ruby/2.5.0/gems/rspec-expectations-3.8.1/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2023-12-18 /srv/gems/builder_apm-0.5.14/lib/builder_apm/controllers/instrumenter.rb:          line_number = method_info.source_location.last
+2023-04-01 /srv/gems/call_your_name-0.1.0/vendor/bundle/ruby/3.1.0/gems/rspec-expectations-3.12.2/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2019-10-31 /srv/gems/chatops-rpc-0.0.2/fixtures/chatops-controller-example/vendor/bundle/ruby/2.5.0/gems/bindex-0.8.1/test/skiptrace/exception_test.rb:      assert_equal 4, exc.bindings.first.source_location.last
+2019-10-31 /srv/gems/chatops-rpc-0.0.2/fixtures/chatops-controller-example/vendor/bundle/ruby/2.5.0/gems/bindex-0.8.1/test/skiptrace/exception_test.rb:      assert_equal 6, exc.bindings.first.source_location.last
+2019-10-31 /srv/gems/chatops-rpc-0.0.2/fixtures/chatops-controller-example/vendor/bundle/ruby/2.5.0/gems/bindex-0.8.1/test/skiptrace/exception_test.rb:      assert_equal 14, exc.bindings.first.source_location.last
+2019-10-31 /srv/gems/chatops-rpc-0.0.2/fixtures/chatops-controller-example/vendor/bundle/ruby/2.5.0/gems/bindex-0.8.1/test/skiptrace/exception_test.rb:      assert_equal 14, exc.bindings.first.source_location.last
+2019-10-31 /srv/gems/chatops-rpc-0.0.2/fixtures/chatops-controller-example/vendor/bundle/ruby/2.5.0/gems/bindex-0.8.1/test/skiptrace/exception_test.rb:      assert_equal 6, exc.bindings.first.source_location.last
+2019-10-31 /srv/gems/chatops-rpc-0.0.2/fixtures/chatops-controller-example/vendor/bundle/ruby/2.5.0/gems/pry-0.12.2/lib/pry/method.rb:      source_location.nil? ? nil : source_location.last
+2019-10-31 /srv/gems/chatops-rpc-0.0.2/fixtures/chatops-controller-example/vendor/bundle/ruby/2.5.0/gems/pry-0.12.2/lib/pry/wrapped_module/candidate.rb:        end_method_line = last_method_source_location.last
+2019-10-31 /srv/gems/chatops-rpc-0.0.2/fixtures/chatops-controller-example/vendor/bundle/ruby/2.5.0/gems/web-console-4.0.1/lib/web_console/source_location.rb:    def lineno() @binding.source_location.last end
+1980-01-02 /srv/gems/ci-queue-0.81.0/lib/minitest/queue/junit_reporter.rb:          lineno = tests.first.source_location.last
+1980-01-02 /srv/gems/ci-queue-0.81.0/lib/minitest/queue/test_data.rb:        @test.source_location.last
+2025-09-03 /srv/gems/citypay_api_client-1.1.4/vendor/bundle/ruby/3.3.0/gems/pry-0.15.2/lib/pry/method/weird_method_locator.rb:          target.source_location.last
+2025-09-03 /srv/gems/citypay_api_client-1.1.4/vendor/bundle/ruby/3.3.0/gems/pry-0.15.2/lib/pry/method/weird_method_locator.rb:          [File.expand_path(source_location.first), source_location.last]
+2025-09-03 /srv/gems/citypay_api_client-1.1.4/vendor/bundle/ruby/3.3.0/gems/pry-0.15.2/lib/pry/method.rb:      source_location.nil? ? nil : source_location.last
+2025-09-03 /srv/gems/citypay_api_client-1.1.4/vendor/bundle/ruby/3.3.0/gems/pry-0.15.2/lib/pry/wrapped_module/candidate.rb:        end_method_line = last_method_source_location.last
+2025-09-03 /srv/gems/citypay_api_client-1.1.4/vendor/bundle/ruby/3.3.0/gems/rspec-expectations-3.13.5/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2020-07-10 /srv/gems/cli-nasa-0.1.1/vendor/bundle/ruby/2.7.0/gems/rspec-expectations-3.9.2/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2025-10-02 /srv/gems/cloudsmith-api-2.0.22/vendor/bundle/ruby/2.6.0/gems/rspec-expectations-3.13.5/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2021-05-26 /srv/gems/coingecko_client-0.1.2/vendor/bundle/ruby/2.7.0/gems/rspec-expectations-3.9.2/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+1980-01-02 /srv/gems/command_deck-0.3.3/TAGS:      def lineno() @binding.source_location.last endlineno11,0
+2023-12-18 /srv/gems/constrain-0.10.0/lib/constrain.rb:      when Proc; "Proc@#{expr.source_location.first}:#{expr.source_location.last}"
+2020-03-05 /srv/gems/coresv_db_backup-0.1.0/vendor/bundle/ruby/2.6.0/gems/rspec-expectations-3.9.0/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+1980-01-02 /srv/gems/crx_packmgr_api_client_maintenance-1.3.2/vendor/ruby/3.4.0/gems/rspec-expectations-3.13.5/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2024-07-10 /srv/gems/curlybars-1.12.0/lib/curlybars/rendering_support.rb:        line_number = source_location ? helper.source_location.last : "n/a"
+1980-01-02 /srv/gems/cybrid_api_bank_ruby-0.126.13/vendor/bundle/ruby/3.3.0/gems/pry-0.15.2/lib/pry/method/weird_method_locator.rb:          target.source_location.last
+1980-01-02 /srv/gems/cybrid_api_bank_ruby-0.126.13/vendor/bundle/ruby/3.3.0/gems/pry-0.15.2/lib/pry/method/weird_method_locator.rb:          [File.expand_path(source_location.first), source_location.last]
+1980-01-02 /srv/gems/cybrid_api_bank_ruby-0.126.13/vendor/bundle/ruby/3.3.0/gems/pry-0.15.2/lib/pry/method.rb:      source_location.nil? ? nil : source_location.last
+1980-01-02 /srv/gems/cybrid_api_bank_ruby-0.126.13/vendor/bundle/ruby/3.3.0/gems/pry-0.15.2/lib/pry/wrapped_module/candidate.rb:        end_method_line = last_method_source_location.last
+1980-01-02 /srv/gems/cybrid_api_bank_ruby-0.126.13/vendor/bundle/ruby/3.3.0/gems/rspec-expectations-3.13.5/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+1980-01-02 /srv/gems/cybrid_api_id_ruby-0.126.13/vendor/bundle/ruby/3.3.0/gems/pry-0.15.2/lib/pry/method/weird_method_locator.rb:          target.source_location.last
+1980-01-02 /srv/gems/cybrid_api_id_ruby-0.126.13/vendor/bundle/ruby/3.3.0/gems/pry-0.15.2/lib/pry/method/weird_method_locator.rb:          [File.expand_path(source_location.first), source_location.last]
+1980-01-02 /srv/gems/cybrid_api_id_ruby-0.126.13/vendor/bundle/ruby/3.3.0/gems/pry-0.15.2/lib/pry/method.rb:      source_location.nil? ? nil : source_location.last
+1980-01-02 /srv/gems/cybrid_api_id_ruby-0.126.13/vendor/bundle/ruby/3.3.0/gems/pry-0.15.2/lib/pry/wrapped_module/candidate.rb:        end_method_line = last_method_source_location.last
+1980-01-02 /srv/gems/cybrid_api_id_ruby-0.126.13/vendor/bundle/ruby/3.3.0/gems/rspec-expectations-3.13.5/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+1980-01-02 /srv/gems/cybrid_api_organization_ruby-0.126.13/vendor/bundle/ruby/3.3.0/gems/pry-0.15.2/lib/pry/method/weird_method_locator.rb:          target.source_location.last
+1980-01-02 /srv/gems/cybrid_api_organization_ruby-0.126.13/vendor/bundle/ruby/3.3.0/gems/pry-0.15.2/lib/pry/method/weird_method_locator.rb:          [File.expand_path(source_location.first), source_location.last]
+1980-01-02 /srv/gems/cybrid_api_organization_ruby-0.126.13/vendor/bundle/ruby/3.3.0/gems/pry-0.15.2/lib/pry/method.rb:      source_location.nil? ? nil : source_location.last
+1980-01-02 /srv/gems/cybrid_api_organization_ruby-0.126.13/vendor/bundle/ruby/3.3.0/gems/pry-0.15.2/lib/pry/wrapped_module/candidate.rb:        end_method_line = last_method_source_location.last
+1980-01-02 /srv/gems/cybrid_api_organization_ruby-0.126.13/vendor/bundle/ruby/3.3.0/gems/rspec-expectations-3.13.5/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2024-07-11 /srv/gems/databox-2.1.1/vendor/bundle/ruby/3.3.0/gems/pry-0.14.2/lib/pry/method/weird_method_locator.rb:          target.source_location.last
+2024-07-11 /srv/gems/databox-2.1.1/vendor/bundle/ruby/3.3.0/gems/pry-0.14.2/lib/pry/method/weird_method_locator.rb:          [File.expand_path(source_location.first), source_location.last]
+2024-07-11 /srv/gems/databox-2.1.1/vendor/bundle/ruby/3.3.0/gems/pry-0.14.2/lib/pry/method.rb:      source_location.nil? ? nil : source_location.last
+2024-07-11 /srv/gems/databox-2.1.1/vendor/bundle/ruby/3.3.0/gems/pry-0.14.2/lib/pry/wrapped_module/candidate.rb:        end_method_line = last_method_source_location.last
+2024-07-11 /srv/gems/databox-2.1.1/vendor/bundle/ruby/3.3.0/gems/rspec-expectations-3.13.1/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+1980-01-02 /srv/gems/devil_fruit-0.3.0/vendor/bundle/ruby/3.2.0/gems/rspec-expectations-3.12.3/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2021-03-04 /srv/gems/dialekt-0.1.0/lib/dialekt/util/call_adapter.rb:        "#{File.basename(@callable.source_location.first)}:#{@callable.source_location.last}"
+2018-08-09 /srv/gems/dirwatch-0.0.9/vendor/bundle/ruby/2.5.0/gems/rspec-expectations-3.7.0/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2018-08-09 /srv/gems/dirwatch-0.0.9/vendor/bundle/ruby/2.5.0/gems/rspec-expectations-3.8.1/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+1980-01-02 /srv/gems/docspring-3.2.0/vendor/bundle/ruby/3.4.0/gems/pry-0.15.2/lib/pry/method/weird_method_locator.rb:          target.source_location.last
+1980-01-02 /srv/gems/docspring-3.2.0/vendor/bundle/ruby/3.4.0/gems/pry-0.15.2/lib/pry/method/weird_method_locator.rb:          [File.expand_path(source_location.first), source_location.last]
+1980-01-02 /srv/gems/docspring-3.2.0/vendor/bundle/ruby/3.4.0/gems/pry-0.15.2/lib/pry/method.rb:      source_location.nil? ? nil : source_location.last
+1980-01-02 /srv/gems/docspring-3.2.0/vendor/bundle/ruby/3.4.0/gems/pry-0.15.2/lib/pry/wrapped_module/candidate.rb:        end_method_line = last_method_source_location.last
+1980-01-02 /srv/gems/docspring-3.2.0/vendor/bundle/ruby/3.4.0/gems/rspec-expectations-3.13.5/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2017-08-29 /srv/gems/echonet_lite-0.1.0/vendor/bundle/gems/rspec-expectations-3.6.0/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+1980-01-02 /srv/gems/ed-precompiled_bindex-0.8.1/test/skiptrace/exception_test.rb:      assert_equal 4, exc.bindings.first.source_location.last
+1980-01-02 /srv/gems/ed-precompiled_bindex-0.8.1/test/skiptrace/exception_test.rb:      assert_equal 6, exc.bindings.first.source_location.last
+1980-01-02 /srv/gems/ed-precompiled_bindex-0.8.1/test/skiptrace/exception_test.rb:      assert_equal 14, exc.bindings.first.source_location.last
+1980-01-02 /srv/gems/ed-precompiled_bindex-0.8.1/test/skiptrace/exception_test.rb:      assert_equal 14, exc.bindings.first.source_location.last
+1980-01-02 /srv/gems/ed-precompiled_bindex-0.8.1/test/skiptrace/exception_test.rb:      assert_equal 6, exc.bindings.first.source_location.last
+2018-12-19 /srv/gems/embulk-input-druginfo_interview_form-0.1.0/vendor/bundle/ruby/2.4.0/gems/rspec-expectations-3.8.2/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2018-12-19 /srv/gems/embulk-input-druginfo_interview_form-0.1.0/vendor/bundle/ruby/2.5.0/gems/rspec-expectations-3.8.2/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2025-07-28 /srv/gems/encrypted_jsonb-0.1.2/vendor/cache/ruby/3.3.0/gems/rspec-expectations-3.13.3/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2023-07-06 /srv/gems/fablicop-1.10.3/vendor/bundle/ruby/3.2.0/gems/rspec-expectations-3.12.3/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2015-04-18 /srv/gems/fare-0.1.8/lib/fare/configuration_dsl.rb:          raise "Stack without topics for stack on line #{@source_location.last} of #{@source_location.first}"
+2015-04-18 /srv/gems/fare-0.1.8/lib/fare/configuration_dsl.rb:          raise "No run list specified for stack on line #{@source_location.last} of #{@source_location.first}"
+2019-11-11 /srv/gems/genkaio-0.0.2/vendor/bundle/ruby/2.5.0/gems/rspec-expectations-3.9.0/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2019-11-11 /srv/gems/genkaio-0.0.2/vendor/bundle/ruby/2.7.0/gems/rspec-expectations-3.9.0/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+1980-01-02 /srv/gems/gettext_i18n_rails_js-3.0.0/vendor/bundle/ruby/4.0.0/gems/pry-0.16.0/lib/pry/wrapped_module/candidate.rb:          last_method_source_location.last
+1980-01-02 /srv/gems/gettext_i18n_rails_js-3.0.0/vendor/bundle/ruby/4.0.0/gems/rspec-expectations-3.13.5/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2015-11-12 /srv/gems/git_compound-0.2.2/lib/git_compound/logger/debug/task.rb:        "in line `#{@block.source_location.last}`, " \
+2021-11-23 /srv/gems/glimmer-dsl-specification-0.0.5/lib/glimmer/specification/element/fact.rb:          source_code = PutsDebuggerer::SourceFile.new(@block.source_location.first).source(1, @block.source_location.last)
+2020-09-11 /srv/gems/grape-extra_validators-2.0.0/vendor/bundle/ruby/2.6.0/gems/rspec-expectations-3.9.0/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2020-09-11 /srv/gems/grape-extra_validators-2.0.0/vendor/bundle/ruby/2.6.0/gems/rspec-expectations-3.9.2/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+1980-01-02 /srv/gems/grape_rails_logger-1.2.0/lib/grape_rails_logger/subscriber.rb:      line = endpoint.source.source_location.last
+2024-04-15 /srv/gems/harbr-2.8.1/vendor/bundle/ruby/3.2.0/gems/rspec-expectations-3.12.3/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2019-04-14 /srv/gems/hatena_bookmark_client_for_ruby-0.1.3/vendor/bundle/ruby/2.6.0/gems/rspec-expectations-3.8.2/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+1980-01-02 /srv/gems/invoicetronic_sdk-1.0.1/vendor/bundle/ruby/3.4.0/gems/pry-0.15.2/lib/pry/method/weird_method_locator.rb:          target.source_location.last
+1980-01-02 /srv/gems/invoicetronic_sdk-1.0.1/vendor/bundle/ruby/3.4.0/gems/pry-0.15.2/lib/pry/method/weird_method_locator.rb:          [File.expand_path(source_location.first), source_location.last]
+1980-01-02 /srv/gems/invoicetronic_sdk-1.0.1/vendor/bundle/ruby/3.4.0/gems/pry-0.15.2/lib/pry/method.rb:      source_location.nil? ? nil : source_location.last
+1980-01-02 /srv/gems/invoicetronic_sdk-1.0.1/vendor/bundle/ruby/3.4.0/gems/pry-0.15.2/lib/pry/wrapped_module/candidate.rb:        end_method_line = last_method_source_location.last
+1980-01-02 /srv/gems/invoicetronic_sdk-1.0.1/vendor/bundle/ruby/3.4.0/gems/rspec-expectations-3.13.5/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+1980-01-02 /srv/gems/itsi-0.2.20/gems/server/lib/itsi/server/typed_handlers/source_parser.rb:          proc_line = source_location.last - 1
+1980-01-02 /srv/gems/itsi-server-0.2.20/lib/itsi/server/typed_handlers/source_parser.rb:          proc_line = source_location.last - 1
+2016-12-31 /srv/gems/ivanvc-logstash-input-s3-3.1.1.4/vendor/local/gems/pry-0.10.4-java/lib/pry/method.rb:      source_location.nil? ? nil : source_location.last
+2016-12-31 /srv/gems/ivanvc-logstash-input-s3-3.1.1.4/vendor/local/gems/pry-0.10.4-java/lib/pry/module_candidate.rb:        end_method_line = last_method_source_location.last
+2025-01-07 /srv/gems/lazy_graph-0.2.0/lib/lazy_graph/node/derived_rules.rb:            derived.source_location.last + offset
+2025-01-07 /srv/gems/lazy_graph-0.2.0/lib/lazy_graph/node/derived_rules.rb:            proc_line = source_location.last - 1
+2017-05-26 /srv/gems/logstash-filter-htmlentities-0.1.0/vendor/bundle/jruby/1.9/gems/pry-0.10.4-java/lib/pry/method.rb:      source_location.nil? ? nil : source_location.last
+2017-05-26 /srv/gems/logstash-filter-htmlentities-0.1.0/vendor/bundle/jruby/1.9/gems/pry-0.10.4-java/lib/pry/module_candidate.rb:        end_method_line = last_method_source_location.last
+2017-05-26 /srv/gems/logstash-filter-htmlentities-0.1.0/vendor/bundle/jruby/1.9/gems/rspec-expectations-3.6.0/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2017-03-08 /srv/gems/logstash-filter-zabbix-0.1.2/vendor/bundle/jruby/1.9/gems/pry-0.10.4-java/lib/pry/method.rb:      source_location.nil? ? nil : source_location.last
+2017-03-08 /srv/gems/logstash-filter-zabbix-0.1.2/vendor/bundle/jruby/1.9/gems/pry-0.10.4-java/lib/pry/module_candidate.rb:        end_method_line = last_method_source_location.last
+2020-10-04 /srv/gems/lotrd-0.1.9/vendor/cache/ruby/2.6.0/gems/rspec-expectations-3.9.2/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2021-09-17 /srv/gems/loupe-0.1.5/lib/loupe/executor.rb:            line_numbers.include?(klass.instance_method(method_name).source_location.last.to_s)
+2015-10-16 /srv/gems/mastermind_adeybee-0.1.4/vendor/bundle/ruby/2.2.0/gems/pry-0.10.2/lib/pry/method.rb:      source_location.nil? ? nil : source_location.last
+2015-10-16 /srv/gems/mastermind_adeybee-0.1.4/vendor/bundle/ruby/2.2.0/gems/pry-0.10.2/lib/pry/module_candidate.rb:        end_method_line = last_method_source_location.last
+2016-05-06 /srv/gems/matest-1.7.4/lib/matest/example_block.rb:    lineno = block.source_location.last
+2020-03-07 /srv/gems/mdap-0.2.1/vendor/bundle/ruby/2.7.0/gems/rspec-expectations-3.9.0/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2017-03-09 /srv/gems/mdg-1.0.1/vendor/bundle/ruby/2.3.0/gems/pry-0.10.4/lib/pry/method.rb:      source_location.nil? ? nil : source_location.last
+2017-03-09 /srv/gems/mdg-1.0.1/vendor/bundle/ruby/2.3.0/gems/pry-0.10.4/lib/pry/module_candidate.rb:        end_method_line = last_method_source_location.last
+2021-03-18 /srv/gems/mfk_openapi_ruby_client-1.0.0/vendor/bundle/ruby/2.7.0/gems/pry-0.13.1/lib/pry/method/weird_method_locator.rb:          target.source_location.last
+2021-03-18 /srv/gems/mfk_openapi_ruby_client-1.0.0/vendor/bundle/ruby/2.7.0/gems/pry-0.13.1/lib/pry/method/weird_method_locator.rb:          [File.expand_path(source_location.first), source_location.last]
+2021-03-18 /srv/gems/mfk_openapi_ruby_client-1.0.0/vendor/bundle/ruby/2.7.0/gems/pry-0.13.1/lib/pry/method.rb:      source_location.nil? ? nil : source_location.last
+2021-03-18 /srv/gems/mfk_openapi_ruby_client-1.0.0/vendor/bundle/ruby/2.7.0/gems/pry-0.13.1/lib/pry/wrapped_module/candidate.rb:        end_method_line = last_method_source_location.last
+2021-03-18 /srv/gems/mfk_openapi_ruby_client-1.0.0/vendor/bundle/ruby/2.7.0/gems/rspec-expectations-3.10.1/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2011-09-03 /srv/gems/minecraft-0.3.3/lib/minecraft/extensions.rb:        src_b, src_e = get_comment_range(meth.source_location.last)
+2015-12-08 /srv/gems/minirails-0.2.0/lib/minirails.rb:            c.instance_method(m).source_location.last
+2024-09-16 /srv/gems/minitest-distributed-0.2.11/lib/minitest/distributed/reporters/junitxml_reporter.rb:            lineno = test.source_location.last
+1980-01-01 /srv/gems/minitest-junit-2.1.0/lib/minitest/junit.rb:        testcase['line'] = result.source_location.last
+2018-05-21 /srv/gems/monero_wallet_gen-0.1.0/vendor/bundle/ruby/2.3.0/gems/pry-0.11.3/lib/pry/method.rb:      source_location.nil? ? nil : source_location.last
+2018-05-21 /srv/gems/monero_wallet_gen-0.1.0/vendor/bundle/ruby/2.3.0/gems/pry-0.11.3/lib/pry/wrapped_module/candidate.rb:        end_method_line = last_method_source_location.last
+2018-05-21 /srv/gems/monero_wallet_gen-0.1.0/vendor/bundle/ruby/2.3.0/gems/rspec-expectations-3.7.0/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2025-05-02 /srv/gems/moneykit-0.2.2/vendor/bundle/ruby/3.2.0/gems/pry-0.15.2/lib/pry/method/weird_method_locator.rb:          target.source_location.last
+2025-05-02 /srv/gems/moneykit-0.2.2/vendor/bundle/ruby/3.2.0/gems/pry-0.15.2/lib/pry/method/weird_method_locator.rb:          [File.expand_path(source_location.first), source_location.last]
+2025-05-02 /srv/gems/moneykit-0.2.2/vendor/bundle/ruby/3.2.0/gems/pry-0.15.2/lib/pry/method.rb:      source_location.nil? ? nil : source_location.last
+2025-05-02 /srv/gems/moneykit-0.2.2/vendor/bundle/ruby/3.2.0/gems/pry-0.15.2/lib/pry/wrapped_module/candidate.rb:        end_method_line = last_method_source_location.last
+2025-05-02 /srv/gems/moneykit-0.2.2/vendor/bundle/ruby/3.2.0/gems/rspec-expectations-3.13.4/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2018-06-14 /srv/gems/mrcooper-logstash-output-azuresearch-0.2.2/vendor/jruby/2.5.0/gems/pry-0.10.4-java/lib/pry/method.rb:      source_location.nil? ? nil : source_location.last
+2018-06-14 /srv/gems/mrcooper-logstash-output-azuresearch-0.2.2/vendor/jruby/2.5.0/gems/pry-0.10.4-java/lib/pry/module_candidate.rb:        end_method_line = last_method_source_location.last
+2018-06-14 /srv/gems/mrcooper-logstash-output-azuresearch-0.2.2/vendor/jruby/2.5.0/gems/rspec-expectations-3.7.0/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2023-04-15 /srv/gems/mumukit-content-type-1.12.1/vendor/bundle/ruby/2.7.0/gems/rspec-expectations-3.12.2/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+1980-01-02 /srv/gems/mutant-0.14.1/lib/mutant/matcher/method.rb:          source_location.last
+2019-02-11 /srv/gems/mutest-0.0.10/lib/mutest/matcher/method.rb:          source_location.last
+1980-01-02 /srv/gems/mux_ruby-5.1.0/vendor/bundle/ruby/3.2.0/gems/pry-0.13.1/lib/pry/method/weird_method_locator.rb:          target.source_location.last
+1980-01-02 /srv/gems/mux_ruby-5.1.0/vendor/bundle/ruby/3.2.0/gems/pry-0.13.1/lib/pry/method/weird_method_locator.rb:          [File.expand_path(source_location.first), source_location.last]
+1980-01-02 /srv/gems/mux_ruby-5.1.0/vendor/bundle/ruby/3.2.0/gems/pry-0.13.1/lib/pry/method.rb:      source_location.nil? ? nil : source_location.last
+1980-01-02 /srv/gems/mux_ruby-5.1.0/vendor/bundle/ruby/3.2.0/gems/pry-0.13.1/lib/pry/wrapped_module/candidate.rb:        end_method_line = last_method_source_location.last
+1980-01-02 /srv/gems/mux_ruby-5.1.0/vendor/bundle/ruby/3.2.0/gems/rspec-expectations-3.11.0/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2019-06-09 /srv/gems/nabea2-0.1.2/vendor/bundle/ruby/2.6.0/gems/rspec-expectations-3.8.3/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2022-11-24 /srv/gems/opal-rspec-1.0.0/rspec-expectations/upstream/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+1980-01-02 /srv/gems/openhab-scripting-5.44.0/lib/openhab/dsl/rules/name_inference.rb:            "#{file}:#{block.source_location.last}".tr(".", "_")
+2025-08-08 /srv/gems/openstudio-common-measures-0.12.3/lib/measures/envelope_and_internal_load_breakdown/measure.rb:      method_hash[section.to_s] = OsLib_ReportingHeatGainLoss.method(section).source_location.last
+2025-08-08 /srv/gems/openstudio-common-measures-0.12.3/lib/measures/example_report/measure.rb:      method_hash[section.to_s] = OsLib_Reporting_example.method(section).source_location.last
+2025-12-10 /srv/gems/ory-client-1.22.16/vendor/bundle/ruby/3.1.0/gems/pry-0.15.2/lib/pry/method/weird_method_locator.rb:          target.source_location.last
+2025-12-10 /srv/gems/ory-client-1.22.16/vendor/bundle/ruby/3.1.0/gems/pry-0.15.2/lib/pry/method/weird_method_locator.rb:          [File.expand_path(source_location.first), source_location.last]
+2025-12-10 /srv/gems/ory-client-1.22.16/vendor/bundle/ruby/3.1.0/gems/pry-0.15.2/lib/pry/method.rb:      source_location.nil? ? nil : source_location.last
+2025-12-10 /srv/gems/ory-client-1.22.16/vendor/bundle/ruby/3.1.0/gems/pry-0.15.2/lib/pry/wrapped_module/candidate.rb:        end_method_line = last_method_source_location.last
+2025-12-10 /srv/gems/ory-client-1.22.16/vendor/bundle/ruby/3.1.0/gems/rspec-expectations-3.13.5/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2025-11-07 /srv/gems/ory-hydra-client-25.4.0/vendor/bundle/ruby/3.1.0/gems/pry-0.15.2/lib/pry/method/weird_method_locator.rb:          target.source_location.last
+2025-11-07 /srv/gems/ory-hydra-client-25.4.0/vendor/bundle/ruby/3.1.0/gems/pry-0.15.2/lib/pry/method/weird_method_locator.rb:          [File.expand_path(source_location.first), source_location.last]
+2025-11-07 /srv/gems/ory-hydra-client-25.4.0/vendor/bundle/ruby/3.1.0/gems/pry-0.15.2/lib/pry/method.rb:      source_location.nil? ? nil : source_location.last
+2025-11-07 /srv/gems/ory-hydra-client-25.4.0/vendor/bundle/ruby/3.1.0/gems/pry-0.15.2/lib/pry/wrapped_module/candidate.rb:        end_method_line = last_method_source_location.last
+2025-11-07 /srv/gems/ory-hydra-client-25.4.0/vendor/bundle/ruby/3.1.0/gems/rspec-expectations-3.13.5/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2025-11-09 /srv/gems/ory-keto-client-25.4.0/vendor/bundle/ruby/3.1.0/gems/pry-0.15.2/lib/pry/method/weird_method_locator.rb:          target.source_location.last
+2025-11-09 /srv/gems/ory-keto-client-25.4.0/vendor/bundle/ruby/3.1.0/gems/pry-0.15.2/lib/pry/method/weird_method_locator.rb:          [File.expand_path(source_location.first), source_location.last]
+2025-11-09 /srv/gems/ory-keto-client-25.4.0/vendor/bundle/ruby/3.1.0/gems/pry-0.15.2/lib/pry/method.rb:      source_location.nil? ? nil : source_location.last
+2025-11-09 /srv/gems/ory-keto-client-25.4.0/vendor/bundle/ruby/3.1.0/gems/pry-0.15.2/lib/pry/wrapped_module/candidate.rb:        end_method_line = last_method_source_location.last
+2025-11-09 /srv/gems/ory-keto-client-25.4.0/vendor/bundle/ruby/3.1.0/gems/rspec-expectations-3.13.5/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2025-11-07 /srv/gems/ory-kratos-client-25.4.0/vendor/bundle/ruby/3.1.0/gems/pry-0.15.2/lib/pry/method/weird_method_locator.rb:          target.source_location.last
+2025-11-07 /srv/gems/ory-kratos-client-25.4.0/vendor/bundle/ruby/3.1.0/gems/pry-0.15.2/lib/pry/method/weird_method_locator.rb:          [File.expand_path(source_location.first), source_location.last]
+2025-11-07 /srv/gems/ory-kratos-client-25.4.0/vendor/bundle/ruby/3.1.0/gems/pry-0.15.2/lib/pry/method.rb:      source_location.nil? ? nil : source_location.last
+2025-11-07 /srv/gems/ory-kratos-client-25.4.0/vendor/bundle/ruby/3.1.0/gems/pry-0.15.2/lib/pry/wrapped_module/candidate.rb:        end_method_line = last_method_source_location.last
+2025-11-07 /srv/gems/ory-kratos-client-25.4.0/vendor/bundle/ruby/3.1.0/gems/rspec-expectations-3.13.5/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2025-11-09 /srv/gems/ory-oathkeeper-client-25.4.0/vendor/bundle/ruby/3.1.0/gems/pry-0.15.2/lib/pry/method/weird_method_locator.rb:          target.source_location.last
+2025-11-09 /srv/gems/ory-oathkeeper-client-25.4.0/vendor/bundle/ruby/3.1.0/gems/pry-0.15.2/lib/pry/method/weird_method_locator.rb:          [File.expand_path(source_location.first), source_location.last]
+2025-11-09 /srv/gems/ory-oathkeeper-client-25.4.0/vendor/bundle/ruby/3.1.0/gems/pry-0.15.2/lib/pry/method.rb:      source_location.nil? ? nil : source_location.last
+2025-11-09 /srv/gems/ory-oathkeeper-client-25.4.0/vendor/bundle/ruby/3.1.0/gems/pry-0.15.2/lib/pry/wrapped_module/candidate.rb:        end_method_line = last_method_source_location.last
+2025-11-09 /srv/gems/ory-oathkeeper-client-25.4.0/vendor/bundle/ruby/3.1.0/gems/rspec-expectations-3.13.5/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2025-10-17 /srv/gems/package-installer-cli-2.4.0/vendor/bundle/ruby/3.2.0/gems/pry-0.15.2/lib/pry/method/weird_method_locator.rb:          target.source_location.last
+2025-10-17 /srv/gems/package-installer-cli-2.4.0/vendor/bundle/ruby/3.2.0/gems/pry-0.15.2/lib/pry/method/weird_method_locator.rb:          [File.expand_path(source_location.first), source_location.last]
+2025-10-17 /srv/gems/package-installer-cli-2.4.0/vendor/bundle/ruby/3.2.0/gems/pry-0.15.2/lib/pry/method.rb:      source_location.nil? ? nil : source_location.last
+2025-10-17 /srv/gems/package-installer-cli-2.4.0/vendor/bundle/ruby/3.2.0/gems/pry-0.15.2/lib/pry/wrapped_module/candidate.rb:        end_method_line = last_method_source_location.last
+2025-10-17 /srv/gems/package-installer-cli-2.4.0/vendor/bundle/ruby/3.2.0/gems/rspec-expectations-3.13.5/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2023-02-28 /srv/gems/pad_character-0.1.0/vendor/bundle/ruby/2.6.0/gems/rspec-expectations-3.12.0/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2021-06-16 /srv/gems/passbase-1.3.0/vendor/bundle/ruby/2.7.0/gems/pry-0.13.1/lib/pry/method/weird_method_locator.rb:          target.source_location.last
+2021-06-16 /srv/gems/passbase-1.3.0/vendor/bundle/ruby/2.7.0/gems/pry-0.13.1/lib/pry/method/weird_method_locator.rb:          [File.expand_path(source_location.first), source_location.last]
+2021-06-16 /srv/gems/passbase-1.3.0/vendor/bundle/ruby/2.7.0/gems/pry-0.13.1/lib/pry/method.rb:      source_location.nil? ? nil : source_location.last
+2021-06-16 /srv/gems/passbase-1.3.0/vendor/bundle/ruby/2.7.0/gems/pry-0.13.1/lib/pry/wrapped_module/candidate.rb:        end_method_line = last_method_source_location.last
+2021-06-16 /srv/gems/passbase-1.3.0/vendor/bundle/ruby/2.7.0/gems/rspec-expectations-3.9.2/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2020-03-15 /srv/gems/pokedex-terminal-0.2.8/vendor/bundle/ruby/2.7.0/gems/rspec-expectations-3.9.0/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2019-03-11 /srv/gems/pomodorokun-0.1.0/bundle/ruby/2.4.0/gems/rspec-expectations-3.8.2/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2022-12-28 /srv/gems/pork-2.1.0/lib/pork/extra/show_source.rb:      lowers = test.source_location.last
+2024-02-11 /srv/gems/prawn-manual_builder-0.4.0/lib/prawn/manual_builder/chapter.rb:          block_source_line = example.source_location.last
+1980-01-02 /srv/gems/pry-0.16.0/lib/pry/wrapped_module/candidate.rb:          last_method_source_location.last
+2020-01-03 /srv/gems/puppet-function-updater-0.0.5/lib/pfu/parser.rb:        return [funcname, opts, block.source_location.last]
+2025-04-11 /srv/gems/rails8_spree_admin-5.0.6/vendor/bundle/ruby/3.3.0/gems/pry-0.15.2/lib/pry/method/weird_method_locator.rb:          target.source_location.last
+2025-04-11 /srv/gems/rails8_spree_admin-5.0.6/vendor/bundle/ruby/3.3.0/gems/pry-0.15.2/lib/pry/method/weird_method_locator.rb:          [File.expand_path(source_location.first), source_location.last]
+2025-04-11 /srv/gems/rails8_spree_admin-5.0.6/vendor/bundle/ruby/3.3.0/gems/pry-0.15.2/lib/pry/method.rb:      source_location.nil? ? nil : source_location.last
+2025-04-11 /srv/gems/rails8_spree_admin-5.0.6/vendor/bundle/ruby/3.3.0/gems/pry-0.15.2/lib/pry/wrapped_module/candidate.rb:        end_method_line = last_method_source_location.last
+2025-04-11 /srv/gems/rails8_spree_admin-5.0.6/vendor/bundle/ruby/3.3.0/gems/rspec-expectations-3.13.3/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2025-04-11 /srv/gems/rails8_spree_api-5.0.6/vendor/bundle/ruby/3.3.0/gems/pry-0.15.2/lib/pry/method/weird_method_locator.rb:          target.source_location.last
+2025-04-11 /srv/gems/rails8_spree_api-5.0.6/vendor/bundle/ruby/3.3.0/gems/pry-0.15.2/lib/pry/method/weird_method_locator.rb:          [File.expand_path(source_location.first), source_location.last]
+2025-04-11 /srv/gems/rails8_spree_api-5.0.6/vendor/bundle/ruby/3.3.0/gems/pry-0.15.2/lib/pry/method.rb:      source_location.nil? ? nil : source_location.last
+2025-04-11 /srv/gems/rails8_spree_api-5.0.6/vendor/bundle/ruby/3.3.0/gems/pry-0.15.2/lib/pry/wrapped_module/candidate.rb:        end_method_line = last_method_source_location.last
+2025-04-11 /srv/gems/rails8_spree_api-5.0.6/vendor/bundle/ruby/3.3.0/gems/rspec-expectations-3.13.3/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2025-04-11 /srv/gems/rails8_spree_cli-5.0.6/vendor/bundle/ruby/3.3.0/gems/pry-0.15.2/lib/pry/method/weird_method_locator.rb:          target.source_location.last
+2025-04-11 /srv/gems/rails8_spree_cli-5.0.6/vendor/bundle/ruby/3.3.0/gems/pry-0.15.2/lib/pry/method/weird_method_locator.rb:          [File.expand_path(source_location.first), source_location.last]
+2025-04-11 /srv/gems/rails8_spree_cli-5.0.6/vendor/bundle/ruby/3.3.0/gems/pry-0.15.2/lib/pry/method.rb:      source_location.nil? ? nil : source_location.last
+2025-04-11 /srv/gems/rails8_spree_cli-5.0.6/vendor/bundle/ruby/3.3.0/gems/pry-0.15.2/lib/pry/wrapped_module/candidate.rb:        end_method_line = last_method_source_location.last
+2025-04-11 /srv/gems/rails8_spree_cli-5.0.6/vendor/bundle/ruby/3.3.0/gems/rspec-expectations-3.13.3/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2025-04-11 /srv/gems/rails8_spree_core-5.0.6/vendor/bundle/ruby/3.3.0/gems/pry-0.15.2/lib/pry/method/weird_method_locator.rb:          target.source_location.last
+2025-04-11 /srv/gems/rails8_spree_core-5.0.6/vendor/bundle/ruby/3.3.0/gems/pry-0.15.2/lib/pry/method/weird_method_locator.rb:          [File.expand_path(source_location.first), source_location.last]
+2025-04-11 /srv/gems/rails8_spree_core-5.0.6/vendor/bundle/ruby/3.3.0/gems/pry-0.15.2/lib/pry/method.rb:      source_location.nil? ? nil : source_location.last
+2025-04-11 /srv/gems/rails8_spree_core-5.0.6/vendor/bundle/ruby/3.3.0/gems/pry-0.15.2/lib/pry/wrapped_module/candidate.rb:        end_method_line = last_method_source_location.last
+2025-04-11 /srv/gems/rails8_spree_core-5.0.6/vendor/bundle/ruby/3.3.0/gems/rspec-expectations-3.13.3/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2025-04-11 /srv/gems/rails8_spree_emails-5.0.6/vendor/bundle/ruby/3.3.0/gems/pry-0.15.2/lib/pry/method/weird_method_locator.rb:          target.source_location.last
+2025-04-11 /srv/gems/rails8_spree_emails-5.0.6/vendor/bundle/ruby/3.3.0/gems/pry-0.15.2/lib/pry/method/weird_method_locator.rb:          [File.expand_path(source_location.first), source_location.last]
+2025-04-11 /srv/gems/rails8_spree_emails-5.0.6/vendor/bundle/ruby/3.3.0/gems/pry-0.15.2/lib/pry/method.rb:      source_location.nil? ? nil : source_location.last
+2025-04-11 /srv/gems/rails8_spree_emails-5.0.6/vendor/bundle/ruby/3.3.0/gems/pry-0.15.2/lib/pry/wrapped_module/candidate.rb:        end_method_line = last_method_source_location.last
+2025-04-11 /srv/gems/rails8_spree_emails-5.0.6/vendor/bundle/ruby/3.3.0/gems/rspec-expectations-3.13.3/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2025-04-11 /srv/gems/rails8_spree_storefront-5.0.6/vendor/bundle/ruby/3.3.0/gems/pry-0.15.2/lib/pry/method/weird_method_locator.rb:          target.source_location.last
+2025-04-11 /srv/gems/rails8_spree_storefront-5.0.6/vendor/bundle/ruby/3.3.0/gems/pry-0.15.2/lib/pry/method/weird_method_locator.rb:          [File.expand_path(source_location.first), source_location.last]
+2025-04-11 /srv/gems/rails8_spree_storefront-5.0.6/vendor/bundle/ruby/3.3.0/gems/pry-0.15.2/lib/pry/method.rb:      source_location.nil? ? nil : source_location.last
+2025-04-11 /srv/gems/rails8_spree_storefront-5.0.6/vendor/bundle/ruby/3.3.0/gems/pry-0.15.2/lib/pry/wrapped_module/candidate.rb:        end_method_line = last_method_source_location.last
+2025-04-11 /srv/gems/rails8_spree_storefront-5.0.6/vendor/bundle/ruby/3.3.0/gems/rspec-expectations-3.13.3/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2016-07-13 /srv/gems/rblineprof-0.3.7/test/test_lineprof.rb:    line = profile[__FILE__][m.source_location.last]
+2024-02-15 /srv/gems/rhodes-7.6.0/spec/framework_spec/app/spec/core/method/source_location_spec.rb:      line = @method.source_location.last
+2024-02-15 /srv/gems/rhodes-7.6.0/spec/framework_spec/app/spec/core/method/source_location_spec.rb:      MethodSpecs::SourceLocation.method(:redefined).source_location.last.should == 13
+2024-02-15 /srv/gems/rhodes-7.6.0/spec/framework_spec/app/spec/core/method/source_location_spec.rb:      MethodSpecs::SourceLocation.new.method(:aka).source_location.last.should == 17
+2024-02-15 /srv/gems/rhodes-7.6.0/spec/framework_spec/app/spec/core/proc/source_location_spec.rb:      line = @proc.source_location.last
+2024-02-15 /srv/gems/rhodes-7.6.0/spec/framework_spec/app/spec/core/proc/source_location_spec.rb:      line = @proc_new.source_location.last
+2024-02-15 /srv/gems/rhodes-7.6.0/spec/framework_spec/app/spec/core/proc/source_location_spec.rb:      line = @lambda.source_location.last
+2024-02-15 /srv/gems/rhodes-7.6.0/spec/framework_spec/app/spec/core/proc/source_location_spec.rb:      ProcSpecs::SourceLocation.my_multiline_proc.source_location.last.should == 16
+2024-02-15 /srv/gems/rhodes-7.6.0/spec/framework_spec/app/spec/core/proc/source_location_spec.rb:      ProcSpecs::SourceLocation.my_multiline_proc_new.source_location.last.should == 30
+2024-02-15 /srv/gems/rhodes-7.6.0/spec/framework_spec/app/spec/core/proc/source_location_spec.rb:      ProcSpecs::SourceLocation.my_multiline_lambda.source_location.last.should == 23
+2024-02-15 /srv/gems/rhodes-7.6.0/spec/framework_spec/app/spec/core/proc/source_location_spec.rb:      ProcSpecs::SourceLocation.my_detached_proc.source_location.last.should == 37
+2024-02-15 /srv/gems/rhodes-7.6.0/spec/framework_spec/app/spec/core/proc/source_location_spec.rb:      ProcSpecs::SourceLocation.my_detached_proc_new.source_location.last.should == 47
+2024-02-15 /srv/gems/rhodes-7.6.0/spec/framework_spec/app/spec/core/proc/source_location_spec.rb:      ProcSpecs::SourceLocation.my_detached_lambda.source_location.last.should == 42
+1980-01-02 /srv/gems/rspec-expectations-3.13.5/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2020-02-21 /srv/gems/ruby-scheduler-0.1.3/vendor/ruby/2.6.0/gems/rspec-expectations-3.9.0/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2020-02-21 /srv/gems/ruby-scheduler-0.1.3/vendor/ruby/2.7.0/gems/rspec-expectations-3.9.0/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2012-10-25 /srv/gems/rubymirrors-0.0.3/lib/ruby/reflection/method_mirror.rb:        source_location.last - 1
+2023-08-21 /srv/gems/sampero-0.1.0/vendor/bundle/ruby/3.2.0/gems/rspec-expectations-3.12.3/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2018-04-30 /srv/gems/sb_prime_table-0.1.1/vendor/bundle/ruby/2.4.0/gems/pry-0.11.3/lib/pry/method.rb:      source_location.nil? ? nil : source_location.last
+2018-04-30 /srv/gems/sb_prime_table-0.1.1/vendor/bundle/ruby/2.4.0/gems/pry-0.11.3/lib/pry/wrapped_module/candidate.rb:        end_method_line = last_method_source_location.last
+2018-04-30 /srv/gems/sb_prime_table-0.1.1/vendor/bundle/ruby/2.4.0/gems/rspec-expectations-3.7.0/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2015-10-13 /srv/gems/sc_core-0.0.7/test/dummy/vendor/bundle/ruby/2.2.0/gems/pry-0.10.2/lib/pry/method.rb:      source_location.nil? ? nil : source_location.last
+2015-10-13 /srv/gems/sc_core-0.0.7/test/dummy/vendor/bundle/ruby/2.2.0/gems/pry-0.10.2/lib/pry/module_candidate.rb:        end_method_line = last_method_source_location.last
+1980-01-02 /srv/gems/scnr-introspector-0.3.2/lib/scnr/introspector/data_flow/sink.rb:            lineno   = @method_source_location.last
+2025-10-19 /srv/gems/scrapbook-0.4.0/vendor/ruby/2.7.0/gems/rspec-expectations-3.11.0/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2021-01-13 /srv/gems/seeing_is_believing-4.0.1/spec/event_stream_spec.rb:        return raises_exception.source_location.last
+2025-12-17 /srv/gems/shopsavvy-sdk-1.0.2/vendor/bundle/ruby/2.6.0/gems/rspec-expectations-3.13.5/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+1980-01-02 /srv/gems/siteimprove_api_client-1.0.3/vendor/bundle/ruby/3.2.0/gems/pry-0.15.2/lib/pry/method/weird_method_locator.rb:          target.source_location.last
+1980-01-02 /srv/gems/siteimprove_api_client-1.0.3/vendor/bundle/ruby/3.2.0/gems/pry-0.15.2/lib/pry/method/weird_method_locator.rb:          [File.expand_path(source_location.first), source_location.last]
+1980-01-02 /srv/gems/siteimprove_api_client-1.0.3/vendor/bundle/ruby/3.2.0/gems/pry-0.15.2/lib/pry/method.rb:      source_location.nil? ? nil : source_location.last
+1980-01-02 /srv/gems/siteimprove_api_client-1.0.3/vendor/bundle/ruby/3.2.0/gems/pry-0.15.2/lib/pry/wrapped_module/candidate.rb:        end_method_line = last_method_source_location.last
+1980-01-02 /srv/gems/siteimprove_api_client-1.0.3/vendor/bundle/ruby/3.2.0/gems/rspec-expectations-3.13.5/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2019-07-10 /srv/gems/skiptrace-0.8.1/test/skiptrace/exception_test.rb:      assert_equal 4, exc.bindings.first.source_location.last
+2019-07-10 /srv/gems/skiptrace-0.8.1/test/skiptrace/exception_test.rb:      assert_equal 6, exc.bindings.first.source_location.last
+2019-07-10 /srv/gems/skiptrace-0.8.1/test/skiptrace/exception_test.rb:      assert_equal 14, exc.bindings.first.source_location.last
+2019-07-10 /srv/gems/skiptrace-0.8.1/test/skiptrace/exception_test.rb:      assert_equal 14, exc.bindings.first.source_location.last
+2019-07-10 /srv/gems/skiptrace-0.8.1/test/skiptrace/exception_test.rb:      assert_equal 6, exc.bindings.first.source_location.last
+2019-11-14 /srv/gems/spec_fill-0.1.2/vendor/bundle/ruby/2.6.0/gems/rspec-expectations-3.9.0/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2020-11-28 /srv/gems/spud-0.2.10/lib/spud/block_param_info.rb:      line = File.read(@filename).split("\n")[@block.source_location.last - 1]
+2013-06-11 /srv/gems/sshp-0.0.2/vendor/ruby/1.9.1/gems/pry-0.9.12.2/lib/pry/method.rb:      source_location.nil? ? nil : source_location.last
+2013-06-11 /srv/gems/sshp-0.0.2/vendor/ruby/1.9.1/gems/pry-0.9.12.2/lib/pry/module_candidate.rb:        end_method_line = last_method_source_location.last
+2020-03-09 /srv/gems/symbolic_enum-1.1.5/vendor/bundle/ruby/2.7.0/gems/pry-0.12.2/lib/pry/method.rb:      source_location.nil? ? nil : source_location.last
+2020-03-09 /srv/gems/symbolic_enum-1.1.5/vendor/bundle/ruby/2.7.0/gems/pry-0.12.2/lib/pry/wrapped_module/candidate.rb:        end_method_line = last_method_source_location.last
+2020-03-09 /srv/gems/symbolic_enum-1.1.5/vendor/bundle/ruby/2.7.0/gems/rspec-expectations-3.9.0/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2023-08-22 /srv/gems/synctera_ruby_sdk-1.1.3/vendor/bundle/ruby/3.2.0/gems/pry-0.14.2/lib/pry/method/weird_method_locator.rb:          target.source_location.last
+2023-08-22 /srv/gems/synctera_ruby_sdk-1.1.3/vendor/bundle/ruby/3.2.0/gems/pry-0.14.2/lib/pry/method/weird_method_locator.rb:          [File.expand_path(source_location.first), source_location.last]
+2023-08-22 /srv/gems/synctera_ruby_sdk-1.1.3/vendor/bundle/ruby/3.2.0/gems/pry-0.14.2/lib/pry/method.rb:      source_location.nil? ? nil : source_location.last
+2023-08-22 /srv/gems/synctera_ruby_sdk-1.1.3/vendor/bundle/ruby/3.2.0/gems/pry-0.14.2/lib/pry/wrapped_module/candidate.rb:        end_method_line = last_method_source_location.last
+2023-08-22 /srv/gems/synctera_ruby_sdk-1.1.3/vendor/bundle/ruby/3.2.0/gems/rspec-expectations-3.12.3/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2017-08-03 /srv/gems/ta910_helloworld-0.1.1/vendor/bundle/gems/rspec-expectations-3.6.0/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2023-01-06 /srv/gems/takuya-lvm-snapshot-0.1.0/bundle/ruby/2.7.0/gems/rspec-expectations-3.12.1/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2016-05-23 /srv/gems/tauplatform-1.0.3/spec/framework_spec/app/spec/core/method/source_location_spec.rb:      line = @method.source_location.last
+2016-05-23 /srv/gems/tauplatform-1.0.3/spec/framework_spec/app/spec/core/method/source_location_spec.rb:      MethodSpecs::SourceLocation.method(:redefined).source_location.last.should == 13
+2016-05-23 /srv/gems/tauplatform-1.0.3/spec/framework_spec/app/spec/core/method/source_location_spec.rb:      MethodSpecs::SourceLocation.new.method(:aka).source_location.last.should == 17
+2016-05-23 /srv/gems/tauplatform-1.0.3/spec/framework_spec/app/spec/core/proc/source_location_spec.rb:      line = @proc.source_location.last
+2016-05-23 /srv/gems/tauplatform-1.0.3/spec/framework_spec/app/spec/core/proc/source_location_spec.rb:      line = @proc_new.source_location.last
+2016-05-23 /srv/gems/tauplatform-1.0.3/spec/framework_spec/app/spec/core/proc/source_location_spec.rb:      line = @lambda.source_location.last
+2016-05-23 /srv/gems/tauplatform-1.0.3/spec/framework_spec/app/spec/core/proc/source_location_spec.rb:      ProcSpecs::SourceLocation.my_multiline_proc.source_location.last.should == 16
+2016-05-23 /srv/gems/tauplatform-1.0.3/spec/framework_spec/app/spec/core/proc/source_location_spec.rb:      ProcSpecs::SourceLocation.my_multiline_proc_new.source_location.last.should == 30
+2016-05-23 /srv/gems/tauplatform-1.0.3/spec/framework_spec/app/spec/core/proc/source_location_spec.rb:      ProcSpecs::SourceLocation.my_multiline_lambda.source_location.last.should == 23
+2016-05-23 /srv/gems/tauplatform-1.0.3/spec/framework_spec/app/spec/core/proc/source_location_spec.rb:      ProcSpecs::SourceLocation.my_detached_proc.source_location.last.should == 37
+2016-05-23 /srv/gems/tauplatform-1.0.3/spec/framework_spec/app/spec/core/proc/source_location_spec.rb:      ProcSpecs::SourceLocation.my_detached_proc_new.source_location.last.should == 47
+2016-05-23 /srv/gems/tauplatform-1.0.3/spec/framework_spec/app/spec/core/proc/source_location_spec.rb:      ProcSpecs::SourceLocation.my_detached_lambda.source_location.last.should == 42
+2017-09-21 /srv/gems/test_gem2_dh-0.1.0/vendor/bundle/gems/rspec-expectations-3.6.0/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2013-07-30 /srv/gems/torquebox-console-0.3.0/vendor/bundle/jruby/1.9/gems/pry-0.9.12-java/lib/pry/method.rb:      source_location.nil? ? nil : source_location.last
+2013-07-30 /srv/gems/torquebox-console-0.3.0/vendor/bundle/jruby/1.9/gems/pry-0.9.12-java/lib/pry/module_candidate.rb:        end_method_line = last_method_source_location.last
+2016-05-22 /srv/gems/transform_tree-0.3.1/lib/transform_tree/node.rb:    "#{File.basename closure.source_location.first}:#{closure.source_location.last}"
+2015-04-01 /srv/gems/turnip-dry_run-0.1.0/lib/turnip/dry_run.rb:        step_method.source_location.last
+2023-08-19 /srv/gems/tursodb-0.1.0/vendor/bundle/ruby/3.2.0/gems/rspec-expectations-3.12.3/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2023-09-05 /srv/gems/web-console-4.2.1/lib/web_console/source_location.rb:      def lineno() @binding.source_location.last end
+2025-07-18 /srv/gems/whatpulse-sdk-1.0.1/vendor/bundle/ruby/3.1.0/gems/pry-0.15.2/lib/pry/method/weird_method_locator.rb:          target.source_location.last
+2025-07-18 /srv/gems/whatpulse-sdk-1.0.1/vendor/bundle/ruby/3.1.0/gems/pry-0.15.2/lib/pry/method/weird_method_locator.rb:          [File.expand_path(source_location.first), source_location.last]
+2025-07-18 /srv/gems/whatpulse-sdk-1.0.1/vendor/bundle/ruby/3.1.0/gems/pry-0.15.2/lib/pry/method.rb:      source_location.nil? ? nil : source_location.last
+2025-07-18 /srv/gems/whatpulse-sdk-1.0.1/vendor/bundle/ruby/3.1.0/gems/pry-0.15.2/lib/pry/wrapped_module/candidate.rb:        end_method_line = last_method_source_location.last
+2025-07-18 /srv/gems/whatpulse-sdk-1.0.1/vendor/bundle/ruby/3.1.0/gems/rspec-expectations-3.13.5/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2020-07-07 /srv/gems/yoshioka_gem-0.1.0/vendor/bundle/ruby/2.7.0/gems/rspec-expectations-3.9.2/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2025-09-23 /srv/gems/zayef-0.2.0.1/vendor/bundle/ruby/3.0.0/gems/rspec-expectations-3.13.5/lib/rspec/expectations/block_snippet_extractor.rb:        source_location.last
+2024-09-11 /srv/gems/zeus-0.17.0/lib/zeus/m/test_method.rb:          start_line = method.source_location.last
+2012-11-15 /srv/gems/zeus-edge-0.12.1/lib/zeus/m/test_method.rb:          start_line = method.source_location.last
+2014-04-06 /srv/gems/zeus-justinf-0.13.5/lib/zeus/m/test_method.rb:          start_line = method.source_location.last
