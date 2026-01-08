@@ -63,6 +63,7 @@ set -x GIT_GOGET_ROOT $HOME/Documents
 set -x SKIM_DEFAULT_COMMAND 'rg --files --hidden --follow --glob "!.git/*"'
 skim_key_bindings
 
+set -x HOMEBREW_FORBIDDEN_FORMULAE "node npm pnpm yarn python"
 # Use portable Ruby instead of System Ruby by macOS
 fish_add_path /opt/homebrew/Library/Homebrew/vendor/portable-ruby/current/bin
 
@@ -86,6 +87,7 @@ fish_add_path $XDG_DATA_HOME/cargo/bin
 alias l lsd
 alias ll "lsd -la"
 alias make "make --no-print-directory --quiet"
+
 abbr -a -- e "code-insiders ."
 abbr -a -- ea "code-insiders -a ."
 
@@ -126,3 +128,6 @@ zoxide init fish --cmd j | source
 atuin init fish | source
 starship init fish | source
 mise activate fish | source
+
+alias python3 (uv python find)
+alias python python3
