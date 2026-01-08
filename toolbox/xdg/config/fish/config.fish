@@ -123,5 +123,6 @@ bind \cg '__cd_repository'
 source $HOME/.config/op/plugins.sh
 source (mise where gcloud)/path.fish.inc
 zoxide init fish --cmd j | source
+atuin init fish | source
 starship init fish | source
 mise activate fish | source
