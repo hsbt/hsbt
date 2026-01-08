@@ -29,7 +29,7 @@ FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("cargo").to_s
   procs
   sd
   ripgrep_all
-  git-delta
+  difftastic
   xh
   spacer
   skim
