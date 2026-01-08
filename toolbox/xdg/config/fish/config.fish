@@ -46,7 +46,6 @@ alias mvn "mvn -gs $XDG_CONFIG_HOME/maven/settings.xml"
 set -x LANG en_US.UTF-8
 set -x TERM xterm-256color
 set -x GPG_TTY (tty)
-set -x EDITOR vim
 set -x GIT_MERGE_AUTOEDIT no
 set -x MISE_ENV_FILE .envrc
 set -x LESSHISTFILE -
@@ -62,6 +61,9 @@ set -x PKG_CONFIG_PATH /opt/homebrew/opt/imagemagick/lib/pkgconfig:/usr/lib/pkgc
 set -x GIT_GOGET_ROOT $HOME/Documents
 set -x SKIM_DEFAULT_COMMAND 'rg --files --hidden --follow --glob "!.git/*"'
 skim_key_bindings
+
+set -x HELIX_RUNTIME $GIT_GOGET_ROOT/github.com/helix-editor/helix/runtime
+set -x EDITOR hx
 
 set -x HOMEBREW_FORBIDDEN_FORMULAE "node npm pnpm yarn python"
 # Use portable Ruby instead of System Ruby by macOS
