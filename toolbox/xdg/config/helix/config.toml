@@ -1,0 +1,4 @@
+theme = "github_dark_dimmed"
+
+[editor]
+mouse = true
