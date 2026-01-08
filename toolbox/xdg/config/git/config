@@ -19,23 +19,24 @@
 [credential]
 	helper = osxkeychain
 
+[difftool "difftastic"]
+    cmd = difft "$MERGED" "$LOCAL" "abcdef1" "100644" "$REMOTE" "abcdef2" "100644"
+
+[difftool]
+    prompt = false
+
 [pager]
-	diff = delta
-	log = delta
-	reflog = delta
-	show = delta
+    difftool = true
+
+[diff]
+    tool = difftastic
+	diff = difft
+	log = difft
+	reflog = difft
+	show = difft
 
 [interactive]
-	diffFilter = delta --color-only
-
-[delta]
-	features = line-numbers decorations
-	whitespace-error-style = 22 reverse
-
-[delta "decorations"]
-	commit-decoration-style = bold yellow box ul
-	file-style = bold yellow ul
-	file-decoration-style = none
+	diffFilter = difft --color
 
 [url "ssh://git@github.com/"]
 	insteadOf = https://github.com/
@@ -60,12 +61,6 @@
 
 [pull]
 	rebase = false
-
-[diff]
-	algorithm = patience
-	noprefix = true
-	compactionHeuristic = true
-	wsErrorHighlight = all
 
 [push]
 	default = current
