@@ -3,7 +3,7 @@
 
 [core]
 	whitespace = space-before-tab, trailing-space, cr-at-eol
-	editor = vim
+	editor = hx
 	precomposeunicode = true
 	commentchar = |
 	pager = diff-so-fancy | less --tabs=4 -RFX
