@@ -44,3 +44,5 @@ platforms.each do |pf|
   d = defs.select { |d| d =~ Regexp.new("^#{pf}") }.last
   system "mise i ruby@#{d}"
 end
+
+system "MISE_RUBY_VERSION=jruby gem uninstall jruby-launcher"
