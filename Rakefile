@@ -19,37 +19,6 @@ task :deploy => [:generate] do
   Net::SCP.upload!('www.hsbt.org', 'ubuntu', "hsbt.org/dist/hsbt.css", "/home/ubuntu/www/hsbt.org/stylesheets/hsbt.css")
 end
 
-XDG_CONFIG_FILES = Dir.glob(File.join("toolbox", "xdg", "config", "**", "*")).select{|f| !File.directory?(f)}
-BIN_FILES = Dir.glob(File.join("toolbox", "exe", "*")).select{|f| !File.directory?(f)}
-
-task :push do
-  XDG_CONFIG_FILES.each do |f|
-    from = f
-    to = f.gsub(/toolbox\/xdg\/config/, ENV['XDG_CONFIG_HOME'])
-    FileUtils.cp from, to
-  end
-
-  BIN_FILES.each do |f|
-    from = f
-    to = File.join(ENV['HOME'], ".local", "bin", File.basename(f))
-    FileUtils.cp from, to
-  end
-end
-
-task :pull do
-  XDG_CONFIG_FILES.each do |f|
-    to = f
-    from = f.gsub(/toolbox\/xdg\/config/, ENV['XDG_CONFIG_HOME'])
-    FileUtils.cp from, to
-  end
-
-  BIN_FILES.each do |f|
-    to = f
-    from = File.join(ENV['HOME'], ".local", "bin", File.basename(f))
-    FileUtils.cp from, to
-  end
-end
-
 task :push_system_env do
   system "sudo cp toolbox/system/paths /etc/paths.d/paths"
   system "sudo sd 'HOME' #{ENV.fetch('HOME')} /etc/paths.d/paths"
