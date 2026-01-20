@@ -1,0 +1,99 @@
+#!/usr/bin/env ruby
+
+require 'fileutils'
+
+# Get the repository root directory
+repo_root = File.expand_path('../../..', __FILE__)
+xdg_config_home = ENV['XDG_CONFIG_HOME'] || File.join(ENV['HOME'], '.config')
+local_bin = File.join(ENV['HOME'], '.local', 'bin')
+
+XDG_CONFIG_FILES = Dir.glob(File.join(repo_root, 'toolbox', 'xdg', 'config', '**', '*')).select { |f| !File.directory?(f) }
+BIN_FILES = Dir.glob(File.join(repo_root, 'toolbox', 'exe', '*')).select { |f| !File.directory?(f) }
+
+def xdg_repo_dir(repo_root)
+  File.join(repo_root, 'toolbox', 'xdg', 'config')
+end
+
+def xdg_relative_label(path)
+  path.sub(%r{.*toolbox/xdg/config/}, '')
+end
+
+def copy_pairs(pairs, header: nil)
+  puts header if header
+  pairs.each do |from, to, label|
+    next unless File.exist?(from)
+    FileUtils.mkdir_p(File.dirname(to))
+    FileUtils.cp(from, to)
+    puts "  ✓ #{label}"
+  end
+end
+
+def xdg_pull_pairs(repo_root, xdg_config_home, xdg_files)
+  xdg_files.map do |to_file|
+    from_file = to_file.gsub(%r{toolbox/xdg/config}, xdg_config_home)
+    [from_file, to_file, xdg_relative_label(to_file)]
+  end
+end
+
+def xdg_push_pairs(repo_root, xdg_config_home, xdg_files)
+  xdg_files.map do |from_file|
+    to_file = from_file.gsub(%r{toolbox/xdg/config}, xdg_config_home)
+    [from_file, to_file, xdg_relative_label(from_file)]
+  end
+end
+
+def bin_pull_pairs(local_bin, bin_files)
+  bin_files.map do |to_file|
+    from_file = File.join(local_bin, File.basename(to_file))
+    [from_file, to_file, File.basename(to_file)]
+  end
+end
+
+def bin_push_pairs(local_bin, bin_files)
+  bin_files.map do |from_file|
+    to_file = File.join(local_bin, File.basename(from_file))
+    [from_file, to_file, File.basename(from_file)]
+  end
+end
+
+def pull(repo_root, xdg_config_home, xdg_files, local_bin, bin_files)
+  copy_pairs(
+    xdg_pull_pairs(repo_root, xdg_config_home, xdg_files),
+    header: "Pulling dotfiles from #{xdg_config_home} to #{xdg_repo_dir(repo_root)}"
+  )
+
+  copy_pairs(
+    bin_pull_pairs(local_bin, bin_files),
+    header: "Pulling bin files from #{local_bin} to #{File.join(repo_root, 'toolbox/exe')}"
+  )
+end
+
+def push(repo_root, xdg_config_home, xdg_files, local_bin, bin_files)
+  copy_pairs(
+    xdg_push_pairs(repo_root, xdg_config_home, xdg_files),
+    header: "Pushing dotfiles from #{xdg_repo_dir(repo_root)} to #{xdg_config_home}"
+  )
+
+  copy_pairs(
+    bin_push_pairs(local_bin, bin_files),
+    header: "Pushing bin files from #{File.join(repo_root, 'toolbox/exe')} to #{local_bin}"
+  )
+end
+
+def usage
+  puts "Usage: dev env <command>"
+  puts ""
+  puts "Commands:"
+  puts "  pull    Pull dotfiles from home directory to repository"
+  puts "  push    Push dotfiles from repository to home directory"
+  exit 1
+end
+
+case ARGV[0]
+when 'pull'
+  pull(repo_root, xdg_config_home, XDG_CONFIG_FILES, local_bin, BIN_FILES)
+when 'push'
+  push(repo_root, xdg_config_home, XDG_CONFIG_FILES, local_bin, BIN_FILES)
+else
+  usage
+end
