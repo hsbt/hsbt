@@ -119,8 +119,6 @@ form.comment input {
   color: #000;
   margin-left: 1em;
   border-radius: 4px;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
 }
 form.comment textarea {
   display: block;
@@ -131,8 +129,6 @@ form.comment textarea {
   width: 100%;
   height: 5em;
   border-radius: 4px;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
 }
 form.update div.field.title, form.update div.textarea {
   display: block;
@@ -146,15 +142,11 @@ form.update input, form.update textarea {
   background-color: #eef;
   color: #000;
   border-radius: 4px;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
 }
 form.commentstat input {
   background-color: #eef;
   color: #000;
   border-radius: 4px;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
 }
 form.update span.field {
   display: inline;
@@ -163,8 +155,6 @@ form.update span.field {
 }
 form.update div.field.title input {
   border-radius: 4px;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
   margin-left: 0.5em;
 }
 form.update textarea {
@@ -179,12 +169,7 @@ form.update span.checkbox.hidediary {
 }
 
 pre, code {
-  white-space: -moz-pre-wrap;
-  /* Mozilla */
-  white-space: -pre-wrap;
-  /* Opera 7 */
   white-space: pre-wrap;
-  /* CSS3 */
   word-wrap: break-word;
 
   padding: 1px 6px;
@@ -194,7 +179,6 @@ pre, code {
   display: block;
   overflow-x: auto;
 }
-
 
 img.flickr, img.google {
   border: #BCD 1px dashed;
@@ -297,8 +281,6 @@ div.sidebar {
 div.sidebar form {
   text-align: center;
   border-radius: 4px;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
 }
 div.sidebar p {
   margin: 2px 4px;
@@ -315,8 +297,6 @@ div.contents {
   margin-bottom: 8px;
   padding: 5px;
   border-radius: 8px;
-  -moz-border-radius: 8px;
-  -webkit-border-radius: 8px;
 }
 div.strong {
   background-color: #F0F8FF;
@@ -410,8 +390,6 @@ div.textarea {
   max-width: 600px;
   width: 80%;
   border-radius: 4px;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
 }
 div.form {
   background-color: #fff;
@@ -445,8 +423,6 @@ div.refererlist {
   background-color: #fff;
   color: #000;
   border-radius: 8px;
-  -moz-border-radius: 8px;
-  -webkit-border-radius: 8px;
   padding: 2px;
   padding-bottom: 1px;
   margin: 0.5em;
