@@ -178,7 +178,7 @@ form.update span.checkbox.hidediary {
   margin-left: 1em;
 }
 
-pre {
+pre, code {
   white-space: -moz-pre-wrap;
   /* Mozilla */
   white-space: -pre-wrap;
@@ -186,7 +186,15 @@ pre {
   white-space: pre-wrap;
   /* CSS3 */
   word-wrap: break-word;
+
+  padding: 1px 6px;
+  margin: 1em 0;
+  line-height: 1.5;
+  border-radius: 6px;
+  display: block;
+  overflow-x: auto;
 }
+
 
 img.flickr, img.google {
   border: #BCD 1px dashed;
