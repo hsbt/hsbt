@@ -1,0 +1,6 @@
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+
+gem 'rails', '~> 8.0'
+gem 'webpush', github: 'mastodon/webpush', ref: '9631ac63045cfabddacc69fc06e919b4c13eb913'
