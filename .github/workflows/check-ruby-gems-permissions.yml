@@ -7,7 +7,10 @@ on:
 
 jobs:
   check-permissions:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-${{ matrix.ubuntu-version }}
+    strategy:
+      matrix:
+        ubuntu-version: ['22.04', '24.04']
     
     steps:
       - name: Check Ruby installations
@@ -27,12 +30,6 @@ jobs:
             echo ""
             echo "=== Directory permissions ==="
             ls -la "$GEMS_PATH" | head -20
-            echo ""
-            echo "=== World-writable directories (with w permission for others) ==="
-            find "$GEMS_PATH" -maxdepth 1 -type d -perm -002 -ls || echo "No world-writable directories found"
-            echo ""
-            echo "=== All directory permissions (first 20) ==="
-            find "$GEMS_PATH" -maxdepth 1 -type d -exec stat -c "%a %n" {} \; | head -20
           else
             echo "Directory not found: $GEMS_PATH"
           fi
@@ -49,12 +46,6 @@ jobs:
             echo ""
             echo "=== Directory permissions ==="
             ls -la "$GEMS_PATH" | head -20
-            echo ""
-            echo "=== World-writable directories (with w permission for others) ==="
-            find "$GEMS_PATH" -maxdepth 1 -type d -perm -002 -ls || echo "No world-writable directories found"
-            echo ""
-            echo "=== All directory permissions (first 20) ==="
-            find "$GEMS_PATH" -maxdepth 1 -type d -exec stat -c "%a %n" {} \; | head -20
           else
             echo "Directory not found: $GEMS_PATH"
           fi
@@ -71,12 +62,6 @@ jobs:
             echo ""
             echo "=== Directory permissions ==="
             ls -la "$GEMS_PATH" | head -20
-            echo ""
-            echo "=== World-writable directories (with w permission for others) ==="
-            find "$GEMS_PATH" -maxdepth 1 -type d -perm -002 -ls || echo "No world-writable directories found"
-            echo ""
-            echo "=== All directory permissions (first 20) ==="
-            find "$GEMS_PATH" -maxdepth 1 -type d -exec stat -c "%a %n" {} \; | head -20
           else
             echo "Directory not found: $GEMS_PATH"
           fi
@@ -93,12 +78,6 @@ jobs:
             echo ""
             echo "=== Directory permissions ==="
             ls -la "$GEMS_PATH" | head -20
-            echo ""
-            echo "=== World-writable directories (with w permission for others) ==="
-            find "$GEMS_PATH" -maxdepth 1 -type d -perm -002 -ls || echo "No world-writable directories found"
-            echo ""
-            echo "=== All directory permissions (first 20) ==="
-            find "$GEMS_PATH" -maxdepth 1 -type d -exec stat -c "%a %n" {} \; | head -20
           else
             echo "Directory not found: $GEMS_PATH"
           fi
