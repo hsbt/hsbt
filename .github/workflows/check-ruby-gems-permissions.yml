@@ -7,10 +7,10 @@ on:
 
 jobs:
   check-permissions:
-    runs-on: ubuntu-${{ matrix.ubuntu-version }}
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        ubuntu-version: ['22.04', '24.04']
+        os: ['ubuntu-22.04', 'ubuntu-24.04', 'macos-15']
     
     steps:
       - name: Check Ruby installations
