@@ -16,14 +16,26 @@ jobs:
       - name: Check Ruby installations
         run: |
           echo "=== Checking preinstalled Ruby versions ==="
-          ls -la /opt/hostedtoolcache/Ruby/ || echo "Ruby directory not found"
+          if [[ "$RUNNER_OS" == "macOS" ]]; then
+            BASE_PATH="/Users/runner/hostedtoolcache/Ruby"
+          else
+            BASE_PATH="/opt/hostedtoolcache/Ruby"
+          fi
+          ls -la "$BASE_PATH" || echo "Ruby directory not found"
           
       - name: Check Ruby 3.2.10 gems permissions
         run: |
           echo "=== Checking Ruby 3.2.10 ==="
+          if [[ "$RUNNER_OS" == "macOS" ]]; then
+            BASE_PATH="/Users/runner/hostedtoolcache/Ruby"
+            ARCH="arm64"
+          else
+            BASE_PATH="/opt/hostedtoolcache/Ruby"
+            ARCH="x64"
+          fi
           RUBY_VERSION="3.2.10"
           GEM_VERSION="3.2.0"
-          GEMS_PATH="/opt/hostedtoolcache/Ruby/${RUBY_VERSION}/x64/lib/ruby/gems/${GEM_VERSION}/gems"
+          GEMS_PATH="${BASE_PATH}/${RUBY_VERSION}/${ARCH}/lib/ruby/gems/${GEM_VERSION}/gems"
           
           if [ -d "$GEMS_PATH" ]; then
             echo "Directory exists: $GEMS_PATH"
@@ -37,9 +49,16 @@ jobs:
       - name: Check Ruby 3.3.10 gems permissions
         run: |
           echo "=== Checking Ruby 3.3.10 ==="
+          if [[ "$RUNNER_OS" == "macOS" ]]; then
+            BASE_PATH="/Users/runner/hostedtoolcache/Ruby"
+            ARCH="arm64"
+          else
+            BASE_PATH="/opt/hostedtoolcache/Ruby"
+            ARCH="x64"
+          fi
           RUBY_VERSION="3.3.10"
           GEM_VERSION="3.3.0"
-          GEMS_PATH="/opt/hostedtoolcache/Ruby/${RUBY_VERSION}/x64/lib/ruby/gems/${GEM_VERSION}/gems"
+          GEMS_PATH="${BASE_PATH}/${RUBY_VERSION}/${ARCH}/lib/ruby/gems/${GEM_VERSION}/gems"
           
           if [ -d "$GEMS_PATH" ]; then
             echo "Directory exists: $GEMS_PATH"
@@ -53,9 +72,16 @@ jobs:
       - name: Check Ruby 3.4.8 gems permissions
         run: |
           echo "=== Checking Ruby 3.4.8 ==="
+          if [[ "$RUNNER_OS" == "macOS" ]]; then
+            BASE_PATH="/Users/runner/hostedtoolcache/Ruby"
+            ARCH="arm64"
+          else
+            BASE_PATH="/opt/hostedtoolcache/Ruby"
+            ARCH="x64"
+          fi
           RUBY_VERSION="3.4.8"
           GEM_VERSION="3.4.0"
-          GEMS_PATH="/opt/hostedtoolcache/Ruby/${RUBY_VERSION}/x64/lib/ruby/gems/${GEM_VERSION}/gems"
+          GEMS_PATH="${BASE_PATH}/${RUBY_VERSION}/${ARCH}/lib/ruby/gems/${GEM_VERSION}/gems"
           
           if [ -d "$GEMS_PATH" ]; then
             echo "Directory exists: $GEMS_PATH"
@@ -69,9 +95,16 @@ jobs:
       - name: Check Ruby 4.0.1 gems permissions
         run: |
           echo "=== Checking Ruby 4.0.1 ==="
+          if [[ "$RUNNER_OS" == "macOS" ]]; then
+            BASE_PATH="/Users/runner/hostedtoolcache/Ruby"
+            ARCH="arm64"
+          else
+            BASE_PATH="/opt/hostedtoolcache/Ruby"
+            ARCH="x64"
+          fi
           RUBY_VERSION="4.0.1"
           GEM_VERSION="4.0.0"
-          GEMS_PATH="/opt/hostedtoolcache/Ruby/${RUBY_VERSION}/x64/lib/ruby/gems/${GEM_VERSION}/gems"
+          GEMS_PATH="${BASE_PATH}/${RUBY_VERSION}/${ARCH}/lib/ruby/gems/${GEM_VERSION}/gems"
           
           if [ -d "$GEMS_PATH" ]; then
             echo "Directory exists: $GEMS_PATH"
@@ -85,6 +118,13 @@ jobs:
       - name: Summary - Find all world-writable gem directories
         run: |
           echo "=== Summary: All world-writable gem directories across all Ruby versions ==="
+          if [[ "$RUNNER_OS" == "macOS" ]]; then
+            BASE_PATH="/Users/runner/hostedtoolcache/Ruby"
+            ARCH="arm64"
+          else
+            BASE_PATH="/opt/hostedtoolcache/Ruby"
+            ARCH="x64"
+          fi
           for RUBY_VERSION in 3.2.10 3.3.10 3.4.8 4.0.1; do
             case $RUBY_VERSION in
               3.2.*) GEM_VERSION="3.2.0" ;;
@@ -92,7 +132,7 @@ jobs:
               3.4.*) GEM_VERSION="3.4.0" ;;
               4.0.*) GEM_VERSION="4.0.0" ;;
             esac
-            GEMS_PATH="/opt/hostedtoolcache/Ruby/${RUBY_VERSION}/x64/lib/ruby/gems/${GEM_VERSION}/gems"
+            GEMS_PATH="${BASE_PATH}/${RUBY_VERSION}/${ARCH}/lib/ruby/gems/${GEM_VERSION}/gems"
             if [ -d "$GEMS_PATH" ]; then
               echo ""
               echo "Ruby ${RUBY_VERSION}:"
