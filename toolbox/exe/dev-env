@@ -34,14 +34,14 @@ end
 
 def xdg_pull_pairs(repo_root, xdg_config_home, xdg_files)
   xdg_files.map do |to_file|
-    from_file = to_file.gsub(%r{toolbox/xdg/config}, xdg_config_home)
+    from_file = to_file.sub(File.join(repo_root, 'toolbox', 'xdg', 'config'), xdg_config_home)
     [from_file, to_file, xdg_relative_label(to_file)]
   end
 end
 
 def xdg_push_pairs(repo_root, xdg_config_home, xdg_files)
   xdg_files.map do |from_file|
-    to_file = from_file.gsub(%r{toolbox/xdg/config}, xdg_config_home)
+    to_file = from_file.sub(File.join(repo_root, 'toolbox', 'xdg', 'config'), xdg_config_home)
     [from_file, to_file, xdg_relative_label(from_file)]
   end
 end
