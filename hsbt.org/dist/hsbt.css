@@ -168,16 +168,25 @@ form.update span.checkbox.hidediary {
   margin-left: 1em;
 }
 
-pre, code {
+code {
+  white-space: nowrap;
+  display: inline-block;
+}
+
+pre {
   white-space: pre-wrap;
   word-wrap: break-word;
 
-  padding: 1px 6px;
+  padding: 0.5em 1em 0.5em 1em;
   margin: 1em 0;
   line-height: 1.5;
   border-radius: 6px;
   display: block;
   overflow-x: auto;
+}
+
+pre code {
+  white-space: pre-wrap;
 }
 
 img.flickr, img.google {
