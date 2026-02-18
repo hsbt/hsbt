@@ -1,0 +1,14 @@
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+
+# gem "rails"
+
+gem "dotenv"
+gem "fastlane"
+gem "httparty"
+gem "slather"
+gem "xcode-install"
+gem "xcodeproj"
+gem "xcpretty"
+gem "xcresult"
