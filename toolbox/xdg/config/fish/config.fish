@@ -93,28 +93,8 @@ alias make "make --no-print-directory --quiet"
 abbr -a -- e "code-insiders ."
 abbr -a -- ea "code-insiders -a ."
 
-function export
-  set arr (echo $argv|tr = \n)
-  set -gx $arr[1] $arr[2]
-end
-
 function g --wraps git
   hub $argv;
-end
-
-function git-aipr
-  set -l target (git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | string replace 'refs/remotes/origin/' '')
-
-  set -l title (copilot --model gpt-5-mini -p "Generate ONLY a concise English PR title (imperative mood) based on \`git diff origin/$target...HEAD\`. Output only the title line." -s 2>/dev/null | sed '/^$/d' | tail -n 1)
-
-  set -l body (copilot --model gpt-5-mini -p "Generate a detailed English PR description in Markdown format, explaining 'What' and 'Why', based on \`git diff origin/$target...HEAD\`. Do not include the title." -s 2>/dev/null | string collect)
-
-  gh pr create --web --title "$title" --body "$body"
-end
-
-function history-merge --on-event fish_preexec
-  history --save
-  history --merge
 end
 
 function __cd_repository

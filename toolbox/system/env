@@ -2,3 +2,4 @@ GOPATH,HOME/.local/share/go
 CARGO_HOME,HOME/.local/share/cargo
 VSCODE_PORTABLE,HOME/.local/share/vscode
 VSCODE_CLI_DATA_DIR,HOME/.cache/vscode-cli
+ZDOTDIR,HOME/.config/zsh

@@ -5,6 +5,7 @@ tap "homebrew/services"
 
 brew "tmux"
 brew "fish"
+brew "zsh"
 brew "git"
 brew "git-lfs"
 brew "git-open"
