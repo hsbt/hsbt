@@ -109,9 +109,6 @@ __cd_repository() {
 zle -N __cd_repository
 bindkey '^g' __cd_repository
 
-source $GIT_GOGET_ROOT/github.com/zsh-users/zsh-autosuggestions/zsh-autosuggestions.zsh
-zstyle ':completion:*:*:*:*:*' menu select
-
 source "$HOME/.config/op/plugins.sh"
 source "$(mise where gcloud)/path.zsh.inc"
 eval "$(zoxide init zsh --cmd j)"
@@ -121,3 +118,6 @@ eval "$(mise activate zsh)"
 
 alias python3="$(uv python find)"
 alias python=python3
+
+source $GIT_GOGET_ROOT/github.com/zsh-users/zsh-autosuggestions/zsh-autosuggestions.zsh
+zstyle ':completion:*:*:*:*:*' menu select
