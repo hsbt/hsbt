@@ -5,6 +5,8 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_CACHE_HOME="$HOME/Library/Caches" # macOS default
 
+export HOMEBREW_FORBIDDEN_FORMULAE="node npm pnpm yarn python"
+
 export IRBRC="$XDG_CONFIG_HOME/irb/irbrc"
 export GEMRC="$XDG_CONFIG_HOME/gem/gemrc"
 export GEM_HOME="$XDG_DATA_HOME/gem"
@@ -63,16 +65,12 @@ export MAKEFLAGS="-j$(sysctl -n hw.logicalcpu)"
 export PKG_CONFIG_PATH="/opt/homebrew/opt/imagemagick/lib/pkgconfig:/usr/lib/pkgconfig"
 export GIT_GOGET_ROOT="$HOME/Documents"
 export SKIM_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
-
 export HELIX_RUNTIME="$GIT_GOGET_ROOT/github.com/helix-editor/helix/runtime"
 export EDITOR=hx
-
-export HOMEBREW_FORBIDDEN_FORMULAE="node npm pnpm yarn python"
 
 # Use portable Ruby instead of System Ruby by macOS
 export PATH="/opt/homebrew/Library/Homebrew/vendor/portable-ruby/current/bin:$PATH"
 
-# Add Homebrew and optional tool paths
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/opt/homebrew/sbin:$PATH"
 export PATH="/opt/homebrew/opt/m4/bin:$PATH"
@@ -94,10 +92,7 @@ alias l='lsd'
 alias ll='lsd -la'
 alias make='make --no-print-directory --quiet'
 
-alias e='code-insiders .'
-alias ea='code-insiders -a .'
-
-# Git wrapper function
+alias e='zed .'
 g() {
   hub "$@"
 }
