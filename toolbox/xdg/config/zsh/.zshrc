@@ -112,6 +112,7 @@ eval "$(zoxide init zsh --cmd j)"
 eval "$(atuin init zsh)"
 eval "$(starship init zsh)"
 eval "$(mise activate zsh)"
+eval "$(git wt --init zsh)"
 
 source $GIT_GOGET_ROOT/github.com/zsh-users/zsh-autosuggestions/zsh-autosuggestions.zsh
 zstyle ':completion:*:*:*:*:*' menu select
