@@ -82,6 +82,7 @@ FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("go").to_s
   github.com/sinclairtarget/git-who@latest
   github.com/peak/s5cmd/v2@master
   github.com/google/oss-rebuild/cmd/oss-rebuild@latest
+  github.com/k1LoW/git-wt@latest
 ].each { |pkg| system "go install #{pkg}" }
 
 FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("heroku").to_s
