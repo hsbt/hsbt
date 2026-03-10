@@ -135,10 +135,16 @@ eval "$(mise activate zsh)"
 eval "$(git wt --init zsh)"
 
 source $GIT_GOGET_ROOT/github.com/zsh-users/zsh-autosuggestions/zsh-autosuggestions.zsh
-zstyle ':completion:*:*:*:*:*' menu select
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' use-cache yes
+zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/compcache"
 zstyle ':completion:*' verbose yes
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*:descriptions' format '%F{yellow}-- %d --%f'
+zstyle ':completion:*:warnings' format '%F{red}no matches%f'
+zstyle ':completion:*' squeeze-slashes true
+zstyle ':completion:*:git:*' group-order 'main commands' 'alias commands' 'external commands'
 
 autoload -U compinit
 if [[ -n $XDG_CACHE_HOME/zsh/zcompdump(#qN.mh+24) ]]; then
@@ -146,7 +152,6 @@ if [[ -n $XDG_CACHE_HOME/zsh/zcompdump(#qN.mh+24) ]]; then
 else
   compinit -C -d "$XDG_CACHE_HOME/zsh/zcompdump"
 fi
-zstyle ':completion:*:git:*' group-order 'main commands' 'alias commands' 'external commands'
 source <(carapace _carapace)
 compdef g=git
 
