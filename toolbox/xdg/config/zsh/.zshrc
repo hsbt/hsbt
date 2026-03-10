@@ -1,4 +1,15 @@
+bindkey -e
+
 setopt auto_cd
+setopt extended_glob
+setopt no_beep
+setopt ignore_eof
+setopt no_flow_control
+setopt interactive_comments
+setopt print_eight_bit
+setopt long_list_jobs
+setopt numeric_glob_sort
+setopt magic_equal_subst
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
@@ -49,6 +60,11 @@ alias wget='wget --hsts-file=$XDG_CACHE_HOME/wget-hsts'
 alias gpg='gpg --homedir $XDG_DATA_HOME/gnupg'
 alias yarn='yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config'
 alias mvn='mvn -gs $XDG_CONFIG_HOME/maven/settings.xml'
+
+autoload zmv
+alias zmv='noglob zmv'
+
+export REPORTTIME=3
 
 export LANG=en_US.UTF-8
 export TERM=xterm-256color
@@ -118,6 +134,9 @@ eval "$(git wt --init zsh)"
 
 source $GIT_GOGET_ROOT/github.com/zsh-users/zsh-autosuggestions/zsh-autosuggestions.zsh
 zstyle ':completion:*:*:*:*:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':completion:*' use-cache yes
+zstyle ':completion:*' verbose yes
 
 autoload -U compinit && compinit
 zstyle ':completion:*:git:*' group-order 'main commands' 'alias commands' 'external commands'
