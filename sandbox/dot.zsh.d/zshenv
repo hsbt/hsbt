@@ -1,2 +1,0 @@
-# not open editor when `git pull --rebase`
-export GIT_MERGE_AUTOEDIT=no
