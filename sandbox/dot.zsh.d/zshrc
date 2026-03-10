@@ -1,33 +1,17 @@
-umask 022
 bindkey -e
 
-
-setopt always_last_prompt
-setopt auto_list
-setopt auto_menu
-setopt auto_cd
-setopt auto_param_keys
-setopt auto_name_dirs
-setopt auto_remove_slash
-setopt cdable_vars
-setopt correct
 setopt extended_glob
-setopt interactive_comments
-setopt list_packed
-setopt list_types
-setopt magic_equal_subst
-setopt print_eight_bit
-setopt numeric_glob_sort
-setopt zle
-setopt long_list_jobs
+setopt no_beep
 setopt ignore_eof
 setopt no_flow_control
-setopt no_beep
+setopt interactive_comments
+setopt print_eight_bit
+setopt long_list_jobs
+setopt numeric_glob_sort
+setopt magic_equal_subst
 
 autoload zmv
 alias zmv='noglob zmv'
-
-export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' use-cache yes

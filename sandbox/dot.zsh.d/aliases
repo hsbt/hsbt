@@ -7,6 +7,3 @@ alias -g T="| tail"
 alias bx="bundle exec"
 alias bo="bundle open"
 alias bu="bundle update"
-bcd () { cd -P `ruby -rubygems -rbundler -e "Bundler.load.specs.each{|s| puts s.full_gem_path if s.name == '${1}'}"` }
-brg () { rg "$@" `bundle show --paths` }
-
