@@ -140,7 +140,12 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' use-cache yes
 zstyle ':completion:*' verbose yes
 
-autoload -U compinit && compinit
+autoload -U compinit
+if [[ -n $XDG_CACHE_HOME/zsh/zcompdump(#qN.mh+24) ]]; then
+  compinit -d "$XDG_CACHE_HOME/zsh/zcompdump"
+else
+  compinit -C -d "$XDG_CACHE_HOME/zsh/zcompdump"
+fi
 zstyle ':completion:*:git:*' group-order 'main commands' 'alias commands' 'external commands'
 source <(carapace _carapace)
 compdef g=git
