@@ -1,0 +1,3 @@
+\set HISTFILE ~/'.local/share/psql/history'
+\set HISTCONTROL ignoredups
+\pset null '(null)'
