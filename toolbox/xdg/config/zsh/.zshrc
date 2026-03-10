@@ -141,6 +141,7 @@ zstyle ':completion:*' verbose yes
 autoload -U compinit && compinit
 zstyle ':completion:*:git:*' group-order 'main commands' 'alias commands' 'external commands'
 source <(carapace _carapace)
+compdef g=git
 
 alias python3="$(uv python find)"
 alias python=python3
