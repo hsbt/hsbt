@@ -55,23 +55,13 @@ export VCPKG_DOWNLOADS="$XDG_CACHE_HOME/vcpkg/downloads"
 export CLAUDE_CONFIG_DIR="$XDG_CONFIG_HOME/claude"
 export CODEX_HOME="$XDG_CONFIG_HOME/codex"
 
-alias s3cmd='s3cmd --config $XDG_CONFIG_HOME/s3cmd'
-alias wget='wget --hsts-file=$XDG_CACHE_HOME/wget-hsts'
-alias gpg='gpg --homedir $XDG_DATA_HOME/gnupg'
-alias yarn='yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config'
-alias mvn='mvn -gs $XDG_CONFIG_HOME/maven/settings.xml'
-
-autoload zmv
-alias zmv='noglob zmv'
-
-export REPORTTIME=3
-
 export LANG=en_US.UTF-8
 export TERM=xterm-256color
 export GPG_TTY=$(tty)
 export GIT_MERGE_AUTOEDIT=no
 export MISE_ENV_FILE=.envrc
 export LESSHISTFILE=-
+export REPORTTIME=3
 export CC='sccache clang'
 export RUSTC_WRAPPER="$CARGO_HOME/bin/sccache"
 export RUBY_CODESIGN=hsbt
@@ -108,11 +98,19 @@ export PATH="$XDG_DATA_HOME/cargo/bin:$PATH"
 
 typeset -U path
 
+autoload zmv
+
+alias s3cmd='s3cmd --config $XDG_CONFIG_HOME/s3cmd'
+alias wget='wget --hsts-file=$XDG_CACHE_HOME/wget-hsts'
+alias gpg='gpg --homedir $XDG_DATA_HOME/gnupg'
+alias yarn='yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config'
+alias mvn='mvn -gs $XDG_CONFIG_HOME/maven/settings.xml'
+alias zmv='noglob zmv'
 alias l='lsd'
 alias ll='lsd -la'
 alias make='make --no-print-directory --quiet'
-
 alias e='zed .'
+
 g() {
   hub "$@"
 }
@@ -126,15 +124,6 @@ __cd_repository() {
 zle -N __cd_repository
 bindkey '^g' __cd_repository
 
-source "$HOME/.config/op/plugins.sh"
-source "$(mise where gcloud)/path.zsh.inc"
-eval "$(zoxide init zsh --cmd j)"
-eval "$(atuin init zsh)"
-eval "$(starship init zsh)"
-eval "$(mise activate zsh)"
-eval "$(git wt --init zsh)"
-
-source $GIT_GOGET_ROOT/github.com/zsh-users/zsh-autosuggestions/zsh-autosuggestions.zsh
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' use-cache yes
@@ -152,8 +141,19 @@ if [[ -n $XDG_CACHE_HOME/zsh/zcompdump(#qN.mh+24) ]]; then
 else
   compinit -C -d "$XDG_CACHE_HOME/zsh/zcompdump"
 fi
+
 source <(carapace _carapace)
 compdef g=git
+
+source "$HOME/.config/op/plugins.sh"
+source "$(mise where gcloud)/path.zsh.inc"
+eval "$(zoxide init zsh --cmd j)"
+eval "$(atuin init zsh)"
+eval "$(starship init zsh)"
+eval "$(mise activate zsh)"
+eval "$(git wt --init zsh)"
+
+source $GIT_GOGET_ROOT/github.com/zsh-users/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 alias python3="$(uv python find)"
 alias python=python3
