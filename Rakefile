@@ -63,3 +63,30 @@ task :purge_system_env do
     FileUtils.rm File.expand_path("~/Library/LaunchAgents/#{k}.SetEnv.plist")
   end
 end
+
+RAILS_VERSIONS = {
+  "8.1" => "rails81",
+  "8.0" => "rails80",
+  "7.2" => "rails72",
+  "7.1" => "rails71",
+  "7.0" => "rails70",
+  "6.1" => "rails61",
+}
+
+namespace :boilerplate do
+  desc "regenerate all boilerplate Rails apps with latest patch versions"
+  task :update do
+    RAILS_VERSIONS.each do |version, dir|
+      dest = File.expand_path("boilerplate/#{dir}", __dir__)
+      puts "==> Recreating #{dir} (Rails ~> #{version})"
+
+      FileUtils.rm_rf(dest)
+      system("gem install rails -v '~> #{version}.0' --no-document", exception: true)
+      installed = `gem list -e rails`.match(/rails \(([^)]+)\)/)[1]
+      latest = installed.split(", ").select { |v| v.start_with?(version) }.first
+      system("rails", "_#{latest}_", "new", dest, "--skip-git", "--skip-docker", exception: true)
+
+      puts "    #{dir} created"
+    end
+  end
+end
