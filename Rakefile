@@ -70,7 +70,6 @@ RAILS_VERSIONS = {
   "7.2" => "rails72",
   "7.1" => "rails71",
   "7.0" => "rails70",
-  "6.1" => "rails61",
 }
 
 namespace :boilerplate do
@@ -84,7 +83,8 @@ namespace :boilerplate do
       system("gem install rails -v '~> #{version}.0' --no-document", exception: true)
       installed = `gem list -e rails`.match(/rails \(([^)]+)\)/)[1]
       latest = installed.split(", ").select { |v| v.start_with?(version) }.first
-      system("rails", "_#{latest}_", "new", dest, "--skip-git", "--skip-docker", exception: true)
+      system("rails", "_#{latest}_", "new", dest, exception: true)
+      FileUtils.rm_rf(Dir.glob("#{dest}/**/tmp/cache/bootsnap"))
 
       puts "    #{dir} created"
     end
