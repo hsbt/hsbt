@@ -146,6 +146,7 @@ else
 fi
 
 source <(carapace _carapace)
+compdef hub=git
 compdef g=git
 
 source "$HOME/.config/op/plugins.sh"
