@@ -106,6 +106,8 @@ export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
 export PATH="$XDG_DATA_HOME/go/bin:$PATH"
 export PATH="$XDG_DATA_HOME/cargo/bin:$PATH"
 
+typeset -U path
+
 alias l='lsd'
 alias ll='lsd -la'
 alias make='make --no-print-directory --quiet'
