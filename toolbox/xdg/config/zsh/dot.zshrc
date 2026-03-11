@@ -3,7 +3,6 @@ bindkey -e
 setopt auto_cd
 setopt extended_glob
 setopt no_beep
-setopt ignore_eof
 setopt no_flow_control
 setopt interactive_comments
 setopt print_eight_bit
