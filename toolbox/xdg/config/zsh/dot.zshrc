@@ -56,7 +56,6 @@ export VCPKG_DOWNLOADS="$XDG_CACHE_HOME/vcpkg/downloads"
 export CLAUDE_CONFIG_DIR="$XDG_CONFIG_HOME/claude"
 export CODEX_HOME="$XDG_CONFIG_HOME/codex"
 export PSQLRC="$XDG_CONFIG_HOME/pg/psqlrc"
-export MYSQL_HOME="$XDG_CONFIG_HOME"
 export EDITRC="$XDG_CONFIG_HOME/editrc"
 export RUBOCOP_OPTS="--config $XDG_CONFIG_HOME/rubocop/config.yml"
 
