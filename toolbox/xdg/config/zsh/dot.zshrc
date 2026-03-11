@@ -120,7 +120,17 @@ g() {
 
 __cd_repository() {
   local repo_path=$(fd . "$GIT_GOGET_ROOT" -t d --max-depth 3 | sk)
-  cd "$repo_path" || return
+  [ -z "$repo_path" ] && { zle reset-prompt; return; }
+
+  local target=$(tmux list-panes -s -F "#{pane_current_path} #{window_index}.#{pane_index}" 2>/dev/null \
+    | awk -v path="$repo_path" '$1 == path {print $2; exit}')
+
+  if [ -n "$target" ]; then
+    tmux select-window -t "${target%%.*}"
+    tmux select-pane -t "$target"
+  else
+    tmux new-window -c "$repo_path"
+  fi
   zle reset-prompt
 }
 
