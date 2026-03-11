@@ -6,7 +6,7 @@
 	editor = hx
 	precomposeunicode = true
 	commentchar = |
-	pager = diff-so-fancy | less --tabs=4 -RFX
+	pager = less --tabs=4 -RFX
 
 [user]
 	name = Hiroshi SHIBATA
@@ -43,12 +43,6 @@
 
 [color]
 	ui = auto
-
-[color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
 
 [branch]
 	autosetupmerge = true
