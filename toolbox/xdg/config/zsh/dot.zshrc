@@ -11,6 +11,8 @@ setopt long_list_jobs
 setopt numeric_glob_sort
 setopt magic_equal_subst
 
+WORDCHARS='_-'
+
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
