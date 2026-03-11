@@ -147,8 +147,13 @@ else
 fi
 
 source <(carapace _carapace)
-compdef hub=git
-compdef g=git
+
+_git_via_carapace() {
+  words[1]=git
+  _carapace_completer
+}
+compdef _git_via_carapace hub
+compdef _git_via_carapace g
 
 source "$HOME/.config/op/plugins.sh"
 source "$(mise where gcloud)/path.zsh.inc"
