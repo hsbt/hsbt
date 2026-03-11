@@ -29,11 +29,8 @@
     difftool = true
 
 [diff]
-    tool = difftastic
-	diff = difft
-	log = difft
-	reflog = difft
-	show = difft
+	external = difft
+	tool = difftastic
 
 [interactive]
 	diffFilter = difft --color
