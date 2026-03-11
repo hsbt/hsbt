@@ -36,6 +36,17 @@ def repo_to_xdg_path(path)
   File.join(dir, mapped)
 end
 
+def xdg_to_repo_path(path)
+  dir = File.dirname(path)
+  basename = File.basename(path)
+  mapped = if basename.start_with?('.') && basename != '.' && basename != '..'
+             "dot#{basename}"
+           else
+             basename
+           end
+  File.join(dir, mapped)
+end
+
 def copy_pairs(pairs, header: nil)
   puts header if header
   pairs.each do |from, to, label|
@@ -48,18 +59,16 @@ end
 
 def xdg_pull_pairs(repo_root, xdg_config_home, xdg_files)
   xdg_files.map do |to_file|
-    from_file = repo_to_xdg_path(
-      to_file.sub(File.join(repo_root, 'toolbox', 'xdg', 'config'), xdg_config_home)
-    )
+    relative = to_file.sub("#{File.join(repo_root, 'toolbox', 'xdg', 'config')}/", '')
+    from_file = File.join(xdg_config_home, repo_to_xdg_path(relative))
     [from_file, to_file, xdg_relative_label(to_file)]
   end
 end
 
 def xdg_push_pairs(repo_root, xdg_config_home, xdg_files)
   xdg_files.map do |from_file|
-    to_file = repo_to_xdg_path(
-      from_file.sub(File.join(repo_root, 'toolbox', 'xdg', 'config'), xdg_config_home)
-    )
+    relative = from_file.sub("#{File.join(repo_root, 'toolbox', 'xdg', 'config')}/", '')
+    to_file = File.join(xdg_config_home, repo_to_xdg_path(relative))
     [from_file, to_file, xdg_relative_label(from_file)]
   end
 end
