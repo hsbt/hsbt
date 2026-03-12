@@ -102,6 +102,10 @@ FileUtils.rm_rf Pathname(ENV["XDG_DATA_HOME"]).join("heroku").to_s
   @heroku-cli/plugin-api
 ].each { |pkg| system "heroku plugins:install #{pkg}" }
 
+helix_dir = File.join(ENV["GIT_GOGET_ROOT"], "github.com/helix-editor/helix")
+system "cd #{helix_dir} && git pull && cargo install --locked --path helix-term"
+FileUtils.cp File.join(ENV["CARGO_HOME"], "bin", "hx"), File.expand_path("~/.local/bin/hx")
+
 %w[
   github/gh-copilot
   advanced-security/gh-sbom
