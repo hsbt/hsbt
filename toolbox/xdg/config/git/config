@@ -20,13 +20,13 @@
 	helper = osxkeychain
 
 [difftool "difftastic"]
-    cmd = difft "$MERGED" "$LOCAL" "abcdef1" "100644" "$REMOTE" "abcdef2" "100644"
+	cmd = difft "$MERGED" "$LOCAL" "abcdef1" "100644" "$REMOTE" "abcdef2" "100644"
 
 [difftool]
-    prompt = false
+	prompt = false
 
 [pager]
-    difftool = true
+	difftool = true
 
 [diff]
 	external = difft
@@ -106,21 +106,29 @@
 
 [blame]
 	ignoreRevsFile = .git-blame-ignore-revs
+
 [advice]
 	detachedHead = false
+
 [rebase]
 	autostash = true
 	abbreviateCommands = true
 	autosquash = true
+
 [protocol "file"]
 	allow = always
+
 [feature]
 	manyFiles = true
+
 [index]
 	skipHash = true
+
 [transfer]
 	fsckObjects = true
+
 [rerere]
 	enabled = true
+
 [pack]
 	allowPackReuse = multi
