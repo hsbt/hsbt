@@ -31,6 +31,7 @@
 [diff]
 	external = difft
 	tool = difftastic
+	algorithm = histogram
 
 [interactive]
 	diffFilter = difft --color
@@ -117,5 +118,9 @@
 	manyFiles = true
 [index]
 	skipHash = true
+[transfer]
+	fsckObjects = true
+[rerere]
+	enabled = true
 [pack]
 	allowPackReuse = multi
