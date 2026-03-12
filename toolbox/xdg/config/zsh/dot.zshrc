@@ -102,7 +102,6 @@ typeset -U path
 
 autoload zmv
 
-alias s3cmd='s3cmd --config $XDG_CONFIG_HOME/s3cmd'
 alias wget='wget --hsts-file=$XDG_CACHE_HOME/wget-hsts'
 alias gpg='gpg --homedir $XDG_DATA_HOME/gnupg'
 alias yarn='yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config'
