@@ -16,14 +16,8 @@
 [commit]
 	gpgsign = true
 
-[credential]
-	helper = osxkeychain
-
 [url "ssh://git@github.com/"]
 	insteadOf = https://github.com/
-
-[color]
-	ui = auto
 
 [diff]
 	external = difft
