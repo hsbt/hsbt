@@ -119,9 +119,11 @@ g() {
 }
 
 __cd_repository() {
-  local repo_path=$(fd . "$GIT_GOGET_ROOT" -t d --max-depth 3 | sk)
+  local repo_path=$({
+    zoxide query --list 2>/dev/null | grep "^$GIT_GOGET_ROOT/"
+    fd . "$GIT_GOGET_ROOT" -t d --max-depth 3 | sed 's/\/$//'
+  } | awk '!seen[$0]++' | sk)
   [ -z "$repo_path" ] && { zle reset-prompt; return; }
-  repo_path="${repo_path%/}"
 
   local target=$(tmux list-panes -s -F "#{pane_current_path} #{window_index}.#{pane_index}" 2>/dev/null \
     | awk -v path="$repo_path" '$1 == path {print $2; exit}')
