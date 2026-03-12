@@ -113,5 +113,9 @@
 	autosquash = true
 [protocol "file"]
 	allow = always
+[feature]
+	manyFiles = true
+[index]
+	skipHash = true
 [pack]
 	allowPackReuse = multi
