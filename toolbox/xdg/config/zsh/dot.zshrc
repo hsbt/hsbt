@@ -132,7 +132,7 @@ __cd_repository() {
     tmux select-window -t "${target%%.*}"
     tmux select-pane -t "$target"
   else
-    tmux new-window -c "$repo_path"
+    env -u __MISE_DIFF -u __MISE_ORIG_PATH -u __MISE_SESSION -u __MISE_ZSH_PRECMD_RUN tmux new-window -c "$repo_path"
   fi
   zle reset-prompt
 }
@@ -173,6 +173,7 @@ eval "$(zoxide init zsh --cmd j)"
 eval "$(atuin init zsh)"
 eval "$(starship init zsh)"
 eval "$(mise activate zsh)"
+eval "$(mise hook-env -s zsh 2>/dev/null)"
 eval "$(git wt --init zsh)"
 
 source $GIT_GOGET_ROOT/github.com/zsh-users/zsh-autosuggestions/zsh-autosuggestions.zsh
