@@ -47,11 +47,10 @@
 	sort = -authordate
 
 [merge]
-	ff = false
 	renameLimit = 999999
 
 [pull]
-	rebase = false
+	rebase = true
 
 [push]
 	default = current
