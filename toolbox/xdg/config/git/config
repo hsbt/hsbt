@@ -19,6 +19,17 @@
 [credential]
 	helper = osxkeychain
 
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
+
+[color]
+	ui = auto
+
+[diff]
+	external = difft
+	tool = difftastic
+	algorithm = histogram
+
 [difftool "difftastic"]
 	cmd = difft "$MERGED" "$LOCAL" "abcdef1" "100644" "$REMOTE" "abcdef2" "100644"
 
@@ -28,27 +39,33 @@
 [pager]
 	difftool = true
 
-[diff]
-	external = difft
-	tool = difftastic
-	algorithm = histogram
-
 [interactive]
 	diffFilter = difft --color
 
-[url "ssh://git@github.com/"]
-	insteadOf = https://github.com/
+[log]
+	date = iso
 
-[color]
-	ui = auto
+[blame]
+	ignoreRevsFile = .git-blame-ignore-revs
 
 [branch]
 	autosetupmerge = true
 	autosetuprebase = always
 	sort = -authordate
 
+[checkout]
+	defaultRemote = origin
+
 [merge]
 	renameLimit = 999999
+
+[rebase]
+	autostash = true
+	abbreviateCommands = true
+	autosquash = true
+
+[rerere]
+	enabled = true
 
 [pull]
 	rebase = true
@@ -64,23 +81,35 @@
 [submodule]
 	fetchJobs = 8
 
-[checkout]
-	defaultRemote = origin
+[transfer]
+	fsckObjects = true
 
-[log]
-	date = iso
+[feature]
+	manyFiles = true
 
-[github]
-	user = hsbt
+[index]
+	skipHash = true
 
-[heroku]
-	account = hsbt
+[pack]
+	allowPackReuse = multi
+
+[protocol "file"]
+	allow = always
+
+[advice]
+	detachedHead = false
 
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+
+[github]
+	user = hsbt
+
+[heroku]
+	account = hsbt
 
 [alias]
 	a  = add -A
@@ -103,32 +132,3 @@
 	lo = log --decorate --oneline
 	lp = log --decorate -p
 	lpf = log --decorate -p --follow
-
-[blame]
-	ignoreRevsFile = .git-blame-ignore-revs
-
-[advice]
-	detachedHead = false
-
-[rebase]
-	autostash = true
-	abbreviateCommands = true
-	autosquash = true
-
-[protocol "file"]
-	allow = always
-
-[feature]
-	manyFiles = true
-
-[index]
-	skipHash = true
-
-[transfer]
-	fsckObjects = true
-
-[rerere]
-	enabled = true
-
-[pack]
-	allowPackReuse = multi
