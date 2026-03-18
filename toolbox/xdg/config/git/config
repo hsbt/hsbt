@@ -109,7 +109,7 @@
 	a  = add -A
 	b  = branch
 	ba = branch -a
-	bc = !git branch --merged | grep -Ev '\\*|main|master|development' | xargs git branch -d
+	bc = "!f() { base=$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@refs/remotes/origin/@@') || base=master; { git branch --merged \"$base\"; git branch -vv | grep ': gone]' | awk '{print $1}'; } | grep -Ev \"\\\\*|$base\" | sort -u | xargs git branch -d 2>/dev/null; }; f"
 	c  = commit -S
 	aic = "!f() { COMMITMSG=$(claude -p 'Generate ONLY a one-line Git commit message in English, using imperative mood, summarizing what was changed and why, based strictly on the contents of `git diff --cached`. Do not add explanation or a body. Output only the commit summary line.' 2>/dev/null | sed '/^$/d' | tail -n 1); git commit -S -m \"$COMMITMSG\" -e; }; f"
 	ca = commit -S --amend
