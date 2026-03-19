@@ -127,6 +127,7 @@ brew "pack"
 
 tap "rbenv/tap"
 brew "openssl@1.0"
+brew "openssl@1.1"
 
 brew "mas"
 mas "Windows App", id: 1295203466
