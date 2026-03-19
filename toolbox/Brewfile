@@ -121,7 +121,6 @@ cask "1password@beta"
 
 tap "aws/tap"
 brew "aws-sam-cli"
-brew "copilot-cli"
 
 tap "buildpacks/tap"
 brew "pack"
