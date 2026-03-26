@@ -5,3 +5,14 @@ updates:
   schedule:
     interval: weekly
     time: '20:00'
+- package-ecosystem: bundler
+  directories:
+    - "/boilerplate/rails61"
+    - "/boilerplate/rails70"
+    - "/boilerplate/rails71"
+    - "/boilerplate/rails72"
+    - "/boilerplate/rails80"
+    - "/boilerplate/rails81"
+  schedule:
+    interval: weekly
+  open-pull-requests-limit: 0
