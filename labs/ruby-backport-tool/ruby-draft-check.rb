@@ -8,7 +8,7 @@ abort "Usage: ruby ruby-draft-check.rb <version> (e.g. 3.3.10)" unless version
 
 url = "https://cache.ruby-lang.org/pub/tmp/ruby-#{version}-draft.tar.gz"
 tarball = "ruby-#{version}-draft.tar.gz"
-srcdir = "ruby-#{version}-draft"
+srcdir = "ruby-#{version}"
 
 Dir.mktmpdir("ruby-draft-") do |tmpdir|
   Dir.chdir(tmpdir) do
