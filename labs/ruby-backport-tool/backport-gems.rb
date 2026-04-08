@@ -85,7 +85,8 @@ target_versions.each do |version|
   # 3. git commit in the current directory
   commit_message = "Merge RubyGems/Bundler #{version}"
   puts "Committing with message: #{commit_message}..."
-  unless system("git", "commit", "-am", commit_message)
+  system("git", "add", "-A")
+  unless system("git", "commit", "-m", commit_message)
     puts "Error: Failed to commit"
     exit 1
   end
