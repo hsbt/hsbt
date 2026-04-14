@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-mise use -g ruby@3.4-dev
+mise use -g ruby@4.0-dev
 gem update
 gem uninstall openssl psych zlib digest strscan stringio pathname etc date --force --executables
 
