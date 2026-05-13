@@ -3,6 +3,7 @@ require "bundler/inline"
 gemfile do
   source "https://rubygems.org"
   gem "octokit"
+  gem "faraday-retry"
 end
 
 client = Octokit::Client.new(access_token: ENV.fetch("GITHUB_TOKEN"))
