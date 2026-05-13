@@ -14,9 +14,14 @@ repos = client.repos(affiliation: "owner,collaborator,organization_member").sele
 }
 
 repos.each do |repo|
-  pulls = client.pull_requests(repo.full_name, state: "open").select { |pr|
-    pr.user.login == "dependabot[bot]"
-  }
+  begin
+    pulls = client.pull_requests(repo.full_name, state: "open").select { |pr|
+      pr.user.login == "dependabot[bot]"
+    }
+  rescue Octokit::NotFound
+    warn "skip #{repo.full_name}: not found"
+    next
+  end
   next if pulls.empty?
 
   puts "#{repo.full_name} (#{pulls.size})"
