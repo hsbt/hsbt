@@ -138,6 +138,22 @@ __cd_repository() {
 zle -N __cd_repository
 bindkey '^g' __cd_repository
 
+__cd_home() {
+  local target=$(tmux list-panes -s -F "#{pane_current_path} #{window_index}.#{pane_index}" 2>/dev/null \
+    | awk -v path="$HOME" '$1 == path {print $2; exit}')
+
+  if [ -n "$target" ]; then
+    tmux select-window -t "${target%%.*}"
+    tmux select-pane -t "$target"
+  else
+    tmux new-window -c "$HOME"
+  fi
+  zle reset-prompt
+}
+
+zle -N __cd_home
+bindkey '^h' __cd_home
+
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' use-cache yes
