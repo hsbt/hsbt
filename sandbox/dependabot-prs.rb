@@ -10,8 +10,9 @@ client = Octokit::Client.new(access_token: ENV.fetch("GITHUB_TOKEN"))
 client.auto_paginate = true
 
 excluded_orgs = %w[88labs andpad-dev RubyGemsOrg]
+excluded_repos = %w[ruby/vscode-rdbg ruby/gem_rbs_collection ruby/vscode-typeprof]
 repos = client.repos(affiliation: "owner,collaborator,organization_member").select { |repo|
-  repo.permissions.push && !repo.archived && !excluded_orgs.include?(repo.owner.login) && !(repo.owner.login == "hsbt" && repo.fork)
+  repo.permissions.push && !repo.archived && !excluded_orgs.include?(repo.owner.login) && !excluded_repos.include?(repo.full_name) && !(repo.owner.login == "hsbt" && repo.fork)
 }
 
 repos.each do |repo|
