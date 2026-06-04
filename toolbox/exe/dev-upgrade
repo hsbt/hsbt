@@ -6,10 +6,6 @@ brew autoremove
 brew cleanup
 
 mise upgrade
-if ls -d asdf-dart.* 2>/dev/null | grep -q .; then
-    $HOME/Documents/github.com/hsbt/hsbt/labs/dart-sdk-installer/install-dart.sh
-    rm -rf asdf-dart.*
-fi
 
 go-global-update
 rustup update
