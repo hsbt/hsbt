@@ -1,0 +1,313 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Read-only HackerOne CLI. Fetches report lists (open/closed) and a single
+# report's comments (activities) and prints them to stdout. It does not save
+# JSON. Intended for interactive use like the gh command.
+#
+# Usage:
+#   h1 list [open|closed|all] [-p PROGRAM]   # list (default: open)
+#   h1 get REPORT_ID                          # detail + all comments
+#   h1 sync [-p PROGRAM]                      # archive all reports as JSON
+#
+# Credential resolution order (api_username / api_token / program_handle):
+#   1. Environment variables HACKERONE_API_USERNAME / HACKERONE_API_TOKEN / HACKERONE_PROGRAM_HANDLE
+#   2. Config file ~/.config/hackerone/config.json
+#   Any value of the form "op://..." is resolved via the 1Password CLI (`op read`),
+#   so config.json can hold op references instead of the literal token.
+#
+# Example config.json:
+#   {
+#     "api_username": "YOUR_API_USERNAME",
+#     "api_token": "op://VAULT/HackerOne API/credential",
+#     "program_handle": "YOUR_PROGRAM_HANDLE"
+#   }
+
+require "net/http"
+require "json"
+require "uri"
+require "shellwords"
+require "fileutils"
+
+CONFIG_PATH = File.join(Dir.home, ".config", "hackerone", "config.json")
+
+OPEN_STATES = %w[new pending-program-review triaged needs-more-info retesting].freeze
+CLOSED_STATES = %w[resolved not-applicable informative duplicate spam].freeze
+ALL_STATES = (OPEN_STATES + CLOSED_STATES).freeze
+
+# Resolve "op://..." values via `op read`; return everything else unchanged.
+def resolve_value(value)
+  return value unless value.is_a?(String) && value.start_with?("op://")
+
+  resolved = `op read #{value.shellescape}`.chomp
+  if $?.success? && !resolved.empty?
+    resolved
+  else
+    abort "Failed to resolve #{value} via 1Password (op). Run `op signin` first."
+  end
+end
+
+def load_config
+  return {} unless File.exist?(CONFIG_PATH)
+
+  JSON.parse(File.read(CONFIG_PATH))
+rescue JSON::ParserError => e
+  abort "Invalid config #{CONFIG_PATH}: #{e.message}"
+end
+
+def credentials(program_override)
+  config = load_config
+
+  username = ENV["HACKERONE_API_USERNAME"] || config["api_username"]
+  token = ENV["HACKERONE_API_TOKEN"] || config["api_token"]
+  handle = program_override || ENV["HACKERONE_PROGRAM_HANDLE"] || config["program_handle"]
+
+  username = resolve_value(username)
+  token = resolve_value(token)
+  handle = resolve_value(handle) if handle
+
+  if username.nil? || username.empty? || token.nil? || token.empty?
+    abort <<~MSG
+      No API credentials found. Set them via:
+        - export HACKERONE_API_USERNAME=... HACKERONE_API_TOKEN=...
+        - #{CONFIG_PATH} with "api_username" / "api_token" (literal or "op://..." reference)
+    MSG
+  end
+
+  { username: username, token: token, handle: handle }
+end
+
+def fetch(uri, creds)
+  http = Net::HTTP.new(uri.host, uri.port)
+  http.use_ssl = true
+
+  request = Net::HTTP::Get.new(uri)
+  request.basic_auth(creds[:username], creds[:token])
+  response = http.request(request)
+
+  if response.code == "429"
+    wait = (response["Retry-After"] || "10").to_i
+    warn "Rate limited. Waiting #{wait}s before retrying."
+    sleep wait
+    return fetch(uri, creds)
+  end
+
+  unless response.is_a?(Net::HTTPSuccess)
+    warn "API request failed: #{response.code} #{response.message}"
+    warn response.body
+    exit 1
+  end
+
+  JSON.parse(response.body)
+end
+
+def list_reports(creds, states)
+  handle = creds[:handle] or abort "No program handle. Use -p PROGRAM or set HACKERONE_PROGRAM_HANDLE."
+
+  query = [
+    ["filter[program][]", handle],
+    ["page[size]", 100],
+    *states.map { |state| ["filter[state][]", state] }
+  ]
+  uri = URI("https://api.hackerone.com/v1/reports")
+  uri.query = URI.encode_www_form(query)
+
+  reports = []
+  loop do
+    data = fetch(uri, creds)
+    reports.concat(data["data"])
+    next_url = data.dig("links", "next")
+    break unless next_url
+
+    uri = URI(next_url)
+  end
+  reports
+end
+
+def print_list(reports)
+  if reports.empty?
+    puts "No reports found."
+    return
+  end
+
+  rows = reports.map do |report|
+    attr = report["attributes"] || {}
+    reporter = report.dig("relationships", "reporter", "data", "attributes", "username") || "-"
+    [
+      "##{report['id']}",
+      attr["state"] || "-",
+      reporter,
+      (attr["last_activity_at"] || attr["created_at"] || "")[0, 10],
+      (attr["title"] || "").gsub(/\s+/, " ")
+    ]
+  end
+
+  widths = (0..3).map { |i| rows.map { |r| r[i].length }.max }
+  rows.sort_by! { |r| r[3] }.reverse!
+  rows.each do |id, state, reporter, date, title|
+    printf("%-#{widths[0]}s  %-#{widths[1]}s  %-#{widths[2]}s  %-#{widths[3]}s  %s\n",
+           id, state, reporter, date, title)
+  end
+  puts "\n#{reports.size} report(s)."
+end
+
+def actor_name(activity)
+  actor = activity.dig("relationships", "actor", "data", "attributes")
+  return "-" unless actor
+
+  actor["username"] || actor["handle"] || "-"
+end
+
+def get_report(creds, report_id)
+  uri = URI("https://api.hackerone.com/v1/reports/#{report_id}")
+  report = fetch(uri, creds)["data"]
+  attr = report["attributes"] || {}
+
+  puts "##{report['id']}  #{attr['title']}"
+  puts "State:    #{attr['state']}"
+  puts "Reporter: #{report.dig('relationships', 'reporter', 'data', 'attributes', 'username') || '-'}"
+  puts "Created:  #{attr['created_at']}"
+  puts "Closed:   #{attr['closed_at']}" if attr["closed_at"]
+  puts "URL:      https://hackerone.com/reports/#{report['id']}"
+
+  vuln = attr["vulnerability_information"]
+  unless vuln.nil? || vuln.empty?
+    puts "\n--- Vulnerability information ---"
+    puts vuln
+  end
+
+  activities = report.dig("relationships", "activities", "data") || []
+  puts "\n--- Activities (#{activities.size}) ---"
+  activities.each do |activity|
+    a = activity["attributes"] || {}
+    when_at = (a["created_at"] || "")[0, 19].tr("T", " ")
+    actor = actor_name(activity)
+
+    if activity["type"] == "activity-comment"
+      internal = a["internal"] ? " [internal]" : ""
+      puts "\n[#{when_at}] #{actor}#{internal}:"
+      puts a["message"]
+    else
+      label = activity["type"].sub(/\Aactivity-/, "")
+      puts "\n[#{when_at}] #{actor} — #{label}"
+      puts a["message"] if a["message"] && !a["message"].empty?
+    end
+  end
+end
+
+def category_for(state)
+  if OPEN_STATES.include?(state)
+    "open"
+  elsif CLOSED_STATES.include?(state)
+    "closed"
+  else
+    "unknown"
+  end
+end
+
+# Save every report's (open + closed) detail to
+# security/<handle>/<category>/<state>/<id>.json. Re-fetch only reports whose
+# last_activity_at advanced or whose destination state changed, and prune local
+# files for reports that no longer appear in the list.
+def sync_reports(creds)
+  handle = creds[:handle] or abort "No program handle. Use -p PROGRAM or set HACKERONE_PROGRAM_HANDLE."
+  base_dir = File.join(__dir__, "security", handle)
+  FileUtils.mkdir_p(base_dir)
+
+  existing = {}
+  Dir.glob(File.join(base_dir, "**", "*.json")).each do |path|
+    existing[File.basename(path, ".json")] = path
+  end
+
+  counts = Hash.new(0)
+  seen = {}
+  updated = 0
+  unchanged = 0
+
+  list_reports(creds, ALL_STATES).each do |report|
+    report_id = report["id"]
+    seen[report_id] = true
+
+    state = report.dig("attributes", "state") || "unknown"
+    category = category_for(state)
+    dir = File.join(base_dir, category, state)
+    file_path = File.join(dir, "#{report_id}.json")
+    counts["#{category}/#{state}"] += 1
+
+    old_path = existing[report_id]
+    list_activity = report.dig("attributes", "last_activity_at")
+    saved_activity =
+      if old_path && File.exist?(old_path)
+        JSON.parse(File.read(old_path)).dig("attributes", "last_activity_at") rescue nil
+      end
+
+    unless old_path.nil? || old_path != file_path || saved_activity != list_activity
+      unchanged += 1
+      next
+    end
+
+    detail = fetch(URI("https://api.hackerone.com/v1/reports/#{report_id}"), creds)["data"]
+    FileUtils.mkdir_p(dir)
+    File.write(file_path, JSON.pretty_generate(detail))
+    FileUtils.rm_f(old_path) if old_path && old_path != file_path
+
+    comment_count = (detail.dig("relationships", "activities", "data") || []).size
+    updated += 1
+    puts "Updated: #{file_path} (#{comment_count} activities)"
+  end
+
+  orphans = existing.reject { |report_id, _| seen[report_id] }
+  orphans.each_value do |path|
+    FileUtils.rm_f(path)
+    puts "Removed (no longer listed): #{path}"
+  end
+
+  total = counts.values.sum
+  if total.zero?
+    puts "No reports found for #{handle}."
+    return
+  end
+
+  puts "\nBreakdown:"
+  counts.sort.each { |category, count| puts "  #{category}: #{count}" }
+  puts "Total: #{total} report(s); #{updated} updated, #{unchanged} unchanged, #{orphans.size} removed in #{base_dir}"
+end
+
+def main(argv)
+  argv = argv.dup
+  program = nil
+  if (i = argv.index("-p") || argv.index("--program"))
+    program = argv[i + 1]
+    argv.delete_at(i + 1)
+    argv.delete_at(i)
+  end
+
+  command = argv.shift
+  case command
+  when "list"
+    scope = argv.shift || "open"
+    states =
+      case scope
+      when "open" then OPEN_STATES
+      when "closed" then CLOSED_STATES
+      when "all" then ALL_STATES
+      else abort "Unknown scope: #{scope} (use open|closed|all)"
+      end
+    print_list(list_reports(credentials(program), states))
+  when "get"
+    report_id = argv.shift or abort "Usage: h1 get REPORT_ID"
+    get_report(credentials(program), report_id)
+  when "sync"
+    sync_reports(credentials(program))
+  else
+    warn <<~USAGE
+      Usage:
+        h1 list [open|closed|all] [-p PROGRAM]
+        h1 get REPORT_ID [-p PROGRAM]
+        h1 sync [-p PROGRAM]
+    USAGE
+    exit 1
+  end
+end
+
+main(ARGV)
