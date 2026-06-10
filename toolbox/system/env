@@ -1,3 +1,4 @@
 GOPATH,HOME/.local/share/go
 CARGO_HOME,HOME/.local/share/cargo
 ZDOTDIR,HOME/.config/zsh
+CLAUDE_CONFIG_DIR,HOME/.config/claude
