@@ -21,7 +21,6 @@ uv = "latest"
 _.path = [
   "{{env.XDG_DATA_HOME}}/gem/bin",
   "{{env.XDG_DATA_HOME}}/npm/bin",
-  "{{env.KREW_ROOT}}/bin",
   "{{env.HOME}}/.local/bin"
 ]
 
