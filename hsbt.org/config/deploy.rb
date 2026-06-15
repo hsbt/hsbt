@@ -35,6 +35,7 @@ task :deploy do
         command "#{fetch(:bundle_bin)} config set without '#{fetch(:bundle_withouts)}'"
         invoke :"bundle:install"
         command "chmod 666 Gemfile.lock"
+        command "sudo systemctl restart tdiary"
         command "sudo systemctl restart h2o"
       end
     end

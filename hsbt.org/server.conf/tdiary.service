@@ -1,0 +1,14 @@
+[Unit]
+Description=tDiary FastCGI
+After=network.target
+Before=h2o.service
+
+[Service]
+Type=simple
+User=ubuntu
+RuntimeDirectory=tdiary
+ExecStart=/usr/bin/spawn-fcgi -s /run/tdiary/tdiary.sock -F 2 -n -- /home/ubuntu/.rbenv/shims/ruby --yjit /home/ubuntu/app/tdiary/current/index.fcgi
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
