@@ -7,6 +7,7 @@
 #
 # Usage:
 #   h1 list [open|closed|all] [-p PROGRAM]   # list (default: open)
+#   h1 search QUERY [open|closed|all] [-p PROGRAM]  # keyword search (default: all)
 #   h1 get REPORT_ID                          # detail + all comments
 #   h1 sync [-p PROGRAM]                      # archive all reports as JSON
 #
@@ -101,7 +102,7 @@ def fetch(uri, creds)
   JSON.parse(response.body)
 end
 
-def list_reports(creds, states)
+def list_reports(creds, states, keyword = nil)
   handle = creds[:handle] or abort "No program handle. Use -p PROGRAM or set HACKERONE_PROGRAM_HANDLE."
 
   query = [
@@ -109,6 +110,7 @@ def list_reports(creds, states)
     ["page[size]", 100],
     *states.map { |state| ["filter[state][]", state] }
   ]
+  query << ["filter[keyword]", keyword] if keyword
   uri = URI("https://api.hackerone.com/v1/reports")
   uri.query = URI.encode_www_form(query)
 
@@ -273,6 +275,15 @@ def sync_reports(creds)
   puts "Total: #{total} report(s); #{updated} updated, #{unchanged} unchanged, #{orphans.size} removed in #{base_dir}"
 end
 
+def states_for(scope)
+  case scope
+  when "open" then OPEN_STATES
+  when "closed" then CLOSED_STATES
+  when "all" then ALL_STATES
+  else abort "Unknown scope: #{scope} (use open|closed|all)"
+  end
+end
+
 def main(argv)
   argv = argv.dup
   program = nil
@@ -285,15 +296,10 @@ def main(argv)
   command = argv.shift
   case command
   when "list"
-    scope = argv.shift || "open"
-    states =
-      case scope
-      when "open" then OPEN_STATES
-      when "closed" then CLOSED_STATES
-      when "all" then ALL_STATES
-      else abort "Unknown scope: #{scope} (use open|closed|all)"
-      end
-    print_list(list_reports(credentials(program), states))
+    print_list(list_reports(credentials(program), states_for(argv.shift || "open")))
+  when "search"
+    keyword = argv.shift or abort "Usage: h1 search QUERY [open|closed|all] [-p PROGRAM]"
+    print_list(list_reports(credentials(program), states_for(argv.shift || "all"), keyword))
   when "get"
     report_id = argv.shift or abort "Usage: h1 get REPORT_ID"
     get_report(credentials(program), report_id)
@@ -303,6 +309,7 @@ def main(argv)
     warn <<~USAGE
       Usage:
         h1 list [open|closed|all] [-p PROGRAM]
+        h1 search QUERY [open|closed|all] [-p PROGRAM]
         h1 get REPORT_ID [-p PROGRAM]
         h1 sync [-p PROGRAM]
     USAGE
