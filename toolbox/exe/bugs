@@ -8,10 +8,16 @@
 #
 # Usage:
 #   bugs list [open|closed|all] [-n COUNT] [-p PROJECT]  # list (default: open)
+#   bugs search QUERY [-n COUNT] [-p PROJECT] [--open] [--any]  # full-text search
 #   bugs get ISSUE_ID                                    # detail + comments
 #
 # list shows the most recently updated issues first and stops at COUNT
 # (default 50). Pass "-n 0" to fetch every matching issue.
+#
+# search runs a full-text query via Redmine's search API. It searches every
+# project by default; pass "-p PROJECT" to scope to a single one. By default
+# all words must match (AND); pass "--any" for OR matching, and "--open" to
+# restrict to open issues. COUNT works the same as list ("-n 0" = all).
 #
 # Credential resolution order (url / api_key / project):
 #   1. Environment variables REDMINE_URL / REDMINE_API_KEY / REDMINE_PROJECT
@@ -163,6 +169,57 @@ def print_list(issues, settings)
   puts "\n#{issues.size} issue(s) in #{settings[:project]}."
 end
 
+def search_issues(settings, query, max, open_only, all_words, project_scoped)
+  base =
+    if project_scoped
+      URI("#{settings[:url]}/projects/#{settings[:project]}/search.json")
+    else
+      URI("#{settings[:url]}/search.json")
+    end
+  results = []
+  offset = 0
+
+  loop do
+    remaining = max.zero? ? PAGE_SIZE : [max - results.size, PAGE_SIZE].min
+    query_params = [
+      ["q", query],
+      ["issues", 1],
+      ["all_words", all_words ? 1 : 0],
+      ["limit", remaining],
+      ["offset", offset]
+    ]
+    query_params << ["open_issues", 1] if open_only
+    query_params << ["scope", "all"] unless project_scoped
+    uri = base.dup
+    uri.query = URI.encode_www_form(query_params)
+
+    data = fetch(uri, settings)
+    page = data["results"] || []
+    results.concat(page)
+
+    total = data["total_count"].to_i
+    offset += page.size
+    break if page.empty? || offset >= total
+    break if max.positive? && results.size >= max
+  end
+
+  results
+end
+
+def print_search(results, query, scope_label)
+  if results.empty?
+    puts "No results for #{query.inspect}."
+    return
+  end
+
+  results.each do |result|
+    date = (result["datetime"] || "")[0, 10]
+    title = (result["title"] || "").gsub(/\s+/, " ")
+    puts "#{date}  #{title}"
+  end
+  puts "\n#{results.size} result(s) for #{query.inspect} in #{scope_label}."
+end
+
 def get_issue(settings, issue_id)
   uri = URI("#{settings[:url]}/issues/#{issue_id}.json?include=journals")
   issue = fetch(uri, settings)["issue"]
@@ -211,6 +268,18 @@ def main(argv)
     argv.delete_at(i)
   end
 
+  open_only = false
+  if (i = argv.index("--open"))
+    open_only = true
+    argv.delete_at(i)
+  end
+
+  all_words = true
+  if (i = argv.index("--any"))
+    all_words = false
+    argv.delete_at(i)
+  end
+
   command = argv.shift
   case command
   when "list"
@@ -224,6 +293,13 @@ def main(argv)
       end
     config = settings(project)
     print_list(list_issues(config, status, max), config)
+  when "search"
+    query = argv.shift or abort "Usage: bugs search QUERY [-n COUNT] [-p PROJECT] [--open] [--any]"
+    config = settings(project)
+    project_scoped = !project.nil?
+    scope_label = project_scoped ? config[:project] : "all projects"
+    results = search_issues(config, query, max, open_only, all_words, project_scoped)
+    print_search(results, query, scope_label)
   when "get"
     issue_id = argv.shift or abort "Usage: bugs get ISSUE_ID"
     get_issue(settings(project), issue_id)
@@ -231,6 +307,7 @@ def main(argv)
     warn <<~USAGE
       Usage:
         bugs list [open|closed|all] [-n COUNT] [-p PROJECT]
+        bugs search QUERY [-n COUNT] [-p PROJECT] [--open] [--any]
         bugs get ISSUE_ID [-p PROJECT]
     USAGE
     exit 1
