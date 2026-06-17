@@ -1,0 +1,240 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Read-only Redmine CLI for bugs.ruby-lang.org. Fetches issue lists
+# (open/closed/all) and a single issue's detail with its comments (journals)
+# and prints them to stdout. Intended for interactive use like the gh and h1
+# commands.
+#
+# Usage:
+#   bugs list [open|closed|all] [-n COUNT] [-p PROJECT]  # list (default: open)
+#   bugs get ISSUE_ID                                    # detail + comments
+#
+# list shows the most recently updated issues first and stops at COUNT
+# (default 50). Pass "-n 0" to fetch every matching issue.
+#
+# Credential resolution order (url / api_key / project):
+#   1. Environment variables REDMINE_URL / REDMINE_API_KEY / REDMINE_PROJECT
+#   2. Config file ~/.config/redmine/config.json
+#   Any value of the form "op://..." is resolved via the 1Password CLI
+#   (`op read`), so config.json can hold op references instead of the literal
+#   key. The API key is required: bugs.ruby-lang.org rejects parameterized
+#   guest requests with 403, so an authenticated key must be supplied. Find
+#   yours at https://bugs.ruby-lang.org/my/account (API access key).
+#
+# Example config.json:
+#   {
+#     "url": "https://bugs.ruby-lang.org",
+#     "api_key": "op://VAULT/Redmine API/credential",
+#     "project": "ruby-master"
+#   }
+
+require "net/http"
+require "json"
+require "uri"
+require "shellwords"
+
+CONFIG_PATH = File.join(Dir.home, ".config", "redmine", "config.json")
+
+DEFAULT_URL = "https://bugs.ruby-lang.org"
+DEFAULT_PROJECT = "ruby-master"
+PAGE_SIZE = 100
+DEFAULT_MAX = 50
+
+# Resolve "op://..." values via `op read`; return everything else unchanged.
+def resolve_value(value)
+  return value unless value.is_a?(String) && value.start_with?("op://")
+
+  resolved = `op read #{value.shellescape}`.chomp
+  if $?.success? && !resolved.empty?
+    resolved
+  else
+    abort "Failed to resolve #{value} via 1Password (op). Run `op signin` first."
+  end
+end
+
+def load_config
+  return {} unless File.exist?(CONFIG_PATH)
+
+  JSON.parse(File.read(CONFIG_PATH))
+rescue JSON::ParserError => e
+  abort "Invalid config #{CONFIG_PATH}: #{e.message}"
+end
+
+def settings(project_override)
+  config = load_config
+
+  url = ENV["REDMINE_URL"] || config["url"] || DEFAULT_URL
+  api_key = ENV["REDMINE_API_KEY"] || config["api_key"]
+  project = project_override || ENV["REDMINE_PROJECT"] || config["project"] || DEFAULT_PROJECT
+
+  api_key = resolve_value(api_key) if api_key
+
+  if api_key.nil? || api_key.empty?
+    abort <<~MSG
+      No API key found. bugs.ruby-lang.org rejects parameterized guest requests,
+      so an API key is required. Set it via:
+        - export REDMINE_API_KEY=...
+        - #{CONFIG_PATH} with "api_key" (literal or "op://..." reference)
+      Find your key at https://bugs.ruby-lang.org/my/account (API access key).
+    MSG
+  end
+
+  { url: url.chomp("/"), api_key: api_key, project: project }
+end
+
+def fetch(uri, settings)
+  http = Net::HTTP.new(uri.host, uri.port)
+  http.use_ssl = (uri.scheme == "https")
+
+  request = Net::HTTP::Get.new(uri)
+  request["User-Agent"] = "bugs-cli (https://github.com/hsbt/hsbt)"
+  request["X-Redmine-API-Key"] = settings[:api_key] if settings[:api_key]
+  response = http.request(request)
+
+  if response.code == "429"
+    wait = (response["Retry-After"] || "10").to_i
+    warn "Rate limited. Waiting #{wait}s before retrying."
+    sleep wait
+    return fetch(uri, settings)
+  end
+
+  unless response.is_a?(Net::HTTPSuccess)
+    warn "API request failed: #{response.code} #{response.message}"
+    warn response.body
+    exit 1
+  end
+
+  JSON.parse(response.body)
+end
+
+def list_issues(settings, status, max)
+  base = URI("#{settings[:url]}/issues.json")
+  issues = []
+  offset = 0
+
+  loop do
+    remaining = max.zero? ? PAGE_SIZE : [max - issues.size, PAGE_SIZE].min
+    query = [
+      ["project_id", settings[:project]],
+      ["status_id", status],
+      ["sort", "updated_on:desc"],
+      ["limit", remaining],
+      ["offset", offset]
+    ]
+    uri = base.dup
+    uri.query = URI.encode_www_form(query)
+
+    data = fetch(uri, settings)
+    page = data["issues"] || []
+    issues.concat(page)
+
+    total = data["total_count"].to_i
+    offset += page.size
+    break if page.empty? || offset >= total
+    break if max.positive? && issues.size >= max
+  end
+
+  issues
+end
+
+def print_list(issues, settings)
+  if issues.empty?
+    puts "No issues found."
+    return
+  end
+
+  rows = issues.map do |issue|
+    [
+      "##{issue['id']}",
+      issue.dig("status", "name") || "-",
+      issue.dig("tracker", "name") || "-",
+      issue.dig("author", "name") || "-",
+      (issue["updated_on"] || issue["created_on"] || "")[0, 10],
+      (issue["subject"] || "").gsub(/\s+/, " ")
+    ]
+  end
+
+  widths = (0..4).map { |i| rows.map { |r| r[i].length }.max }
+  rows.each do |id, status, tracker, author, date, subject|
+    printf("%-#{widths[0]}s  %-#{widths[1]}s  %-#{widths[2]}s  %-#{widths[3]}s  %-#{widths[4]}s  %s\n",
+           id, status, tracker, author, date, subject)
+  end
+  puts "\n#{issues.size} issue(s) in #{settings[:project]}."
+end
+
+def get_issue(settings, issue_id)
+  uri = URI("#{settings[:url]}/issues/#{issue_id}.json?include=journals")
+  issue = fetch(uri, settings)["issue"]
+
+  puts "##{issue['id']}  #{issue['subject']}"
+  puts "Status:   #{issue.dig('status', 'name')}"
+  puts "Tracker:  #{issue.dig('tracker', 'name')}"
+  puts "Priority: #{issue.dig('priority', 'name')}"
+  puts "Author:   #{issue.dig('author', 'name')}"
+  puts "Assignee: #{issue.dig('assigned_to', 'name')}" if issue["assigned_to"]
+  puts "Created:  #{issue['created_on']}"
+  puts "Updated:  #{issue['updated_on']}"
+  puts "Closed:   #{issue['closed_on']}" if issue["closed_on"]
+  puts "URL:      #{settings[:url]}/issues/#{issue['id']}"
+
+  description = issue["description"]
+  unless description.nil? || description.empty?
+    puts "\n--- Description ---"
+    puts description.gsub("\r\n", "\n")
+  end
+
+  journals = (issue["journals"] || []).select { |j| j["notes"] && !j["notes"].empty? }
+  puts "\n--- Comments (#{journals.size}) ---"
+  journals.each do |journal|
+    when_at = (journal["created_on"] || "")[0, 19].tr("T", " ")
+    author = journal.dig("user", "name") || "-"
+    private_note = journal["private_notes"] ? " [private]" : ""
+    puts "\n[#{when_at}] #{author}#{private_note}:"
+    puts journal["notes"].gsub("\r\n", "\n")
+  end
+end
+
+def main(argv)
+  argv = argv.dup
+  project = nil
+  if (i = argv.index("-p") || argv.index("--project"))
+    project = argv[i + 1]
+    argv.delete_at(i + 1)
+    argv.delete_at(i)
+  end
+
+  max = DEFAULT_MAX
+  if (i = argv.index("-n") || argv.index("--limit"))
+    max = Integer(argv[i + 1], exception: false) or abort "Invalid -n value: #{argv[i + 1]}"
+    argv.delete_at(i + 1)
+    argv.delete_at(i)
+  end
+
+  command = argv.shift
+  case command
+  when "list"
+    scope = argv.shift || "open"
+    status =
+      case scope
+      when "open" then "open"
+      when "closed" then "closed"
+      when "all" then "*"
+      else abort "Unknown scope: #{scope} (use open|closed|all)"
+      end
+    config = settings(project)
+    print_list(list_issues(config, status, max), config)
+  when "get"
+    issue_id = argv.shift or abort "Usage: bugs get ISSUE_ID"
+    get_issue(settings(project), issue_id)
+  else
+    warn <<~USAGE
+      Usage:
+        bugs list [open|closed|all] [-n COUNT] [-p PROJECT]
+        bugs get ISSUE_ID [-p PROJECT]
+    USAGE
+    exit 1
+  end
+end
+
+main(ARGV)
