@@ -88,7 +88,14 @@ alias make='make --no-print-directory --quiet'
 alias e='zed .'
 
 g() {
-  hub "$@"
+  # hub だと子プロセスで cd や環境変更が失われるサブコマンドは、
+  # cd フック付きの git 関数経由にする。対象が増えたら via_git に足すだけ。
+  local -a via_git=(wt)
+  if (( ${via_git[(Ie)$1]} )); then
+    git "$@"
+  else
+    hub "$@"
+  fi
 }
 
 __cd_repository() {
