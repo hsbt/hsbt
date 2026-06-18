@@ -26,6 +26,12 @@ export CC='sccache clang'
 export MAKEFLAGS="-j$(sysctl -n hw.logicalcpu)"
 export PKG_CONFIG_PATH="/opt/homebrew/opt/imagemagick/lib/pkgconfig:/usr/lib/pkgconfig"
 
+# macOS defaults the open-files soft limit to 256, which sccache exhausts
+# under parallel builds: a bare `make -j` overrides MAKEFLAGS and floods the
+# sccache server until it dies with EMFILE. The hard limit is unlimited, so
+# raise the soft limit without sudo.
+ulimit -n 65536
+
 # bison and m4 stay duplicated in .zshrc because path_helper in
 # /etc/zprofile demotes .zshenv entries behind system paths in login shells
 export PATH="/opt/homebrew/opt/m4/bin:$PATH"
