@@ -174,6 +174,20 @@ unset __MISE_ORIG_PATH __MISE_DIFF __MISE_SESSION
 eval "$(mise activate zsh)"
 eval "$(git wt --init zsh)"
 
+# g wt <TAB> でも git-wt の worktree 補完を出す。それ以外は carapace に流す。
+_g-wt-wrapper() {
+  if (( CURRENT == 2 )); then
+    _git_via_carapace
+  elif [[ "${words[2]}" == "wt" ]]; then
+    shift words
+    (( CURRENT-- ))
+    _git-wt
+  else
+    _git_via_carapace
+  fi
+}
+compdef _g-wt-wrapper g
+
 source $GIT_GOGET_ROOT/github.com/zsh-users/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 alias python3="$(uv python find)"
