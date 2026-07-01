@@ -87,6 +87,10 @@ alias ll='lsd -la'
 alias make='make --no-print-directory --quiet'
 alias e='zed .'
 
+c() {
+  open "claude://code/new?folder=${${1:-$PWD}:A}"
+}
+
 g() {
   # hub だと子プロセスで cd や環境変更が失われるサブコマンドは、
   # cd フック付きの git 関数経由にする。対象が増えたら via_git に足すだけ。
