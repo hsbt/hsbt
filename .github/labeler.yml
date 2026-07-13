@@ -1,3 +1,0 @@
-sandbox:
-- changed-files:
-  - all-globs-to-all-files: 'sandbox/**'
