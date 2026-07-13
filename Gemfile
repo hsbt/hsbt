@@ -12,8 +12,6 @@ gem 'kramdown'
 gem 'net-scp'
 gem 'ed25519'
 
-gem 'hikidoc'
-
 gem "parallel", "~> 2.1"
 
 gem "slack-ruby-client", "~> 3.2.0"
