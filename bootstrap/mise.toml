@@ -9,7 +9,7 @@
 # template the launchd section; this keeps the file machine-independent.
 #
 # Apply (installs/loads dev.mise.*.SetEnv agents into gui/<uid>):
-#   cd toolbox && mise trust && mise bootstrap macos launchd-agents apply
+#   cd bootstrap && mise trust && mise bootstrap macos launchd-agents apply
 #
 # Inspect without changing anything:
 #   mise bootstrap macos launchd-agents status
