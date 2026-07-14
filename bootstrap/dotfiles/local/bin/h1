@@ -11,17 +11,39 @@
 #   h1 get REPORT_ID                          # detail + all comments
 #   h1 sync [-p PROGRAM]                      # archive all reports as JSON
 #
-# Credential resolution order (api_username / api_token / program_handle):
-#   1. Environment variables HACKERONE_API_USERNAME / HACKERONE_API_TOKEN / HACKERONE_PROGRAM_HANDLE
-#   2. Config file ~/.config/hackerone/config.json
+# Program handle resolution order:
+#   1. -p PROGRAM
+#   2. Environment variable HACKERONE_PROGRAM_HANDLE
+#   3. Derived from the current git repository: the repo name, then the org
+#      name of the origin remote (e.g. ruby/openssl -> "openssl", then "ruby").
+#      The first candidate that has an entry in config "programs" wins; with
+#      no "programs" entry the repo name is used as-is.
+#   4. Config file "program_handle"
+#
+# api_username / api_token resolution order:
+#   1. Environment variables HACKERONE_API_USERNAME / HACKERONE_API_TOKEN
+#   2. Config "programs"[handle] (HackerOne API tokens are per program)
+#   3. Top-level config values
+#   4. 1Password item "HackerOne <handle>" (fields username / credential).
+#      When the item does not exist, h1 prompts for username/token and saves
+#      them to 1Password via `op item create` ("op_vault" in config.json
+#      selects the vault; the default vault otherwise). With this convention
+#      config.json is not needed at all.
 #   Any value of the form "op://..." is resolved via the 1Password CLI (`op read`),
 #   so config.json can hold op references instead of the literal token.
 #
-# Example config.json:
+# Example ~/.config/hackerone/config.json:
 #   {
-#     "api_username": "YOUR_API_USERNAME",
-#     "api_token": "op://VAULT/HackerOne API/credential",
-#     "program_handle": "YOUR_PROGRAM_HANDLE"
+#     "programs": {
+#       "ruby": {
+#         "api_username": "USERNAME_FOR_RUBY",
+#         "api_token": "op://VAULT/HackerOne ruby/credential"
+#       },
+#       "rubygems": {
+#         "api_username": "USERNAME_FOR_RUBYGEMS",
+#         "api_token": "op://VAULT/HackerOne rubygems/credential"
+#       }
+#     }
 #   }
 
 require "net/http"
@@ -29,6 +51,8 @@ require "json"
 require "uri"
 require "shellwords"
 require "fileutils"
+require "open3"
+require "io/console"
 
 CONFIG_PATH = File.join(Dir.home, ".config", "hackerone", "config.json")
 
@@ -56,22 +80,110 @@ rescue JSON::ParserError => e
   abort "Invalid config #{CONFIG_PATH}: #{e.message}"
 end
 
+# Handle candidates from the current git repository: repo name first, then the
+# org name of the origin remote. Falls back to the toplevel directory name for
+# a repository without an origin remote.
+def git_handle_candidates
+  url = `git remote get-url origin 2>/dev/null`.chomp
+  if $?.success? && url =~ %r{[/:]([^/:]+)/([^/]+?)(?:\.git)?/?\z}
+    [$2, $1].uniq
+  else
+    toplevel = `git rev-parse --show-toplevel 2>/dev/null`.chomp
+    $?.success? && !toplevel.empty? ? [File.basename(toplevel)] : []
+  end
+end
+
+def derive_handle(config)
+  candidates = git_handle_candidates
+  programs = config["programs"] || {}
+  candidates.find { |candidate| programs.key?(candidate) } || candidates.first
+end
+
+# Fetch username/credential from the 1Password item `title`. Returns nil when
+# the item does not exist; aborts on other op failures (e.g. not signed in).
+def op_item_lookup(title)
+  out, err, status = Open3.capture3(
+    "op", "item", "get", title,
+    "--fields", "label=username,label=credential", "--reveal", "--format", "json"
+  )
+  unless status.success?
+    return nil if err.include?("isn't an item")
+
+    abort "1Password lookup for #{title.inspect} failed (run `op signin`?): #{err.strip}"
+  end
+
+  fields = JSON.parse(out)
+  fields = [fields] unless fields.is_a?(Array)
+  values = fields.to_h { |field| [field["label"], field["value"]] }
+  { username: values["username"], token: values["credential"] }
+end
+
+# Prompt for username/token on the terminal and save them to 1Password as an
+# API Credential item named `title`. The token goes through a JSON template on
+# stdin so it never appears in the process arguments.
+def register_op_item(title, handle, vault)
+  unless $stdin.tty?
+    abort "No credentials for #{handle.inspect} and stdin is not a TTY. " \
+          "Create the 1Password item #{title.inspect} manually."
+  end
+
+  warn "No 1Password item #{title.inspect}. Registering a new API credential."
+  print "API username for #{handle}: "
+  username = $stdin.gets&.strip
+  print "API token for #{handle} (input hidden): "
+  token = $stdin.noecho { $stdin.gets }&.strip
+  puts
+
+  if username.nil? || username.empty? || token.nil? || token.empty?
+    abort "Both username and token are required."
+  end
+
+  template = JSON.generate(
+    "title" => title,
+    "category" => "API_CREDENTIAL",
+    "fields" => [
+      { "id" => "username", "type" => "STRING", "label" => "username", "value" => username },
+      { "id" => "credential", "type" => "CONCEALED", "label" => "credential", "value" => token }
+    ]
+  )
+  command = ["op", "item", "create"]
+  command += ["--vault", vault] if vault
+  command << "-"
+  _out, err, status = Open3.capture3(*command, stdin_data: template)
+  abort "Failed to create 1Password item #{title.inspect}: #{err.strip}" unless status.success?
+  warn "Saved #{title.inspect} to 1Password."
+
+  { username: username, token: token }
+end
+
 def credentials(program_override)
   config = load_config
 
-  username = ENV["HACKERONE_API_USERNAME"] || config["api_username"]
-  token = ENV["HACKERONE_API_TOKEN"] || config["api_token"]
-  handle = program_override || ENV["HACKERONE_PROGRAM_HANDLE"] || config["program_handle"]
+  handle = program_override || ENV["HACKERONE_PROGRAM_HANDLE"] ||
+           derive_handle(config) || config["program_handle"]
+  handle = resolve_value(handle) if handle
+
+  program = handle && (config["programs"] || {})[handle] || {}
+  username = ENV["HACKERONE_API_USERNAME"] || program["api_username"] || config["api_username"]
+  token = ENV["HACKERONE_API_TOKEN"] || program["api_token"] || config["api_token"]
 
   username = resolve_value(username)
   token = resolve_value(token)
-  handle = resolve_value(handle) if handle
+
+  if handle && (username.nil? || username.empty? || token.nil? || token.empty?)
+    title = "HackerOne #{handle}"
+    op_creds = op_item_lookup(title) || register_op_item(title, handle, config["op_vault"])
+    username = op_creds[:username]
+    token = op_creds[:token]
+  end
 
   if username.nil? || username.empty? || token.nil? || token.empty?
     abort <<~MSG
-      No API credentials found. Set them via:
+      No API credentials found for program #{handle.inspect}. Set them via:
         - export HACKERONE_API_USERNAME=... HACKERONE_API_TOKEN=...
-        - #{CONFIG_PATH} with "api_username" / "api_token" (literal or "op://..." reference)
+        - #{CONFIG_PATH} with "programs"[handle] or top-level "api_username" /
+          "api_token" (literal or "op://..." reference)
+        - 1Password item "HackerOne <handle>" with username / credential fields
     MSG
   end
 
@@ -103,7 +215,7 @@ def fetch(uri, creds)
 end
 
 def list_reports(creds, states, keyword = nil)
-  handle = creds[:handle] or abort "No program handle. Use -p PROGRAM or set HACKERONE_PROGRAM_HANDLE."
+  handle = creds[:handle] or abort "No program handle. Use -p PROGRAM, set HACKERONE_PROGRAM_HANDLE, or run inside a git repository."
 
   query = [
     ["filter[program][]", handle],
@@ -212,7 +324,7 @@ end
 # last_activity_at advanced or whose destination state changed, and prune local
 # files for reports that no longer appear in the list.
 def sync_reports(creds)
-  handle = creds[:handle] or abort "No program handle. Use -p PROGRAM or set HACKERONE_PROGRAM_HANDLE."
+  handle = creds[:handle] or abort "No program handle. Use -p PROGRAM, set HACKERONE_PROGRAM_HANDLE, or run inside a git repository."
   base_dir = File.join(__dir__, "security", handle)
   FileUtils.mkdir_p(base_dir)
 
