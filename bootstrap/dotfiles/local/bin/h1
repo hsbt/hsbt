@@ -24,6 +24,11 @@
 #   1. Environment variables HACKERONE_API_USERNAME / HACKERONE_API_TOKEN
 #   2. Config "programs"[handle] (HackerOne API tokens are per program)
 #   3. Top-level config values
+#   4. 1Password item "HackerOne <handle>" (fields username / credential).
+#      When the item does not exist, h1 prompts for username/token and saves
+#      them to 1Password via `op item create` ("op_vault" in config.json
+#      selects the vault; the default vault otherwise). With this convention
+#      config.json is not needed at all.
 #   Any value of the form "op://..." is resolved via the 1Password CLI (`op read`),
 #   so config.json can hold op references instead of the literal token.
 #
@@ -46,6 +51,8 @@ require "json"
 require "uri"
 require "shellwords"
 require "fileutils"
+require "open3"
+require "io/console"
 
 CONFIG_PATH = File.join(Dir.home, ".config", "hackerone", "config.json")
 
@@ -92,6 +99,63 @@ def derive_handle(config)
   candidates.find { |candidate| programs.key?(candidate) } || candidates.first
 end
 
+# Fetch username/credential from the 1Password item `title`. Returns nil when
+# the item does not exist; aborts on other op failures (e.g. not signed in).
+def op_item_lookup(title)
+  out, err, status = Open3.capture3(
+    "op", "item", "get", title,
+    "--fields", "label=username,label=credential", "--reveal", "--format", "json"
+  )
+  unless status.success?
+    return nil if err.include?("isn't an item")
+
+    abort "1Password lookup for #{title.inspect} failed (run `op signin`?): #{err.strip}"
+  end
+
+  fields = JSON.parse(out)
+  fields = [fields] unless fields.is_a?(Array)
+  values = fields.to_h { |field| [field["label"], field["value"]] }
+  { username: values["username"], token: values["credential"] }
+end
+
+# Prompt for username/token on the terminal and save them to 1Password as an
+# API Credential item named `title`. The token goes through a JSON template on
+# stdin so it never appears in the process arguments.
+def register_op_item(title, handle, vault)
+  unless $stdin.tty?
+    abort "No credentials for #{handle.inspect} and stdin is not a TTY. " \
+          "Create the 1Password item #{title.inspect} manually."
+  end
+
+  warn "No 1Password item #{title.inspect}. Registering a new API credential."
+  print "API username for #{handle}: "
+  username = $stdin.gets&.strip
+  print "API token for #{handle} (input hidden): "
+  token = $stdin.noecho { $stdin.gets }&.strip
+  puts
+
+  if username.nil? || username.empty? || token.nil? || token.empty?
+    abort "Both username and token are required."
+  end
+
+  template = JSON.generate(
+    "title" => title,
+    "category" => "API_CREDENTIAL",
+    "fields" => [
+      { "id" => "username", "type" => "STRING", "label" => "username", "value" => username },
+      { "id" => "credential", "type" => "CONCEALED", "label" => "credential", "value" => token }
+    ]
+  )
+  command = ["op", "item", "create"]
+  command += ["--vault", vault] if vault
+  command << "-"
+  _out, err, status = Open3.capture3(*command, stdin_data: template)
+  abort "Failed to create 1Password item #{title.inspect}: #{err.strip}" unless status.success?
+  warn "Saved #{title.inspect} to 1Password."
+
+  { username: username, token: token }
+end
+
 def credentials(program_override)
   config = load_config
 
@@ -106,12 +170,20 @@ def credentials(program_override)
   username = resolve_value(username)
   token = resolve_value(token)
 
+  if handle && (username.nil? || username.empty? || token.nil? || token.empty?)
+    title = "HackerOne #{handle}"
+    op_creds = op_item_lookup(title) || register_op_item(title, handle, config["op_vault"])
+    username = op_creds[:username]
+    token = op_creds[:token]
+  end
+
   if username.nil? || username.empty? || token.nil? || token.empty?
     abort <<~MSG
       No API credentials found for program #{handle.inspect}. Set them via:
         - export HACKERONE_API_USERNAME=... HACKERONE_API_TOKEN=...
         - #{CONFIG_PATH} with "programs"[handle] or top-level "api_username" /
           "api_token" (literal or "op://..." reference)
+        - 1Password item "HackerOne <handle>" with username / credential fields
     MSG
   end
 
