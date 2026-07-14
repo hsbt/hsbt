@@ -12,17 +12,17 @@ xdg_config_home = ENV['XDG_CONFIG_HOME'] || File.join(ENV['HOME'], '.config')
 local_bin = File.join(ENV['HOME'], '.local', 'bin')
 
 XDG_CONFIG_FILES = Dir.glob(
-  File.join(repo_root, 'bootstrap', 'xdg', 'config', '**', '*'),
+  File.join(repo_root, 'bootstrap', 'dotfiles', 'config', '**', '*'),
   File::FNM_DOTMATCH
 ).select { |f| !File.directory?(f) }
-BIN_FILES = Dir.glob(File.join(repo_root, 'bootstrap', 'local', 'bin', '*')).select { |f| !File.directory?(f) }
+BIN_FILES = Dir.glob(File.join(repo_root, 'bootstrap', 'dotfiles', 'local', 'bin', '*')).select { |f| !File.directory?(f) }
 
 def xdg_repo_dir(repo_root)
-  File.join(repo_root, 'bootstrap', 'xdg', 'config')
+  File.join(repo_root, 'bootstrap', 'dotfiles', 'config')
 end
 
 def xdg_relative_label(path)
-  path.sub(%r{.*bootstrap/xdg/config/}, '')
+  path.sub(%r{.*bootstrap/dotfiles/config/}, '')
 end
 
 def repo_to_xdg_path(path)
@@ -59,7 +59,7 @@ end
 
 def xdg_pull_pairs(repo_root, xdg_config_home, xdg_files)
   xdg_files.map do |to_file|
-    relative = to_file.sub("#{File.join(repo_root, 'bootstrap', 'xdg', 'config')}/", '')
+    relative = to_file.sub("#{File.join(repo_root, 'bootstrap', 'dotfiles', 'config')}/", '')
     from_file = File.join(xdg_config_home, repo_to_xdg_path(relative))
     [from_file, to_file, xdg_relative_label(to_file)]
   end
@@ -67,7 +67,7 @@ end
 
 def xdg_push_pairs(repo_root, xdg_config_home, xdg_files)
   xdg_files.map do |from_file|
-    relative = from_file.sub("#{File.join(repo_root, 'bootstrap', 'xdg', 'config')}/", '')
+    relative = from_file.sub("#{File.join(repo_root, 'bootstrap', 'dotfiles', 'config')}/", '')
     to_file = File.join(xdg_config_home, repo_to_xdg_path(relative))
     [from_file, to_file, xdg_relative_label(from_file)]
   end
@@ -95,7 +95,7 @@ def pull(repo_root, xdg_config_home, xdg_files, local_bin, bin_files)
 
   copy_pairs(
     bin_pull_pairs(local_bin, bin_files),
-    header: "Pulling bin files from #{local_bin} to #{File.join(repo_root, 'bootstrap/local/bin')}"
+    header: "Pulling bin files from #{local_bin} to #{File.join(repo_root, 'bootstrap/dotfiles/local/bin')}"
   )
 end
 
@@ -107,7 +107,7 @@ def push(repo_root, xdg_config_home, xdg_files, local_bin, bin_files)
 
   copy_pairs(
     bin_push_pairs(local_bin, bin_files),
-    header: "Pushing bin files from #{File.join(repo_root, 'bootstrap/local/bin')} to #{local_bin}"
+    header: "Pushing bin files from #{File.join(repo_root, 'bootstrap/dotfiles/local/bin')} to #{local_bin}"
   )
 end
 
