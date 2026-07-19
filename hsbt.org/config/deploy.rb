@@ -3,6 +3,10 @@ require "mina/git"
 require "mina/rbenv"
 require "mina/bundler"
 
+# Ruby on Windows seeds ENV["USER"] with the local account name, and Mina's
+# Configuration#fetch prefers ENV over `set`, hijacking the SSH user.
+ENV.delete("USER")
+
 set :domain, "www.hsbt.org"
 set :user, "ubuntu"
 set :deploy_to, "/home/#{fetch(:user)}/app/tdiary"
