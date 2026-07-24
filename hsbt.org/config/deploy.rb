@@ -29,13 +29,21 @@ task :deploy do
     invoke :"deploy:cleanup"
 
     on :launch do
-      command "echo \"gem 'base64'; gem 'logger'; gem 'fcgi'; gem 'holiday_japan'; gem 'oga'; gem 'rss'\" > #{fetch(:current_path)}/Gemfile.local"
+      gemfile_local_gems = %w[
+        tdiary-style-gfm
+        logger
+        fcgi
+        holiday_japan
+        rss
+      ]
+      command "printf \"gem '%s'\\n\" #{gemfile_local_gems.join(" ")} > #{fetch(:current_path)}/Gemfile.local"
       %w[tdiary-contrib hsbt].each do |dir|
         command "cd #{fetch(:shared_path)}/#{dir}; git pull --rebase"
       end
       command "ln -s /home/#{fetch(:user)}/www/tdiary.conf #{fetch(:current_path)}/tdiary.conf"
 
       in_path(fetch(:current_path)) do
+        command "sed -i \"/gem 'tdiary-style-gfm'/d\" Gemfile"
         command "#{fetch(:bundle_bin)} config set without '#{fetch(:bundle_withouts)}'"
         invoke :"bundle:install"
         command "chmod 666 Gemfile.lock"
