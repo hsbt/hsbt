@@ -16,7 +16,7 @@ set :branch, "master"
 set :rbenv_path, "/home/#{fetch(:user)}/.rbenv"
 
 set :bundle_bin, "#{fetch(:rbenv_path)}/shims/bundle"
-set :bundle_withouts, "development test server"
+set :bundle_withouts, "development test server heroku"
 set :bundle_options, -> { }
 
 task :environment do
@@ -29,7 +29,7 @@ task :deploy do
     invoke :"deploy:cleanup"
 
     on :launch do
-      command "echo \"gem 'base64'; gem 'logger'; gem 'fcgi'; gem 'holiday_japan'; gem 'oga'; gem 'rss'\" > #{fetch(:current_path)}/Gemfile.local"
+      command "echo \"gem 'tdiary-style-gfm'; gem 'base64'; gem 'logger'; gem 'fcgi'; gem 'holiday_japan'; gem 'oga'; gem 'rss'\" > #{fetch(:current_path)}/Gemfile.local"
       %w[tdiary-contrib hsbt].each do |dir|
         command "cd #{fetch(:shared_path)}/#{dir}; git pull --rebase"
       end
