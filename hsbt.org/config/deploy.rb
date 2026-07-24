@@ -31,11 +31,9 @@ task :deploy do
     on :launch do
       gemfile_local_gems = %w[
         tdiary-style-gfm
-        base64
         logger
         fcgi
         holiday_japan
-        oga
         rss
       ]
       command "printf \"gem '%s'\\n\" #{gemfile_local_gems.join(" ")} > #{fetch(:current_path)}/Gemfile.local"
