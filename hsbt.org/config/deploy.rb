@@ -29,7 +29,16 @@ task :deploy do
     invoke :"deploy:cleanup"
 
     on :launch do
-      command "echo \"gem 'tdiary-style-gfm'; gem 'base64'; gem 'logger'; gem 'fcgi'; gem 'holiday_japan'; gem 'oga'; gem 'rss'\" > #{fetch(:current_path)}/Gemfile.local"
+      gemfile_local_gems = %w[
+        tdiary-style-gfm
+        base64
+        logger
+        fcgi
+        holiday_japan
+        oga
+        rss
+      ]
+      command "printf \"gem '%s'\\n\" #{gemfile_local_gems.join(" ")} > #{fetch(:current_path)}/Gemfile.local"
       %w[tdiary-contrib hsbt].each do |dir|
         command "cd #{fetch(:shared_path)}/#{dir}; git pull --rebase"
       end
