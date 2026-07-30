@@ -12,6 +12,34 @@ setopt magic_equal_subst
 
 WORDCHARS='_-'
 
+# 組み込みの backward-kill-word は記号の並びとその手前の単語をまとめて消すので、
+# "foo && " が丸ごと消える。記号の並びと単語を別々に消す ^W に差し替える。
+__backward_kill_word() {
+  emulate -L zsh
+  setopt extended_glob
+  local left=$LBUFFER rest new removed
+  local word="[[:alnum:]${WORDCHARS}]" punct="[^[:alnum:][:space:]${WORDCHARS}]"
+  rest=${left%%[[:space:]]##}
+  if [[ -z $rest ]]; then
+    new=''
+  elif [[ ${rest[-1]} == ${~word} ]]; then
+    new=${rest%%${~word}##}
+  else
+    new=${rest%%${~punct}##}
+  fi
+  removed=${left[${#new}+1,-1]}
+  if [[ $LASTWIDGET == __backward_kill_word ]]; then
+    CUTBUFFER=$removed$CUTBUFFER
+  else
+    killring=("$CUTBUFFER" "${(@)killring[1,-2]}")
+    CUTBUFFER=$removed
+  fi
+  LBUFFER=$new
+  zle -f kill
+}
+zle -N __backward_kill_word
+bindkey '^W' __backward_kill_word
+
 export HOMEBREW_FORBIDDEN_FORMULAE="node npm pnpm yarn python"
 
 export MIX_HOME="$XDG_DATA_HOME/mix"
