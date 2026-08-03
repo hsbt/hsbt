@@ -118,7 +118,9 @@ if GIT_GOGET_ROOT.nil? || GIT_GOGET_ROOT.empty?
   abort 'GIT_GOGET_ROOT is not set. Example: export GIT_GOGET_ROOT="$HOME/Documents"'
 end
 
-TARGETS = %w[brew mise ruby npm cargo go heroku gh helix]
+GIT_GOGET_URL = "https://raw.githubusercontent.com/hsbt/git-goget/HEAD/git-goget"
+
+TARGETS = %w[brew mise ruby npm cargo go heroku gh git-goget helix]
 VERBS = %w[upgrade reinstall rebuild]
 
 $dry_run = false
@@ -273,6 +275,16 @@ module Task
     PACKAGES["gh"].each { |pkg| sh "gh extension install #{pkg}" }
   end
 
+  # Single script, no build step, so it is cheap enough to refresh every run.
+  def upgrade_git_goget
+    dest = File.expand_path("~/.local/bin/git-goget")
+    sh "curl -fsSL #{GIT_GOGET_URL} -o #{dest}.new && chmod +x #{dest}.new && mv #{dest}.new #{dest}"
+  end
+
+  def reinstall_git_goget
+    upgrade_git_goget
+  end
+
   def reinstall_helix
     sh "cd #{goget("github.com/helix-editor/helix")} && git pull && cargo install --locked --path helix-term"
 
@@ -283,8 +295,12 @@ module Task
   end
 end
 
+def task_name(verb, target)
+  :"#{verb}_#{target.tr("-", "_")}"
+end
+
 def supports?(verb, target)
-  Task.respond_to?(:"#{verb}_#{target}")
+  Task.respond_to?(task_name(verb, target))
 end
 
 def targets_for(verb)
@@ -299,7 +315,7 @@ def run(verb, targets)
     end
 
     puts "", "--- #{verb} #{target} ---"
-    Task.public_send(:"#{verb}_#{target}")
+    Task.public_send(task_name(verb, target))
   end
 end
 
