@@ -18,9 +18,9 @@ VERSION = "0.2.0"
 
 USAGE = <<~USAGE
   Usage:
-    h1 list [open|closed|all] [-p PROGRAM]
-    h1 search QUERY [open|closed|all] [-p PROGRAM]
-    h1 get REPORT_ID [-p PROGRAM]
+    h1 list [open|closed|all] [-p PROGRAM] [--json]
+    h1 search QUERY [open|closed|all] [-p PROGRAM] [--json]
+    h1 get REPORT_ID [-p PROGRAM] [--json]
     h1 sync [-p PROGRAM]
   Run 'h1 --help' for details.
 USAGE
@@ -33,11 +33,11 @@ HELP = <<~HELP
   the gh command.
 
   Usage:
-    h1 list [open|closed|all] [-p PROGRAM]
+    h1 list [open|closed|all] [-p PROGRAM] [--json]
         List reports (default scope: open)
-    h1 search QUERY [open|closed|all] [-p PROGRAM]
+    h1 search QUERY [open|closed|all] [-p PROGRAM] [--json]
         Keyword search (default scope: all)
-    h1 get REPORT_ID [-p PROGRAM]
+    h1 get REPORT_ID [-p PROGRAM] [--json]
         Report detail with all comments
     h1 sync [-p PROGRAM]
         Archive every report as JSON under security/<handle>/ next to this
@@ -45,8 +45,14 @@ HELP = <<~HELP
 
   Options:
     -p, --program PROGRAM  HackerOne program handle
+        --json             JSON output for list/search/get (machine-readable)
     -h, --help             Show this help
         --version          Show version
+
+  JSON output:
+    list/search print an array of objects with keys: id, state, reporter,
+    title, created_at, last_activity_at, url. get prints the raw API report
+    object including all activities.
 
   Program handle resolution order:
     1. -p PROGRAM
@@ -83,7 +89,7 @@ HELP = <<~HELP
   Examples:
     h1 list
     h1 list closed -p rubygems
-    h1 search "buffer overflow"
+    h1 search "buffer overflow" --json
     h1 get 123456
 HELP
 
@@ -275,7 +281,25 @@ def list_reports(creds, states, keyword = nil)
   reports
 end
 
-def print_list(reports)
+def report_summary(report)
+  attr = report["attributes"] || {}
+  {
+    "id" => report["id"],
+    "state" => attr["state"],
+    "reporter" => report.dig("relationships", "reporter", "data", "attributes", "username"),
+    "title" => attr["title"],
+    "created_at" => attr["created_at"],
+    "last_activity_at" => attr["last_activity_at"],
+    "url" => "https://hackerone.com/reports/#{report['id']}"
+  }
+end
+
+def print_list(reports, json: false)
+  if json
+    puts JSON.pretty_generate(reports.map { |report| report_summary(report) })
+    return
+  end
+
   if reports.empty?
     puts "No reports found."
     return
@@ -309,9 +333,15 @@ def actor_name(activity)
   actor["username"] || actor["handle"] || "-"
 end
 
-def get_report(creds, report_id)
+def get_report(creds, report_id, json: false)
   uri = URI("https://api.hackerone.com/v1/reports/#{report_id}")
   report = fetch(uri, creds)["data"]
+
+  if json
+    puts JSON.pretty_generate(report)
+    return
+  end
+
   attr = report["attributes"] || {}
 
   puts "##{report['id']}  #{attr['title']}"
@@ -437,6 +467,7 @@ def main(argv)
   options = {}
   parser = OptionParser.new do |opts|
     opts.on("-p", "--program PROGRAM") { |program| options[:program] = program }
+    opts.on("--json") { options[:json] = true }
     opts.on("-h", "--help") do
       puts HELP
       exit
@@ -458,13 +489,15 @@ def main(argv)
   when nil
     puts HELP
   when "list"
-    print_list(list_reports(credentials(options[:program]), states_for(argv.shift || "open")))
+    print_list(list_reports(credentials(options[:program]), states_for(argv.shift || "open")),
+               json: options[:json])
   when "search"
-    keyword = argv.shift or abort "Usage: h1 search QUERY [open|closed|all] [-p PROGRAM]"
-    print_list(list_reports(credentials(options[:program]), states_for(argv.shift || "all"), keyword))
+    keyword = argv.shift or abort "Usage: h1 search QUERY [open|closed|all] [-p PROGRAM] [--json]"
+    print_list(list_reports(credentials(options[:program]), states_for(argv.shift || "all"), keyword),
+               json: options[:json])
   when "get"
-    report_id = argv.shift or abort "Usage: h1 get REPORT_ID [-p PROGRAM]"
-    get_report(credentials(options[:program]), report_id)
+    report_id = argv.shift or abort "Usage: h1 get REPORT_ID [-p PROGRAM] [--json]"
+    get_report(credentials(options[:program]), report_id, json: options[:json])
   when "sync"
     sync_reports(credentials(options[:program]))
   else
