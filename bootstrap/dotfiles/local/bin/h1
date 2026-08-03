@@ -62,11 +62,11 @@ HELP = <<~HELP
     holding op:// references so the literal token never reaches disk or
     shell history:
 
-      # hackerone-ruby.env
-      HACKERONE_API_USERNAME=op://VAULT/HackerOne ruby/username
-      HACKERONE_API_TOKEN=op://VAULT/HackerOne ruby/credential
+      # ~/.config/hackerone/hackerone-ruby.env
+      HACKERONE_API_USERNAME=op://Private/hackerone-ruby/HACKERONE_API_USERNAME
+      HACKERONE_API_TOKEN=op://Private/hackerone-ruby/HACKERONE_API_TOKEN
 
-      op run --env-file hackerone-ruby.env -- h1 list -p ruby
+      op run --env-file ~/.config/hackerone/hackerone-ruby.env -- h1 list -p ruby
 
   Examples:
     h1 list
@@ -99,7 +99,7 @@ def credentials(program_override)
   if username.nil? || username.empty? || token.nil? || token.empty?
     abort <<~MSG
       Set the HACKERONE_API_USERNAME / HACKERONE_API_TOKEN environment variables, e.g. via 1Password:
-        op run --env-file hackerone-#{handle || "<program>"}.env -- h1 ...
+        op run --env-file ~/.config/hackerone/hackerone-#{handle || "<program>"}.env -- h1 ...
     MSG
   end
 
