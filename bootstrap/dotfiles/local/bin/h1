@@ -1,50 +1,7 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-# Read-only HackerOne CLI. Fetches report lists (open/closed) and a single
-# report's comments (activities) and prints them to stdout. It does not save
-# JSON. Intended for interactive use like the gh command.
-#
-# Usage:
-#   h1 list [open|closed|all] [-p PROGRAM]   # list (default: open)
-#   h1 search QUERY [open|closed|all] [-p PROGRAM]  # keyword search (default: all)
-#   h1 get REPORT_ID                          # detail + all comments
-#   h1 sync [-p PROGRAM]                      # archive all reports as JSON
-#
-# Program handle resolution order:
-#   1. -p PROGRAM
-#   2. Environment variable HACKERONE_PROGRAM_HANDLE
-#   3. Derived from the current git repository: the repo name, then the org
-#      name of the origin remote (e.g. ruby/openssl -> "openssl", then "ruby").
-#      The first candidate that has an entry in config "programs" wins; with
-#      no "programs" entry the repo name is used as-is.
-#   4. Config file "program_handle"
-#
-# api_username / api_token resolution order:
-#   1. Environment variables HACKERONE_API_USERNAME / HACKERONE_API_TOKEN
-#   2. Config "programs"[handle] (HackerOne API tokens are per program)
-#   3. Top-level config values
-#   4. 1Password item "HackerOne <handle>" (fields username / credential).
-#      When the item does not exist, h1 prompts for username/token and saves
-#      them to 1Password via `op item create` ("op_vault" in config.json
-#      selects the vault; the default vault otherwise). With this convention
-#      config.json is not needed at all.
-#   Any value of the form "op://..." is resolved via the 1Password CLI (`op read`),
-#   so config.json can hold op references instead of the literal token.
-#
-# Example ~/.config/hackerone/config.json:
-#   {
-#     "programs": {
-#       "ruby": {
-#         "api_username": "USERNAME_FOR_RUBY",
-#         "api_token": "op://VAULT/HackerOne ruby/credential"
-#       },
-#       "rubygems": {
-#         "api_username": "USERNAME_FOR_RUBYGEMS",
-#         "api_token": "op://VAULT/HackerOne rubygems/credential"
-#       }
-#     }
-#   }
+# Read-only HackerOne CLI. Run `h1 --help` for usage and configuration.
 
 require "net/http"
 require "json"
@@ -53,8 +10,82 @@ require "shellwords"
 require "fileutils"
 require "open3"
 require "io/console"
+require "optparse"
 
 CONFIG_PATH = File.join(Dir.home, ".config", "hackerone", "config.json")
+
+VERSION = "0.2.0"
+
+USAGE = <<~USAGE
+  Usage:
+    h1 list [open|closed|all] [-p PROGRAM]
+    h1 search QUERY [open|closed|all] [-p PROGRAM]
+    h1 get REPORT_ID [-p PROGRAM]
+    h1 sync [-p PROGRAM]
+  Run 'h1 --help' for details.
+USAGE
+
+HELP = <<~HELP
+  h1 - read-only HackerOne CLI
+
+  Fetches report lists (open/closed) and a single report's comments
+  (activities) and prints them to stdout. Intended for interactive use like
+  the gh command.
+
+  Usage:
+    h1 list [open|closed|all] [-p PROGRAM]
+        List reports (default scope: open)
+    h1 search QUERY [open|closed|all] [-p PROGRAM]
+        Keyword search (default scope: all)
+    h1 get REPORT_ID [-p PROGRAM]
+        Report detail with all comments
+    h1 sync [-p PROGRAM]
+        Archive every report as JSON under security/<handle>/ next to this
+        script, re-fetching only reports whose last activity advanced
+
+  Options:
+    -p, --program PROGRAM  HackerOne program handle
+    -h, --help             Show this help
+        --version          Show version
+
+  Program handle resolution order:
+    1. -p PROGRAM
+    2. Environment variable HACKERONE_PROGRAM_HANDLE
+    3. Derived from the current git repository: the repo name, then the org
+       name of the origin remote (e.g. ruby/openssl -> "openssl", then
+       "ruby"). The first candidate that has an entry in config "programs"
+       wins; with no "programs" entry the repo name is used as-is.
+    4. Config file "program_handle"
+
+  api_username / api_token resolution order:
+    1. Environment variables HACKERONE_API_USERNAME / HACKERONE_API_TOKEN
+    2. Config "programs"[handle] (HackerOne API tokens are per program)
+    3. Top-level config values
+    4. 1Password item "HackerOne <handle>" (fields username / credential).
+       When the item does not exist, h1 prompts for username/token and saves
+       them to 1Password via `op item create` ("op_vault" in config.json
+       selects the vault; the default vault otherwise). With this convention
+       config.json is not needed at all.
+    Any value of the form "op://..." is resolved via the 1Password CLI
+    (`op read`), so config.json can hold op references instead of the
+    literal token.
+
+  Example ~/.config/hackerone/config.json:
+    {
+      "programs": {
+        "ruby": {
+          "api_username": "USERNAME_FOR_RUBY",
+          "api_token": "op://VAULT/HackerOne ruby/credential"
+        }
+      }
+    }
+
+  Examples:
+    h1 list
+    h1 list closed -p rubygems
+    h1 search "buffer overflow"
+    h1 get 123456
+HELP
 
 OPEN_STATES = %w[new pending-program-review triaged needs-more-info retesting].freeze
 CLOSED_STATES = %w[resolved not-applicable informative duplicate spam].freeze
@@ -403,35 +434,41 @@ def states_for(scope)
 end
 
 def main(argv)
-  argv = argv.dup
-  program = nil
-  if (i = argv.index("-p") || argv.index("--program"))
-    program = argv[i + 1]
-    argv.delete_at(i + 1)
-    argv.delete_at(i)
+  options = {}
+  parser = OptionParser.new do |opts|
+    opts.on("-p", "--program PROGRAM") { |program| options[:program] = program }
+    opts.on("-h", "--help") do
+      puts HELP
+      exit
+    end
+    opts.on("--version") do
+      puts "h1 #{VERSION}"
+      puts "Run 'h1 --help' for usage and configuration."
+      exit
+    end
   end
 
-  command = argv.shift
-  case command
+  begin
+    argv = parser.permute(argv)
+  rescue OptionParser::ParseError => e
+    abort "#{e.message}\n#{USAGE}"
+  end
+
+  case (command = argv.shift)
+  when nil
+    puts HELP
   when "list"
-    print_list(list_reports(credentials(program), states_for(argv.shift || "open")))
+    print_list(list_reports(credentials(options[:program]), states_for(argv.shift || "open")))
   when "search"
     keyword = argv.shift or abort "Usage: h1 search QUERY [open|closed|all] [-p PROGRAM]"
-    print_list(list_reports(credentials(program), states_for(argv.shift || "all"), keyword))
+    print_list(list_reports(credentials(options[:program]), states_for(argv.shift || "all"), keyword))
   when "get"
-    report_id = argv.shift or abort "Usage: h1 get REPORT_ID"
-    get_report(credentials(program), report_id)
+    report_id = argv.shift or abort "Usage: h1 get REPORT_ID [-p PROGRAM]"
+    get_report(credentials(options[:program]), report_id)
   when "sync"
-    sync_reports(credentials(program))
+    sync_reports(credentials(options[:program]))
   else
-    warn <<~USAGE
-      Usage:
-        h1 list [open|closed|all] [-p PROGRAM]
-        h1 search QUERY [open|closed|all] [-p PROGRAM]
-        h1 get REPORT_ID [-p PROGRAM]
-        h1 sync [-p PROGRAM]
-    USAGE
-    exit 1
+    abort "Unknown command: #{command}\n#{USAGE}"
   end
 end
 
