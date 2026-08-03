@@ -1,9 +1,100 @@
-#!/bin/bash
+#!/usr/bin/env ruby
 
-if command -v container &> /dev/null; then
-    CONTAINER_CMD="container"
+require "json"
+
+IMAGE = "ghcr.io/ruby/all-ruby:latest"
+
+USAGE = <<~TEXT
+  usage: all-ruby [--local] [--stable] [--] RUBY-ARGS
+
+    --local    run the Rubies mise installed here instead of the container image
+    --stable   run only the maintained branches, from mise's x.y-dev installs
+
+  Flags are read until the first non-flag argument. Use `--` when the Ruby
+  arguments themselves start with a long option.
+
+  Without --local this wraps the bundled all-ruby, whose own knobs still apply:
+
+    ALL_RUBY_SINCE=ruby-1.4               run only versions since specified one
+    ALL_RUBY_BINS='ruby-2.4.4 ruby-2.5.1' run only versions specfied
+    ALL_RUBY_ADDBINS=./ruby               run specified commands additionaly
+    ALL_RUBY_SHOW_DUP=yes                 don't suppress duplicated output
+TEXT
+
+def which(name)
+  ENV["PATH"].to_s.split(File::PATH_SEPARATOR).each do |dir|
+    path = File.join(dir, name)
+    return path if File.file?(path) && File.executable?(path)
+  end
+  nil
+end
+
+def installed_rubies
+  JSON.parse(`mise ls ruby -J`)
+    .select { |r| r["installed"] && r["symlinked_to"].nil? }
+    .map { |r| r["version"] }
+rescue JSON::ParserError
+  abort "failed to read `mise ls ruby -J`"
+end
+
+def dev_branches
+  installed_rubies.grep(/\A\d+\.\d+-dev\z/).sort_by { |v| v.split(".").map(&:to_i) }
+end
+
+def run_container(args, stable)
+  runtime = which("container") ? "container" : "podman"
+  command = [runtime, "run", "--rm", "-it", "--arch", "amd64"]
+
+  if stable
+    oldest = dev_branches.first
+    abort "no x.y-dev Ruby installed, so --stable has no range to derive" unless oldest
+    command += ["--env", "ALL_RUBY_SINCE=ruby-#{oldest.delete_suffix("-dev")}.0"]
+  end
+
+  exec(*command, IMAGE, "/all-ruby/all-ruby", *args)
+end
+
+# Same shape as the bundled all-ruby: a version column, the output beside it,
+# continuation lines under it, and a trailing `exit N` when the run failed.
+def run_local(args, stable)
+  versions = stable ? dev_branches : installed_rubies
+  abort "mise has no Ruby installed#{" for --stable" if stable}" if versions.empty?
+
+  width = versions.map(&:size).max + 3
+
+  versions.each do |version|
+    output = IO.popen(["mise", "exec", "ruby@#{version}", "--", "ruby", *args], err: %i[child out], &:read)
+    status = $?.exitstatus
+
+    lines = output.split("\n")
+    lines << "exit #{status}" unless status.zero?
+
+    if lines.empty?
+      puts version
+    else
+      puts version.ljust(width) + lines.first
+      lines.drop(1).each { |line| puts " " * width + line }
+    end
+  end
+end
+
+local = false
+stable = false
+
+while ARGV.first&.start_with?("--")
+  case (flag = ARGV.shift)
+  when "--local" then local = true
+  when "--stable" then stable = true
+  when "--" then break
+  when "--help" then abort USAGE
+  else abort "unknown option: #{flag}\n\n#{USAGE}"
+  end
+end
+
+abort USAGE if ARGV.empty?
+
+if local
+  run_local(ARGV, stable)
 else
-    CONTAINER_CMD="podman"
-fi
-
-exec $CONTAINER_CMD run --rm -it --arch amd64 ghcr.io/ruby/all-ruby:latest /all-ruby/all-ruby "$@"
+  run_container(ARGV, stable)
+end
