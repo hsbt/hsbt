@@ -190,6 +190,8 @@ def credentials(program_override)
   { username: username, token: token, handle: handle }
 end
 
+MAX_RATE_LIMIT_RETRIES = 5
+
 def fetch(uri, creds)
   http = Net::HTTP.new(uri.host, uri.port)
   http.use_ssl = true
@@ -198,11 +200,15 @@ def fetch(uri, creds)
   request.basic_auth(creds[:username], creds[:token])
   response = http.request(request)
 
-  if response.code == "429"
+  retries = 0
+  while response.code == "429"
+    retries += 1
+    abort "Rate limited #{MAX_RATE_LIMIT_RETRIES} times in a row. Giving up." if retries > MAX_RATE_LIMIT_RETRIES
+
     wait = (response["Retry-After"] || "10").to_i
-    warn "Rate limited. Waiting #{wait}s before retrying."
+    warn "Rate limited. Waiting #{wait}s before retrying (#{retries}/#{MAX_RATE_LIMIT_RETRIES})."
     sleep wait
-    return fetch(uri, creds)
+    response = http.request(request)
   end
 
   unless response.is_a?(Net::HTTPSuccess)
