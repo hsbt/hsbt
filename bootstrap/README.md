@@ -5,9 +5,15 @@ $ rake push
 $ rake pull
 ```
 
+Homebrew packages and the `launchctl setenv` agents:
+
+```
+$ cd bootstrap && mise trust && mise bootstrap
+```
+
 ## TODO
 
 * Bootstrap to `git clone` to *env software.
-* Invoke brew bundle and fisher commands.
+* Invoke fisher commands.
 * Alacritty and other xdg configurations.
 * ...
