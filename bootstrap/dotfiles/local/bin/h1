@@ -323,7 +323,7 @@ def print_list(reports, json: false)
     printf("%-#{widths[0]}s  %-#{widths[1]}s  %-#{widths[2]}s  %-#{widths[3]}s  %s\n",
            id, state, reporter, date, title)
   end
-  puts "\n#{reports.size} report(s)."
+  puts "\n#{reports.size} report(s). Use 'h1 get REPORT_ID' to see details and comments."
 end
 
 def actor_name(activity)
