@@ -57,13 +57,14 @@ HELP = <<~HELP
        directory name
 
   Credentials:
-    h1 reads the environment variables USERNAME / CREDENTIAL. Pass them via
-    `op run` with a per-program env file holding op:// references so the
-    literal token never reaches disk or shell history:
+    h1 reads the environment variables HACKERONE_API_USERNAME /
+    HACKERONE_API_TOKEN. Pass them via `op run` with a per-program env file
+    holding op:// references so the literal token never reaches disk or
+    shell history:
 
       # hackerone-ruby.env
-      USERNAME=op://VAULT/HackerOne ruby/username
-      CREDENTIAL=op://VAULT/HackerOne ruby/credential
+      HACKERONE_API_USERNAME=op://VAULT/HackerOne ruby/username
+      HACKERONE_API_TOKEN=op://VAULT/HackerOne ruby/credential
 
       op run --env-file hackerone-ruby.env -- h1 list -p ruby
 
@@ -93,11 +94,11 @@ end
 def credentials(program_override)
   handle = program_override || ENV["HACKERONE_PROGRAM_HANDLE"] || git_handle
 
-  username = ENV["USERNAME"]
-  token = ENV["CREDENTIAL"]
+  username = ENV["HACKERONE_API_USERNAME"]
+  token = ENV["HACKERONE_API_TOKEN"]
   if username.nil? || username.empty? || token.nil? || token.empty?
     abort <<~MSG
-      Set the USERNAME / CREDENTIAL environment variables, e.g. via 1Password:
+      Set the HACKERONE_API_USERNAME / HACKERONE_API_TOKEN environment variables, e.g. via 1Password:
         op run --env-file hackerone-#{handle || "<program>"}.env -- h1 ...
     MSG
   end
