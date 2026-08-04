@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+require "did_you_mean"
 require "fileutils"
 require "json"
 require "optparse"
@@ -447,6 +448,11 @@ def print_matrix
   end
 end
 
+def suggestion(word, candidates)
+  hit = DidYouMean::SpellChecker.new(dictionary: candidates).correct(word).first
+  hit ? " (did you mean: #{hit}?)" : ""
+end
+
 def report
   return if $failures.empty?
 
@@ -497,10 +503,12 @@ when "list"
 when *VERBS
   targets = ARGV.empty? ? targets_for(verb) : ARGV
   unknown = targets - TARGETS
-  abort "unknown target: #{unknown.join(", ")}" unless unknown.empty?
+  unless unknown.empty?
+    abort unknown.map { |t| "unknown target: #{t}#{suggestion(t, TARGETS)}" }.join("\n")
+  end
 
   run verb, targets
   report
 else
-  abort "unknown command: #{verb}\n\n#{parser.help}"
+  abort "unknown command: #{verb}#{suggestion(verb, VERBS + ["list"])}\n\n#{parser.help}"
 end
