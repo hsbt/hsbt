@@ -1,0 +1,484 @@
+#!/usr/bin/env ruby
+
+require "fileutils"
+require "json"
+require "optparse"
+require "shellwords"
+
+RUBY_DEV_VERSIONS = %w[3.3 3.4 4.0]
+ALT_RUBIES = %w[jruby truffleruby.graalvm truffleruby-]
+
+# Installed copies of these shadow the default gems of the dev rubies.
+SHADOWING_GEMS = %w[openssl psych zlib digest strscan stringio pathname etc date]
+
+PACKAGES = {
+  "npm" => %w[
+    typescript
+    babel-cli
+    eslint
+    yarn
+    @cyclonedx/cdxgen
+    heroku@10.1.0
+  ],
+  "cargo" => %w[
+    cargo-update
+    lsd
+    bat
+    ripgrep
+    fd-find
+    grex
+    du-dust
+    zoxide
+    tealdeer
+    hexyl
+    procs
+    sd
+    ripgrep_all
+    difftastic
+    xh
+    spacer
+    skim
+    sccache
+    coreutils
+    findutils
+    hyperfine
+    tokei
+    mise
+    hk
+    wrkflw
+    starship
+    atuin
+    pik
+  ],
+  "go" => %w[
+    github.com/Gelio/go-global-update@latest
+    github.com/uudashr/gopkgs/v2/cmd/gopkgs@latest
+    github.com/ramya-rao-a/go-outline@latest
+    github.com/cweill/gotests/gotests@latest
+    github.com/fatih/gomodifytags@latest
+    github.com/josharian/impl@latest
+    github.com/haya14busa/goplay/cmd/goplay@latest
+    github.com/go-delve/delve/cmd/dlv@latest
+    honnef.co/go/tools/cmd/staticcheck@latest
+    golang.org/x/tools/gopls@latest
+    github.com/client9/misspell/cmd/misspell@latest
+    github.com/rhysd/actionlint/cmd/actionlint@latest
+    github.com/google/codesearch/cmd/csearch@latest
+    github.com/google/codesearch/cmd/cindex@latest
+    github.com/google/codesearch/cmd/cgrep@latest
+    github.com/google/osv-scanner/cmd/osv-scanner@v1
+    github.com/google/yamlfmt/cmd/yamlfmt@latest
+    github.com/mikefarah/yq/v4@latest
+    github.com/antonmedv/fx@latest
+    github.com/tomnomnom/gron@latest
+    github.com/DarthSim/overmind/v2@latest
+    github.com/dependabot/cli/cmd/dependabot@latest
+    github.com/charmbracelet/vhs@latest
+    golang.org/x/vuln/cmd/govulncheck@latest
+    github.com/traefik/yaegi/cmd/yaegi@latest
+    github.com/mindersec/minder/cmd/cli@latest
+    github.com/bomctl/bomctl@latest
+    github.com/ossf/scorecard@latest
+    github.com/openvex/vexctl@latest
+    github.com/google/go-containerregistry/cmd/crane@latest
+    github.com/devops-kung-fu/bomber@latest
+    github.com/anchore/syft/cmd/syft@latest
+    github.com/sinclairtarget/git-who@latest
+    github.com/peak/s5cmd/v2@master
+    github.com/google/oss-rebuild/cmd/oss-rebuild@latest
+    github.com/k1LoW/git-wt@latest
+  ],
+  "heroku" => %w[
+    addons-admin
+    apps-table
+    buildpacks
+    buildpack-registry
+    heroku-accounts
+    heroku-config
+    heroku-pg-extras
+    heroku-builds
+    heroku-slugs
+    heroku-repo
+    heroku-releases-retry
+    @heroku-cli/plugin-free
+    @heroku-cli/plugin-api
+  ],
+  "gh" => %w[
+    github/gh-copilot
+    advanced-security/gh-sbom
+    mislav/gh-cp
+    github/gh-actions-importer
+  ],
+}.freeze
+
+XDG_DATA_HOME = ENV["XDG_DATA_HOME"] || File.join(Dir.home, ".local", "share")
+CARGO_HOME = ENV["CARGO_HOME"] || File.join(XDG_DATA_HOME, "cargo")
+
+GIT_GOGET_ROOT = ENV["GIT_GOGET_ROOT"]
+if GIT_GOGET_ROOT.nil? || GIT_GOGET_ROOT.empty?
+  abort 'GIT_GOGET_ROOT is not set. Example: export GIT_GOGET_ROOT="$HOME/Documents"'
+end
+
+GIT_GOGET_URL = "https://raw.githubusercontent.com/hsbt/git-goget/HEAD/git-goget"
+
+TARGETS = %w[brew mise ruby npm cargo go heroku gh git-goget helix source]
+VERBS = %w[upgrade reinstall rebuild clean]
+
+# Old goget URL parsing left checkouts under these hosts; their twins live
+# under github.com.
+ALIAS_HOSTS = %w[www.github.com wiki.github.com]
+
+$dry_run = false
+$failures = []
+
+def sh(command, env = {})
+  puts "==> #{command}"
+  return if $dry_run
+  $failures << command unless system(env, command)
+end
+
+def wipe(dir)
+  puts "==> rm -rf #{dir}"
+  FileUtils.rm_rf(dir) unless $dry_run
+end
+
+def data_dir(name)
+  File.join(XDG_DATA_HOME, name)
+end
+
+def goget(path)
+  File.join(GIT_GOGET_ROOT, path)
+end
+
+module Task
+  module_function
+
+  def upgrade_brew
+    sh "brew upgrade"
+    sh "brew upgrade --cask"
+    sh "brew autoremove"
+    sh "brew cleanup"
+  end
+
+  def upgrade_mise
+    sh "mise upgrade"
+  end
+
+  def upgrade_ruby
+    sh "mise uninstall ruby@ruby-dev"
+    sh "mise use -g ruby@ruby-dev"
+    # Without GEM_HOME this hits the gem dir embedded in the ruby-dev install.
+    sh "gem list --no-versions | xargs gem uninstall --force", "GEM_HOME" => nil
+
+    sh "mise use -g ruby@#{RUBY_DEV_VERSIONS.last}-dev"
+    sh "gem update"
+    sh "gem uninstall #{SHADOWING_GEMS.join(" ")} --force --executables"
+
+    (RUBY_DEV_VERSIONS + %w[ruby]).each do |v|
+      sh "mise use -g ruby@#{v}-dev"
+      sh "gem repair"
+    end
+
+    sh "curl -s https://stdgems.org/bundled_gems.json | jq -r '.gems[].gem' | xargs -n1 gem install"
+    sh "gem sweep"
+
+    sh "cd #{goget("github.com/ruby/ruby")} && ruby tool/sync_default_gems.rb up"
+  end
+
+  def rebuild_ruby
+    defs = `mise ls-remote ruby`.split
+
+    RUBY_DEV_VERSIONS.each do |v|
+      sh "mise uninstall ruby@#{v}-dev"
+      sh "mise i ruby@#{v}-dev"
+      link_stable_rubies(v, defs)
+    end
+
+    sh "mise uninstall ruby@ruby-dev"
+    sh "MISE_RUBY_VERSION=#{RUBY_DEV_VERSIONS.last}-dev mise i ruby@ruby-dev"
+
+    installed = JSON.parse(`mise ls ruby -J`).map { |r| r["version"] }
+    ALT_RUBIES.each do |pf|
+      installed.grep(Regexp.new(pf)).each { |v| sh "mise uninstall ruby@#{v}" }
+      d = defs.grep(Regexp.new("^#{pf}")).last
+      sh "mise i ruby@#{d}" if d
+    end
+
+    sh "MISE_RUBY_VERSION=jruby gem uninstall jruby-launcher"
+  end
+
+  # Point every released x.y.z at the x.y-dev build so any of them resolves to it.
+  def link_stable_rubies(version, defs)
+    root = File.join(XDG_DATA_HOME, "mise", "installs", "ruby")
+    dev = "#{version}-dev"
+
+    relink File.join(root, version), dev
+
+    latest = defs.grep(/^#{Regexp.escape(version)}\.\d+$/).last
+    return unless latest
+
+    0.upto(latest[/\d+$/].to_i) do |i|
+      relink File.join(root, "#{version}.#{i}"), dev
+    end
+  end
+
+  def relink(path, target)
+    if File.exist?(path) && !File.symlink?(path)
+      puts "==> skip #{path} (real install, not a symlink)"
+      return
+    end
+
+    puts "==> ln -sfn #{target} #{path}"
+    return if $dry_run
+    File.unlink(path) if File.symlink?(path)
+    File.symlink(target, path)
+  end
+
+  def upgrade_npm
+    sh "npm install -g npm"
+    PACKAGES["npm"].each { |pkg| sh "npm install -g #{pkg}" }
+  end
+
+  def reinstall_npm
+    wipe data_dir("npm")
+    upgrade_npm
+  end
+
+  def upgrade_cargo
+    sh "rustup update"
+    sh "cargo install-update -a"
+  end
+
+  def reinstall_cargo
+    wipe CARGO_HOME
+    PACKAGES["cargo"].each { |pkg| sh "cargo install --locked #{pkg}" }
+  end
+
+  def upgrade_go
+    sh "go-global-update"
+  end
+
+  def reinstall_go
+    wipe data_dir("go")
+    PACKAGES["go"].each { |pkg| sh "go install #{pkg}" }
+  end
+
+  def upgrade_heroku
+    sh "heroku plugins:update"
+  end
+
+  def reinstall_heroku
+    wipe data_dir("heroku")
+    PACKAGES["heroku"].each { |pkg| sh "heroku plugins:install #{pkg}" }
+  end
+
+  def upgrade_gh
+    sh "gh extension upgrade --all"
+  end
+
+  def reinstall_gh
+    PACKAGES["gh"].each { |pkg| sh "gh extension install #{pkg}" }
+  end
+
+  # Single script, no build step, so it is cheap enough to refresh every run.
+  def upgrade_git_goget
+    dest = File.expand_path("~/.local/bin/git-goget")
+    sh "curl -fsSL #{GIT_GOGET_URL} -o #{dest}.new && chmod +x #{dest}.new && mv #{dest}.new #{dest}"
+  end
+
+  def reinstall_git_goget
+    upgrade_git_goget
+  end
+
+  def reinstall_helix
+    sh "cd #{goget("github.com/helix-editor/helix")} && git pull && cargo install --locked --path helix-term"
+
+    from = File.join(CARGO_HOME, "bin", "hx")
+    to = File.expand_path("~/.local/bin/hx")
+    puts "==> cp #{from} #{to}"
+    FileUtils.cp(from, to) unless $dry_run
+  end
+
+  # git goget clones missing checkouts and pulls existing ones, so this both
+  # fetches and updates the sources of every installed gem. Only bare
+  # host/owner/repo URLs pass the filter: GitHub Pages hosts (flori.github.com)
+  # and /tree/ deep links would otherwise mint junk host directories.
+  def upgrade_source
+    urls = Gem::Specification
+      .flat_map { |s| [s.homepage, s.metadata["source_code_uri"]] }
+      .compact.reject(&:empty?)
+      .select { |u| u.match?(%r{\Ahttps?://(www\.)?(github|gitlab)\.com/[^/]+/[^/]+/?\z}) }
+      .map { |u| u.sub("://www.", "://").chomp("/") }
+      .uniq.sort
+
+    urls.each { |u| sh "git goget #{Shellwords.escape(u)}" }
+  end
+
+  # Remove checkouts that duplicate another one after a repository rename or a
+  # move into an organization. Checkouts sharing a root commit are duplicate
+  # candidates; GitHub's canonical name (which follows rename redirects)
+  # confirms them, so forks are left alone. Anything dirty or unpushed is
+  # reported instead of removed.
+  def clean_source
+    repos = Dir.glob(File.join(GIT_GOGET_ROOT, "*", "*", "*"))
+      .select { |d| File.exist?(File.join(d, ".git")) }
+    puts "scanning #{repos.size} checkouts under #{GIT_GOGET_ROOT}"
+
+    removed = 0
+    repos.group_by { |d| root_commits(d) }.each do |roots, members|
+      next if roots.nil? || members.size < 2
+
+      duplicate_pairs(members).each do |stale, kept|
+        label = "#{rel(stale)} (duplicate of #{rel(kept)})"
+
+        if dirty?(stale)
+          puts "==> skip #{label}: uncommitted changes"
+        elsif unpushed?(stale)
+          puts "==> skip #{label}: unpushed commits"
+        else
+          puts "==> rm -rf #{label}"
+          unless $dry_run
+            FileUtils.rm_rf(stale)
+            prune_empty_dirs(stale)
+          end
+          removed += 1
+        end
+      end
+    end
+
+    puts removed.zero? ? "no duplicates found" : "#{removed} duplicate checkout(s) removed"
+  end
+
+  def duplicate_pairs(members)
+    pairs = []
+
+    members.each do |dir|
+      host = rel(dir).split("/").first
+      slug = rel(dir).split("/", 2).last
+
+      kept = if ALIAS_HOSTS.include?(host)
+        members.find { |m| m != dir && rel(m).casecmp?("github.com/#{slug}") }
+      elsif host == "github.com" && (canonical = canonical_name(slug)) && !canonical.casecmp?(slug)
+        members.find { |m| m != dir && rel(m).casecmp?("github.com/#{canonical}") }
+      end
+
+      pairs << [dir, kept] if kept
+    end
+
+    pairs
+  end
+
+  def rel(dir)
+    dir.delete_prefix("#{GIT_GOGET_ROOT}/")
+  end
+
+  # Fold up the owner directory (and the host directory after it) once the
+  # last checkout under it is gone.
+  def prune_empty_dirs(stale)
+    [File.dirname(stale), File.dirname(File.dirname(stale))].each do |dir|
+      break unless Dir.exist?(dir) && Dir.empty?(dir) && dir != GIT_GOGET_ROOT
+      Dir.rmdir(dir)
+    end
+  end
+
+  def root_commits(dir)
+    roots = IO.popen(["git", "-C", dir, "rev-list", "--max-parents=0", "HEAD"], err: File::NULL, &:read)
+    roots.empty? ? nil : roots.split.sort.join(",")
+  end
+
+  # Follows GitHub's redirect, so a renamed or transferred repository reports
+  # its current owner/name. nil when unresolvable (deleted, private, offline).
+  def canonical_name(slug)
+    @canonical ||= {}
+    @canonical[slug] ||= IO.popen(["gh", "api", "repos/#{slug}", "--jq", ".full_name"], err: File::NULL, &:read).strip
+    @canonical[slug].empty? ? nil : @canonical[slug]
+  end
+
+  def dirty?(dir)
+    !IO.popen(["git", "-C", dir, "status", "--porcelain"], err: File::NULL, &:read).empty?
+  end
+
+  # Also true for a checkout with no remote at all, which keeps it safe.
+  def unpushed?(dir)
+    !IO.popen(["git", "-C", dir, "log", "--branches", "--not", "--remotes", "--format=%h"], err: File::NULL, &:read).empty?
+  end
+end
+
+def task_name(verb, target)
+  :"#{verb}_#{target.tr("-", "_")}"
+end
+
+def supports?(verb, target)
+  Task.respond_to?(task_name(verb, target))
+end
+
+def targets_for(verb)
+  TARGETS.select { |t| supports?(verb, t) }
+end
+
+def run(verb, targets)
+  targets.each do |target|
+    unless supports?(verb, target)
+      puts "", "--- skip #{target}: no #{verb} step ---"
+      next
+    end
+
+    puts "", "--- #{verb} #{target} ---"
+    Task.public_send(task_name(verb, target))
+  end
+end
+
+def print_matrix
+  width = TARGETS.map(&:size).max
+  puts ["target".ljust(width), *VERBS].join("  ")
+  TARGETS.each do |target|
+    cells = VERBS.map { |verb| (supports?(verb, target) ? "yes" : "-").ljust(verb.size) }
+    puts [target.ljust(width), *cells].join("  ").rstrip
+  end
+end
+
+def report
+  return if $failures.empty?
+
+  warn "", "#{$failures.size} command(s) failed:"
+  $failures.each { |command| warn "  #{command}" }
+  exit 1
+end
+
+parser = OptionParser.new do |o|
+  o.banner = <<~BANNER
+    Usage: dev <command> [target...]
+
+    Commands:
+      upgrade      Update what is installed, in place
+      reinstall    Wipe the prefix and install from the package list
+      rebuild      Rebuild from source
+      clean        Remove stale leftovers (duplicate source checkouts)
+      list         Show which targets each command supports
+
+    Targets: #{TARGETS.join(" ")}
+    With no target, every target supporting the command runs, in the order above.
+
+    Options:
+  BANNER
+
+  o.on("-n", "--dry-run", "Print the commands instead of running them") { $dry_run = true }
+end
+parser.parse!(ARGV)
+
+case (verb = ARGV.shift)
+when nil
+  puts parser.help
+  exit 1
+when "list"
+  print_matrix
+when *VERBS
+  targets = ARGV.empty? ? targets_for(verb) : ARGV
+  unknown = targets - TARGETS
+  abort "unknown target: #{unknown.join(", ")}" unless unknown.empty?
+
+  run verb, targets
+  report
+else
+  abort "unknown command: #{verb}\n\n#{parser.help}"
+end
