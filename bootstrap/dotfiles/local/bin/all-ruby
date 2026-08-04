@@ -101,6 +101,10 @@ def run_local(args, stable, exec_mode, json)
   end
 
   puts JSON.generate(results) if json
+
+  # A mixed result is a comparison, but everything failing means the command
+  # itself is broken.
+  exit 1 if results.values.none? { |r| r["exit"].zero? }
 end
 
 local = false
