@@ -1,27 +1,37 @@
 #!/usr/bin/env ruby
 
+require "did_you_mean"
 require "json"
 
+VERSION = "1.0.0"
 IMAGE = "ghcr.io/ruby/all-ruby:latest"
 
 USAGE = <<~TEXT
   usage: all-ruby [--local] [--stable] [--] RUBY-ARGS
          all-ruby --exec [--stable] [--] COMMAND [ARGS...]
 
+  examples:
+    all-ruby -e 'p Comparable.instance_methods.size'  every released Ruby, in the container
+    all-ruby --local --stable -e 'p 1.0 / 3'          only the maintained branches, via mise
+    all-ruby --exec rspec spec/foo_spec.rb            run a command instead of Ruby arguments
+
     --local    run the Rubies mise installed here instead of the container image
     --stable   run only the maintained branches, from mise's x.y-dev installs
     --exec     treat the arguments as a command line rather than as Ruby
                arguments, for running rspec and friends; implies --local
+    --json     with --local, print {"version": {"output": ..., "exit": ...}} JSON
 
   Flags are read until the first non-flag argument. Use `--` when the Ruby
   arguments themselves start with a long option.
 
   Without --local this wraps the bundled all-ruby, whose own knobs still apply:
 
-    ALL_RUBY_SINCE=ruby-1.4               run only versions since specified one
-    ALL_RUBY_BINS='ruby-2.4.4 ruby-2.5.1' run only versions specfied
-    ALL_RUBY_ADDBINS=./ruby               run specified commands additionaly
+    ALL_RUBY_SINCE=ruby-1.4               run only versions since the specified one
+    ALL_RUBY_BINS='ruby-2.4.4 ruby-2.5.1' run only the versions specified
+    ALL_RUBY_ADDBINS=./ruby               run the specified commands additionally
     ALL_RUBY_SHOW_DUP=yes                 don't suppress duplicated output
+
+  source: https://github.com/hsbt/hsbt (bootstrap/dotfiles/local/bin/all-ruby)
 TEXT
 
 def which(name)
@@ -46,7 +56,9 @@ end
 
 def run_container(args, stable)
   runtime = which("container") ? "container" : "podman"
-  command = [runtime, "run", "--rm", "-it", "--arch", "amd64"]
+  command = [runtime, "run", "--rm", "--arch", "amd64"]
+  # Only allocate a terminal when we have one, so pipes and agents work.
+  command << "-it" if $stdin.tty?
 
   if stable
     oldest = dev_branches.first
@@ -59,12 +71,13 @@ end
 
 # Same shape as the bundled all-ruby: a version column, the output beside it,
 # continuation lines under it, and a trailing `exit N` when the run failed.
-def run_local(args, stable, exec_mode)
+def run_local(args, stable, exec_mode, json)
   versions = stable ? dev_branches : installed_rubies
   abort "mise has no Ruby installed#{" for --stable" if stable}" if versions.empty?
 
   command = exec_mode ? args : ["ruby", *args]
   width = versions.map(&:size).max + 3
+  results = {}
 
   versions.each do |version|
     output = IO.popen(["mise", "exec", "ruby@#{version}", "--", *command], err: %i[child out], &:read)
@@ -74,6 +87,9 @@ def run_local(args, stable, exec_mode)
     # with a screen of warnings about extensions built for another ABI. They
     # say nothing about the command being compared. `gem pristine` is the fix.
     lines = output.split("\n").grep_v(/\AIgnoring .+ because its extensions are not built/)
+    results[version] = { "output" => lines.join("\n"), "exit" => status }
+
+    next if json
     lines << "exit #{status}" unless status.zero?
 
     if lines.empty?
@@ -83,27 +99,50 @@ def run_local(args, stable, exec_mode)
       lines.drop(1).each { |line| puts " " * width + line }
     end
   end
+
+  puts JSON.generate(results) if json
+
+  # A mixed result is a comparison, but everything failing means the command
+  # itself is broken.
+  exit 1 if results.values.none? { |r| r["exit"].zero? }
 end
 
 local = false
 stable = false
 exec_mode = false
+json = false
 
-while ARGV.first&.start_with?("--")
+while ARGV.first&.start_with?("-")
   case (flag = ARGV.shift)
   when "--local" then local = true
   when "--stable" then stable = true
   when "--exec" then exec_mode = local = true
+  when "--json" then json = true
   when "--" then break
-  when "--help" then abort USAGE
-  else abort "unknown option: #{flag}\n\n#{USAGE}"
+  when "-h", "--help"
+    puts USAGE
+    exit
+  when "--version"
+    puts "all-ruby #{VERSION} (https://github.com/hsbt/hsbt)"
+    exit
+  else
+    if flag.start_with?("--")
+      known = %w[--local --stable --exec --json --help --version]
+      hint = DidYouMean::SpellChecker.new(dictionary: known).correct(flag).first
+      abort "unknown option: #{flag}#{" (did you mean: #{hint}?)" if hint}\n\n#{USAGE}"
+    end
+    # Single-dash arguments like -e belong to Ruby, not to us.
+    ARGV.unshift(flag)
+    break
   end
 end
 
 abort USAGE if ARGV.empty?
 
+abort "--json requires --local" if json && !local
+
 if local
-  run_local(ARGV, stable, exec_mode)
+  run_local(ARGV, stable, exec_mode, json)
 else
   run_container(ARGV, stable)
 end
