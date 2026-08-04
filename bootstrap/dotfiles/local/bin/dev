@@ -126,6 +126,7 @@ VERBS = %w[upgrade reinstall rebuild clean]
 ALIAS_HOSTS = %w[www.github.com wiki.github.com]
 
 $dry_run = false
+$json = false
 $failures = []
 
 def sh(command, env = {})
@@ -432,6 +433,11 @@ def run(verb, targets)
   end
 end
 
+def print_matrix_json
+  matrix = TARGETS.to_h { |t| [t, VERBS.to_h { |v| [v, supports?(v, t)] }] }
+  puts JSON.generate(matrix)
+end
+
 def print_matrix
   width = TARGETS.map(&:size).max
   puts ["target".ljust(width), *VERBS].join("  ")
@@ -474,6 +480,7 @@ parser = OptionParser.new do |o|
   BANNER
 
   o.on("-n", "--dry-run", "Print the commands instead of running them") { $dry_run = true }
+  o.on("--json", "Output list as JSON") { $json = true }
   o.on("--version", "Print the version and source location") do
     puts "dev #{VERSION} (https://github.com/hsbt/hsbt)"
     exit
@@ -486,7 +493,7 @@ when nil
   puts parser.help
   exit 1
 when "list"
-  print_matrix
+  $json ? print_matrix_json : print_matrix
 when *VERBS
   targets = ARGV.empty? ? targets_for(verb) : ARGV
   unknown = targets - TARGETS
