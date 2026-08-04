@@ -2,6 +2,7 @@
 
 require "json"
 
+VERSION = "1.0.0"
 IMAGE = "ghcr.io/ruby/all-ruby:latest"
 
 USAGE = <<~TEXT
@@ -106,6 +107,9 @@ while ARGV.first&.start_with?("-")
   when "--" then break
   when "-h", "--help"
     puts USAGE
+    exit
+  when "--version"
+    puts "all-ruby #{VERSION} (https://github.com/hsbt/hsbt)"
     exit
   else
     abort "unknown option: #{flag}\n\n#{USAGE}" if flag.start_with?("--")
