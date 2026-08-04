@@ -46,7 +46,9 @@ end
 
 def run_container(args, stable)
   runtime = which("container") ? "container" : "podman"
-  command = [runtime, "run", "--rm", "-it", "--arch", "amd64"]
+  command = [runtime, "run", "--rm", "--arch", "amd64"]
+  # Only allocate a terminal when we have one, so pipes and agents work.
+  command << "-it" if $stdin.tty?
 
   if stable
     oldest = dev_branches.first
