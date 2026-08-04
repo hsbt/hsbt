@@ -234,7 +234,7 @@ module Task
 
   def relink(path, target)
     if File.exist?(path) && !File.symlink?(path)
-      puts "==> skip #{path} (real install, not a symlink)"
+      warn "==> skip #{path} (real install, not a symlink)"
       return
     end
 
@@ -342,9 +342,9 @@ module Task
         label = "#{rel(stale)} (duplicate of #{rel(kept)})"
 
         if dirty?(stale)
-          puts "==> skip #{label}: uncommitted changes"
+          warn "==> skip #{label}: uncommitted changes"
         elsif unpushed?(stale)
-          puts "==> skip #{label}: unpushed commits"
+          warn "==> skip #{label}: unpushed commits"
         else
           puts "==> rm -rf #{label}"
           unless $dry_run
@@ -429,7 +429,7 @@ end
 def run(verb, targets)
   targets.each do |target|
     unless supports?(verb, target)
-      puts "", "--- skip #{target}: no #{verb} step ---"
+      warn "", "--- skip #{target}: no #{verb} step ---"
       next
     end
 
