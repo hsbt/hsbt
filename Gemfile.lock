@@ -71,7 +71,6 @@ DEPENDENCIES
   kramdown
   mina
   net-scp
-  parallel (~> 2.1)
   rake
   standard
 
