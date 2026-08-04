@@ -8,6 +8,11 @@ USAGE = <<~TEXT
   usage: all-ruby [--local] [--stable] [--] RUBY-ARGS
          all-ruby --exec [--stable] [--] COMMAND [ARGS...]
 
+  examples:
+    all-ruby -e 'p Comparable.instance_methods.size'  every released Ruby, in the container
+    all-ruby --local --stable -e 'p 1.0 / 3'          only the maintained branches, via mise
+    all-ruby --exec rspec spec/foo_spec.rb            run a command instead of Ruby arguments
+
     --local    run the Rubies mise installed here instead of the container image
     --stable   run only the maintained branches, from mise's x.y-dev installs
     --exec     treat the arguments as a command line rather than as Ruby
@@ -18,10 +23,12 @@ USAGE = <<~TEXT
 
   Without --local this wraps the bundled all-ruby, whose own knobs still apply:
 
-    ALL_RUBY_SINCE=ruby-1.4               run only versions since specified one
-    ALL_RUBY_BINS='ruby-2.4.4 ruby-2.5.1' run only versions specfied
-    ALL_RUBY_ADDBINS=./ruby               run specified commands additionaly
+    ALL_RUBY_SINCE=ruby-1.4               run only versions since the specified one
+    ALL_RUBY_BINS='ruby-2.4.4 ruby-2.5.1' run only the versions specified
+    ALL_RUBY_ADDBINS=./ruby               run the specified commands additionally
     ALL_RUBY_SHOW_DUP=yes                 don't suppress duplicated output
+
+  source: https://github.com/hsbt/hsbt (bootstrap/dotfiles/local/bin/all-ruby)
 TEXT
 
 def which(name)
