@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+require "did_you_mean"
 require "json"
 
 VERSION = "1.0.0"
@@ -121,7 +122,11 @@ while ARGV.first&.start_with?("-")
     puts "all-ruby #{VERSION} (https://github.com/hsbt/hsbt)"
     exit
   else
-    abort "unknown option: #{flag}\n\n#{USAGE}" if flag.start_with?("--")
+    if flag.start_with?("--")
+      known = %w[--local --stable --exec --json --help --version]
+      hint = DidYouMean::SpellChecker.new(dictionary: known).correct(flag).first
+      abort "unknown option: #{flag}#{" (did you mean: #{hint}?)" if hint}\n\n#{USAGE}"
+    end
     # Single-dash arguments like -e belong to Ruby, not to us.
     ARGV.unshift(flag)
     break
