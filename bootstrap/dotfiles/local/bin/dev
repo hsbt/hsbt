@@ -114,11 +114,6 @@ PACKAGES = {
 XDG_DATA_HOME = ENV["XDG_DATA_HOME"] || File.join(Dir.home, ".local", "share")
 CARGO_HOME = ENV["CARGO_HOME"] || File.join(XDG_DATA_HOME, "cargo")
 
-GIT_GOGET_ROOT = ENV["GIT_GOGET_ROOT"]
-if GIT_GOGET_ROOT.nil? || GIT_GOGET_ROOT.empty?
-  abort 'GIT_GOGET_ROOT is not set. Example: export GIT_GOGET_ROOT="$HOME/Documents"'
-end
-
 GIT_GOGET_URL = "https://raw.githubusercontent.com/hsbt/git-goget/HEAD/git-goget"
 
 TARGETS = %w[brew mise ruby npm cargo go heroku gh git-goget helix source]
@@ -146,8 +141,15 @@ def data_dir(name)
   File.join(XDG_DATA_HOME, name)
 end
 
+# Validated lazily so help and list work without the variable set.
+def goget_root
+  root = ENV["GIT_GOGET_ROOT"].to_s
+  abort 'GIT_GOGET_ROOT is not set. Example: export GIT_GOGET_ROOT="$HOME/Documents"' if root.empty?
+  root
+end
+
 def goget(path)
-  File.join(GIT_GOGET_ROOT, path)
+  File.join(goget_root, path)
 end
 
 module Task
@@ -320,9 +322,9 @@ module Task
   # confirms them, so forks are left alone. Anything dirty or unpushed is
   # reported instead of removed.
   def clean_source
-    repos = Dir.glob(File.join(GIT_GOGET_ROOT, "*", "*", "*"))
+    repos = Dir.glob(File.join(goget_root, "*", "*", "*"))
       .select { |d| File.exist?(File.join(d, ".git")) }
-    puts "scanning #{repos.size} checkouts under #{GIT_GOGET_ROOT}"
+    puts "scanning #{repos.size} checkouts under #{goget_root}"
 
     removed = 0
     repos.group_by { |d| root_commits(d) }.each do |roots, members|
@@ -369,14 +371,14 @@ module Task
   end
 
   def rel(dir)
-    dir.delete_prefix("#{GIT_GOGET_ROOT}/")
+    dir.delete_prefix("#{goget_root}/")
   end
 
   # Fold up the owner directory (and the host directory after it) once the
   # last checkout under it is gone.
   def prune_empty_dirs(stale)
     [File.dirname(stale), File.dirname(File.dirname(stale))].each do |dir|
-      break unless Dir.exist?(dir) && Dir.empty?(dir) && dir != GIT_GOGET_ROOT
+      break unless Dir.exist?(dir) && Dir.empty?(dir) && dir != goget_root
       Dir.rmdir(dir)
     end
   end
