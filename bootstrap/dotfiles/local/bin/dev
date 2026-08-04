@@ -122,12 +122,16 @@ GIT_GOGET_URL = "https://raw.githubusercontent.com/hsbt/git-goget/HEAD/git-goget
 TARGETS = %w[brew mise ruby npm cargo go heroku gh git-goget helix source]
 VERBS = %w[upgrade reinstall rebuild clean]
 
+# These wipe directories or remove checkouts before doing anything else.
+DESTRUCTIVE_VERBS = %w[reinstall clean]
+
 # Old goget URL parsing left checkouts under these hosts; their twins live
 # under github.com.
 ALIAS_HOSTS = %w[www.github.com wiki.github.com]
 
 $dry_run = false
 $json = false
+$yes = false
 $failures = []
 
 def sh(command, env = {})
@@ -448,6 +452,15 @@ def print_matrix
   end
 end
 
+# Prompt only on a terminal so agents and scripts never hang on stdin.
+def confirm(verb, targets)
+  return unless DESTRUCTIVE_VERBS.include?(verb)
+  return if $yes || $dry_run || !$stdin.tty?
+
+  print "#{verb} #{targets.join(" ")} removes existing files first. Continue? [y/N] "
+  abort "aborted" unless $stdin.gets.to_s.strip.casecmp?("y")
+end
+
 def suggestion(word, candidates)
   hit = DidYouMean::SpellChecker.new(dictionary: candidates).correct(word).first
   hit ? " (did you mean: #{hit}?)" : ""
@@ -487,6 +500,7 @@ parser = OptionParser.new do |o|
 
   o.on("-n", "--dry-run", "Print the commands instead of running them") { $dry_run = true }
   o.on("--json", "Output list as JSON") { $json = true }
+  o.on("-y", "--yes", "Skip the confirmation prompt for reinstall and clean") { $yes = true }
   o.on("--version", "Print the version and source location") do
     puts "dev #{VERSION} (https://github.com/hsbt/hsbt)"
     exit
@@ -507,6 +521,7 @@ when *VERBS
     abort unknown.map { |t| "unknown target: #{t}#{suggestion(t, TARGETS)}" }.join("\n")
   end
 
+  confirm verb, targets
   run verb, targets
   report
 else
