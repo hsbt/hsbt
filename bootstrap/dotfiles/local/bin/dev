@@ -451,6 +451,11 @@ parser = OptionParser.new do |o|
   o.banner = <<~BANNER
     Usage: dev <command> [target...]
 
+    Examples:
+      dev upgrade               Update everything in place
+      dev upgrade ruby npm      Update only the given targets
+      dev -n reinstall cargo    Show what a cargo reinstall would run
+
     Commands:
       upgrade      Update what is installed, in place
       reinstall    Wipe the prefix and install from the package list
@@ -460,6 +465,8 @@ parser = OptionParser.new do |o|
 
     Targets: #{TARGETS.join(" ")}
     With no target, every target supporting the command runs, in the order above.
+
+    Source: https://github.com/hsbt/hsbt (bootstrap/dotfiles/local/bin/dev)
 
     Options:
   BANNER
