@@ -6,9 +6,12 @@ IMAGE = "ghcr.io/ruby/all-ruby:latest"
 
 USAGE = <<~TEXT
   usage: all-ruby [--local] [--stable] [--] RUBY-ARGS
+         all-ruby --exec [--stable] [--] COMMAND [ARGS...]
 
     --local    run the Rubies mise installed here instead of the container image
     --stable   run only the maintained branches, from mise's x.y-dev installs
+    --exec     treat the arguments as a command line rather than as Ruby
+               arguments, for running rspec and friends; implies --local
 
   Flags are read until the first non-flag argument. Use `--` when the Ruby
   arguments themselves start with a long option.
@@ -56,17 +59,21 @@ end
 
 # Same shape as the bundled all-ruby: a version column, the output beside it,
 # continuation lines under it, and a trailing `exit N` when the run failed.
-def run_local(args, stable)
+def run_local(args, stable, exec_mode)
   versions = stable ? dev_branches : installed_rubies
   abort "mise has no Ruby installed#{" for --stable" if stable}" if versions.empty?
 
+  command = exec_mode ? args : ["ruby", *args]
   width = versions.map(&:size).max + 3
 
   versions.each do |version|
-    output = IO.popen(["mise", "exec", "ruby@#{version}", "--", "ruby", *args], err: %i[child out], &:read)
+    output = IO.popen(["mise", "exec", "ruby@#{version}", "--", *command], err: %i[child out], &:read)
     status = $?.exitstatus
 
-    lines = output.split("\n")
+    # One GEM_HOME is shared across every version, so RubyGems greets each run
+    # with a screen of warnings about extensions built for another ABI. They
+    # say nothing about the command being compared. `gem pristine` is the fix.
+    lines = output.split("\n").grep_v(/\AIgnoring .+ because its extensions are not built/)
     lines << "exit #{status}" unless status.zero?
 
     if lines.empty?
@@ -80,11 +87,13 @@ end
 
 local = false
 stable = false
+exec_mode = false
 
 while ARGV.first&.start_with?("--")
   case (flag = ARGV.shift)
   when "--local" then local = true
   when "--stable" then stable = true
+  when "--exec" then exec_mode = local = true
   when "--" then break
   when "--help" then abort USAGE
   else abort "unknown option: #{flag}\n\n#{USAGE}"
@@ -94,7 +103,7 @@ end
 abort USAGE if ARGV.empty?
 
 if local
-  run_local(ARGV, stable)
+  run_local(ARGV, stable, exec_mode)
 else
   run_container(ARGV, stable)
 end
