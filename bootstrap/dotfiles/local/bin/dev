@@ -3,6 +3,7 @@
 require "fileutils"
 require "json"
 require "optparse"
+require "shellwords"
 
 RUBY_DEV_VERSIONS = %w[3.3 3.4 4.0]
 ALT_RUBIES = %w[jruby truffleruby.graalvm truffleruby-]
@@ -120,8 +121,12 @@ end
 
 GIT_GOGET_URL = "https://raw.githubusercontent.com/hsbt/git-goget/HEAD/git-goget"
 
-TARGETS = %w[brew mise ruby npm cargo go heroku gh git-goget helix]
-VERBS = %w[upgrade reinstall rebuild]
+TARGETS = %w[brew mise ruby npm cargo go heroku gh git-goget helix source]
+VERBS = %w[upgrade reinstall rebuild clean]
+
+# Old goget URL parsing left checkouts under these hosts; their twins live
+# under github.com.
+ALIAS_HOSTS = %w[www.github.com wiki.github.com]
 
 $dry_run = false
 $failures = []
@@ -293,6 +298,110 @@ module Task
     puts "==> cp #{from} #{to}"
     FileUtils.cp(from, to) unless $dry_run
   end
+
+  # git goget clones missing checkouts and pulls existing ones, so this both
+  # fetches and updates the sources of every installed gem. Only bare
+  # host/owner/repo URLs pass the filter: GitHub Pages hosts (flori.github.com)
+  # and /tree/ deep links would otherwise mint junk host directories.
+  def upgrade_source
+    urls = Gem::Specification
+      .flat_map { |s| [s.homepage, s.metadata["source_code_uri"]] }
+      .compact.reject(&:empty?)
+      .select { |u| u.match?(%r{\Ahttps?://(www\.)?(github|gitlab)\.com/[^/]+/[^/]+/?\z}) }
+      .map { |u| u.sub("://www.", "://").chomp("/") }
+      .uniq.sort
+
+    urls.each { |u| sh "git goget #{Shellwords.escape(u)}" }
+  end
+
+  # Remove checkouts that duplicate another one after a repository rename or a
+  # move into an organization. Checkouts sharing a root commit are duplicate
+  # candidates; GitHub's canonical name (which follows rename redirects)
+  # confirms them, so forks are left alone. Anything dirty or unpushed is
+  # reported instead of removed.
+  def clean_source
+    repos = Dir.glob(File.join(GIT_GOGET_ROOT, "*", "*", "*"))
+      .select { |d| File.exist?(File.join(d, ".git")) }
+    puts "scanning #{repos.size} checkouts under #{GIT_GOGET_ROOT}"
+
+    removed = 0
+    repos.group_by { |d| root_commits(d) }.each do |roots, members|
+      next if roots.nil? || members.size < 2
+
+      duplicate_pairs(members).each do |stale, kept|
+        label = "#{rel(stale)} (duplicate of #{rel(kept)})"
+
+        if dirty?(stale)
+          puts "==> skip #{label}: uncommitted changes"
+        elsif unpushed?(stale)
+          puts "==> skip #{label}: unpushed commits"
+        else
+          puts "==> rm -rf #{label}"
+          unless $dry_run
+            FileUtils.rm_rf(stale)
+            prune_empty_dirs(stale)
+          end
+          removed += 1
+        end
+      end
+    end
+
+    puts removed.zero? ? "no duplicates found" : "#{removed} duplicate checkout(s) removed"
+  end
+
+  def duplicate_pairs(members)
+    pairs = []
+
+    members.each do |dir|
+      host = rel(dir).split("/").first
+      slug = rel(dir).split("/", 2).last
+
+      kept = if ALIAS_HOSTS.include?(host)
+        members.find { |m| m != dir && rel(m).casecmp?("github.com/#{slug}") }
+      elsif host == "github.com" && (canonical = canonical_name(slug)) && !canonical.casecmp?(slug)
+        members.find { |m| m != dir && rel(m).casecmp?("github.com/#{canonical}") }
+      end
+
+      pairs << [dir, kept] if kept
+    end
+
+    pairs
+  end
+
+  def rel(dir)
+    dir.delete_prefix("#{GIT_GOGET_ROOT}/")
+  end
+
+  # Fold up the owner directory (and the host directory after it) once the
+  # last checkout under it is gone.
+  def prune_empty_dirs(stale)
+    [File.dirname(stale), File.dirname(File.dirname(stale))].each do |dir|
+      break unless Dir.exist?(dir) && Dir.empty?(dir) && dir != GIT_GOGET_ROOT
+      Dir.rmdir(dir)
+    end
+  end
+
+  def root_commits(dir)
+    roots = IO.popen(["git", "-C", dir, "rev-list", "--max-parents=0", "HEAD"], err: File::NULL, &:read)
+    roots.empty? ? nil : roots.split.sort.join(",")
+  end
+
+  # Follows GitHub's redirect, so a renamed or transferred repository reports
+  # its current owner/name. nil when unresolvable (deleted, private, offline).
+  def canonical_name(slug)
+    @canonical ||= {}
+    @canonical[slug] ||= IO.popen(["gh", "api", "repos/#{slug}", "--jq", ".full_name"], err: File::NULL, &:read).strip
+    @canonical[slug].empty? ? nil : @canonical[slug]
+  end
+
+  def dirty?(dir)
+    !IO.popen(["git", "-C", dir, "status", "--porcelain"], err: File::NULL, &:read).empty?
+  end
+
+  # Also true for a checkout with no remote at all, which keeps it safe.
+  def unpushed?(dir)
+    !IO.popen(["git", "-C", dir, "log", "--branches", "--not", "--remotes", "--format=%h"], err: File::NULL, &:read).empty?
+  end
 end
 
 def task_name(verb, target)
@@ -352,6 +461,7 @@ parser = OptionParser.new do |o|
       upgrade      Update what is installed, in place
       reinstall    Wipe the prefix and install from the package list
       rebuild      Rebuild from source
+      clean        Remove stale leftovers (duplicate source checkouts)
       list         Show which targets each command supports
 
     Targets: #{TARGETS.join(" ")}
