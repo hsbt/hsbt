@@ -437,14 +437,6 @@ def print_matrix
   end
 end
 
-def which(name)
-  ENV["PATH"].to_s.split(File::PATH_SEPARATOR).each do |dir|
-    path = File.join(dir, name)
-    return path if File.file?(path) && File.executable?(path)
-  end
-  nil
-end
-
 def report
   return if $failures.empty?
 
@@ -488,9 +480,5 @@ when *VERBS
   run verb, targets
   report
 else
-  # Fall through to the sibling dev-* commands, so `dev env push` reaches dev-env.
-  sibling = which("dev-#{verb}")
-  exec sibling, *ARGV if sibling
-
   abort "unknown command: #{verb}\n\n#{parser.help}"
 end
