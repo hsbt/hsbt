@@ -18,6 +18,7 @@ USAGE = <<~TEXT
     --stable   run only the maintained branches, from mise's x.y-dev installs
     --exec     treat the arguments as a command line rather than as Ruby
                arguments, for running rspec and friends; implies --local
+    --json     with --local, print {"version": {"output": ..., "exit": ...}} JSON
 
   Flags are read until the first non-flag argument. Use `--` when the Ruby
   arguments themselves start with a long option.
@@ -69,12 +70,13 @@ end
 
 # Same shape as the bundled all-ruby: a version column, the output beside it,
 # continuation lines under it, and a trailing `exit N` when the run failed.
-def run_local(args, stable, exec_mode)
+def run_local(args, stable, exec_mode, json)
   versions = stable ? dev_branches : installed_rubies
   abort "mise has no Ruby installed#{" for --stable" if stable}" if versions.empty?
 
   command = exec_mode ? args : ["ruby", *args]
   width = versions.map(&:size).max + 3
+  results = {}
 
   versions.each do |version|
     output = IO.popen(["mise", "exec", "ruby@#{version}", "--", *command], err: %i[child out], &:read)
@@ -84,6 +86,9 @@ def run_local(args, stable, exec_mode)
     # with a screen of warnings about extensions built for another ABI. They
     # say nothing about the command being compared. `gem pristine` is the fix.
     lines = output.split("\n").grep_v(/\AIgnoring .+ because its extensions are not built/)
+    results[version] = { "output" => lines.join("\n"), "exit" => status }
+
+    next if json
     lines << "exit #{status}" unless status.zero?
 
     if lines.empty?
@@ -93,17 +98,21 @@ def run_local(args, stable, exec_mode)
       lines.drop(1).each { |line| puts " " * width + line }
     end
   end
+
+  puts JSON.generate(results) if json
 end
 
 local = false
 stable = false
 exec_mode = false
+json = false
 
 while ARGV.first&.start_with?("-")
   case (flag = ARGV.shift)
   when "--local" then local = true
   when "--stable" then stable = true
   when "--exec" then exec_mode = local = true
+  when "--json" then json = true
   when "--" then break
   when "-h", "--help"
     puts USAGE
@@ -121,8 +130,10 @@ end
 
 abort USAGE if ARGV.empty?
 
+abort "--json requires --local" if json && !local
+
 if local
-  run_local(ARGV, stable, exec_mode)
+  run_local(ARGV, stable, exec_mode, json)
 else
   run_container(ARGV, stable)
 end
