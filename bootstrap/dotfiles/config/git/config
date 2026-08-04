@@ -126,3 +126,5 @@
 	lo = log --decorate --oneline
 	lp = log --decorate -p
 	lpf = log --decorate -p --follow
+[credential "https://git.heroku.com"]
+	helper = !heroku git:credentials
