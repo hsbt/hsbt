@@ -119,6 +119,9 @@ CARGO_HOME = ENV["CARGO_HOME"] || File.join(XDG_DATA_HOME, "cargo")
 
 GIT_GOGET_URL = "https://raw.githubusercontent.com/hsbt/git-goget/HEAD/git-goget"
 
+GOGET_JOBS = 16
+GOGET_TIMEOUT = 120
+
 TARGETS = %w[brew mise ruby npm cargo go heroku gh git-goget helix source]
 VERBS = %w[upgrade reinstall rebuild clean]
 
@@ -313,6 +316,9 @@ module Task
   # fetches and updates the sources of every installed gem. Only bare
   # host/owner/repo URLs pass the filter: GitHub Pages hosts (flori.github.com)
   # and /tree/ deep links would otherwise mint junk host directories.
+  # Thousands of repositories, so gogets run in parallel with a per-repository
+  # timeout; the env vars stop git from hanging on credential prompts or
+  # stalled transfers.
   def upgrade_source
     urls = Gem::Specification
       .flat_map { |s| [s.homepage, s.metadata["source_code_uri"]] }
@@ -321,7 +327,54 @@ module Task
       .map { |u| u.sub("://www.", "://").chomp("/") }
       .uniq.sort
 
-    urls.each { |u| sh "git goget #{Shellwords.escape(u)}" }
+    if $dry_run
+      urls.each { |u| puts "==> git goget #{Shellwords.escape(u)}" }
+      return
+    end
+
+    require "bundler/inline"
+    gemfile(true, quiet: true) do
+      source "https://rubygems.org"
+      gem "parallel"
+    end
+
+    puts "==> git goget #{urls.size} repositories (#{GOGET_JOBS} jobs, #{GOGET_TIMEOUT}s timeout each)"
+    env = {
+      "GIT_TERMINAL_PROMPT" => "0",
+      "GIT_HTTP_LOW_SPEED_LIMIT" => "1000",
+      "GIT_HTTP_LOW_SPEED_TIME" => "30",
+    }
+    mutex = Mutex.new
+
+    Parallel.each(urls, in_threads: GOGET_JOBS) do |url|
+      output, ok = run_with_timeout(env, ["git", "goget", url], GOGET_TIMEOUT)
+      mutex.synchronize do
+        puts "==> git goget #{url}"
+        puts output unless output.empty?
+        $failures << "git goget #{url}" unless ok
+      end
+    end
+  end
+
+  # Runs the command in its own process group so a timeout kills git and any
+  # helper it spawned, not just the top process.
+  def run_with_timeout(env, command, seconds)
+    r, w = IO.pipe
+    pid = Process.spawn(env, *command, in: File::NULL, out: w, err: w, pgroup: true)
+    w.close
+    reader = Thread.new { r.read }
+
+    deadline = Process.clock_gettime(Process::CLOCK_MONOTONIC) + seconds
+    until (_, status = Process.waitpid2(pid, Process::WNOHANG))
+      if Process.clock_gettime(Process::CLOCK_MONOTONIC) > deadline
+        Process.kill("KILL", -pid) rescue nil
+        Process.waitpid2(pid)
+        return ["#{reader.value.chomp}\ntimed out after #{seconds}s".lstrip, false]
+      end
+      sleep 0.2
+    end
+
+    [reader.value.chomp, status.success?]
   end
 
   # Remove checkouts that duplicate another one after a repository rename or a
