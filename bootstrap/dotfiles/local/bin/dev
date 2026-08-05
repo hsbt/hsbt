@@ -332,7 +332,11 @@ module Task
       return
     end
 
-    require "parallel"
+    require "bundler/inline"
+    gemfile(true, quiet: true) do
+      source "https://rubygems.org"
+      gem "parallel"
+    end
 
     puts "==> git goget #{urls.size} repositories (#{GOGET_JOBS} jobs, #{GOGET_TIMEOUT}s timeout each)"
     env = {
