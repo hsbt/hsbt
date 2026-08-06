@@ -167,8 +167,9 @@ module Task
   module_function
 
   def upgrade_brew
-    sh "brew upgrade"
-    sh "brew upgrade --cask"
+    # Homebrew 6 defaults to ask mode; --yes skips the confirmation prompt.
+    sh "brew upgrade --yes"
+    sh "brew upgrade --cask --yes"
     sh "brew autoremove"
     sh "brew cleanup"
   end
