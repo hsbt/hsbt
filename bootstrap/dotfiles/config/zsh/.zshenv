@@ -16,6 +16,10 @@ export BUNDLE_USER_CACHE="$XDG_CACHE_HOME/bundle"
 export BUNDLE_USER_PLUGIN="$XDG_DATA_HOME/bundle"
 export RUBOCOP_OPTS="--config $XDG_CONFIG_HOME/rubocop/config.yml"
 
+# Terraform hard-codes ~/.terraform.d for checkpoint_{cache,signature} with no
+# path override, so disable the checkpoint (version phone-home) entirely
+export CHECKPOINT_DISABLE=1
+
 export RUBY_CODESIGN=hsbt
 export RUBYOPT=-w
 export RUBY_MN_THREADS=1
