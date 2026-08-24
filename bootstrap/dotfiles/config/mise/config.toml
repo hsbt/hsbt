@@ -9,6 +9,7 @@ elasticsearch = "latest"
 elixir = "latest"
 erlang = "latest"
 gcloud = "latest"
+gh = "latest"
 go = "latest"
 java = "latest"
 mysql = "latest"
@@ -16,6 +17,7 @@ node = "latest"
 ruby = "ruby-dev"
 terraform = "latest"
 uv = "latest"
+trivy = "latest"
 
 [env]
 _.path = [
