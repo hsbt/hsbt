@@ -122,6 +122,9 @@ GIT_GOGET_URL = "https://raw.githubusercontent.com/hsbt/git-goget/HEAD/git-goget
 GOGET_JOBS = 16
 GOGET_TIMEOUT = 120
 
+# Set on the dev that upgrade_source re-executes; see Task.upgrade_source.
+SOURCE_WORKER = "DEV_SOURCE_WORKER"
+
 TARGETS = %w[brew mise ruby npm cargo go heroku gh git-goget helix source]
 VERBS = %w[upgrade reinstall rebuild clean]
 
@@ -313,6 +316,21 @@ module Task
     FileUtils.cp(from, to) unless $dry_run
   end
 
+  # `upgrade ruby` reinstalls the interpreter this process runs on, so a
+  # rubygems or bundler file first read after it comes from the new build while
+  # the copy already in memory comes from the old one. The gogets reach bundler
+  # through bundler/inline, so they run in a ruby started after the upgrade
+  # instead. That also makes the gem list they walk the upgraded one. The child
+  # honors -n itself, so it runs in either mode and sh is not used.
+  def upgrade_source
+    return goget_sources if ENV[SOURCE_WORKER]
+
+    dev = Shellwords.escape(File.expand_path(__FILE__))
+    command = "#{SOURCE_WORKER}=1 ruby #{dev} #{"-n " if $dry_run}upgrade source"
+    puts "==> #{command}"
+    $failures << command unless system(command)
+  end
+
   # git goget clones missing checkouts and pulls existing ones, so this both
   # fetches and updates the sources of every installed gem. Only bare
   # host/owner/repo URLs pass the filter: GitHub Pages hosts (flori.github.com)
@@ -320,7 +338,7 @@ module Task
   # Thousands of repositories, so gogets run in parallel with a per-repository
   # timeout; the env vars stop git from hanging on credential prompts or
   # stalled transfers.
-  def upgrade_source
+  def goget_sources
     urls = Gem::Specification
       .flat_map { |s| [s.homepage, s.metadata["source_code_uri"]] }
       .compact.reject(&:empty?)
