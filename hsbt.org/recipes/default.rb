@@ -53,6 +53,19 @@ remote_file "/etc/logrotate.d/h2o" do
   mode "644"
 end
 
+# Validate before reload so a broken drop-in cannot lock us out of SSH.
+execute "sshd -t && systemctl reload ssh" do
+  action :nothing
+end
+
+remote_file "/etc/ssh/sshd_config.d/10-hardening.conf" do
+  source "files/etc/ssh/sshd_config.d/10-hardening.conf"
+  owner "root"
+  group "root"
+  mode "644"
+  notifies :run, "execute[sshd -t && systemctl reload ssh]"
+end
+
 directory plugin_dir do
   owner "ubuntu"
   group "ubuntu"
