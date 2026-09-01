@@ -1,0 +1,22 @@
+# access-log is reopened by the h2o restart that reload triggers.
+# error-log is the supervisor's stdio and survives reload, hence copytruncate.
+/var/log/h2o/access.log {
+    weekly
+    rotate 12
+    compress
+    delaycompress
+    missingok
+    notifempty
+    postrotate
+        systemctl reload h2o > /dev/null 2>&1 || true
+    endscript
+}
+
+/var/log/h2o/error.log {
+    weekly
+    rotate 12
+    compress
+    missingok
+    notifempty
+    copytruncate
+}
