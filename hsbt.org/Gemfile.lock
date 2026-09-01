@@ -1,0 +1,78 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    ansi (1.6.0)
+    base64 (0.3.0)
+    bcrypt_pbkdf (1.1.2)
+    ed25519 (1.4.0)
+    hashie (5.1.0)
+      logger
+    hocho (0.3.8)
+      hashie
+      itamae
+      net-ssh (>= 4.1.0)
+      thor
+    itamae (1.15.0)
+      ansi
+      hashie
+      schash (~> 0.1.0)
+      specinfra (>= 2.81.0, < 3.0.0)
+      thor (>= 1.0.0)
+    kramdown (2.5.2)
+      rexml (>= 3.4.4)
+    logger (1.7.0)
+    mina (1.2.5)
+      rake
+    net-scp (4.1.0)
+      net-ssh (>= 2.6.5, < 8.0.0)
+    net-ssh (7.3.3)
+    net-telnet (0.2.0)
+    rake (13.4.2)
+    rexml (3.4.4)
+    schash (0.1.2)
+    sfl (2.3)
+    specinfra (2.95.1)
+      base64
+      net-scp
+      net-ssh (>= 2.7)
+      net-telnet
+      sfl
+    thor (1.5.0)
+
+PLATFORMS
+  arm64-darwin-27
+  ruby
+
+DEPENDENCIES
+  bcrypt_pbkdf
+  ed25519
+  hocho
+  kramdown
+  logger
+  mina
+  net-scp
+  rake
+
+CHECKSUMS
+  ansi (1.6.0) sha256=ac9ea0c0ea8d32fb4e271348e609963ac78882f34b73836c2a02b3622e666658
+  base64 (0.3.0) sha256=27337aeabad6ffae05c265c450490628ef3ebd4b67be58257393227588f5a97b
+  bcrypt_pbkdf (1.1.2) sha256=c2414c23ce66869b3eb9f643d6a3374d8322dfb5078125c82792304c10b94cf6
+  ed25519 (1.4.0) sha256=16e97f5198689a154247169f3453ef4cfd3f7a47481fde0ae33206cdfdcac506
+  hashie (5.1.0) sha256=c266471896f323c446ea8207f8ffac985d2718df0a0ba98651a3057096ca3870
+  hocho (0.3.8) sha256=680100d6f477ba5fbbcb3035187ac98b79f5e5173f89406017a4ab3f2477c729
+  itamae (1.15.0) sha256=dc0d4a980ab8be82c551172d7f71d9b391b93c38aefe667ec086cabb764ac2c4
+  kramdown (2.5.2) sha256=1ba542204c66b6f9111ff00dcc26075b95b220b07f2905d8261740c82f7f02fa
+  logger (1.7.0) sha256=196edec7cc44b66cfb40f9755ce11b392f21f7967696af15d274dde7edff0203
+  mina (1.2.5) sha256=e8c4148c8b15a5e364026e0589a2acb85225a7fac02cf8dd14d2259a4eabd42b
+  net-scp (4.1.0) sha256=a99b0b92a1e5d360b0de4ffbf2dc0c91531502d3d4f56c28b0139a7c093d1a5d
+  net-ssh (7.3.3) sha256=831def58b2c51dcef66ec00d29397d4f210de89c19fe78f95873ca30f386e86a
+  net-telnet (0.2.0) sha256=253007c0f8dc3fd66e569d53ebbce5ef6e94d6246ab9c04d73a7629b0eebd39a
+  rake (13.4.2) sha256=cb825b2bd5f1f8e91ca37bddb4b9aaf345551b4731da62949be002fa89283701
+  rexml (3.4.4) sha256=19e0a2c3425dfbf2d4fc1189747bdb2f849b6c5e74180401b15734bc97b5d142
+  schash (0.1.2) sha256=4da17d5c839f0ced08a5d8a2f306f4cccaa5f82c7b3c6e3cf17d5e5362174645
+  sfl (2.3) sha256=99739e51c33062e3964e1802a700ee9cd8d0f9c389b2a07f8a5fdf84e186a4e2
+  specinfra (2.95.1) sha256=26efb27803834bf0e4c4d434e3a671d9243e0d5a9c18dd5e84106bdae181419d
+  thor (1.5.0) sha256=e3a9e55fe857e44859ce104a84675ab6e8cd59c650a49106a05f55f136425e73
+
+BUNDLED WITH
+  4.1.0.dev

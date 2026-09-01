@@ -37,7 +37,9 @@ task :deploy do
         rss
       ]
       command "printf \"gem '%s'\\n\" #{gemfile_local_gems.join(" ")} > #{fetch(:current_path)}/Gemfile.local"
-      %w[tdiary-contrib hsbt].each do |dir|
+      # hsbt plugins are placed into shared/hsbt-plugin by mitamae
+      # (recipes/default.rb), not pulled from a git checkout here.
+      %w[tdiary-contrib].each do |dir|
         command "cd #{fetch(:shared_path)}/#{dir}; git pull --rebase"
       end
       command "ln -s /home/#{fetch(:user)}/www/tdiary.conf #{fetch(:current_path)}/tdiary.conf"
