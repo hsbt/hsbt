@@ -1,0 +1,18 @@
+[Unit]
+Description=H2O HTTP server (built from source at /usr/local)
+Documentation=https://h2o.examp1e.net
+After=network-online.target
+
+[Service]
+Type=simple
+Environment=CONFIG=/etc/h2o/h2o.conf
+ExecStart=/usr/local/bin/h2o -c ${CONFIG} -m master
+ExecReload=/bin/kill -HUP $MAINPID
+RuntimeDirectory=h2o
+ProtectSystem=full
+PrivateTmp=yes
+Restart=on-failure
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target
