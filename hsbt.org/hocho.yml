@@ -1,0 +1,52 @@
+property_providers:
+  - add_default:
+      properties:
+        preferred_driver: mitamae
+
+driver_options:
+  mitamae:
+    mitamae_path: /usr/local/bin/mitamae
+    mitamae_options: ['--log-level', 'info']
+    mitamae_prepare_script: |
+      case "$(uname -m)" in
+        x86_64)
+          mitamae_arch="x86_64"
+          ;;
+        aarch64)
+          mitamae_arch="aarch64"
+          ;;
+        *)
+          echo "machine '$(uname -m)' is not supported yet"
+          exit 1
+          ;;
+      esac
+
+      function url_exists {
+        local url="${1}"
+        curl -o /dev/null -sIfL "$url"
+      }
+
+      # Get tags in new order. The newest tag is first, the oldest tag is last.
+      tags=$(git ls-remote --refs --tags "https://github.com/itamae-kitchen/mitamae" \
+        | cut -d '/' -f 3 | sort -Vr)
+      for tag in ${tags}; do
+        url="https://github.com/itamae-kitchen/mitamae/releases/download/${tag}/mitamae-${mitamae_arch}-linux"
+        if url_exists "${url}"; then
+          # The shell redirection creates the file even when curl fails, and a
+          # truncated/empty mitamae would get installed and then silently
+          # "succeed" on every later run. Keep only a verified download.
+          if curl -fL "${url}" > "./mitamae-${mitamae_arch}-linux"; then
+            echo "mitamae '${tag}' is downloaded"
+            break
+          fi
+          rm -f "./mitamae-${mitamae_arch}-linux"
+        fi
+      done
+
+      if [ ! -s "mitamae-${mitamae_arch}-linux" ]; then
+        echo "failed to download mitamae" >&2
+        exit 1
+      fi
+      mv "mitamae-${mitamae_arch}-linux" /usr/local/bin/mitamae
+      chmod +x /usr/local/bin/mitamae
+      /usr/local/bin/mitamae version
