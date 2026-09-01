@@ -1,0 +1,14 @@
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+
+gem "rake"
+gem "kramdown"
+gem "net-scp"
+gem "mina"
+gem "logger"
+
+gem "hocho"
+# The precompiled arm64-darwin gem only bundles binaries for Ruby 2.7-3.3
+gem "bcrypt_pbkdf", force_ruby_platform: true
+gem "ed25519"
