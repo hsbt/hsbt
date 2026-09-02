@@ -5,6 +5,9 @@
 # bison is for the bundled mruby's parser.
 h2o_build = %w[build-essential cmake bison libssl-dev zlib1g-dev]
 
-(h2o_build).uniq.each do |name|
+# ruby-build via rbenv for the tDiary runtime.
+ruby_build = %w[build-essential autoconf patch libssl-dev libyaml-dev libffi-dev libgmp-dev zlib1g-dev]
+
+(h2o_build + ruby_build).uniq.each do |name|
   package name
 end
