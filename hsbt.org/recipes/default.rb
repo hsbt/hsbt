@@ -10,13 +10,8 @@ execute "systemctl daemon-reload" do
   action :nothing
 end
 
-service "h2o" do
-  action [:enable, :start]
-end
-
-service "tdiary" do
-  action [:enable, :start]
-end
+# Service resources are declared after the files they depend on so a fresh
+# machine does not try to start h2o or tdiary before they are configured.
 
 remote_file "/etc/systemd/system/h2o.service" do
   source "files/etc/systemd/system/h2o.service"
@@ -42,6 +37,13 @@ directory "/etc/h2o" do
   mode "755"
 end
 
+# h2o.service only provides /run/h2o; the log directory is ours.
+directory "/var/log/h2o" do
+  owner "root"
+  group "root"
+  mode "755"
+end
+
 remote_file "/etc/h2o/h2o.conf" do
   source "files/etc/h2o/h2o.conf"
   owner "root"
@@ -50,9 +52,25 @@ remote_file "/etc/h2o/h2o.conf" do
   notifies :restart, "service[h2o]"
 end
 
+# Document roots served by h2o. index.html and stylesheets/ are uploaded
+# by `rake deploy`; diary/ is tDiary's static output. tdiary.conf and
+# .htpasswd live in www/ too but stay out of the recipe (secrets).
+%w[
+  /home/ubuntu/www
+  /home/ubuntu/www/hsbt.org
+  /home/ubuntu/www/hsbt.org/stylesheets
+  /home/ubuntu/www/hsbt.org/diary
+  /home/ubuntu/backup
+].each do |dir|
+  directory dir do
+    owner "ubuntu"
+    group "ubuntu"
+    mode "755"
+  end
+end
+
 # mruby handler required from h2o.conf; h2o does not ship this one
-# (htpasswd.rb comes from /usr/local/share/h2o/mruby). tdiary.conf lives
-# next to it but stays out of the recipe because it holds secrets.
+# (htpasswd.rb comes from /usr/local/share/h2o/mruby).
 remote_file "/home/ubuntu/www/rewrite_rules.rb" do
   source "files/www/rewrite_rules.rb"
   owner "ubuntu"
@@ -112,4 +130,18 @@ Dir.glob("#{File.dirname(__FILE__)}/files/tdiary-plugin/*.rb").sort.each do |plu
     mode "644"
     notifies :restart, "service[tdiary]"
   end
+end
+
+# mina only runs `git pull --rebase` here, so the initial clone is ours.
+execute "git clone https://github.com/tdiary/tdiary-contrib.git /home/ubuntu/app/tdiary/shared/tdiary-contrib" do
+  user "ubuntu"
+  not_if "test -d /home/ubuntu/app/tdiary/shared/tdiary-contrib/.git"
+end
+
+service "h2o" do
+  action [:enable, :start]
+end
+
+service "tdiary" do
+  action [:enable, :start]
 end
