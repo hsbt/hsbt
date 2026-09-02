@@ -1,4 +1,5 @@
 include_recipe "packages.rb"
+include_recipe "timezone.rb"
 
 # tDiary plugins are placed here by mitamae; tdiary.conf's sp.path points
 # to this directory instead of a git checkout of this repository.
