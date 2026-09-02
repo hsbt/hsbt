@@ -2,6 +2,7 @@ include_recipe "packages.rb"
 include_recipe "timezone.rb"
 include_recipe "rustup.rb"
 include_recipe "ufw.rb"
+include_recipe "h2o-build.rb"
 
 # tDiary plugins are placed here by mitamae; tdiary.conf's sp.path points
 # to this directory instead of a git checkout of this repository.
