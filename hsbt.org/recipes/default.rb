@@ -53,6 +53,19 @@ remote_file "/etc/logrotate.d/h2o" do
   mode "644"
 end
 
+# certbot only runs executable hooks, so mode matters here.
+remote_file "/etc/letsencrypt/renewal-hooks/deploy/h2o-reload.sh" do
+  source "files/etc/letsencrypt/renewal-hooks/deploy/h2o-reload.sh"
+  owner "root"
+  group "root"
+  mode "755"
+end
+
+# Superseded by the deploy hook above; it was never executable anyway.
+file "/etc/letsencrypt/renewal-hooks/post/ocsp.sh" do
+  action :delete
+end
+
 # Validate before reload so a broken drop-in cannot lock us out of SSH.
 execute "sshd -t && systemctl reload ssh" do
   action :nothing
