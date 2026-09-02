@@ -13,6 +13,9 @@ ruby_build = %w[build-essential autoconf patch libssl-dev libyaml-dev libffi-dev
 # libidn12 at runtime (autoremove must not take it).
 tdiary_runtime = %w[spawn-fcgi libfcgi-dev libidn-dev libidn12]
 
-(h2o_build + ruby_build + tdiary_runtime).uniq.each do |name|
+# certbot renews the TLS certificate; s3cmd is for backups.
+site_ops = %w[certbot s3cmd]
+
+(h2o_build + ruby_build + tdiary_runtime + site_ops).uniq.each do |name|
   package name
 end
