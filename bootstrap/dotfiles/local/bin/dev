@@ -220,10 +220,18 @@ module Task
     ALT_RUBIES.each do |pf|
       installed.grep(Regexp.new(pf)).each { |v| sh "mise uninstall ruby@#{v}" }
       d = defs.grep(Regexp.new("^#{pf}")).last
-      sh "mise i ruby@#{d}" if d
-    end
+      next unless d
 
-    sh "MISE_RUBY_VERSION=jruby gem uninstall jruby-launcher"
+      if pf == "jruby"
+        # ruby-build runs jruby's gem to add jruby-launcher. With the shared
+        # GEM_HOME visible, that gem loads CRuby extensions and dies. mise hides
+        # the java shim during installs, so the JVM comes from JAVA_HOME.
+        sh "mise i ruby@#{d}", "GEM_HOME" => nil, "JAVA_HOME" => `mise where java`.strip
+        sh "mise x ruby@#{d} -- gem uninstall jruby-launcher", "GEM_HOME" => nil
+      else
+        sh "mise i ruby@#{d}"
+      end
+    end
   end
 
   # The build puts the bundled gems into the interpreter's own gem dir. The
