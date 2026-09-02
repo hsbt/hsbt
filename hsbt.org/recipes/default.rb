@@ -46,16 +46,19 @@ remote_file "/etc/h2o/h2o.conf" do
   notifies :restart, "service[h2o]"
 end
 
-# mruby handlers required from h2o.conf. tdiary.conf lives next to them
-# but stays out of the recipe because it holds secrets.
-%w[htpasswd.rb rewrite_rules.rb].each do |handler|
-  remote_file "/home/ubuntu/www/#{handler}" do
-    source "files/www/#{handler}"
-    owner "ubuntu"
-    group "ubuntu"
-    mode "644"
-    notifies :reload, "service[h2o]"
-  end
+# mruby handler required from h2o.conf; h2o does not ship this one
+# (htpasswd.rb comes from /usr/local/share/h2o/mruby). tdiary.conf lives
+# next to it but stays out of the recipe because it holds secrets.
+remote_file "/home/ubuntu/www/rewrite_rules.rb" do
+  source "files/www/rewrite_rules.rb"
+  owner "ubuntu"
+  group "ubuntu"
+  mode "644"
+  notifies :reload, "service[h2o]"
+end
+
+file "/home/ubuntu/www/htpasswd.rb" do
+  action :delete
 end
 
 remote_file "/etc/logrotate.d/h2o" do
