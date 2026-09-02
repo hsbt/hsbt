@@ -181,23 +181,23 @@ module Task
     sh "mise upgrade"
   end
 
+  # An activated shell already has ruby-dev first on PATH, so a bare gem never
+  # follows `mise use`. Every gem call names its ruby through `mise x` instead.
   def upgrade_ruby
     sh "mise uninstall ruby@ruby-dev"
-    sh "mise use -g ruby@ruby-dev"
-    # Without GEM_HOME this hits the gem dir embedded in the ruby-dev install.
-    sh "gem list --no-versions | xargs gem uninstall --force", "GEM_HOME" => nil
+    sh "MISE_RUBY_VERSION=#{RUBY_DEV_VERSIONS.last}-dev mise i ruby@ruby-dev"
+    uninstall_own_gems "ruby-dev"
 
-    sh "mise use -g ruby@#{RUBY_DEV_VERSIONS.last}-dev"
-    sh "gem update"
-    sh "gem uninstall #{SHADOWING_GEMS.join(" ")} --force --executables"
+    latest = "#{RUBY_DEV_VERSIONS.last}-dev"
+    sh "mise x ruby@#{latest} -- gem update"
+    sh "mise x ruby@#{latest} -- gem uninstall #{SHADOWING_GEMS.join(" ")} --force --executables"
 
     (RUBY_DEV_VERSIONS + %w[ruby]).each do |v|
-      sh "mise use -g ruby@#{v}-dev"
-      sh "gem repair"
+      sh "mise x ruby@#{v}-dev -- gem repair"
     end
 
-    sh "curl -s https://stdgems.org/bundled_gems.json | jq -r '.gems[].gem' | xargs -n1 gem install"
-    sh "gem sweep"
+    sh "curl -s https://stdgems.org/bundled_gems.json | jq -r '.gems[].gem' | xargs -n1 mise x ruby@ruby-dev -- gem install"
+    sh "mise x ruby@ruby-dev -- gem sweep"
 
     sh "cd #{goget("github.com/ruby/ruby")} && ruby tool/sync_default_gems.rb up"
   end
