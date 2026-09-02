@@ -16,6 +16,9 @@ tdiary_runtime = %w[spawn-fcgi libfcgi-dev libidn-dev libidn12]
 # certbot renews the TLS certificate; s3cmd is for backups.
 site_ops = %w[certbot s3cmd]
 
-(h2o_build + ruby_build + tdiary_runtime + site_ops).uniq.each do |name|
+# Interactive tools for when someone is logged in.
+cli_tools = %w[git curl vim ripgrep]
+
+(h2o_build + ruby_build + tdiary_runtime + site_ops + cli_tools).uniq.each do |name|
   package name
 end
