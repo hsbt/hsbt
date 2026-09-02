@@ -208,11 +208,13 @@ module Task
     RUBY_DEV_VERSIONS.each do |v|
       sh "mise uninstall ruby@#{v}-dev"
       sh "mise i ruby@#{v}-dev"
+      uninstall_own_gems "#{v}-dev"
       link_stable_rubies(v, defs)
     end
 
     sh "mise uninstall ruby@ruby-dev"
     sh "MISE_RUBY_VERSION=#{RUBY_DEV_VERSIONS.last}-dev mise i ruby@ruby-dev"
+    uninstall_own_gems "ruby-dev"
 
     installed = JSON.parse(`mise ls ruby -J`).map { |r| r["version"] }
     ALT_RUBIES.each do |pf|
@@ -222,6 +224,12 @@ module Task
     end
 
     sh "MISE_RUBY_VERSION=jruby gem uninstall jruby-launcher"
+  end
+
+  # The build puts the bundled gems into the interpreter's own gem dir. The
+  # copies in the shared GEM_HOME are the ones in use.
+  def uninstall_own_gems(version)
+    sh "mise x ruby@#{version} -- gem uninstall --all --force --executables", "GEM_HOME" => nil
   end
 
   # Point every released x.y.z at the x.y-dev build so any of them resolves to it.
