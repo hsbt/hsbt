@@ -32,7 +32,10 @@ export NODE_REPL_HISTORY="$XDG_DATA_HOME/node_repl_history"
 export _ZO_DATA_DIR="$XDG_DATA_HOME/zoxide"
 export TEALDEER_CONFIG_DIR="$XDG_CONFIG_HOME/tealdeer"
 export CSEARCHINDEX="$XDG_CACHE_HOME/csearchindex"
-export TERMINFO="$XDG_DATA_HOME/terminfo"
+# Ghostty keeps xterm-ghostty inside its own bundle and points TERMINFO there.
+# Overwriting it left the non-interactive login shell that starts tmux without
+# an entry for its own terminal, so only fall back to the XDG database.
+export TERMINFO="${TERMINFO:-$XDG_DATA_HOME/terminfo}"
 export TERMINFO_DIRS="$XDG_DATA_HOME/terminfo:/usr/share/terminfo"
 export AZURE_CONFIG_DIR="$XDG_CONFIG_HOME/azure"
 export CONDARC="$XDG_CONFIG_HOME/conda/condarc"
