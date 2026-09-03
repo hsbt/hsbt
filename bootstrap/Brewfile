@@ -49,7 +49,6 @@ brew "bazel"
 brew "llvm"
 brew "clang-format"
 brew "parallel"
-brew "jq"
 brew "xmlstarlet"
 brew "ffmpeg" # for ripgrep_all
 brew "ttyd"
