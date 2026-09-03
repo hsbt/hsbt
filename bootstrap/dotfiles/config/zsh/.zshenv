@@ -11,6 +11,7 @@ export IRBRC="$XDG_CONFIG_HOME/irb/irbrc"
 export GEMRC="$XDG_CONFIG_HOME/gem/gemrc"
 export GEM_HOME="$XDG_DATA_HOME/gem"
 export GEM_SPEC_CACHE="$XDG_CACHE_HOME/gem"
+export GEM_REPAIR_RUBIES=3.3-dev,3.4-dev,4.0-dev,ruby-dev
 export BUNDLE_USER_CONFIG="$XDG_CONFIG_HOME/bundle"
 export BUNDLE_USER_CACHE="$XDG_CACHE_HOME/bundle"
 export BUNDLE_USER_PLUGIN="$XDG_DATA_HOME/bundle"

@@ -80,7 +80,6 @@ export GIT_GOGET_ROOT="$HOME/Documents"
 export SKIM_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 export HELIX_RUNTIME="$GIT_GOGET_ROOT/github.com/helix-editor/helix/runtime"
 export EDITOR=hx
-export GEM_REPAIR_RUBIES=3.3-dev,3.4-dev,4.0-dev,ruby-dev
 
 # Use portable Ruby instead of System Ruby by macOS
 export PATH="/opt/homebrew/Library/Homebrew/vendor/portable-ruby/current/bin:$PATH"
