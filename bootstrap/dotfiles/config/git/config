@@ -128,3 +128,5 @@
 	lpf = log --decorate -p --follow
 [credential "https://git.heroku.com"]
 	helper = !heroku git:credentials
+[wt]
+	basedir = .claude/worktrees
