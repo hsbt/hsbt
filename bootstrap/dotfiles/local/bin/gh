@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# Claude Desktop finds gh only in fixed directories such as ~/.local/bin and
+# starts it without ZDOTDIR, so neither mise activate nor the XDG_DATA_HOME
+# that the mise config expands is there. Resolve from $HOME because mise
+# refuses to run under an untrusted mise.toml in the current directory.
+data=${XDG_DATA_HOME:-$HOME/.local/share}
+mise=$(command -v mise) || mise="$data/cargo/bin/mise"
+gh=$(XDG_DATA_HOME="$data" "$mise" -C "$HOME" which gh) || exit
+exec "$gh" "$@"
