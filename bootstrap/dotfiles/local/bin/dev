@@ -197,7 +197,7 @@ module Task
     end
 
     sh "curl -s https://stdgems.org/bundled_gems.json | jq -r '.gems[].gem' | xargs -n1 mise x ruby@ruby-dev -- gem install"
-    sh "mise x ruby@ruby-dev -- gem sweep"
+    sh "mise x ruby@ruby-dev -- gem repair"
 
     sh "cd #{goget("github.com/ruby/ruby")} && ruby tool/sync_default_gems.rb up"
   end
