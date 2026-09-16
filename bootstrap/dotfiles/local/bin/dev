@@ -191,12 +191,13 @@ module Task
     sh "MISE_RUBY_VERSION=#{RUBY_DEV_VERSIONS.last}-dev mise i ruby@ruby-dev"
     uninstall_own_gems "ruby-dev"
 
-    latest = "#{RUBY_DEV_VERSIONS.last}-dev"
-    sh "mise x ruby@#{latest} -- gem update"
-    sh "mise x ruby@#{latest} -- gem uninstall #{SHADOWING_GEMS.join(" ")} --force --executables"
+    # ruby-dev was just built from master. Updating on an older build installs
+    # released copies of the default gems it has fallen behind on, and those
+    # shadow the default gems of every ruby.
+    sh "mise x ruby@ruby-dev -- gem update"
+    sh "mise x ruby@ruby-dev -- gem uninstall #{SHADOWING_GEMS.join(" ")} --force --executables"
     # A gem whose extensions no longer build against master warns on every later
-    # gem call, so drop it instead of carrying it along. The 4.0 build still
-    # compiles them, so ruby-dev is the one that has to run this.
+    # gem call, so drop it instead of carrying it along.
     sh "mise x ruby@ruby-dev -- gem repair --prune"
 
     (RUBY_DEV_VERSIONS + %w[ruby]).each do |v|
