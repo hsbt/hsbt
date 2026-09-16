@@ -194,9 +194,10 @@ module Task
     latest = "#{RUBY_DEV_VERSIONS.last}-dev"
     sh "mise x ruby@#{latest} -- gem update"
     sh "mise x ruby@#{latest} -- gem uninstall #{SHADOWING_GEMS.join(" ")} --force --executables"
-    # A gem whose extensions no longer build against the dev ruby warns on every
-    # later gem call, so drop it instead of carrying it along.
-    sh "mise x ruby@#{latest} -- gem repair --prune"
+    # A gem whose extensions no longer build against master warns on every later
+    # gem call, so drop it instead of carrying it along. The 4.0 build still
+    # compiles them, so ruby-dev is the one that has to run this.
+    sh "mise x ruby@ruby-dev -- gem repair --prune"
 
     (RUBY_DEV_VERSIONS + %w[ruby]).each do |v|
       sh "mise x ruby@#{v}-dev -- gem repair"
