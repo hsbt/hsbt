@@ -200,10 +200,6 @@ module Task
     # gem call, so drop it instead of carrying it along.
     sh "mise x ruby@ruby-dev -- gem repair --prune"
 
-    (RUBY_DEV_VERSIONS + %w[ruby]).each do |v|
-      sh "mise x ruby@#{v}-dev -- gem repair"
-    end
-
     skip = SKIP_BUNDLED_GEMS.map { |g| "-e #{g}" }.join(" ")
     sh "curl -s https://stdgems.org/bundled_gems.json | jq -r '.gems[].gem' | grep -vxF #{skip} | xargs -n1 mise x ruby@ruby-dev -- gem install"
     sh "mise x ruby@ruby-dev -- gem repair"
@@ -224,6 +220,12 @@ module Task
     sh "mise uninstall ruby@ruby-dev"
     sh "MISE_RUBY_VERSION=#{RUBY_DEV_VERSIONS.last}-dev mise i ruby@ruby-dev"
     uninstall_own_gems "ruby-dev"
+
+    # The install hook fans out to the other rubies, so only a ruby that was
+    # not there for those installs needs the whole GEM_HOME built for it.
+    (RUBY_DEV_VERSIONS + %w[ruby]).each do |v|
+      sh "mise x ruby@#{v}-dev -- gem repair"
+    end
 
     installed = JSON.parse(`mise ls ruby -J`).map { |r| r["version"] }
     ALT_RUBIES.each do |pf|
