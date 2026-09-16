@@ -14,6 +14,9 @@ ALT_RUBIES = %w[jruby truffleruby.graalvm truffleruby-]
 # Installed copies of these shadow the default gems of the dev rubies.
 SHADOWING_GEMS = %w[openssl psych zlib digest strscan stringio pathname etc date]
 
+# Bundled gems whose extensions cannot build on this platform.
+SKIP_BUNDLED_GEMS = %w[win32ole]
+
 PACKAGES = {
   "npm" => %w[
     typescript
@@ -199,7 +202,8 @@ module Task
       sh "mise x ruby@#{v}-dev -- gem repair"
     end
 
-    sh "curl -s https://stdgems.org/bundled_gems.json | jq -r '.gems[].gem' | xargs -n1 mise x ruby@ruby-dev -- gem install"
+    skip = SKIP_BUNDLED_GEMS.map { |g| "-e #{g}" }.join(" ")
+    sh "curl -s https://stdgems.org/bundled_gems.json | jq -r '.gems[].gem' | grep -vxF #{skip} | xargs -n1 mise x ruby@ruby-dev -- gem install"
     sh "mise x ruby@ruby-dev -- gem repair"
 
     sh "cd #{goget("github.com/ruby/ruby")} && ruby tool/sync_default_gems.rb up"
