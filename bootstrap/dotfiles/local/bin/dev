@@ -11,8 +11,10 @@ VERSION = "1.0.0"
 RUBY_DEV_VERSIONS = %w[3.3 3.4 4.0]
 ALT_RUBIES = %w[jruby truffleruby.graalvm truffleruby-]
 
-# Installed copies of these shadow the default gems of the dev rubies.
-SHADOWING_GEMS = %w[openssl psych zlib digest strscan stringio pathname etc date]
+# Ruby 4.0 registers no requirable path for these default gems, so require
+# loads the stdlib copy without activating anything and a dependency can load
+# the extension a second time afterwards.
+DOUBLE_LOADED_GEMS = %w[strscan]
 
 # Bundled gems whose extensions cannot build on this platform.
 SKIP_BUNDLED_GEMS = %w[win32ole]
@@ -191,11 +193,10 @@ module Task
     sh "MISE_RUBY_VERSION=#{RUBY_DEV_VERSIONS.last}-dev mise i ruby@ruby-dev"
     uninstall_own_gems "ruby-dev"
 
-    # ruby-dev was just built from master. Updating on an older build installs
-    # released copies of the default gems it has fallen behind on, and those
-    # shadow the default gems of every ruby.
+    # ruby-dev was just built from master, so its default gems are the newest
+    # ones and gem update has almost nothing to replace them with.
     sh "mise x ruby@ruby-dev -- gem update"
-    sh "mise x ruby@ruby-dev -- gem uninstall #{SHADOWING_GEMS.join(" ")} --force --executables"
+    sh "mise x ruby@ruby-dev -- gem uninstall #{DOUBLE_LOADED_GEMS.join(" ")} --force --executables"
     # A gem whose extensions no longer build against master warns on every later
     # gem call, so drop it instead of carrying it along.
     sh "mise x ruby@ruby-dev -- gem repair --prune"
