@@ -196,13 +196,14 @@ module Task
     # ruby-dev was just built from master, so its default gems are the newest
     # ones and gem update has almost nothing to replace them with.
     sh "mise x ruby@ruby-dev -- gem update"
-    sh "mise x ruby@ruby-dev -- gem uninstall #{DOUBLE_LOADED_GEMS.join(" ")} --force --executables"
     # A gem whose extensions no longer build against master warns on every later
     # gem call, so drop it instead of carrying it along.
     sh "mise x ruby@ruby-dev -- gem repair --prune"
 
     skip = SKIP_BUNDLED_GEMS.map { |g| "-e #{g}" }.join(" ")
     sh "curl -s https://stdgems.org/bundled_gems.json | jq -r '.gems[].gem' | grep -vxF #{skip} | xargs -n1 mise x ruby@ruby-dev -- gem install"
+    # net-imap and rexml depend on strscan, so the restore brings the copy back.
+    sh "mise x ruby@ruby-dev -- gem uninstall #{DOUBLE_LOADED_GEMS.join(" ")} --force --executables"
     sh "mise x ruby@ruby-dev -- gem repair"
 
     sh "cd #{goget("github.com/ruby/ruby")} && ruby tool/sync_default_gems.rb up"
