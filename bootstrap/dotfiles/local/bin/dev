@@ -190,7 +190,7 @@ module Task
   # follows `mise use`. Every gem call names its ruby through `mise x` instead.
   def upgrade_ruby
     sh "mise uninstall ruby@ruby-dev"
-    sh "MISE_RUBY_VERSION=#{RUBY_DEV_VERSIONS.last}-dev mise i ruby@ruby-dev"
+    install_ruby_dev
     uninstall_own_gems "ruby-dev"
 
     # ruby-dev was just built from master, so its default gems are the newest
@@ -220,7 +220,7 @@ module Task
     end
 
     sh "mise uninstall ruby@ruby-dev"
-    sh "MISE_RUBY_VERSION=#{RUBY_DEV_VERSIONS.last}-dev mise i ruby@ruby-dev"
+    install_ruby_dev
     uninstall_own_gems "ruby-dev"
 
     # The install hook fans out to the other rubies, so only a ruby that was
@@ -245,6 +245,16 @@ module Task
         sh "mise i ruby@#{d}"
       end
     end
+  end
+
+  # Left to search PATH, configure picks the mise shim as baseruby, and the shim
+  # starts an auto install of the ruby-dev being built, which then waits on the
+  # install lock the outer install already holds.
+  def install_ruby_dev
+    root = File.join(XDG_DATA_HOME, "mise", "installs", "ruby")
+    baseruby = File.join(root, "#{RUBY_DEV_VERSIONS.last}-dev", "bin", "ruby")
+
+    sh "RUBY_CONFIGURE_OPTS='--with-baseruby=#{baseruby}' mise i ruby@ruby-dev"
   end
 
   # The build puts the bundled gems into the interpreter's own gem dir. The
