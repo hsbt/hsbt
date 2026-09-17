@@ -118,9 +118,10 @@ CARGO_HOME = ENV["CARGO_HOME"] || File.join(XDG_DATA_HOME, "cargo")
 GIT_GOGET_URL = "https://raw.githubusercontent.com/hsbt/git-goget/HEAD/git-goget"
 
 GOGET_JOBS = 16
-# git goget answers with this when a repository cannot be reached at all, which a
-# gem homepage pointing at a deleted repository does and nothing here can mend.
-GOGET_SKIPPED = 3
+# git goget answers with these when it declines a repository rather than failing on
+# it. 3 means the repository cannot be reached at all, which a gem homepage pointing
+# at a deleted one does. 4 means the checkout holds work that is not on a remote.
+GOGET_SKIPPED = [3, 4].freeze
 GOGET_TIMEOUT = 120
 
 # Set on the dev that upgrade_source re-executes; see Task.upgrade_source.
@@ -412,7 +413,7 @@ module Task
       mutex.synchronize do
         puts "==> git goget #{url}"
         puts output unless output.empty?
-        $failures << "git goget #{url}" unless [0, GOGET_SKIPPED].include?(code)
+        $failures << "git goget #{url}" unless code == 0 || GOGET_SKIPPED.include?(code)
       end
     end
   end
