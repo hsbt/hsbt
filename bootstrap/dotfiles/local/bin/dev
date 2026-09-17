@@ -60,6 +60,8 @@ PACKAGES = {
     dns-doge
     zizmor
   ],
+  # A module keeps its major versions past v1 at a /vN path, so an entry without one
+  # resolves @latest to the last v1 release however far ahead the project has moved.
   "go" => %w[
     github.com/Gelio/go-global-update@latest
     github.com/go-delve/delve/cmd/dlv@latest
@@ -70,7 +72,7 @@ PACKAGES = {
     github.com/google/codesearch/cmd/csearch@latest
     github.com/google/codesearch/cmd/cindex@latest
     github.com/google/codesearch/cmd/cgrep@latest
-    github.com/google/osv-scanner/cmd/osv-scanner@v1
+    github.com/google/osv-scanner/v2/cmd/osv-scanner@latest
     github.com/google/yamlfmt/cmd/yamlfmt@latest
     github.com/mikefarah/yq/v4@latest
     github.com/antonmedv/fx@latest
@@ -82,7 +84,7 @@ PACKAGES = {
     github.com/traefik/yaegi/cmd/yaegi@latest
     github.com/mindersec/minder/cmd/cli@latest
     github.com/bomctl/bomctl@latest
-    github.com/ossf/scorecard@latest
+    github.com/ossf/scorecard/v5@latest
     github.com/openvex/vexctl@latest
     github.com/google/go-containerregistry/cmd/crane@latest
     github.com/devops-kung-fu/bomber@latest
