@@ -304,7 +304,9 @@ module Task
 
   def upgrade_cargo
     sh "rustup update"
-    sh "cargo install-update -a"
+    # install-update resolves dependencies afresh and can pick up a semver-compatible
+    # version that no longer builds, so it installs from the embedded lock as reinstall does.
+    sh "cargo install-update --locked -a"
   end
 
   def reinstall_cargo
