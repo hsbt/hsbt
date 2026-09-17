@@ -92,7 +92,6 @@ PACKAGES = {
     github.com/google/oss-rebuild/cmd/oss-rebuild@latest
     github.com/k1LoW/git-wt@latest
     github.com/k1LoW/deck/cmd/deck@latest
-    github.com/DNSControl/dnscontrol/v4@latest
     github.com/mr-karan/doggo/cmd/doggo@latest
     github.com/cpuguy83/go-md2man/v2@latest
     github.com/golangci/golangci-lint/v2/cmd/golangci-lint@latest
