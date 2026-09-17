@@ -85,6 +85,15 @@ brew "skopeo"
 brew "azure-cli"
 brew "dua-cli"
 brew "dnscontrol"
+brew "git-filter-repo"
+brew "groonga"
+brew "highlight"
+brew "libfyaml"
+brew "liblqr"
+brew "oniguruma"
+brew "open-mpi"
+brew "pgvector"
+brew "unbound"
 tap "deskflow/tap"
 cask "deskflow"
 cask "abyssoft-teleport"
@@ -124,3 +133,4 @@ mas "iMovie", id: 408981434
 mas "Keynote", id: 361285480
 mas "1Password for Safari", id: 1569813296
 mas "Amazon Kindle", id: 302584613
+mas "AdGuard for Safari", id: 1440147259
