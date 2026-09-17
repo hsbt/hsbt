@@ -370,6 +370,10 @@ module Task
   # fetches and updates the sources of every installed gem. Only bare
   # host/owner/repo URLs pass the filter: GitHub Pages hosts (flori.github.com)
   # and /tree/ deep links would otherwise mint junk host directories.
+  # Normalizing ahead of the filter collapses the spellings that name one
+  # checkout: goget strips a .git suffix itself, so bar and bar.git sort next
+  # to each other and two threads pull the same directory at once, while a
+  # #readme fragment survives into the directory name and never clones.
   # Thousands of repositories, so gogets run in parallel with a per-repository
   # timeout; the env vars stop git from hanging on credential prompts or
   # stalled transfers.
@@ -377,8 +381,8 @@ module Task
     urls = Gem::Specification
       .flat_map { |s| [s.homepage, s.metadata["source_code_uri"]] }
       .compact.reject(&:empty?)
-      .select { |u| u.match?(%r{\Ahttps?://(www\.)?(github|gitlab)\.com/[^/]+/[^/]+/?\z}) }
-      .map { |u| u.sub("://www.", "://").chomp("/") }
+      .map { |u| u.sub(/[#?].*\z/, "").sub("://www.", "://").sub(%r{\Ahttp://}, "https://").chomp("/").sub(/\.git\z/, "") }
+      .select { |u| u.match?(%r{\Ahttps://(github|gitlab)\.com/[^/]+/[^/]+\z}) }
       .uniq.sort
 
     if $dry_run
