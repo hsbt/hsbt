@@ -58,6 +58,9 @@
 	prune = true
 	parallel = 8
 
+[fetch "fsck"]
+	zeroPaddedFilemode = ignore
+
 [submodule]
 	fetchJobs = 8
 
