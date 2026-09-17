@@ -351,8 +351,23 @@ module Task
     upgrade_git_goget
   end
 
+  # cargo install rebuilds a path install whatever revision it sits at, and that
+  # is a minute every run, so the build waits for the pull to move the checkout.
+  def upgrade_helix
+    dir = goget("github.com/helix-editor/helix")
+    before = head_of(dir)
+    sh "cd #{dir} && git pull"
+    return if !$dry_run && head_of(dir) == before && File.exist?(File.join(CARGO_HOME, "bin", "hx"))
+
+    sh "cd #{dir} && cargo install --locked --path helix-term"
+  end
+
   def reinstall_helix
-    sh "cd #{goget("github.com/helix-editor/helix")} && git pull && cargo install --locked --path helix-term"
+    upgrade_helix
+  end
+
+  def head_of(dir)
+    `git -C #{Shellwords.escape(dir)} rev-parse HEAD 2>/dev/null`.strip
   end
 
   # `upgrade ruby` reinstalls the interpreter this process runs on, so a
