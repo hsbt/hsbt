@@ -89,7 +89,7 @@ PACKAGES = {
     github.com/devops-kung-fu/bomber@latest
     github.com/anchore/syft/cmd/syft@latest
     github.com/sinclairtarget/git-who@latest
-    github.com/peak/s5cmd/v2@master
+    github.com/peak/s5cmd/v2@latest
     github.com/google/oss-rebuild/cmd/oss-rebuild@latest
     github.com/k1LoW/git-wt@latest
     github.com/k1LoW/deck/cmd/deck@latest
