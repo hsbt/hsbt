@@ -20,13 +20,15 @@ DOUBLE_LOADED_GEMS = %w[strscan]
 SKIP_BUNDLED_GEMS = %w[win32ole]
 
 PACKAGES = {
+  # corepack is no longer bundled with node and owns the pnpm and yarn shims,
+  # so a yarn of its own cannot be installed beside it.
   "npm" => %w[
-    typescript
-    babel-cli
-    eslint
-    yarn
+    corepack
+    textlint
+    textlint-rule-preset-ja-technical-writing
+    @mermaid-js/mermaid-cli
     @cyclonedx/cdxgen
-    heroku@10.1.0
+    heroku
   ],
   "cargo" => %w[
     cargo-update
