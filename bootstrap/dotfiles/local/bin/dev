@@ -61,7 +61,6 @@ PACKAGES = {
     pik
     diffutils
     dns-doge
-    zellij
     zizmor
   ],
   "go" => %w[
