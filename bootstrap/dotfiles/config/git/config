@@ -20,21 +20,7 @@
 	insteadOf = https://github.com/
 
 [diff]
-	external = difft
-	tool = difftastic
 	algorithm = histogram
-
-[difftool "difftastic"]
-	cmd = difft "$MERGED" "$LOCAL" "abcdef1" "100644" "$REMOTE" "abcdef2" "100644"
-
-[difftool]
-	prompt = false
-
-[pager]
-	difftool = true
-
-[interactive]
-	diffFilter = difft --color
 
 [log]
 	date = iso

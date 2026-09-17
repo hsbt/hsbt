@@ -44,7 +44,6 @@ PACKAGES = {
     procs
     sd
     ripgrep_all
-    difftastic
     xh
     spacer
     skim
