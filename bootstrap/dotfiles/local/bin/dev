@@ -61,7 +61,6 @@ PACKAGES = {
     pik
     diffutils
     dns-doge
-    git-delta
     zellij
     zizmor
   ],
