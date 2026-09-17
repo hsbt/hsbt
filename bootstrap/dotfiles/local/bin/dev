@@ -59,6 +59,13 @@ PACKAGES = {
     starship
     atuin
     pik
+    diffutils
+    dns-doge
+    git-delta
+    heatseeker
+    jj-cli
+    zellij
+    zizmor
   ],
   "go" => %w[
     github.com/Gelio/go-global-update@latest
