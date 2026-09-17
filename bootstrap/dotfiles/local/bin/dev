@@ -81,7 +81,6 @@ PACKAGES = {
     github.com/charmbracelet/vhs@latest
     golang.org/x/vuln/cmd/govulncheck@latest
     github.com/traefik/yaegi/cmd/yaegi@latest
-    github.com/mindersec/minder/cmd/cli@latest
     github.com/bomctl/bomctl@latest
     github.com/ossf/scorecard/v5@latest
     github.com/openvex/vexctl@latest
