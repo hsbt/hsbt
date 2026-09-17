@@ -54,7 +54,6 @@ PACKAGES = {
     tokei
     mise
     hk
-    wrkflw
     starship
     atuin
     pik
