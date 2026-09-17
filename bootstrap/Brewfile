@@ -64,7 +64,7 @@ brew "hyperfine"
 brew "watchman"
 brew "xdelta"
 brew "fdupes"
-brew "postgresql@17"
+brew "postgresql@18", link: true
 brew "valkey"
 brew "imagemagick"
 brew "graphviz"
@@ -114,6 +114,6 @@ brew "mas"
 mas "Windows App", id: 1295203466
 mas "Slack", id: 803453959
 mas "iMovie", id: 408981434
-mas "Keynote", id: 409183694
+mas "Keynote", id: 361285480
 mas "1Password for Safari", id: 1569813296
 mas "Amazon Kindle", id: 302584613
