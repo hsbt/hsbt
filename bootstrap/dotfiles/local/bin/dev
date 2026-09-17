@@ -304,14 +304,18 @@ module Task
     sh "cargo install-update --locked -- #{PACKAGES["cargo"].join(" ")}"
   end
 
+  # rustup keeps itself, its proxies and config.toml in CARGO_HOME, so only the
+  # crates go, one by one, and never the directory. What was built from a checkout
+  # belongs to the target that built it and is left alone. Uninstalling is for what
+  # fell off the list, because --force builds before it replaces and taking mise
+  # out first would leave the shims that stand ahead of everything on PATH calling
+  # a binary that is not there until its turn comes around again.
   def reinstall_cargo
-    # rustup keeps itself, its proxies and config.toml in CARGO_HOME, so the crates
-    # are uninstalled one by one instead of along with the directory. What was built
-    # from a checkout belongs to the target that built it and is left alone.
     installed = JSON.parse(File.read(File.join(CARGO_HOME, ".crates2.json")))["installs"]
                     .keys.grep(/\(registry/).map { |k| k.split(" ").first }
-    sh "cargo uninstall #{installed.join(" ")}" unless installed.empty?
-    PACKAGES["cargo"].each { |pkg| sh "cargo install --locked #{pkg}" }
+    stale = installed - PACKAGES["cargo"]
+    sh "cargo uninstall #{stale.join(" ")}" unless stale.empty?
+    PACKAGES["cargo"].each { |pkg| sh "cargo install --locked --force #{pkg}" }
   end
 
   def upgrade_go
