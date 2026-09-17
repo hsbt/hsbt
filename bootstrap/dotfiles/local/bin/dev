@@ -112,7 +112,6 @@ PACKAGES = {
     @heroku-cli/plugin-data-maintenance
   ],
   "gh" => %w[
-    github/gh-copilot
     advanced-security/gh-sbom
     mislav/gh-cp
     github/gh-actions-importer
