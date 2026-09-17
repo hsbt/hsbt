@@ -327,8 +327,10 @@ module Task
 
   def reinstall_cargo
     # rustup keeps itself, its proxies and config.toml in CARGO_HOME, so the crates
-    # are uninstalled one by one instead of along with the directory.
-    installed = `cargo install --list`.scan(/^(\S+) v/).flatten
+    # are uninstalled one by one instead of along with the directory. What was built
+    # from a checkout belongs to the target that built it and is left alone.
+    installed = JSON.parse(File.read(File.join(CARGO_HOME, ".crates2.json")))["installs"]
+                    .keys.grep(/\(registry/).map { |k| k.split(" ").first }
     sh "cargo uninstall #{installed.join(" ")}" unless installed.empty?
     PACKAGES["cargo"].each { |pkg| sh "cargo install --locked #{pkg}" }
   end
