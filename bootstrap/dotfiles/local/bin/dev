@@ -326,7 +326,10 @@ module Task
   end
 
   def reinstall_cargo
-    wipe CARGO_HOME
+    # rustup keeps itself, its proxies and config.toml in CARGO_HOME, so the crates
+    # are uninstalled one by one instead of along with the directory.
+    installed = `cargo install --list`.scan(/^(\S+) v/).flatten
+    sh "cargo uninstall #{installed.join(" ")}" unless installed.empty?
     PACKAGES["cargo"].each { |pkg| sh "cargo install --locked #{pkg}" }
   end
 
