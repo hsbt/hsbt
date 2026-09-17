@@ -113,9 +113,6 @@ PACKAGES = {
   ],
   "gh" => %w[
     advanced-security/gh-sbom
-    mislav/gh-cp
-    github/gh-actions-importer
-    github/gh-skyline
     github/gh-stack
     hsbt/gh-actions-updater
     hsbt/gh-coauthor
