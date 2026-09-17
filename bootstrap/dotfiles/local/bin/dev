@@ -374,11 +374,6 @@ module Task
 
   def reinstall_helix
     sh "cd #{goget("github.com/helix-editor/helix")} && git pull && cargo install --locked --path helix-term"
-
-    from = File.join(CARGO_HOME, "bin", "hx")
-    to = File.expand_path("~/.local/bin/hx")
-    puts "==> cp #{from} #{to}"
-    FileUtils.cp(from, to) unless $dry_run
   end
 
   # `upgrade ruby` reinstalls the interpreter this process runs on, so a
