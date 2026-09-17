@@ -97,19 +97,12 @@ PACKAGES = {
   ],
   "heroku" => %w[
     addons-admin
-    apps-table
-    buildpacks
     buildpack-registry
     heroku-accounts
     heroku-config
-    heroku-pg-extras
-    heroku-builds
     heroku-slugs
     heroku-repo
-    heroku-releases-retry
-    @heroku-cli/plugin-free
     @heroku-cli/plugin-api
-    @heroku-cli/plugin-data-maintenance
   ],
   "gh" => %w[
     advanced-security/gh-sbom
