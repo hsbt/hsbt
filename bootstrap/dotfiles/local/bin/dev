@@ -53,7 +53,6 @@ PACKAGES = {
     hyperfine
     tokei
     mise
-    hk
     starship
     atuin
     pik
