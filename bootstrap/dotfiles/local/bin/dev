@@ -323,7 +323,7 @@ module Task
     sh "rustup update"
     # install-update resolves dependencies afresh and can pick up a semver-compatible
     # version that no longer builds, so it installs from the embedded lock as reinstall does.
-    sh "cargo install-update --locked -a"
+    sh "cargo install-update --locked -- #{PACKAGES["cargo"].join(" ")}"
   end
 
   def reinstall_cargo
@@ -332,25 +332,26 @@ module Task
   end
 
   def upgrade_go
-    sh "go-global-update"
+    PACKAGES["go"].each { |pkg| sh "go install #{pkg}" }
   end
 
   def reinstall_go
     wipe data_dir("go")
-    PACKAGES["go"].each { |pkg| sh "go install #{pkg}" }
+    upgrade_go
   end
 
   def upgrade_heroku
-    sh "heroku plugins:update"
+    PACKAGES["heroku"].each { |pkg| sh "heroku plugins:install #{pkg}" }
   end
 
   def reinstall_heroku
     wipe data_dir("heroku")
-    PACKAGES["heroku"].each { |pkg| sh "heroku plugins:install #{pkg}" }
+    upgrade_heroku
   end
 
+  # An extension is upgraded by its own name rather than the repository it came from.
   def upgrade_gh
-    sh "gh extension upgrade --all"
+    PACKAGES["gh"].each { |pkg| sh "gh extension upgrade #{File.basename(pkg).delete_prefix("gh-")}" }
   end
 
   def reinstall_gh
