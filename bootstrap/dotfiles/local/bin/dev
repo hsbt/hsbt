@@ -118,6 +118,9 @@ CARGO_HOME = ENV["CARGO_HOME"] || File.join(XDG_DATA_HOME, "cargo")
 GIT_GOGET_URL = "https://raw.githubusercontent.com/hsbt/git-goget/HEAD/git-goget"
 
 GOGET_JOBS = 16
+# git goget answers with this when a repository cannot be reached at all, which a
+# gem homepage pointing at a deleted repository does and nothing here can mend.
+GOGET_SKIPPED = 3
 GOGET_TIMEOUT = 120
 
 # Set on the dev that upgrade_source re-executes; see Task.upgrade_source.
@@ -405,11 +408,11 @@ module Task
     mutex = Mutex.new
 
     Parallel.each(urls, in_threads: GOGET_JOBS) do |url|
-      output, ok = run_with_timeout(env, ["git", "goget", url], GOGET_TIMEOUT)
+      output, code = run_with_timeout(env, ["git", "goget", url], GOGET_TIMEOUT)
       mutex.synchronize do
         puts "==> git goget #{url}"
         puts output unless output.empty?
-        $failures << "git goget #{url}" unless ok
+        $failures << "git goget #{url}" unless [0, GOGET_SKIPPED].include?(code)
       end
     end
   end
@@ -427,12 +430,12 @@ module Task
       if Process.clock_gettime(Process::CLOCK_MONOTONIC) > deadline
         Process.kill("KILL", -pid) rescue nil
         Process.waitpid2(pid)
-        return ["#{reader.value.chomp}\ntimed out after #{seconds}s".lstrip, false]
+        return ["#{reader.value.chomp}\ntimed out after #{seconds}s".lstrip, nil]
       end
       sleep 0.2
     end
 
-    [reader.value.chomp, status.success?]
+    [reader.value.chomp, status.exitstatus]
   end
 
   # Remove checkouts that duplicate another one after a repository rename or a
