@@ -62,7 +62,6 @@ PACKAGES = {
     diffutils
     dns-doge
     git-delta
-    heatseeker
     zellij
     zizmor
   ],
