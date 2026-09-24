@@ -91,9 +91,6 @@
 [github]
 	user = hsbt
 
-[heroku]
-	account = hsbt
-
 [alias]
 	a  = add -A
 	b  = branch
