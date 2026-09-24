@@ -98,8 +98,6 @@ PACKAGES = {
   "heroku" => %w[
     addons-admin
     buildpack-registry
-    heroku-accounts
-    heroku-config
     heroku-slugs
     heroku-repo
     @heroku-cli/plugin-api
