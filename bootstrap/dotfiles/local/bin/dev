@@ -98,9 +98,9 @@ PACKAGES = {
   "heroku" => %w[
     addons-admin
     buildpack-registry
-    heroku-slugs
     heroku-repo
     @heroku-cli/plugin-api
+    @heroku-cli/heroku-slugs
   ],
   "gh" => %w[
     advanced-security/gh-sbom
