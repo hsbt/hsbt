@@ -6,7 +6,7 @@ SHIBATA Hiroshi (aka hsbt）
 
 ## 役職
 
-* Fellow at [ANDPAD](https://andpad.co.jp/)
+Fellow at [ANDPAD](https://andpad.co.jp/)
 
 ## 自己紹介
 
@@ -23,7 +23,7 @@ Rubyコミッター、Ruby, RubyGems, Bundler, Rake,  ruby-build, psychなど多
 
 ## 連絡先
 
-* hsbt at ruby-lang dot org
+hsbt at ruby-lang dot org
 
 ## 学歴・職歴
 
