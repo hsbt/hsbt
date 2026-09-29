@@ -4,6 +4,14 @@
 
 SHIBATA Hiroshi (aka hsbt）
 
+## Job Title
+
+* Fellow at [ANDPAD](https://andpad.co.jp/)
+
+## Work
+
+Rubyコミッター、Ruby, RubyGems, Bundler, Rake,  ruby-build, psychなど多くのOSSのメンテナ、ruby-lang.orgの管理人として、Rubyの開発を支えるインフラを整備している。株式会社アンドパッドで技術広報を担当しながら、プログラミング言語RubyのフルタイムOSS開発者としても活動中。「全ての人がプログラミングを通して楽しく成長できる社会を作る」ために自分ができることに毎日少しずつ取り組んでいる。
+
 ## Activities
 
 * [HsbtDiary](https://www.hsbt.org/diary/)
@@ -16,14 +24,6 @@ SHIBATA Hiroshi (aka hsbt）
 ## Contact address
 
 * hsbt at ruby-lang dot org
-
-## Job Title
-
-* Fellow at [ANDPAD](https://andpad.co.jp/)
-
-## Work
-
-Rubyコミッター、Ruby, RubyGems, Bundler, Rake,  ruby-build, psychなど多くのOSSのメンテナ、ruby-lang.orgの管理人として、Rubyの開発を支えるインフラを整備している。株式会社アンドパッドで技術広報を担当しながら、プログラミング言語RubyのフルタイムOSS開発者としても活動中。「全ての人がプログラミングを通して楽しく成長できる社会を作る」ために自分ができることに毎日少しずつ取り組んでいる。
 
 ## 学歴・職歴
 
