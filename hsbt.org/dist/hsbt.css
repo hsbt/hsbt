@@ -464,3 +464,11 @@ div.profile span {
 div.socialbuttons {
   text-align: right;
 }
+div.home h1, div.home h2, div.home h3, div.home h4, div.home h5 {
+  margin-left: 0;
+  margin-right: 0;
+}
+div.home p, div.home ul, div.home ol {
+  margin-left: 1em;
+  margin-right: 1em;
+}
