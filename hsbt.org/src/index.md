@@ -187,7 +187,7 @@ Rubyコミッター、Ruby, RubyGems, Bundler, Rake,  ruby-build, psychなど多
 * 2010年12月 SapporoRubyKaigi03 [What's culture and tools in Ruby worlds](https://speakerdeck.com/hsbt/sappororubykaigi03)
 * 2010年08月 日本Ruby会議 2010 [How to survive in post Rails' world](https://speakerdeck.com/hsbt/how-to-survive-in-post-rails-world)
 * 2010年08月 日本Ruby会議 2010 [Head First ふつうのシステム開発のご紹介](https://speakerdeck.com/hsbt/head-first)
-* 2010年02月 [Rubyをキメて上京するのに必要なこと](https://speakerdeck.com/hsbt/ruby)
+* 2010年03月 仙台Ruby会議02 [Rubyをキメて上京するのに必要なこと](https://speakerdeck.com/hsbt/ruby)
 * 2009年12月 SapporoRubyKaigi02 [tDiary annual report 2009](https://speakerdeck.com/hsbt/tdiary-annual-report-2009)
 * 2009年07月 RubyKaigi 2009 [Our tDiary's policy and strategies to support Ruby 1.9 and our future plan](https://speakerdeck.com/hsbt/our-tdiarys-policy-and-strategies-to-support-ruby-19-and-our-future-plan)
 * 2008年10月 SapporoRubyKaigi01 [わたしとtDiary](https://speakerdeck.com/hsbt/tdiary)
