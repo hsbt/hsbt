@@ -192,3 +192,18 @@ Rubyコミッター、Ruby, RubyGems, Bundler, Rake,  ruby-build, psychなど多
 * 2009年07月 RubyKaigi 2009 [Our tDiary's policy and strategies to support Ruby 1.9 and our future plan](https://speakerdeck.com/hsbt/our-tdiarys-policy-and-strategies-to-support-ruby-19-and-our-future-plan)
 * 2008年10月 SapporoRubyKaigi01 [わたしとtDiary](https://speakerdeck.com/hsbt/tdiary)
 * 2006年04月 tDiary Party 2.1 [自己紹介 tDiary のここがイイ!](https://speakerdeck.com/hsbt/tdiary-party-21)
+
+## パネルディスカッション
+
+* 2026年04月 RubyKaigi 2026 [Ruby Committers and the World](https://www.youtube.com/watch?v=Jyqs30IX4iM)
+* 2025年09月 Rails World 2025 [Ruby & Rails - A Chat with Maintainers](https://www.youtube.com/watch?v=QaQ9rF9sYHQ)
+* 2025年04月 RubyKaigi 2025 [Ruby Committers and the World](https://www.youtube.com/watch?v=oluYFmZSTwk)
+* 2024年05月 RubyKaigi 2024 [Ruby Committers and the World](https://www.youtube.com/watch?v=26sbpaGbU-0)
+* 2023年09月 Euruko 2023 [30 years of Ruby](https://www.youtube.com/watch?v=lK9vzms1ENI)
+* 2023年05月 RubyKaigi 2023 [Ruby Committers and the World](https://www.youtube.com/watch?v=APa9R0v9GY0)
+* 2018年06月 RubyKaigi 2018 [Ruby Committers vs the World](https://www.youtube.com/watch?v=dhHAaybjCfE)
+* 2016年09月 RubyKaigi 2016 [Ruby Committers vs the World](https://www.youtube.com/watch?v=gcqbvLHNPTM)
+* 2015年12月 RubyKaigi 2015 [Ruby Committers vs the World](https://www.youtube.com/watch?v=LcXKSHsniTY)
+* 2015年06月 RedDotRubyConf 2015 [Ruby Panel](https://www.youtube.com/watch?v=HeWkqYelc7o)
+* 2014年09月 RailsPacific 2014 [Refactoring](https://www.youtube.com/watch?v=9TkdXkkhP_4)
+* 2014年09月 RubyKaigi 2014 [Ruby Committers vs the World](https://www.youtube.com/watch?v=3wk4K02n2vk)
