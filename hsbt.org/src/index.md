@@ -81,6 +81,8 @@ Rubyコミッター、Ruby, RubyGems, Bundler, Rake,  ruby-build, psychなど多
 
 ## Podcast
 
+* 2026年03月 [388\. 趣味、ガーデニング \(ゲスト\:hsbtさん\) \| Ossan\.fm](https://ossan.fm/episode/388)
+* 2026年03月 [387\. 逆算して考える趣味 \(ゲスト\:hsbtさん\) \| Ossan\.fm](https://ossan.fm/episode/387)
 * 2023年01月 [86\. 技術広報 w/ hsbt \| fukabori\.fm](https://fukabori.fm/episode/86)
 * 2022年12月 [218\. インターネットブートストラップ問題 \(ゲスト\:hsbtさん\) \| Ossan\.fm](https://ossan.fm/episode/218)
 * 2022年12月 [217\.雑誌を活用して美術館めぐり \(ゲスト\:hsbtさん\) \| Ossan\.fm](https://ossan.fm/episode/217)
