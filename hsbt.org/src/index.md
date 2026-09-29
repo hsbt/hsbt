@@ -91,6 +91,10 @@ Rubyコミッター、Ruby, RubyGems, Bundler, Rake,  ruby-build, psychなど多
 
 ## 講演・発表(国際カンファレンス)
 
+* 2026年04月 RubyKaigi 2026 [Ruby Releases Ruby](https://www.slideshare.net/slideshow/rubykaigi-2026-day-3-ruby-releases-ruby/287280094)
+* 2024年07月 RedDotRubyConf 2024 [Introduction of Cybersecurity with Ruby](https://www.slideshare.net/slideshow/introduction-of-cybersecurity-with-ruby-at-reddotrubyconf-2024/270608789)
+* 2024年06月 CodeEurope 2024 [Introduction of Cybersecurity with OSS](https://www.slideshare.net/slideshow/introduction-of-cybersecurity-with-oss-at-code-europe-2024/269679753)
+* 2024年05月 RubyKaigi 2024 [Long journey of Ruby Standard library](https://www.slideshare.net/slideshow/long-journey-of-ruby-standard-library-at-rubykaigi-2024/268585781)
 * 2024年04月 RubyConf AU 2024 [Long journey of Ruby standard library at RubyConf AU 2024](https://www.slideshare.net/slideshow/long-journey-of-ruby-standard-library-at-rubyconf-au-2024/267204330)
 * 2023年12月 RubyConf Taiwan 2023 [Deep dive into Ruby's require](https://www.slideshare.net/hsbt/deep-dive-into-rubys-require-rubyconf-taiwan-2023)
 * 2023年09月 Euruko 2023 [How resolve Gem dependencies in your code?](https://www.slideshare.net/hsbt/how-resolve-gem-dependencies-in-your-code-e131)
@@ -130,6 +134,9 @@ Rubyコミッター、Ruby, RubyGems, Bundler, Rake,  ruby-build, psychなど多
 
 ## 講演・発表
 
+* 2025年08月 Ruby Association Activity Report 2025 [Working as an OSS Developer](https://www.slideshare.net/slideshow/working-as-an-oss-developer-at-ruby-association-activity-report-2025/282770818)
+* 2023年11月 各社の技術広報が明かす「RubyKaigiスポンサーの裏話」運営ノウハウやコミュニティへの想い [Why ANDPAD commit Ruby and RubyKaigi?](https://www.slideshare.net/slideshow/why-andpad-commit-ruby-and-rubykaigi/263507113)
+* 2023年11月 RubyWorld Conference 2023 [Ruby コミッターと歩む Ruby を用いたプロダクト開発](https://www.slideshare.net/slideshow/ruby-ruby-0e28/263507316)
 * 2023年02月 Fukuoka RubyistKaigi 03 [How to make faster release cycle of Ruby? - Speaker Deck](https://speakerdeck.com/hsbt/how-to-make-faster-release-cycle-of-ruby)
 * 2022年12月 RailsGirls Gathering Japan 2022 [RailsGirls から始める エンジニアリングはじめの一歩](https://www.slideshare.net/hsbt/railsgirls-254696400)
 * 2022年11月 RubyWorld Conference 2022 [Ruby の開発を支えるエコシステム - Speaker Deck](https://speakerdeck.com/hsbt/ruby-nokai-fa-wozhi-eruekosisutemu)
