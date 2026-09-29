@@ -1,18 +1,18 @@
 # www.hsbt.org
 
-## Name
+## 名前
 
 SHIBATA Hiroshi (aka hsbt）
 
-## Job Title
+## 役職
 
 * Fellow at [ANDPAD](https://andpad.co.jp/)
 
-## Work
+## 自己紹介
 
 Rubyコミッター、Ruby, RubyGems, Bundler, Rake,  ruby-build, psychなど多くのOSSのメンテナ、ruby-lang.orgの管理人として、Rubyの開発を支えるインフラを整備している。株式会社アンドパッドで技術広報を担当しながら、プログラミング言語RubyのフルタイムOSS開発者としても活動中。「全ての人がプログラミングを通して楽しく成長できる社会を作る」ために自分ができることに毎日少しずつ取り組んでいる。
 
-## Activities
+## リンク
 
 * [HsbtDiary](https://www.hsbt.org/diary/)
 * [GitHub](https://github.com/hsbt/)
@@ -21,7 +21,7 @@ Rubyコミッター、Ruby, RubyGems, Bundler, Rake,  ruby-build, psychなど多
 * [X](https://twitter.com/hsbt/)
 * [pinboard](https://pinboard.in/u:hsbt)
 
-## Contact address
+## 連絡先
 
 * hsbt at ruby-lang dot org
 
@@ -79,7 +79,7 @@ Rubyコミッター、Ruby, RubyGems, Bundler, Rake,  ruby-build, psychなど多
 * 2017年10月 [800万DLアプリ『minne』でおなじみ！ GMOペパボが全社員でGitHubを使うワケ](https://careerhack.en-japan.com/report/detail/863)
 * 2014年11月 [RubyPrize2014 受賞者インタビュー](https://www.ruby.or.jp/rubyprize2014/interview/win_shibata_01.html)
 
-## Podcast
+## ポッドキャスト
 
 * 2026年03月 [388\. 趣味、ガーデニング \(ゲスト\:hsbtさん\) \| Ossan\.fm](https://ossan.fm/episode/388)
 * 2026年03月 [387\. 逆算して考える趣味 \(ゲスト\:hsbtさん\) \| Ossan\.fm](https://ossan.fm/episode/387)
