@@ -1,1 +1,4 @@
-0 3 * * * ubuntu tar czf /home/ubuntu/backup/www.data.tgz /home/ubuntu/www && s3cmd sync /home/ubuntu/backup s3://hsbt-org-backup
+# diary/images is gigabytes of JPEGs that barely compress, so it stays out of
+# the tarball and is synced file by file to upload only the new images.
+0 3 * * * ubuntu tar czf /home/ubuntu/backup/www.data.tgz --exclude=/home/ubuntu/www/hsbt.org/diary/images /home/ubuntu/www && s3cmd sync /home/ubuntu/backup s3://hsbt-org-backup
+0 3 * * * ubuntu s3cmd sync /home/ubuntu/www/hsbt.org/diary/images/ s3://hsbt-org-backup/diary-images/
