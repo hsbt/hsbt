@@ -132,6 +132,20 @@ __cd_home() {
 zle -N __cd_home
 bindkey '^h' __cd_home
 
+__ssh_history() {
+  local cmd=$(atuin search --cmd-only --search-mode prefix --filter-mode global -r 'ssh ' \
+    | awk '!seen[$0]++' | sk)
+  [ -z "$cmd" ] && { zle reset-prompt; return; }
+
+  # コマンドを new-window に直接渡さず打ち込むのは、履歴に残して切断後も window を残すため。
+  local pane=$(tmux new-window -c "$HOME" -P -F '#{pane_id}')
+  tmux send-keys -t "$pane" "$cmd" Enter
+  zle reset-prompt
+}
+
+zle -N __ssh_history
+bindkey '^s' __ssh_history
+
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' use-cache yes
