@@ -189,7 +189,7 @@ pre code {
   white-space: pre-wrap;
 }
 
-img.flickr, img.google {
+img.flickr, img.google, img.photo {
   border: #BCD 1px dashed;
   display: block;
   float: none;
