@@ -193,8 +193,8 @@ img.flickr, img.google, img.photo {
   border: #BCD 1px dashed;
   display: block;
   float: none;
-  max-width: 640px;
-  width: 90%;
+  max-width: min(640px, 90%);
+  width: auto;
   height: auto;
   margin: 10px auto;
   margin-bottom: 10px;
