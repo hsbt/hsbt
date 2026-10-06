@@ -1,0 +1,1 @@
+0 3 * * * ubuntu tar czf /home/ubuntu/backup/www.data.tgz /home/ubuntu/www && s3cmd sync /home/ubuntu/backup s3://hsbt-org-backup
