@@ -347,4 +347,14 @@ div.home p, div.home ul, div.home ol {
     max-width: calc(100% - 1em);
     height: auto;
   }
+  div.body blockquote {
+    margin-left: 1em;
+    margin-right: 1em;
+  }
+  div.footnote {
+    margin-left: 1em;
+  }
+  div.slideshare {
+    width: auto;
+  }
 }
