@@ -68,21 +68,10 @@ a:hover {
   left: 1px;
 }
 
-p.footnote {
-  margin: 0.5em;
-  padding: 0;
-}
 p.strong {
   font-size: 180%;
   font-weight: bold;
   text-align: center;
-}
-p.message {
-  text-align: center;
-  font-size: large;
-  background-color: #d00;
-  color: #fff;
-  padding: 8px;
 }
 
 hr {
@@ -139,10 +128,7 @@ form.update div.field.title input {
 }
 form.update textarea {
   display: block;
-  margin-left: 3em;
   margin-bottom: 1em;
-  width: 35em;
-  height: 15em;
 }
 form.update span.checkbox.hidediary {
   margin-left: 1em;
@@ -180,14 +166,10 @@ img.photo {
   margin-bottom: 10px;
 }
 img.amazon {
-  float: right;
   margin: 0.5em;
   clear: both;
 }
 
-span.nyear {
-  font-size: small;
-}
 span.commentator {
   font-weight: bold;
 }
@@ -206,12 +188,7 @@ div.slideshare {
   margin: 0px auto;
   width: 60%;
 }
-div.body span.footnote {
-  vertical-align: super;
-  font-size: 0.7em;
-}
 div.footnote {
-  font-size: 0.9em;
   border-style: solid;
   border-color: #ddf;
   border-width: 1px 0 0;
