@@ -475,3 +475,13 @@ div.home p, div.home ul, div.home ol {
   margin-left: 1em;
   margin-right: 1em;
 }
+@media (max-width: 640px) {
+  div.section {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  div.form form.update {
+    margin-left: 1em;
+    margin-right: 1em;
+  }
+}
