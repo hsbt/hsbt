@@ -393,6 +393,7 @@ div.day {
   color: #000;
   margin-top: 0.5em;
   margin-bottom: 0.5em;
+  overflow-wrap: anywhere;
 }
 form.comment div.textarea {
   display: block;
