@@ -7,6 +7,10 @@ Comment: Pukiwiki based theme.
 
 Copyright 2010 (C) SHIBATA Hiroshi <shibata.hiroshi@gmail.com>
 */
+html:has(meta[name="viewport"]) {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
 body {
   background-color: #fff;
   color: #000;
