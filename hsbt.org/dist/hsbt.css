@@ -357,4 +357,15 @@ div.home p, div.home ul, div.home ol {
   div.slideshare {
     width: auto;
   }
+  input, select, textarea {
+    font-size: 16px;
+  }
+  form.update div.field.title {
+    margin-right: 0;
+  }
+  form.update div.field.title input {
+    box-sizing: border-box;
+    width: 100%;
+    margin-left: 0;
+  }
 }
