@@ -169,6 +169,9 @@ img.amazon {
   margin: 0.5em;
   clear: both;
 }
+div.section iframe {
+  max-width: 100%;
+}
 
 span.commentator {
   font-weight: bold;
@@ -344,5 +347,9 @@ div.home p, div.home ul, div.home ol {
   div.form form.update {
     margin-left: 1em;
     margin-right: 1em;
+  }
+  img.amazon {
+    max-width: calc(100% - 1em);
+    height: auto;
   }
 }
