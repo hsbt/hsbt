@@ -357,6 +357,10 @@ div.home p, div.home ul, div.home ol {
   div.slideshare {
     width: auto;
   }
+  div.adminmenu a {
+    display: inline-block;
+    padding: 0.5em 0.25em;
+  }
   input, select, textarea {
     font-size: 16px;
   }
