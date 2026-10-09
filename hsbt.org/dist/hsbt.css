@@ -135,7 +135,6 @@ form.update span.checkbox.hidediary {
 }
 
 code {
-  white-space: nowrap;
   display: inline-block;
 }
 
@@ -149,10 +148,6 @@ pre {
   border-radius: 6px;
   display: block;
   overflow-x: auto;
-}
-
-pre code {
-  white-space: pre-wrap;
 }
 
 img.photo {
