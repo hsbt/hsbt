@@ -394,7 +394,7 @@ div.day {
   margin-top: 0.5em;
   margin-bottom: 0.5em;
 }
-div.textarea {
+form.comment div.textarea {
   display: block;
   max-width: 600px;
   width: 80%;
@@ -407,6 +407,9 @@ div.form {
 }
 div.form form {
   margin: 0.5em 1em 0.5em 2em;
+}
+div.form form.update {
+  margin: 0.5em 2em;
 }
 div.form form.comment {
   font-size: 0.9em;
@@ -448,7 +451,7 @@ div.footer {
   margin-top: 0em;
   clear: both;
 }
-div.diary {
+div.diary, body.update div.whole-content {
   margin: 0px auto;
   max-width: 1024px;
 }
