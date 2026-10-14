@@ -34,6 +34,7 @@
 [dotfiles]
 "~/.config" = { source = "dotfiles/config", mode = "symlink-each" }
 "~/.local/bin" = { source = "dotfiles/local/bin", mode = "symlink-each" }
+"~/.local/share/cargo" = { source = "dotfiles/local/share/cargo", mode = "symlink-each" }
 
 # Run by `mise bootstrap` as its `mise run bootstrap` step.
 #
