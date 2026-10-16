@@ -111,6 +111,7 @@ cask "claude-code@latest"
 cask "antigravity"
 cask "antigravity-cli"
 cask "copilot-cli"
+cask "codex"
 cask "github-copilot-app"
 cask "karabiner-elements"
 
