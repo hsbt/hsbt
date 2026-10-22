@@ -113,6 +113,7 @@ cask "copilot-cli"
 cask "codex"
 cask "github-copilot-app"
 cask "karabiner-elements"
+cask "upscayl"
 
 tap "rbenv/tap"
 brew "openssl@1.0"
