@@ -23,7 +23,40 @@ task :environment do
   invoke :"rbenv:load"
 end
 
+desc "Generates dist/index.html from src/"
+task :"www:generate" do
+  require "kramdown"
+  header = File.read("src/header.html")
+  body = Kramdown::Document.new(File.read("src/index.md")).to_html
+  footer = File.read("src/footer.html")
+  File.open("dist/index.html", "w") do |f|
+    [header, body, footer].each { |s| f.puts s }
+  end
+end
+
+# The index page lives beside tDiary, not in its releases, so each deploy
+# overwrites it in place. Net::SCP runs outside mina's command queue, hence
+# the explicit --simulate check.
+desc "Uploads dist/index.html and dist/hsbt.css"
+task :"www:upload" => :"www:generate" do
+  www = "/home/#{fetch(:user)}/www/hsbt.org"
+  files = {
+    "dist/index.html" => "#{www}/index.html",
+    "dist/hsbt.css" => "#{www}/stylesheets/hsbt.css",
+  }
+  if fetch(:simulate)
+    files.each { |src, dest| puts "# scp #{src} #{fetch(:domain)}:#{dest}" }
+  else
+    require "net/scp"
+    Net::SCP.start(fetch(:domain), fetch(:user)) do |scp|
+      files.each { |src, dest| scp.upload!(src, dest) }
+    end
+  end
+end
+
 task :deploy do
+  invoke :"www:upload"
+
   deploy do
     invoke :"git:clone"
     invoke :"deploy:cleanup"

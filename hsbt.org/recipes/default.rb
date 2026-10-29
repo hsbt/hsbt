@@ -56,7 +56,7 @@ remote_file "/etc/h2o/h2o.conf" do
 end
 
 # Document roots served by h2o. index.html and stylesheets/ are uploaded
-# by `rake deploy`; diary/ is tDiary's static output. tdiary.conf and
+# by `mina deploy`; diary/ is tDiary's static output. tdiary.conf and
 # .htpasswd live in www/ too but stay out of the recipe (secrets).
 %w[
   /home/ubuntu/www
