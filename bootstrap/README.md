@@ -50,6 +50,19 @@ PowerShell, and cmd.exe reads `trust;` below as a task name.
 > cd V:\github.com\hsbt\hsbt\bootstrap; mise trust; mise bootstrap --force-dotfiles
 ```
 
+Claude Code runs its hooks with the msys2 bash that
+`CLAUDE_CODE_GIT_BASH_PATH` points to. The 2026-09-27 msys2 in scoop
+ships msys2-runtime 3.6.10-5, which never returns from a WindowsApps
+alias such as the `python3` Store stub (msys2/msys2-runtime#372), so a
+hook that looks for Python holds every prompt for ten minutes. Update
+the runtime to 3.6.10-6 or later from the `msys2` shell after the
+bootstrap, and again whenever scoop reinstalls msys2:
+
+```
+$ pacman -Syu
+$ pacman -Q msys2-runtime
+```
+
 `$PROFILE` stays in OneDrive as a stub that dot-sources
 `~/.config/powershell/profile.ps1`, and `~/.gitconfig` keeps only the
 `safe.directory` entries of the machine.
