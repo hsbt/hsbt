@@ -16,7 +16,6 @@
         { "PackageIdentifier": "Google.GoogleDrive" },
         { "PackageIdentifier": "Microsoft.Coreutils" },
         { "PackageIdentifier": "Microsoft.DotNet.SDK.8" },
-        { "PackageIdentifier": "Microsoft.PowerShell" },
         { "PackageIdentifier": "Microsoft.PowerToys" },
         { "PackageIdentifier": "Microsoft.Teams" },
         { "PackageIdentifier": "Microsoft.WindowsTerminal" },

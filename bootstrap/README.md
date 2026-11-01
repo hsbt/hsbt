@@ -55,6 +55,14 @@ PowerShell, and cmd.exe reads `trust;` below as a task name.
 > cd V:\github.com\hsbt\hsbt\bootstrap; mise trust; mise bootstrap --force-dotfiles
 ```
 
+The bootstrap installs PowerShell 7 from its MSI (see
+`system/windows-pwsh.rb`). On a machine that has only the MSIX one from
+an earlier bootstrap, remove it first:
+
+```
+> winget uninstall --id Microsoft.PowerShell
+```
+
 Claude Code runs its hooks with the msys2 bash that
 `CLAUDE_CODE_GIT_BASH_PATH` points to. The 2026-09-27 msys2 in scoop
 ships msys2-runtime 3.6.10-5, which never returns from a WindowsApps
