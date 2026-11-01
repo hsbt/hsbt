@@ -11,7 +11,7 @@
         { "PackageIdentifier": "Deskflow.Deskflow" },
         { "PackageIdentifier": "Dropbox.Dropbox" },
         { "PackageIdentifier": "Google.Antigravity" },
-        { "PackageIdentifier": "Google.Chrome" },
+        { "PackageIdentifier": "Google.Chrome.EXE" },
         { "PackageIdentifier": "Google.GoogleDrive" },
         { "PackageIdentifier": "Microsoft.Coreutils" },
         { "PackageIdentifier": "Microsoft.DotNet.SDK.8" },
