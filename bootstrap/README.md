@@ -24,9 +24,20 @@ winget packages from `scoopfile.json` and `winget.json`, the user
 environment variables from `system/windows-env.rb`, and the shared
 dotfiles plus the Windows-only ones under `dotfiles/windows/`. Visual
 Studio Build Tools are installed separately with their C++ components.
-Real symlinks need Developer Mode. Run it
-in Windows Terminal, not from Claude Desktop, which redirects writes under
-AppData and would hide the helix link from everything else.
+
+Turn Developer Mode on before the first run. Without it Windows refuses
+the symlinks, and `dotfiles.windows_symlinks` in `mise.toml` makes the
+apply fail instead of falling back to copies. The value below is 1 when
+it is on. Turning it on needs an administrator, in the Settings page that
+`ms-settings:developers` opens:
+
+```
+> (Get-ItemProperty HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock).AllowDevelopmentWithoutDevLicense
+```
+
+Run the bootstrap in Windows Terminal, not from Claude Desktop, which
+redirects writes under AppData and would hide the helix link from
+everything else.
 
 ```
 > cd V:\github.com\hsbt\hsbt\bootstrap; mise trust; mise bootstrap --force-dotfiles
