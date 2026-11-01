@@ -63,11 +63,12 @@ dotfiles.windows_symlinks = true
 # Homebrew, which would break `brew services`, `brew upgrade`, `brew
 # autoremove` and `brew cleanup`. `cask_args appdir` has no equivalent either.
 #
-# On Windows the task sets the user environment instead.
+# On Windows the task sets the user environment and imports `scoopfile.json`,
+# which plays the Brewfile's part for scoop.
 [tasks.bootstrap]
 description = "Install packages and, on Windows, set the user environment"
 run = "brew bundle --file=Brewfile"
-run_windows = ["ruby system/windows-env.rb"]
+run_windows = ["ruby system/windows-env.rb", "scoop import scoopfile.json"]
 
 [bootstrap.macos.launchd.agents."GOPATH.SetEnv"]
 program = "/bin/sh"
