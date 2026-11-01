@@ -1,6 +1,6 @@
-# The Windows counterpart of the exports in .zshenv that point tools at the
-# linked dotfiles. User environment variables reach shells and GUI apps alike
-# once they restart.
+# The Windows counterpart of the exports in .zshenv. User environment
+# variables reach shells and GUI apps alike once they restart. The V: paths
+# are the data drive of this machine.
 #
 # XDG_CONFIG_HOME stays unset: every linked file sits at the default
 # ~/.config already, and setting it would move gh's login out of %APPDATA%.
@@ -24,6 +24,10 @@ vars = {
   "BUNDLE_USER_PLUGIN" => File.join(data, "bundle"),
   "RUBOCOP_OPTS" => "--config #{File.join(config, "rubocop", "config.yml")}",
   "EDITOR" => "hx",
+  "RUBY_YJIT_ENABLE" => "1",
+  "CLAUDE_CODE_GIT_BASH_PATH" => File.join(home, "scoop", "apps", "msys2", "current", "usr", "bin", "bash.exe"),
+  "VCPKG_DEFAULT_BINARY_CACHE" => "V:/scoop.persist/vcpkg",
+  "LLAMA_CACHE" => "V:/llm/models",
 }.transform_values { |v| v.tr("/", "\\") }
 
 current = Win32::Registry::HKEY_CURRENT_USER.open("Environment") do |reg|
