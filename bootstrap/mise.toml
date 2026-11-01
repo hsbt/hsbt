@@ -68,14 +68,15 @@ dotfiles.windows_symlinks = true
 # Homebrew, which would break `brew services`, `brew upgrade`, `brew
 # autoremove` and `brew cleanup`. `cask_args appdir` has no equivalent either.
 #
-# On Windows the task sets the user environment and imports `scoopfile.json`
-# and `winget.json`, which split the Brewfile's part between scoop and winget.
+# On Windows the task sets the user environment, imports `scoopfile.json`,
+# brings the VC++ runtime up to date, and imports `winget.json`. The two
+# files split the Brewfile's part between scoop and winget.
 # Visual Studio Build Tools stay out of `winget.json` because winget alone
 # installs them without the C++ components.
 [tasks.bootstrap]
 description = "Install packages and, on Windows, set the user environment"
 run = "brew bundle --file=Brewfile"
-run_windows = ["ruby system/windows-env.rb", "scoop import scoopfile.json", "winget import -i winget.json --no-upgrade"]
+run_windows = ["ruby system/windows-env.rb", "scoop import scoopfile.json", "ruby system/windows-vcredist.rb", "winget import -i winget.json --no-upgrade"]
 
 [bootstrap.macos.launchd.agents."GOPATH.SetEnv"]
 program = "/bin/sh"
