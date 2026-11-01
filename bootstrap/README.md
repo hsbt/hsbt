@@ -36,6 +36,14 @@ AppData and would hide the helix link from everything else.
 `~/.config/powershell/profile.ps1`, and `~/.gitconfig` keeps only the
 `safe.directory` entries of the machine.
 
+V: is a Dev Drive in `C:\Users\hsbt\DevDrive.vhdx`. The `Mount DevDrive`
+task from `system/mount-devdrive.xml` attaches it at boot. Registering
+the task needs an elevated PowerShell:
+
+```
+> Register-ScheduledTask -TaskName 'Mount DevDrive' -Xml (Get-Content V:\github.com\hsbt\hsbt\bootstrap\system\mount-devdrive.xml -Raw)
+```
+
 ## TODO
 
 * Bootstrap to `git clone` to *env software.
