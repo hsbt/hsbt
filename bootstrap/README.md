@@ -17,6 +17,23 @@ still has the old copied files needs `--force`:
 $ mise bootstrap dotfiles apply --force
 ```
 
+## Windows
+
+The same command sets up Windows after `scoop install mise`: scoop
+packages from `scoopfile.json`, the user environment variables from
+`system/windows-env.rb`, and the shared dotfiles plus the Windows-only
+ones under `dotfiles/windows/`. Real symlinks need Developer Mode. Run it
+in Windows Terminal, not from Claude Desktop, which redirects writes under
+AppData and would hide the helix link from everything else.
+
+```
+> cd V:\github.com\hsbt\hsbt\bootstrap; mise trust; mise bootstrap --force-dotfiles
+```
+
+`$PROFILE` stays in OneDrive as a stub that dot-sources
+`~/.config/powershell/profile.ps1`, and `~/.gitconfig` keeps only the
+`safe.directory` entries of the machine.
+
 ## TODO
 
 * Bootstrap to `git clone` to *env software.
