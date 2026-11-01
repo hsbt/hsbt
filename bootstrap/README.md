@@ -25,10 +25,11 @@ The same command sets up Windows: scoop and winget packages from
 ones under `dotfiles/windows/`. Visual Studio Build Tools are installed
 separately with their C++ components.
 
-Git comes from winget rather than scoop, whose x86 shims fail to start
-git over ssh on ARM64. scoop needs git to add its buckets and mise
-itself comes from scoop, so install Git first, then scoop, then mise
-from a new terminal:
+Git comes from winget rather than scoop. scoop keeps it behind a
+`current` junction, which the SSH sessions of Claude Desktop refuse to
+follow (see below). scoop needs git to add its buckets and mise itself
+comes from scoop, so install Git first, then scoop, then mise from a
+new terminal:
 
 ```
 > winget install Git.Git
@@ -65,6 +66,22 @@ bootstrap, and again whenever scoop reinstalls msys2:
 ```
 $ pacman -Syu
 $ pacman -Q msys2-runtime
+```
+
+Claude Desktop runs its SSH sessions under RedirectionGuard, which
+refuses to follow a junction or symlink that a non-elevated process
+created. scoop's `current` junctions, the rbmanager Ruby and the dotfile
+links all come from the bootstrap in Windows Terminal, so on a machine
+reached over SSH recreate them from an elevated shell, which a plain ssh
+login already is. Do the same after a later `scoop update`, `rb install`
+or `rb use`. The apply leaves links that already point at the right file
+alone, so delete the dotfile links before it:
+
+```
+> scoop reset *
+> rb use <version>
+> Get-ChildItem ~\.config, $env:APPDATA\helix -Recurse -Force -Attributes ReparsePoint | Where-Object Target -like 'V:\github.com\hsbt\hsbt\*' | ForEach-Object { $_.Delete() }
+> cd V:\github.com\hsbt\hsbt\bootstrap; mise bootstrap dotfiles apply
 ```
 
 `$PROFILE` stays in OneDrive as a stub that dot-sources
