@@ -62,9 +62,12 @@ dotfiles.windows_symlinks = true
 # without Homebrew, so packages it installs are not registered with the local
 # Homebrew, which would break `brew services`, `brew upgrade`, `brew
 # autoremove` and `brew cleanup`. `cask_args appdir` has no equivalent either.
+#
+# On Windows the task sets the user environment instead.
 [tasks.bootstrap]
-description = "Install Homebrew packages from Brewfile"
+description = "Install packages and, on Windows, set the user environment"
 run = "brew bundle --file=Brewfile"
+run_windows = ["ruby system/windows-env.rb"]
 
 [bootstrap.macos.launchd.agents."GOPATH.SetEnv"]
 program = "/bin/sh"
