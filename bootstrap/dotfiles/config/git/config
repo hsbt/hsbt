@@ -116,3 +116,6 @@
 	helper = !heroku git:credentials
 [wt]
 	basedir = .claude/worktrees
+
+[include]
+	path = ~/.config/git/windows

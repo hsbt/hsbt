@@ -1,0 +1,5 @@
+[core]
+	autocrlf = false
+
+[commit]
+	gpgsign = false

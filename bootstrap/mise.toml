@@ -51,6 +51,9 @@ dotfiles.windows_symlinks = true
 
 # helix ignores XDG_CONFIG_HOME on Windows and reads only %APPDATA%.
 "~/AppData/Roaming/helix/config.toml" = { source = "dotfiles/config/helix/config.toml", mode = "symlink", variants = [{ os = "windows" }] }
+# The shared git config includes this file, and git skips a missing include
+# on macOS. It turns signing off because Windows has no signing key yet.
+"~/.config/git/windows" = { source = "dotfiles/windows/config/git/windows", mode = "symlink", variants = [{ os = "windows" }] }
 
 # Run by `mise bootstrap` as its `mise run bootstrap` step.
 #
