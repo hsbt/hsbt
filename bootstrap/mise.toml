@@ -54,6 +54,10 @@ dotfiles.windows_symlinks = true
 # The shared git config includes this file, and git skips a missing include
 # on macOS. It turns signing off because Windows has no signing key yet.
 "~/.config/git/windows" = { source = "dotfiles/windows/config/git/windows", mode = "symlink", variants = [{ os = "windows" }] }
+# $PROFILE lives in OneDrive, so it stays a stub that dot-sources this file
+# rather than a link OneDrive would sync. The coreutils installer keeps its
+# block in that stub.
+"~/.config/powershell" = { source = "dotfiles/windows/config/powershell", mode = "symlink-each", variants = [{ os = "windows" }] }
 
 # Run by `mise bootstrap` as its `mise run bootstrap` step.
 #
