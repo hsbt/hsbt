@@ -41,9 +41,10 @@ it is on. Turning it on needs an administrator, in the Settings page that
 > (Get-ItemProperty HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock).AllowDevelopmentWithoutDevLicense
 ```
 
-Run the bootstrap in Windows Terminal, not from Claude Desktop, which
-redirects writes under AppData and would hide the helix link from
-everything else.
+Run the bootstrap from PowerShell in Windows Terminal, not from Claude
+Desktop, which redirects the folders it creates under AppData and would
+hide the helix link from everything else. The commands here are
+PowerShell, and cmd.exe reads `trust;` below as a task name.
 
 ```
 > cd V:\github.com\hsbt\hsbt\bootstrap; mise trust; mise bootstrap --force-dotfiles
