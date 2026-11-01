@@ -19,11 +19,17 @@ $ mise bootstrap dotfiles apply --force
 
 ## Windows
 
-The same command sets up Windows after `scoop install mise`: scoop and
-winget packages from `scoopfile.json` and `winget.json`, the user
-environment variables from `system/windows-env.rb`, and the shared
-dotfiles plus the Windows-only ones under `dotfiles/windows/`. Visual
-Studio Build Tools are installed separately with their C++ components.
+The same command sets up Windows: scoop and winget packages from
+`scoopfile.json` and `winget.json`, the user environment variables from
+`system/windows-env.rb`, and the shared dotfiles plus the Windows-only
+ones under `dotfiles/windows/`. Visual Studio Build Tools are installed
+separately with their C++ components.
+
+mise itself comes from scoop, so install scoop first and then mise:
+
+```
+> scoop install mise
+```
 
 Turn Developer Mode on before the first run. Without it Windows refuses
 the symlinks, and `dotfiles.windows_symlinks` in `mise.toml` makes the
