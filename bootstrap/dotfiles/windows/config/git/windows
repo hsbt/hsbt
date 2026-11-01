@@ -1,5 +1,6 @@
 [core]
 	autocrlf = false
+	sshCommand = C:/Windows/System32/OpenSSH/ssh.exe
 
 [commit]
 	gpgsign = false
