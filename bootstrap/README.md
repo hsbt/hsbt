@@ -25,9 +25,13 @@ The same command sets up Windows: scoop and winget packages from
 ones under `dotfiles/windows/`. Visual Studio Build Tools are installed
 separately with their C++ components.
 
-mise itself comes from scoop, so install scoop first and then mise:
+Git comes from winget rather than scoop, whose x86 shims fail to start
+git over ssh on ARM64. scoop needs git to add its buckets and mise
+itself comes from scoop, so install Git first, then scoop, then mise
+from a new terminal:
 
 ```
+> winget install Git.Git
 > scoop install mise
 ```
 

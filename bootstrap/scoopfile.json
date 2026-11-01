@@ -18,7 +18,6 @@
     { "Name": "fzf", "Source": "main" },
     { "Name": "gh", "Source": "main" },
     { "Name": "ghostscript", "Source": "main" },
-    { "Name": "git", "Source": "main" },
     { "Name": "go", "Source": "main" },
     { "Name": "helix", "Source": "main" },
     { "Name": "heroku-cli", "Source": "main" },
