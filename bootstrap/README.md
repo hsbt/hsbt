@@ -61,6 +61,15 @@ the task needs an elevated PowerShell:
 > Register-ScheduledTask -TaskName 'Mount DevDrive' -Xml (Get-Content V:\github.com\hsbt\hsbt\bootstrap\system\mount-devdrive.xml -Raw)
 ```
 
+WSL and ChatGPT are MSIX packages that refuse to install without an
+administrator, even with UAC prompts turned off, so they are in
+`winget-admin.json` rather than `winget.json`. Import it from an elevated
+PowerShell after the bootstrap:
+
+```
+> winget import -i V:\github.com\hsbt\hsbt\bootstrap\winget-admin.json --no-upgrade
+```
+
 ## TODO
 
 * Bootstrap to `git clone` to *env software.

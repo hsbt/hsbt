@@ -19,8 +19,6 @@
         { "PackageIdentifier": "Microsoft.PowerToys" },
         { "PackageIdentifier": "Microsoft.Teams" },
         { "PackageIdentifier": "Microsoft.WindowsTerminal" },
-        { "PackageIdentifier": "Microsoft.WSL" },
-        { "PackageIdentifier": "OpenAI.ChatGPT" },
         { "PackageIdentifier": "Rustlang.Rustup" },
         { "PackageIdentifier": "VideoLAN.VLC" },
         { "PackageIdentifier": "ZedIndustries.Zed" }
