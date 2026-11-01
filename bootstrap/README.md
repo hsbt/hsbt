@@ -19,10 +19,12 @@ $ mise bootstrap dotfiles apply --force
 
 ## Windows
 
-The same command sets up Windows after `scoop install mise`: scoop
-packages from `scoopfile.json`, the user environment variables from
-`system/windows-env.rb`, and the shared dotfiles plus the Windows-only
-ones under `dotfiles/windows/`. Real symlinks need Developer Mode. Run it
+The same command sets up Windows after `scoop install mise`: scoop and
+winget packages from `scoopfile.json` and `winget.json`, the user
+environment variables from `system/windows-env.rb`, and the shared
+dotfiles plus the Windows-only ones under `dotfiles/windows/`. Visual
+Studio Build Tools are installed separately with their C++ components.
+Real symlinks need Developer Mode. Run it
 in Windows Terminal, not from Claude Desktop, which redirects writes under
 AppData and would hide the helix link from everything else.
 

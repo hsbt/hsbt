@@ -1,0 +1,37 @@
+{
+  "$schema": "https://aka.ms/winget-packages.schema.2.0.json",
+  "Sources": [
+    {
+      "SourceDetails": { "Argument": "https://cdn.winget.microsoft.com/cache", "Identifier": "Microsoft.Winget.Source_8wekyb3d8bbwe", "Name": "winget", "Type": "Microsoft.PreIndexed.Package" },
+      "Packages": [
+        { "PackageIdentifier": "AgileBits.1Password" },
+        { "PackageIdentifier": "Anthropic.Claude" },
+        { "PackageIdentifier": "CrystalDewWorld.CrystalDiskInfo" },
+        { "PackageIdentifier": "CrystalDewWorld.CrystalDiskMark" },
+        { "PackageIdentifier": "Deskflow.Deskflow" },
+        { "PackageIdentifier": "Dropbox.Dropbox" },
+        { "PackageIdentifier": "Google.Antigravity" },
+        { "PackageIdentifier": "Google.Chrome" },
+        { "PackageIdentifier": "Google.GoogleDrive" },
+        { "PackageIdentifier": "Microsoft.Coreutils" },
+        { "PackageIdentifier": "Microsoft.DotNet.SDK.8" },
+        { "PackageIdentifier": "Microsoft.PowerShell" },
+        { "PackageIdentifier": "Microsoft.PowerToys" },
+        { "PackageIdentifier": "Microsoft.Teams" },
+        { "PackageIdentifier": "Microsoft.WindowsTerminal" },
+        { "PackageIdentifier": "Microsoft.WSL" },
+        { "PackageIdentifier": "OpenAI.ChatGPT" },
+        { "PackageIdentifier": "Rustlang.Rustup" },
+        { "PackageIdentifier": "VideoLAN.VLC" },
+        { "PackageIdentifier": "ZedIndustries.Zed" }
+      ]
+    },
+    {
+      "SourceDetails": { "Argument": "https://storeedgefd.dsx.mp.microsoft.com/v9.0", "Identifier": "StoreEdgeFD", "Name": "msstore", "Type": "Microsoft.Rest" },
+      "Packages": [
+        { "PackageIdentifier": "XP8M5JR6H0JVQW" },
+        { "PackageIdentifier": "XPDCK2L0R6V76J" }
+      ]
+    }
+  ]
+}
