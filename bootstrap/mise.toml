@@ -49,6 +49,8 @@ dotfiles.windows_symlinks = true
 "~/.local/bin" = { source = "dotfiles/local/bin", mode = "symlink-each", variants = [{ os = "macos" }] }
 "~/.local/share/cargo" = { source = "dotfiles/local/share/cargo", mode = "symlink-each", variants = [{ os = "macos" }] }
 
+# Windows has a global mise config of its own, without Ruby.
+"~/.config/mise/config.toml" = { source = "dotfiles/windows/config/mise/config.toml", mode = "symlink", variants = [{ os = "windows" }] }
 # helix ignores XDG_CONFIG_HOME on Windows and reads only %APPDATA%.
 "~/AppData/Roaming/helix/config.toml" = { source = "dotfiles/config/helix/config.toml", mode = "symlink", variants = [{ os = "windows" }] }
 # The shared git config includes this file, and git skips a missing include

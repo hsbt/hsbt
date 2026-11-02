@@ -1,0 +1,6 @@
+[tools]
+gh = "latest"
+go = "latest"
+java = "latest"
+node = "latest"
+uv = "latest"

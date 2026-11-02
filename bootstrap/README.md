@@ -23,8 +23,19 @@ The same command sets up Windows: scoop and winget packages from
 `scoopfile.json` and `winget.json` (plus `winget-x64.json` on x64 only),
 the user environment variables from
 `system/windows-env.rb`, and the shared dotfiles plus the Windows-only
-ones under `dotfiles/windows/`. Visual Studio Build Tools are installed
-separately with their C++ components.
+ones under `dotfiles/windows/`. The runtimes and gh come from mise, as on
+macOS, through the global config in `dotfiles/windows/config/mise/`.
+Visual Studio Build Tools are installed separately with their C++
+components.
+
+A machine that had go, nodejs, uv, temurin-lts-jre or gh from scoop
+removes them before the bootstrap. Their uninstallers take `GOPATH`'s
+bin off the PATH and drop the `UV_` variables, so the bootstrap has to
+run after them:
+
+```
+> scoop uninstall go nodejs uv temurin-lts-jre gh
+```
 
 Git comes from winget rather than scoop. scoop keeps it behind a
 `current` junction, which the SSH sessions of Claude Desktop refuse to
