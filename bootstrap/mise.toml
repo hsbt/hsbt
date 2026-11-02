@@ -70,15 +70,15 @@ dotfiles.windows_symlinks = true
 #
 # On Windows the task sets the user environment, imports `scoopfile.json`,
 # brings the VC++ runtime up to date, installs PowerShell 7 from its MSI,
-# and imports `winget.json`. The two files split the Brewfile's part
-# between scoop and winget.
+# and imports `winget.json`, plus `winget-x64.json` on x64 only. The files
+# split the Brewfile's part between scoop and winget.
 # Visual Studio Build Tools stay out of `winget.json` because winget alone
 # installs them without the C++ components. Packages that install only from
 # an administrator sit in `winget-admin.json`, imported by hand (see README).
 [tasks.bootstrap]
 description = "Install packages and, on Windows, set the user environment"
 run = "brew bundle --file=Brewfile"
-run_windows = ["ruby system/windows-env.rb", "scoop import scoopfile.json", "ruby system/windows-vcredist.rb", "ruby system/windows-pwsh.rb", "winget import -i winget.json --no-upgrade"]
+run_windows = ["ruby system/windows-env.rb", "scoop import scoopfile.json", "ruby system/windows-vcredist.rb", "ruby system/windows-pwsh.rb", "winget import -i winget.json --no-upgrade", "ruby system/windows-winget-x64.rb"]
 
 [bootstrap.macos.launchd.agents."GOPATH.SetEnv"]
 program = "/bin/sh"

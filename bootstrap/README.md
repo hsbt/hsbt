@@ -20,7 +20,8 @@ $ mise bootstrap dotfiles apply --force
 ## Windows
 
 The same command sets up Windows: scoop and winget packages from
-`scoopfile.json` and `winget.json`, the user environment variables from
+`scoopfile.json` and `winget.json` (plus `winget-x64.json` on x64 only),
+the user environment variables from
 `system/windows-env.rb`, and the shared dotfiles plus the Windows-only
 ones under `dotfiles/windows/`. Visual Studio Build Tools are installed
 separately with their C++ components.

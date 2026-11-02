@@ -8,8 +8,6 @@
         { "PackageIdentifier": "Anthropic.Claude" },
         { "PackageIdentifier": "CrystalDewWorld.CrystalDiskInfo" },
         { "PackageIdentifier": "CrystalDewWorld.CrystalDiskMark" },
-        { "PackageIdentifier": "Deskflow.Deskflow" },
-        { "PackageIdentifier": "Dropbox.Dropbox" },
         { "PackageIdentifier": "Git.Git" },
         { "PackageIdentifier": "Google.Antigravity" },
         { "PackageIdentifier": "Google.Chrome.EXE" },
