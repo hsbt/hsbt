@@ -1,6 +1,6 @@
 [tools]
 gh = "latest"
 go = "latest"
-java = "latest"
+java = "microsoft-25"
 node = "latest"
 uv = "latest"
