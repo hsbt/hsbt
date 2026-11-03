@@ -10,7 +10,6 @@
         { "PackageIdentifier": "CrystalDewWorld.CrystalDiskMark" },
         { "PackageIdentifier": "Git.Git" },
         { "PackageIdentifier": "Google.Antigravity" },
-        { "PackageIdentifier": "Google.Chrome.EXE" },
         { "PackageIdentifier": "Google.GoogleDrive" },
         { "PackageIdentifier": "Microsoft.Coreutils" },
         { "PackageIdentifier": "Microsoft.DotNet.SDK.8" },

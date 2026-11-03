@@ -75,6 +75,11 @@ an earlier bootstrap, remove it first:
 > winget uninstall --id Microsoft.PowerShell
 ```
 
+Chrome comes from its enterprise MSI as well (see
+`system/windows-chrome.rb`). On a machine that has the per-user one from
+an earlier bootstrap, uninstall it first from Settings > Apps, leaving
+the browsing data in place.
+
 Claude Code runs its hooks with the msys2 bash that
 `CLAUDE_CODE_GIT_BASH_PATH` points to. The 2026-09-27 msys2 in scoop
 ships msys2-runtime 3.6.10-5, which never returns from a WindowsApps
