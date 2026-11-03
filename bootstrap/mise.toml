@@ -106,3 +106,13 @@ run_at_load = true
 program = "/bin/sh"
 args = ["-c", "launchctl setenv COPILOT_HOME \"$HOME/.config/copilot\""]
 run_at_load = true
+
+[bootstrap.macos.launchd.agents."CODEX_HOME.SetEnv"]
+program = "/bin/sh"
+args = ["-c", "launchctl setenv CODEX_HOME \"$HOME/.config/codex\""]
+run_at_load = true
+
+[bootstrap.macos.launchd.agents."CODEX_SQLITE_HOME.SetEnv"]
+program = "/bin/sh"
+args = ["-c", "launchctl setenv CODEX_SQLITE_HOME \"$HOME/.local/state/codex\""]
+run_at_load = true
