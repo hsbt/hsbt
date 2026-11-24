@@ -188,7 +188,7 @@ hsbt at ruby-lang dot org
 * 2011年04月 OedoRubyKaigi01 [Leave end-to-end testing to Capybara](/slide/20110410-OedoRubyKaigi01/)
 * 2010年12月 SapporoRubyKaigi03 [What's culture and tools in Ruby worlds](/slide/20101203-SapporoRubyKaigi03/)
 * 2010年08月 日本Ruby会議 2010 [How to survive in post Rails' world](/slide/20100829-RubyKaigi2010/)
-* 2010年08月 日本Ruby会議 2010 [Head First ふつうのシステム開発のご紹介](https://speakerdeck.com/hsbt/head-first)
+* 2010年07月 oblove 2010 summer [Head First ふつうのシステム開発のご紹介](/slide/20100716-oblove2010summer/)
 * 2010年03月 仙台Ruby会議02 [Rubyをキメて上京するのに必要なこと](/slide/20100320-SendaiRubyKaigi02/)
 * 2009年12月 SapporoRubyKaigi02 [tDiary annual report 2009](/slide/20091205-SapporoRubyKaigi02/)
 * 2009年07月 RubyKaigi 2009 [Our tDiary's policy and strategies to support Ruby 1.9 and our future plan](/slide/20090719-RubyKaigi2009/)
