@@ -1,0 +1,85 @@
+html, body {
+  margin: 0;
+  height: 100%;
+  background: #1a1a1a;
+  color: #ddd;
+  font-family: sans-serif;
+}
+
+.viewer {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+  background: #1a1a1a;
+}
+
+.stage {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  touch-action: pinch-zoom;
+  user-select: none;
+  cursor: pointer;
+}
+
+.stage canvas {
+  display: block;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  font-size: 14px;
+}
+
+.toolbar button, .toolbar a {
+  color: inherit;
+  background: none;
+  border: 1px solid #555;
+  border-radius: 4px;
+  padding: 4px 12px;
+  font: inherit;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.toolbar button:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.toolbar .counter {
+  min-width: 5em;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.toolbar .title {
+  margin-left: auto;
+  min-width: 0;
+  flex-shrink: 1;
+  border: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.viewer:fullscreen .toolbar {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .toolbar {
+    gap: 8px;
+    padding: 8px;
+  }
+}
