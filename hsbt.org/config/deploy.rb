@@ -26,18 +26,33 @@ end
 desc "Generates dist/index.html from src/"
 task :"www:generate" do
   require "kramdown"
+  require "erb"
+  require "fileutils"
   header = File.read("src/header.html")
-  body = Kramdown::Document.new(File.read("src/index.md")).to_html
   footer = File.read("src/footer.html")
-  File.open("dist/index.html", "w") do |f|
-    [header, body, footer].each { |s| f.puts s }
+  page = ->(path, markdown) do
+    File.open(path, "w") do |f|
+      [header, Kramdown::Document.new(markdown).to_html, footer].each { |s| f.puts s }
+    end
   end
+  page.("dist/index.html", File.read("src/index.md"))
+
+  slides = Dir.glob("slide/*.pdf").map { |pdf| File.basename(pdf, ".pdf") }.sort.reverse
+  viewer = ERB.new(File.read("src/slide.html.erb"))
+  slides.each do |name|
+    FileUtils.mkdir_p("dist/slide/#{name}")
+    File.write("dist/slide/#{name}/index.html", viewer.result_with_hash(name: ERB::Util.h(name)))
+  end
+  list = slides.map do |name|
+    "* [#{name.sub(/\A(\d{4})(\d\d)(\d\d)-/, '\1-\2-\3 ')}](/slide/#{name}/)"
+  end
+  page.("dist/slide/index.html", ["# 登壇資料", "", *list].join("\n"))
 end
 
 # The index page lives beside tDiary, not in its releases, so each deploy
 # overwrites it in place. Net::SCP runs outside mina's command queue, hence
 # the explicit --simulate check.
-desc "Uploads dist/index.html and dist/hsbt.css"
+desc "Uploads dist/index.html, dist/hsbt.css, dist/slide and slide/*.pdf"
 task :"www:upload" => :"www:generate" do
   www = "/home/#{fetch(:user)}/www/hsbt.org"
   files = {
@@ -46,10 +61,23 @@ task :"www:upload" => :"www:generate" do
   }
   if fetch(:simulate)
     files.each { |src, dest| puts "# scp #{src} #{fetch(:domain)}:#{dest}" }
+    puts "# scp -r dist/slide #{fetch(:domain)}:#{www}/"
+    puts "# scp slide/*.pdf that differ from #{fetch(:domain)}:#{www}/slide/"
   else
     require "net/scp"
+    require "digest"
     Net::SCP.start(fetch(:domain), fetch(:user)) do |scp|
       files.each { |src, dest| scp.upload!(src, dest) }
+      scp.upload!("dist/slide", www, recursive: true)
+      # The PDFs add up to hundreds of megabytes, so only those whose
+      # contents differ from the server's copy are sent.
+      remote = scp.session.exec!("cd #{www}/slide && sha256sum -- *.pdf 2>/dev/null").to_s
+        .lines.to_h { |line| line.chomp.split("  ", 2).reverse }
+      Dir.glob("slide/*.pdf").each do |pdf|
+        name = File.basename(pdf)
+        next if remote[name] == Digest::SHA256.file(pdf).hexdigest
+        scp.upload!(pdf, "#{www}/slide/#{name}")
+      end
     end
   end
 end

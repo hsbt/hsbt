@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= name %> - www.hsbt.org</title>
+  <link href="/slide/viewer.css" rel="stylesheet">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0Q0VQY00J"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-D0Q0VQY00J');
+  </script>
+  <script type="module" src="/slide/viewer.js"></script>
+</head>
+<body>
+<main class="viewer" data-pdf="/slide/<%= name %>.pdf">
+  <div class="stage"></div>
+  <nav class="toolbar">
+    <button class="prev" aria-label="前のページ">&larr;</button>
+    <span class="counter"></span>
+    <button class="next" aria-label="次のページ">&rarr;</button>
+    <a class="title" href="/slide/"><%= name %></a>
+    <a href="/slide/<%= name %>.pdf" download>PDF</a>
+    <button class="fullscreen">全画面</button>
+  </nav>
+</main>
+</body>
+</html>
