@@ -92,7 +92,7 @@ hsbt at ruby-lang dot org
 
 ## 講演・発表(国際カンファレンス)
 
-* 2026年04月 RubyKaigi 2026 [Ruby Releases Ruby](https://www.slideshare.net/slideshow/rubykaigi-2026-day-3-ruby-releases-ruby/287280094)
+* 2026年04月 RubyKaigi 2026 [Ruby Releases Ruby](/slide/20260423-RubyKaigi2026/)
 * 2024年07月 RedDotRubyConf 2024 [Introduction of Cybersecurity with Ruby](/slide/20240725-RedDotRubyConf2024/)
 * 2024年06月 CodeEurope 2024 [Introduction of Cybersecurity with OSS](/slide/20240610-CodeEurope2024/)
 * 2024年05月 RubyKaigi 2024 [Long journey of Ruby Standard library](/slide/20240515-RubyKaigi2024/)
@@ -135,7 +135,8 @@ hsbt at ruby-lang dot org
 
 ## 講演・発表
 
-* 2025年08月 Ruby Association Activity Report 2025 [Working as an OSS Developer](https://www.slideshare.net/slideshow/working-as-an-oss-developer-at-ruby-association-activity-report-2025/282770818)
+* 2026年11月 仙台Ruby会議03 [Ruby で学ぶ Windows システムプログラミング](/slide/20261121-SendaiRubyKaigi03/)
+* 2025年08月 Ruby Association Activity Report 2025 [Working as an OSS Developer](/slide/20250828-RubyActivityReport2025/)
 * 2023年11月 各社の技術広報が明かす「RubyKaigiスポンサーの裏話」運営ノウハウやコミュニティへの想い [Why ANDPAD commit Ruby and RubyKaigi?](/slide/20231116-RubyKaigiSponsorTalk/)
 * 2023年11月 RubyWorld Conference 2023 [Ruby コミッターと歩む Ruby を用いたプロダクト開発](/slide/20231109-RubyWorldConf2023/)
 * 2023年02月 Fukuoka RubyistKaigi 03 [How to make faster release cycle of Ruby? - Speaker Deck](/slide/20230218-FukuokaRubyistKaigi03/)
