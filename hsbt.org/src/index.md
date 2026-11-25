@@ -195,6 +195,14 @@ hsbt at ruby-lang dot org
 * 2008年10月 SapporoRubyKaigi01 [わたしとtDiary](/slide/20081025-SaporoRubyKaigi01/)
 * 2006年04月 tDiary Party 2.1 [自己紹介 tDiary のここがイイ!](/slide/20060415-tDiaryParty21/)
 
+## その他(勉強会、ワークショップ等)
+
+* 2022年06月 GMO ペパボ 社内勉強会 [開発環境へのこだわり](/slide/20220610-devmeeting-devenv/)
+* 2019年05月 未来大×企業エンジニア 春のLT大会 [エスパー力を高めるソフトウェアの問題解決の技術](/slide/20190518-HakodateMirai/)
+* 2019年02月 HackingHR Vol.6 [Social Inclusion for Engineering Organization](/slide/20190222-HackingHRVol6/)
+* 2019年01月 YAPC::Tokyo 2019 [GMO ペパボ株式会社 エンジニア向け会社紹介](/slide/20190126-yapctokyo2019/)
+* 2013年02月 カヤック勉強会 [ざっくりわかるRubyとRails](/slide/20130222-KayacStudy01/)
+
 ## パネルディスカッション
 
 * 2026年04月 RubyKaigi 2026 [Ruby Committers and the World](https://www.youtube.com/watch?v=Jyqs30IX4iM)
