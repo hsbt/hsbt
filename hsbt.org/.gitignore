@@ -2,3 +2,4 @@ dist/index.html
 dist/slide/index.html
 dist/slide/*/
 dist/og/
+dist/slide/slides.json

@@ -28,6 +28,7 @@ task :"www:generate" do
   require "kramdown"
   require "erb"
   require "fileutils"
+  require "json"
   header = File.read("src/header.html")
   footer = File.read("src/footer.html")
   page = ->(path, markdown) do
@@ -47,6 +48,7 @@ task :"www:generate" do
   slides = Dir.glob("slide/*.pdf").map { |pdf| File.basename(pdf, ".pdf") }.sort.reverse
   viewer = ERB.new(File.read("src/slide.html.erb"))
   FileUtils.mkdir_p("dist/og")
+  cards = {}
   slides.each do |name|
     image = "dist/og/#{name}.jpg"
     unless File.exist?(image) && File.mtime(image) >= File.mtime("slide/#{name}.pdf")
@@ -54,16 +56,20 @@ task :"www:generate" do
         "-scale-to-x", "1200", "-scale-to-y", "-1", "slide/#{name}.pdf", image.delete_suffix(".jpg"), exception: true)
     end
     talk = talks.fetch(name, {date: "", event: "", title: name})
+    description = [talk[:event], talk[:date]].reject(&:empty?).join(" / ")
+    cards[name] = {title: talk[:title], description: description}
     vars = {
       name: name,
       title: talk[:title],
-      description: [talk[:event], talk[:date]].reject(&:empty?).join(" / "),
+      description: description,
       url: "https://#{fetch(:domain)}/slide/#{name}/",
       image: "https://#{fetch(:domain)}/slide/#{name}.jpg",
     }.transform_values { |v| ERB::Util.h(v) }
     FileUtils.mkdir_p("dist/slide/#{name}")
     File.write("dist/slide/#{name}/index.html", viewer.result_with_hash(**vars))
   end
+  # tDiary's slide plugin reads this beside the PDFs to draw a card for a talk.
+  File.write("dist/slide/slides.json", JSON.pretty_generate(cards))
   list = slides.map do |name|
     "* [#{name.sub(/\A(\d{4})(\d\d)(\d\d)-/, '\1-\2-\3 ')}](/slide/#{name}/)"
   end
