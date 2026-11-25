@@ -1,3 +1,7 @@
+# hocho copies this directory to the host's /tmp, which cannot hold the
+# slide PDFs beside it, so only the recipes are sent.
+itamae_dir: recipes
+
 property_providers:
   - add_default:
       properties:
