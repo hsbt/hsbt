@@ -55,6 +55,10 @@ h3 {
   font-weight: bold;
   color: #000;
   padding: 0.2em;
+  word-break: auto-phrase;
+}
+h2, h3 {
+  text-wrap: balance;
 }
 
 a:link {
