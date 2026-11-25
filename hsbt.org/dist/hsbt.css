@@ -11,6 +11,15 @@ html:has(meta[name="viewport"]) {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
+html {
+  text-autospace: normal;
+  text-spacing-trim: trim-start;
+  line-break: strict;
+}
+pre, input, textarea {
+  text-autospace: no-autospace;
+  text-spacing-trim: space-all;
+}
 body {
   background-color: #fff;
   color: #000;
