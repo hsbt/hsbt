@@ -67,6 +67,7 @@ hsbt at ruby-lang dot org
 
 ## 執筆・寄稿・インタビュー(Web 媒体)
 
+* 2026年11月 [AI時代、Rubyのメンテナは何を判断するのか？ 判断を毎回やり直さない「ルール化」の思考法](https://levtech.jp/media/detail_962/)
 * 2024年04月 [RubyKaigi 2024 で登壇する hsbt と ydah に聞く Speaker になるまでの道のり](https://www.wantedly.com/companies/andpad/post_articles/900845)
 * 2024年01月 [レオのリファラル入社エピソード ～シニアエンジニアの転職の進め方](https://www.wantedly.com/companies/andpad/post_articles/879710)
 * 2024年01月 [徹底解説！ default gemsとbundled gemsのすべて](https://gihyo.jp/article/2024/01/ruby3.3-bundled-gems)
